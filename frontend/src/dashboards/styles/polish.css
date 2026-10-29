@@ -1,0 +1,77 @@
+/* Dashboard polish, loaded after theme.css so it wins at equal specificity.
+   Shared by every role's dashboard. */
+
+/* 1. Readable secondary text. The old tertiary/muted greys were ~2.5:1 on the dark
+   background (KPI captions, AI disclaimer, empty states, table captions...). */
+:root { --text-tertiary: #566f8e; --text-muted: #7f93ad; }
+[data-theme="dark"] { --text-tertiary: #8392a8; --text-muted: #5d6c84; }
+.ai-disclaimer { font-size: 10.5px; }
+
+/* 2. A zero is "all clear", not an alarm: neutral colour. The class is toggled by
+   lib/zeroKpiTone.js, so it also flips back as soon as the value is > 0. */
+.kpi-value.is-zero { color: var(--text-secondary) !important; }
+.kpi-sub .is-zero { color: inherit !important; }
+
+/* 3. AI summary rows that say "nothing to report" read as information, not as a warning. */
+.u-ai-quiet { color: var(--text-tertiary); font-weight: 600; flex-shrink: 0; }
+
+/* 4. The right-hand column of the two-column dashboard layout (.grid-2-1: alerts, recent
+   checks...) gets the same card as the table next to it, with a title styled like the
+   left card's title. Scoped to .grid-2-1 so other pages that already wrap their blocks
+   in .card (e.g. the patient messaging page) don't end up with a card inside a card. */
+.grid-2-1 > .u-col-gap12:has(> .u-label-caps:first-child) {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.grid-2-1 > .u-col-gap12 > .u-label-caps:first-child {
+  font-size: 13px; font-weight: 600; letter-spacing: 0; text-transform: none;
+  color: var(--text-primary); margin-bottom: 4px;
+}
+
+/* Items that are themselves cards (e.g. the pharmacist's recent checks) sit INSIDE the
+   column card: flatten them to a subtle inner surface instead of card-in-card. */
+.grid-2-1 > .u-col-gap12 > .u-col-gap8 > .card { background: var(--surface-2); box-shadow: none; }
+
+/* 7 KPI cards (hospital dashboard) in a 6-column grid left one card alone on a second
+   row. 4 columns with the 7th card spanning two keeps both rows full; 7 columns when wide. */
+@media (min-width: 1101px) and (max-width: 1599px) {
+  .grid-kpi:has(> .kpi-card:nth-child(7):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-kpi > .kpi-card:nth-child(7):last-child { grid-column: span 2; }
+}
+@media (min-width: 1600px) {
+  .grid-kpi:has(> .kpi-card:nth-child(7):last-child) { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .grid-kpi > .kpi-card:nth-child(7):last-child { grid-column: 1 / -1; }
+}
+
+/* ── Empty states (components/EmptyState.jsx) ─────────────────────────────────
+   Centered icon badge + short title + one-line explanation, in the same card as the
+   rest of the app. `--bare` drops the card when it sits inside one. */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: clamp(28px, 6vh, 56px) 24px;
+  background: var(--surface-1); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+}
+.empty-state--bare { background: none; border: 0; box-shadow: none; padding: clamp(20px, 4vh, 36px) 16px; }
+.empty-state-icon {
+  width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 24px; margin-bottom: 14px;
+  background: var(--surface-2); color: var(--text-tertiary); border: 1px solid var(--border-subtle);
+}
+.empty-state-icon--ok { background: var(--color-green-dim); color: var(--color-green); border-color: transparent; }
+.empty-state-title { font-size: 14.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.empty-state-text { font-size: 12.5px; color: var(--text-secondary); max-width: 460px; line-height: 1.5; text-wrap: balance; }
+.empty-state-note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; }
+.empty-state-action { margin-top: 16px; }
+
+/* Phones: the page's action buttons were one 564px nowrap row on a 390px screen,
+   so the primary action ("Nouvelle déclaration", "Déclarer un incident"…) sat off-screen. */
+@media (max-width: 700px) {
+  .page-actions { flex-wrap: wrap; width: 100%; }
+  .page-actions .btn { flex: 1 1 auto; justify-content: center; }
+}

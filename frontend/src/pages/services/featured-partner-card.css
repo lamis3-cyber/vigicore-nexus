@@ -1,0 +1,229 @@
+/* Featured partner: wide split card (see FeaturedPartnerCard.jsx). --k = category colour as "r,g,b". */
+.fpc{position:relative;display:grid;grid-template-columns:1fr 1fr;container-type:inline-size;min-height:560px;border-radius:var(--r-xl,30px);overflow:hidden;isolation:isolate;
+  background:radial-gradient(900px 500px at 82% 20%,rgba(var(--k),.14),transparent 60%),var(--glass-bg,#04101f);border:1px solid rgba(var(--k),.55);box-shadow:0 0 80px rgba(var(--k),.18);text-align:left;color:var(--ink,#e4f3ff)}
+.fpc-media{position:absolute;left:0;top:0;bottom:0;width:52%;clip-path:polygon(0 0,100% 0,88% 100%,0 100%);overflow:hidden;
+  background:radial-gradient(circle at 30% 30%,rgba(var(--k),.5),transparent 60%),linear-gradient(150deg,rgba(var(--k),.55),#071a2e);animation:fpc-in .6s var(--ease,ease) both}
+.fpc-media:after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(0deg,rgba(2,10,24,.85),transparent 45%),repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 2px,transparent 2px 4px)}
+.fpc-photo-bg{position:absolute;inset:-10%;width:120%;height:120%;object-fit:cover;filter:blur(26px) saturate(1.2) brightness(.8)}
+.fpc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:36px 18% 90px 6%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
+.fpc-photo.is-cover{padding:0;object-fit:cover;filter:saturate(.9) contrast(1.05)}
+.fpc-photo.is-cover + .fpc-beam{mix-blend-mode:screen}
+.fpc-media:has(.is-cover):before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(var(--k),.45),rgba(7,26,46,.55));mix-blend-mode:multiply}
+.fpc-grid{position:absolute;inset:0;background:linear-gradient(rgba(0,232,255,.09) 1px,transparent 1px) 0 0/26px 26px,linear-gradient(90deg,rgba(0,232,255,.09) 1px,transparent 1px) 0 0/26px 26px}
+.fpc-mono{position:absolute;left:4%;top:50%;transform:translateY(-58%);font-size:clamp(7rem,15vw,15rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:2px rgba(var(--k),.6)}
+.fpc-beam{position:absolute;left:55%;top:0;bottom:0;width:90px;z-index:3;background:linear-gradient(90deg,transparent,rgba(var(--k),.28));border-right:2px solid rgba(255,255,255,.75);animation:fpc-sweep 7s ease-in-out infinite alternate}
+.fpc-seam{position:absolute;left:0;top:0;bottom:0;width:52%;pointer-events:none;z-index:4;background:rgb(var(--k));box-shadow:0 0 26px rgb(var(--k));
+  clip-path:polygon(calc(100% - 4px) 0,100% 0,88% 100%,calc(88% - 4px) 100%)}
+.fpc-dust{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.fpc-ribbon{position:absolute;left:30px;top:28px;z-index:7;padding:9px 18px;border-radius:99px;background:rgba(2,10,24,.82);border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:1rem;color:rgb(var(--k))}
+.fpc-ad{position:absolute;left:30px;top:76px;z-index:7;font-size:0.75rem;letter-spacing:.2em;color:rgba(255,255,255,.78);background:rgba(2,10,24,.6);padding:4px 10px;border-radius:6px}
+.fpc-count{position:absolute;right:40px;top:28px;z-index:7;font-size:1.4rem;color:rgba(255,255,255,.45)}.fpc-count b{font-size:2.2rem;color:rgb(var(--k));letter-spacing:1px}
+.fpc-logo{position:absolute;left:calc(49% - 75px);top:50%;transform:translateY(-50%);z-index:8;width:150px;height:166px;display:grid;place-items:center;animation:fpc-pop .5s var(--ease-spring,ease) both;filter:drop-shadow(0 14px 30px rgba(0,0,0,.6))}
+.fpc-orbit{position:absolute;inset:-20px -26px;border:1.5px dashed rgba(var(--k),.55);border-radius:50%}
+.fpc-hex{position:absolute;inset:0;display:grid;place-items:center;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(160deg,rgb(var(--k)),rgba(var(--k),.55))}
+.fpc-hex:before{content:"";position:absolute;inset:5px;clip-path:inherit;background:#08192c}
+.fpc-hex img{position:relative;width:52%;height:52%;object-fit:contain}
+.fpc-hex b{position:relative;font-size:2.2rem;letter-spacing:-.03em;color:rgb(var(--k))}
+.fpc-verified{position:absolute;right:2px;bottom:12px;width:34px;height:34px;border-radius:50%;background:#00ffcc;color:#022;font-weight:700;display:grid;place-items:center;border:4px solid #04101f}
+.fpc-rail{position:absolute;left:30px;bottom:30px;z-index:7;display:flex;align-items:center;gap:16px;max-width:calc(52% - 110px)}
+.fpc-arrow{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(2,10,24,.65);color:#fff;font-size:1.3rem;cursor:pointer}
+.fpc-arrow:hover,.fpc-arrow:focus-visible{border-color:rgb(var(--k));outline:none}
+.fpc-tab{flex:1 0 auto;min-width:76px;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:rgba(228,243,255,.55);font:inherit;font-weight:700;font-size:.95rem}
+.fpc-tab span{display:block;white-space:nowrap}
+.fpc-tab i{display:block;height:3px;margin-top:7px;background:rgba(255,255,255,.22);position:relative;overflow:hidden}
+.fpc-tab.on{color:#fff}
+.fpc-tab.on i:after{content:"";position:absolute;inset:0;background:rgb(var(--k));transform-origin:left;animation:fpc-bar var(--ms) linear forwards}
+.fpc-tab.held i:after{animation:none;opacity:.55}
+.fpc-tab:focus-visible{outline:2px solid rgb(var(--k));outline-offset:4px}
+.fpc-body{grid-column:2;position:relative;z-index:6;display:flex;flex-direction:column;justify-content:center;padding:52px 36px 40px 84px;animation:fpc-in .55s var(--ease,ease) both}
+.fpc-cat{margin-top:6px;display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;color:rgb(var(--k))}
+.fpc-cat i{width:10px;height:10px;border-radius:50%;background:rgb(var(--k));box-shadow:0 0 12px rgb(var(--k))}
+.fpc-body h3{font-size:clamp(2rem,6.2cqw,4.4rem);line-height:.95;letter-spacing:-.04em;margin:14px 0 14px}
+.fpc-tag{font-size:1.3rem;line-height:1.25;color:var(--muted,#9fc3d4);margin:0;max-width:34ch}
+.fpc-seals{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0}
+.fpc-seals li{display:flex;align-items:center;gap:10px;padding:7px 16px 7px 7px;border-radius:99px;border:1px solid rgba(0,255,204,.35);background:rgba(0,255,204,.07);font-weight:700;font-size:.9rem}
+.fpc-seals b{display:grid;place-items:center;min-width:32px;height:32px;padding:0 4px;border-radius:99px;border:2px dashed #00ffcc;color:#00ffcc;font-size:0.75rem}
+.fpc-stats{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 40px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line,rgba(255,255,255,.1))}
+.fpc-stats b{display:block;font-size:2.3rem;line-height:1}.fpc-stats span{font-size:.85rem;color:var(--muted,#8fb4c6)}
+.fpc-spark{width:110px;height:36px;margin-left:auto}
+@container (max-width:1100px){.fpc-spark{display:none}.fpc-stats{gap:12px 30px}.fpc-stats b{font-size:2rem}}
+.fpc-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.fpc-btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:14px;white-space:nowrap;font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer;text-decoration:none}
+.fpc-btn svg{width:18px;height:18px}
+.fpc-btn--main{background:linear-gradient(135deg,rgb(var(--k)),rgba(var(--k),.7));color:#05101e;border:0;box-shadow:0 8px 30px rgba(var(--k),.3)}
+.fpc-btn--ghost{background:transparent;color:rgb(var(--k));border:1px solid rgba(var(--k),.65)}
+.fpc-btn:focus-visible{outline:2px solid rgb(var(--k));outline-offset:3px}
+.fpc.is-held .fpc-beam{animation-play-state:paused}
+@keyframes fpc-in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+@keyframes fpc-pop{from{opacity:0;transform:translateY(-50%) scale(.86)}to{opacity:1;transform:translateY(-50%) scale(1)}}
+@keyframes fpc-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fpc-sweep{from{left:20%}to{left:62%}}
+@media (prefers-reduced-motion:reduce){.fpc-media,.fpc-body,.fpc-logo,.fpc-beam{animation:none}.fpc-tab.on i:after{animation:none}}
+html[data-theme="light"] .fpc{background:#fff;color:#0b1b2b;box-shadow:0 20px 50px rgba(10,40,70,.14)}
+html[data-theme="light"] .fpc-tag,html[data-theme="light"] .fpc-stats span{color:#4a6577}
+html[data-theme="light"] .fpc-verified{border-color:#fff}
+html[data-theme="light"] .fpc-dust{opacity:.55}
+@media (max-width:900px){
+  .fpc{grid-template-columns:minmax(0,1fr)}
+  .fpc-body h3,.fpc-tag{overflow-wrap:anywhere}
+  .fpc-media{width:100%;height:280px;bottom:auto;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+  .fpc-seam{width:100%;height:280px;bottom:auto;clip-path:polygon(0 calc(100% - 4px),100% calc(86% - 4px),100% 86%,0 100%)}
+  .fpc-dust{display:none}
+  .fpc-beam{display:none}
+  .fpc-logo{left:24px;top:210px;transform:none;width:100px;height:110px;animation:none}
+  .fpc-hex b{font-size:1.6rem}.fpc-orbit{display:none}.fpc-verified{width:28px;height:28px;bottom:6px}
+  .fpc-count{right:20px;top:20px}
+  .fpc-rail{position:static;grid-column:1;grid-row:2;max-width:none;padding:0 24px 26px}
+  .fpc-body{grid-column:1;grid-row:1;padding:332px 24px 24px}
+  .fpc-ribbon{left:20px;top:20px}.fpc-ad{left:20px;top:64px}
+}
+
+/* Fit the featured card inside one screen on desktop: everything scales with viewport height. */
+@media (min-width:901px){
+  .fpc{min-height:clamp(400px,calc(100vh - var(--nav-h,70px) - 170px),560px)}
+  .fpc-body{padding:clamp(24px,4.5vh,52px) 36px clamp(20px,3.5vh,40px) 84px}
+  .fpc-body h3{font-size:clamp(1.8rem,min(6.2cqw,8.5vh),4.4rem);margin:clamp(6px,1.2vh,14px) 0}
+  .fpc-tag{font-size:clamp(1rem,2.5vh,1.3rem)}
+  .fpc-seals{margin-top:clamp(10px,2vh,22px)}
+  .fpc-stats{margin-top:clamp(12px,2.2vh,24px);padding-top:clamp(8px,1.8vh,18px)}
+  .fpc-stats b{font-size:clamp(1.5rem,4.2vh,2.3rem)}
+  .fpc-cta{margin-top:clamp(12px,2.4vh,26px)}
+  .fpc-btn{padding:clamp(9px,1.7vh,15px) 18px;font-size:.95rem}
+  .fpc-cta{gap:10px}
+}
+
+/* ==========================================================================
+   FIXED CARD SIZE — every partner renders in the exact same box.
+   Before: .fpc only had a min-height, so a 2-line title / wrapping seals / extra
+   stats made the card taller and the section "jumped" when the partner changed.
+   Now: the card height is fixed, each text block reserves a fixed slot, and
+   anything longer is clamped (title/tagline: 2 lines, seals: 1 row).
+   ========================================================================== */
+.fpc-body{min-height:0;overflow:hidden;justify-content:flex-start}
+.fpc-body h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;
+  min-height:2.05em;padding-bottom:.1em;box-sizing:border-box}
+.fpc-tag{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;min-height:1.25em}
+.fpc-seals{flex-wrap:wrap;height:46px;overflow:hidden;align-content:flex-start}
+.fpc-stats{min-height:62px;box-sizing:border-box}
+.fpc-cta{margin-top:auto;padding-top:12px}
+
+@media (min-width:901px){
+  .fpc{height:clamp(400px,calc(100vh - var(--nav-h,70px) - 170px),560px);min-height:0}
+  .fpc-body{justify-content:flex-start}
+  .fpc-seals{height:clamp(32px,5.6vh,46px)}
+  .fpc-stats{min-height:clamp(46px,8vh,62px)}
+}
+
+@media (max-width:900px){
+  .fpc-seals{height:46px}
+}
+
+/* ==========================================================================
+   COMPACT SIZE + seals no longer clipped (overrides the blocks above).
+   ========================================================================== */
+.fpc-seals li{padding:5px 14px 5px 5px;font-size:.85rem}
+.fpc-seals b{min-width:28px;height:28px}
+.fpc-seals{height:44px}
+
+@media (min-width:901px){
+  .fpc{height:clamp(380px,calc(100vh - var(--nav-h,70px) - 210px),500px)}
+  .fpc-body{padding:clamp(18px,3.4vh,40px) 32px clamp(16px,2.8vh,30px) 84px}
+  .fpc-body h3{font-size:clamp(1.6rem,min(5cqw,7vh),3.4rem);margin:clamp(4px,1vh,10px) 0}
+  .fpc-tag{font-size:clamp(.95rem,2.2vh,1.15rem)}
+  .fpc-seals{height:clamp(40px,5.6vh,44px);margin-top:clamp(8px,1.6vh,16px)}
+  .fpc-stats{min-height:clamp(42px,7vh,56px);margin-top:clamp(8px,1.6vh,16px);padding-top:clamp(6px,1.4vh,14px)}
+  .fpc-stats b{font-size:clamp(1.3rem,3.6vh,2rem)}
+  .fpc-btn{padding:clamp(8px,1.4vh,12px) 18px;font-size:.9rem}
+  .fpc-count b{font-size:1.8rem}
+}
+@media (max-width:900px){
+  .fpc-seals{height:44px}
+}
+
+/* Seals: never clip. Height follows the pills themselves (all pills are the same height,
+   so the card size stays constant); desktop = one row, mobile = may wrap. */
+.fpc-seals{height:auto;min-height:50px;overflow:visible;align-content:flex-start}
+.fpc-seals li{flex:none;white-space:nowrap}
+@media (min-width:901px){
+  .fpc-seals{height:auto;min-height:50px;flex-wrap:nowrap;overflow:hidden;padding-bottom:2px}
+}
+@media (max-width:900px){
+  .fpc-seals{height:auto;min-height:50px}
+}
+
+/* ==========================================================================
+   Polish: no stray white beam, seals never cut off, balanced tagline, calmer monogram,
+   seam leaves breathing room around the logo hexagon.
+   ========================================================================== */
+.fpc-beam{display:none}
+.fpc-tag{text-wrap:balance}
+.fpc-mono{top:58%;left:6%;font-size:clamp(5rem,10vw,10rem);-webkit-text-stroke:2px rgba(var(--k),.28)}
+.fpc-seam{-webkit-mask-image:linear-gradient(180deg,#000 0 31%,transparent 31% 69%,#000 69% 100%);mask-image:linear-gradient(180deg,#000 0 31%,transparent 31% 69%,#000 69% 100%)}
+@media (min-width:901px){
+  .fpc-seals{overflow:visible}
+  .fpc-seals li:nth-child(n+3){display:none}
+}
+@media (max-width:900px){
+  .fpc-seam{-webkit-mask-image:none;mask-image:none}
+}
+
+/* ==========================================================================
+   Look chosen by the organization (studio → "Showcase card"):
+   logo shape (hexagon | circle | square), logo placement (seam | photo), picture side (left | right).
+   Defaults = the original design, so cards without a choice are unchanged.
+   ========================================================================== */
+.fpc-logo[data-shape="circle"],.fpc-logo[data-shape="square"]{height:150px}
+.fpc-logo[data-shape="circle"] .fpc-hex{clip-path:circle(50% at 50% 50%)}
+.fpc-logo[data-shape="square"] .fpc-hex{clip-path:inset(0 round 30px)}
+.fpc-logo[data-shape="circle"] .fpc-hex img,.fpc-logo[data-shape="square"] .fpc-hex img{width:62%;height:62%}
+.fpc-logo[data-shape="circle"] .fpc-verified{right:10px;bottom:10px}
+.fpc-logo[data-shape="square"] .fpc-verified{right:-4px;bottom:-4px}
+
+@media (min-width:901px){
+  /* Logo on the picture (bottom corner) instead of on the seam */
+  .fpc[data-logo="photo"] .fpc-logo{left:30px;top:auto;bottom:30px;transform:none;width:104px;height:116px;animation:none}
+  .fpc[data-logo="photo"] .fpc-logo[data-shape="circle"],.fpc[data-logo="photo"] .fpc-logo[data-shape="square"]{height:104px}
+  .fpc[data-logo="photo"] .fpc-hex b{font-size:1.6rem}
+  .fpc[data-logo="photo"] .fpc-verified{width:26px;height:26px;border-width:3px}
+  .fpc[data-logo="photo"] .fpc-seam{-webkit-mask-image:none;mask-image:none}
+  .fpc[data-logo="photo"] .fpc-rail{left:158px;max-width:calc(52% - 190px)}
+
+  /* Picture on the right, text on the left */
+  .fpc[data-side="right"] .fpc-media{left:auto;right:0;clip-path:polygon(0 0,100% 0,100% 100%,12% 100%)}
+  .fpc[data-side="right"] .fpc-seam{left:auto;right:0;clip-path:polygon(0 0,4px 0,calc(12% + 4px) 100%,12% 100%)}
+  .fpc[data-side="right"] .fpc-photo{padding:36px 6% 90px 18%}
+  .fpc[data-side="right"] .fpc-mono{left:auto;right:6%}
+  .fpc[data-side="right"] .fpc-body{grid-column:1;padding-left:40px;padding-right:84px}
+  .fpc[data-side="right"] .fpc-logo{left:calc(51% - 75px)}
+  .fpc[data-side="right"] .fpc-ribbon,.fpc[data-side="right"] .fpc-ad{left:auto;right:30px}
+  .fpc[data-side="right"] .fpc-count{right:auto;left:40px}
+  .fpc[data-side="right"] .fpc-rail{left:auto;right:30px}
+  .fpc[data-side="right"][data-logo="photo"] .fpc-logo{left:auto;right:30px}
+  .fpc[data-side="right"][data-logo="photo"] .fpc-rail{left:auto;right:158px}
+}
+
+/* ---- compact desktop layout: card fits one screen, buttons side by side ---- */
+@media (min-width: 901px) {
+  /* height follows the content (never clips the buttons), with a screen-based minimum */
+  .fpc { height: auto; min-height: clamp(320px, calc(100dvh - var(--nav-h, 70px) - var(--rail-h, 83px) - 250px), 400px); }
+  .fpc-body { padding: clamp(16px, 3vh, 30px) 32px clamp(14px, 2.5vh, 26px) 84px; }
+  .fpc-body h3 { font-size: clamp(1.6rem, min(4.6cqw, 6vh), 2.8rem); min-height: 0; margin: 8px 0; }
+  .fpc-tag { font-size: 1.05rem; }
+  .fpc-stats { min-height: 0; margin-top: 12px; padding-top: 10px; }
+  .fpc-stats b { font-size: clamp(1.3rem, 3.4vh, 1.8rem); }
+  .fpc-cta { margin-top: auto; padding-top: 10px; gap: 10px; }
+  .fpc-btn { padding: 10px 18px; font-size: .92rem; }
+  .fpc-logo { width: 120px; height: 133px; left: calc(49% - 60px); }
+  .fpc[data-side="right"] .fpc-logo { left: calc(51% - 60px); }
+  /* nothing may shrink/overlap: title keeps clear of the 01/03 counter, tagline shows 2 full lines */
+  .fpc-body > * { flex-shrink: 0; }
+  .fpc-body { padding-right: 28px; overflow: visible; }
+  .fpc-body h3 { padding-right: 0; line-height: 1.05; }
+  .fpc-tag { line-height: 1.3; min-height: 2.6em; max-width: 46ch; }
+  .fpc-count { top: 16px; right: 32px; }
+  .fpc-count b { font-size: 1.7rem; }
+  .fpc-seals { height: auto; max-height: 44px; margin-top: 10px; }
+  .fpc-stats { margin-top: 10px; }
+  .fpc-cta { flex-wrap: nowrap; }
+  .fpc-btn { padding: 9px 16px; font-size: .88rem; }
+}

@@ -1,0 +1,105 @@
+/* ── LANGUAGE DROPDOWN ───────────────────────────────────── */
+.lang-dropdown {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* The trigger button — same size/shape as theme-toggle */
+.lang-dropdown-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,232,255,0.18);
+  background: transparent;
+  color: rgba(0,232,255,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.lang-dropdown-btn:hover,
+.lang-dropdown[data-open] .lang-dropdown-btn {
+  background: rgba(0,232,255,0.08);
+  border-color: rgba(0,232,255,0.40);
+  color: rgba(0,232,255,1);
+}
+
+/* Dropdown list */
+.lang-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 56px;
+  background: rgba(2,10,24,0.97);
+  border: 1px solid rgba(0,232,255,0.22);
+  border-radius: 7px;
+  padding: 4px;
+  list-style: none;
+  margin: 0;
+  z-index: 200;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.55), 0 0 16px rgba(0,232,255,0.07);
+  backdrop-filter: blur(12px);
+}
+.lang-dropdown[data-open] .lang-dropdown-menu {
+  display: block;
+}
+
+.lang-dropdown-item {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(0,232,255,0.55);
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.lang-dropdown-item:hover {
+  background: rgba(0,232,255,0.10);
+  color: rgba(0,232,255,0.95);
+}
+.lang-dropdown-item--active {
+  color: rgba(0,232,255,1);
+  background: rgba(0,232,255,0.13);
+}
+
+/* Mobile lang buttons (inside drawer) */
+.lang-switcher-mobile {
+  display: flex;
+  gap: 4px;
+}
+.lang-mob-btn {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,232,255,0.18);
+  background: rgba(0,232,255,0.05);
+  color: rgba(0,232,255,0.50);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.lang-mob-btn:hover {
+  background: rgba(0,232,255,0.12);
+  color: rgba(0,232,255,0.90);
+}
+.lang-mob-btn--active {
+  background: rgba(0,232,255,0.15);
+  color: rgba(0,232,255,1);
+  border-color: rgba(0,232,255,0.40);
+}
+
+/* No RTL override — layout stays LTR for all languages */
+

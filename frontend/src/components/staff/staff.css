@@ -1,0 +1,65 @@
+/* VigiCore staff console: sidebar + content. Reuses the .msp / .ap-* look of the existing staff pages. */
+.stf{display:grid;grid-template-columns:248px minmax(0,1fr);gap:28px;max-width:1380px;margin:0 auto;padding:104px clamp(16px,3vw,40px) 64px;position:relative;z-index:var(--z-content);color:var(--white)}
+.stf-nav{position:sticky;top:96px;align-self:start;display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:var(--r-lg);border:1px solid var(--glass-border);background:var(--glass-bg)}
+.stf-nav-h{padding:6px 10px 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-2)}
+.stf-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;color:var(--muted);transition:background .15s,color .15s}
+.stf-link:hover{background:var(--surface-hi);color:var(--white)}
+.stf-link.on{background:var(--cyan-dim);color:var(--cyan)}
+.stf-count{min-width:22px;height:22px;padding:0 7px;border-radius:999px;display:inline-grid;place-items:center;font-size:12px;font-weight:700;background:rgba(255,184,77,.16);color:#ffb84d}
+.stf-sep{height:1px;margin:8px 4px;background:var(--line)}
+.stf-main{min-width:0}
+.stf .msp{padding:0;margin:0;max-width:none}
+.msp a.msp-btn--primary,.stf a.msp-btn--primary{color:#021018;text-decoration:none}
+.msp a.msp-btn,.stf a.msp-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+
+.stf-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.stf-head h1{margin:0 0 6px;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.01em}
+.stf-head p{margin:0;color:var(--muted);max-width:68ch;font-size:14px;line-height:1.5}
+
+.stf-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:22px}
+.stf-kpi{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:var(--r-lg);border:1px solid var(--glass-border);background:var(--glass-bg);text-decoration:none;color:var(--white);transition:border-color .15s,transform .15s}
+.stf-kpi:hover{border-color:var(--line-accent);transform:translateY(-1px)}
+.stf-kpi span{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted-2)}
+.stf-kpi strong{font-size:34px;line-height:1;color:var(--cyan)}
+.stf-kpi strong.warn{color:#ffb84d}.stf-kpi strong.ok{color:var(--teal)}
+.stf-kpi small{color:var(--muted);font-size:12.5px}
+
+.stf-panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-bottom:22px}
+.stf-panel{padding:18px 20px;border-radius:var(--r-lg);border:1px solid var(--glass-border);background:var(--glass-bg)}
+.stf-panel header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.stf-panel h2{margin:0;font-size:16px}
+.stf-rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.stf-rows li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.stf-rows li:first-child{border-top:0}
+.stf-rows b{display:block;font-size:14px}.stf-rows small{color:var(--muted-2);font-size:12px}
+.stf-empty{margin:6px 0 2px;color:var(--muted);font-size:14px}
+.stf-note{padding:14px 18px;border-radius:var(--r-md);border:1px dashed var(--line-accent);color:var(--muted);font-size:13.5px;line-height:1.55}
+
+/* product review cards */
+.stf-cards{display:flex;flex-direction:column;gap:14px;list-style:none;margin:0;padding:0}
+.stf-card{display:grid;grid-template-columns:132px minmax(0,1fr);gap:18px;padding:18px;border-radius:var(--r-lg);border:1px solid var(--glass-border);background:var(--glass-bg)}
+.stf-card-img{width:132px;height:132px;border-radius:12px;object-fit:cover;background:var(--surface-hi)}
+.stf-card-ph{display:grid;place-items:center;font-size:34px;font-weight:700;color:var(--muted-2)}
+.stf-card h3{margin:0 0 2px;font-size:17px}
+.stf-meta{display:flex;flex-wrap:wrap;gap:6px 12px;color:var(--muted-2);font-size:12.5px;margin-bottom:8px}
+.stf-chip{padding:2px 9px;border-radius:999px;background:var(--surface-hi);color:var(--muted);font-size:12px}
+.stf-sum{margin:0 0 6px;font-weight:600;font-size:14px}
+.stf-desc{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55;white-space:pre-wrap}
+.stf-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.stf-reject{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.stf-reject textarea{width:100%;min-height:72px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:transparent;color:inherit;font:inherit;font-size:14px;resize:vertical}
+.stf-check{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+@media(max-width:900px){
+  .stf{grid-template-columns:1fr;padding-top:96px}
+  .stf-nav{position:static;flex-direction:row;overflow-x:auto;padding:8px}
+  .stf-nav-h,.stf-sep{display:none}
+  .stf-link{white-space:nowrap}
+  .stf-card{grid-template-columns:1fr}.stf-card-img{width:100%;height:180px}
+}
+html[data-theme="light"] .stf-count{color:#b45309;background:rgba(180,83,9,.12)}
+html[data-theme="light"] .stf-kpi strong.warn{color:#b45309}
+/* Produit VigiCore Audit lié à la fiche (revue des produits) */
+.stf-audit{margin:10px 0 0;padding:8px 12px;border-radius:10px;border:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+.stf-audit--ok{border-color:var(--line-accent);color:var(--cyan)}
+.stf-audit--warn{border-color:rgba(255,159,67,.5);background:rgba(255,159,67,.12);color:#ffb366}
+html[data-theme="light"] .stf-audit--warn{color:#b45309}

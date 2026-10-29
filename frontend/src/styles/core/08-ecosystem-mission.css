@@ -1,0 +1,607 @@
+/* ══════════════════════════════════════════════════════════
+   THE SEAM — "Where healthcare meets enterprise."
+   ──────────────────────────────────────────────────────────
+   Full concept reset (see NetworkEcosystemSection.jsx for the
+   rationale). No hub, no orbiting nodes, no node-and-line
+   diagram, no icon cards. A cross-section through a building:
+   a regulatory lintel above, a patient-safety foundation below,
+   and two glass volumes — Healthcare Portal / Enterprise
+   Platform — meeting at one vertical seam of light in between.
+   Roles are set as engraved manifest lines, not badges.
+   ════════════════════════════════════════════════════════════ */
+
+.threshold-section {
+  min-height: auto !important;
+  display: block;
+  padding: 0;
+  background:
+    radial-gradient(ellipse 62% 38% at 50% 0%, rgba(50,150,255,0.05), transparent 62%),
+    radial-gradient(ellipse 58% 42% at 50% 100%, rgba(0,255,200,0.045), transparent 62%);
+}
+.threshold-section .section-content {
+  padding: 104px 40px 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.threshold-section .section-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.threshold-section .section-title em {
+  font-style: normal;
+  color: var(--cyan-bright);
+}
+.threshold-section .section-desc {
+  margin: 0 auto 8px;
+}
+
+/* ── Stage shell ─────────────────────────────────────────── */
+.threshold-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px clamp(16px, 4vw, 56px) 0;
+}
+
+.threshold-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1100ms var(--ease);
+}
+.threshold-stage.in-view .threshold-atmosphere { opacity: 1; }
+.threshold-atmosphere canvas { display: block; }
+
+/* CSS fallback atmosphere — see JSX comment. Cool haze on the
+   Healthcare side, warm haze on the Enterprise side, tuned per
+   theme so the section reads as a lit space either way. */
+.threshold-atmosphere-css {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1100ms var(--ease);
+}
+.threshold-stage.in-view .threshold-atmosphere-css { opacity: 1; }
+.threshold-atmosphere-css::before,
+.threshold-atmosphere-css::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  width: 36%;
+  height: 78%;
+  filter: blur(50px);
+}
+.threshold-atmosphere-css::before {
+  left: 4%;
+  background: radial-gradient(ellipse at center, rgba(0,180,255,0.09), transparent 70%);
+}
+.threshold-atmosphere-css::after {
+  right: 4%;
+  background: radial-gradient(ellipse at center, rgba(220,140,60,0.09), transparent 70%);
+}
+html[data-theme="light"] .threshold-atmosphere-css::before {
+  background: radial-gradient(ellipse at center, rgba(0,140,220,0.26), transparent 68%);
+}
+html[data-theme="light"] .threshold-atmosphere-css::after {
+  background: radial-gradient(ellipse at center, rgba(200,120,40,0.24), transparent 68%);
+}
+
+.threshold-beat { position: relative; z-index: 2; }
+
+/* ── Beat 01 — Regulatory lintel: a full-width beam, not a
+   badge. Text is centered on top of a hairline that draws in
+   from the middle, like a beam extending across the ceiling. ── */
+.threshold-lintel {
+  max-width: 640px;
+  margin: 0 auto 58px;
+  padding-bottom: 26px;
+  text-align: center;
+}
+.threshold-lintel-bar {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0 auto 22px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--authority) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 14px 1px rgba(50,150,255,0.4);
+  transform: scaleX(0);
+  transform-origin: 50% 50%;
+}
+.threshold-lintel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.threshold-index {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  color: rgba(50,150,255,0.8);
+}
+.threshold-lintel-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--white);
+}
+.threshold-lintel-sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--muted-2);
+}
+
+/* ── The grid: portal column | seam | enterprise column, four
+   explicit rows (head / top roles / keystone / bottom roles).
+   Every piece owns its own row — the keystone can never sit on
+   top of a role line because it simply isn't in that row. ── */
+.threshold-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr min(64px, 8vw) 1fr;
+  grid-template-rows: auto auto auto auto;
+  align-items: start;
+  column-gap: 0;
+  row-gap: 4px;
+  padding-bottom: 8px;
+}
+
+/* ── The seam — the single unique element this section is
+   built around. A slender vertical light column joining the
+   two volumes, growing downward as the section scrolls into
+   view (GSAP scrub on .threshold-seam-line), with one small
+   traveling highlight looping endlessly along it. It spans
+   every row so it reads as one continuous line even though the
+   keystone breaks the wing borders on either side of it. ── */
+.threshold-seam {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 100%;
+}
+/* Extra soft glow column reinforcing the seam line itself — visible
+   in both themes, but tuned brighter for light mode where the WebGL
+   layer alone reads too faint. */
+.threshold-seam::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  bottom: 4%;
+  width: 26px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(50,150,255,0.10) 0%,
+    rgba(0,232,255,0.16) 45%,
+    rgba(0,232,255,0.16) 55%,
+    rgba(220,140,60,0.10) 100%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+}
+html[data-theme="light"] .threshold-seam::before {
+  width: 34px;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,110,210,0.20) 0%,
+    rgba(0,170,220,0.30) 45%,
+    rgba(0,170,220,0.30) 55%,
+    rgba(210,120,40,0.20) 100%
+  );
+  filter: blur(14px);
+}
+.threshold-seam-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%) scaleY(1);
+  transform-origin: 50% 0%;
+  background: linear-gradient(
+    to bottom,
+    rgba(50,150,255,0.55) 0%,
+    rgba(0,232,255,0.32) 14%,
+    rgba(255,255,255,0.16) 50%,
+    rgba(220,140,60,0.32) 86%,
+    rgba(220,140,60,0.55) 100%
+  );
+}
+.threshold-seam-pulse {
+  position: absolute;
+  left: 50%;
+  top: -6%;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  transform: translate(-50%, 0) rotate(45deg);
+  background: var(--cyan-bright);
+  box-shadow: 0 0 12px 3px rgba(0,232,255,0.6);
+  animation: threshold-pulse-travel 5.5s cubic-bezier(.5,0,.5,1) infinite;
+}
+@keyframes threshold-pulse-travel {
+  0%   { top: -2%;  opacity: 0;   background: var(--cyan-bright); box-shadow: 0 0 12px 3px rgba(0,232,255,0.6); }
+  8%   { opacity: 1; }
+  48%  { background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,0.7); }
+  92%  { opacity: 1; }
+  100% { top: 102%; opacity: 0; background: var(--enterprise); box-shadow: 0 0 12px 3px rgba(220,140,60,0.6); }
+}
+
+/* ── Heads — row 1. Flat glass surface, no border-radius card
+   language: an architectural panel, not a widget. ── */
+.wing-head {
+  grid-row: 1;
+  padding: 6px 40px 22px;
+  max-width: 400px;
+}
+.wing-head--portal {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+  border-right: 1px solid rgba(0,232,255,0.10);
+}
+.wing-head--enterprise {
+  grid-column: 3;
+  justify-self: start;
+  text-align: left;
+  border-left: 1px solid rgba(220,140,60,0.12);
+}
+.wing-index {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  margin-bottom: 8px;
+}
+.wing-head--portal .wing-index { color: rgba(0,232,255,0.75); }
+.wing-head--enterprise .wing-index { color: rgba(220,140,60,0.85); }
+.wing-name {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.wing-sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: var(--muted-2);
+}
+
+/* ── Manifest — the role list, split top/bottom around the
+   keystone's row. Engraved ledger lines, not icon cards: a
+   thin baseline rule, a small unboxed glyph, a label. Hover
+   nudges the row a touch toward the seam, as if drawn to it —
+   the section's one interaction detail. ── */
+.wing-manifest {
+  list-style: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+.wing-manifest--portal {
+  grid-column: 1;
+  justify-self: end;
+  border-right: 1px solid rgba(0,232,255,0.10);
+}
+.wing-manifest--enterprise {
+  grid-column: 3;
+  justify-self: start;
+  border-left: 1px solid rgba(220,140,60,0.12);
+}
+.wing-manifest--top { grid-row: 2; }
+.wing-manifest--bottom { grid-row: 4; padding-top: 4px; }
+.manifest-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: transform 260ms var(--ease), border-color 260ms var(--ease);
+}
+.wing-manifest--portal .manifest-row { flex-direction: row-reverse; }
+.wing-manifest--portal .manifest-row:hover { transform: translateX(6px); border-color: rgba(0,232,255,0.22); }
+.wing-manifest--enterprise .manifest-row:hover { transform: translateX(-6px); border-color: rgba(220,140,60,0.26); }
+.manifest-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  opacity: 0.85;
+}
+.manifest-icon svg { width: 18px; height: 18px; stroke-width: 1.4; }
+.wing-manifest--portal .manifest-icon { color: var(--cyan); }
+.wing-manifest--enterprise .manifest-icon { color: #e8a860; }
+.manifest-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(228,243,255,0.88);
+}
+
+/* ── Beat 03 — the keystone. Its own row (row 3), touching
+   neither head nor manifest content on either side — the
+   overlap bug this replaces is structurally impossible here.
+   A slim plaque with a small diamond marker (never a circle),
+   fully opaque so nothing behind it can bleed through. ── */
+.threshold-core {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  justify-self: center;
+  width: min(340px, 78%);
+  margin: 10px 0;
+  padding: 20px 22px 18px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(3,9,20,0.98), rgba(3,9,20,0.94));
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-top: 1px solid rgba(0,232,255,0.28);
+  border-bottom: 1px solid rgba(220,140,60,0.28);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.55), 0 0 40px rgba(0,232,255,0.07), 0 0 0 1px rgba(0,0,0,0.3);
+}
+.threshold-core-mark {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--enterprise) 100%);
+  transform: rotate(45deg);
+}
+.threshold-core-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cyan-bright);
+}
+.threshold-core-sub {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--muted-2);
+  margin-top: 4px;
+}
+
+/* ── Beat 05 — foundation: the whole width, a floor catching
+   the seam's light from below. ── */
+.threshold-foundation {
+  position: relative;
+  padding: 46px 40px 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.threshold-foundation-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(720px, 90%);
+  height: 100%;
+  transform: translateX(-50%) scaleY(1);
+  transform-origin: 50% 100%;
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(0,255,200,0.10), transparent 72%);
+  pointer-events: none;
+}
+.threshold-foundation-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.threshold-foundation-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.threshold-foundation-icon svg { width: 24px; height: 24px; stroke-width: 1.4; }
+.threshold-foundation-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+.threshold-foundation-sub {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted-2);
+}
+
+/* ── Responsive: stack top to bottom in structural order —
+   lintel, portal, keystone, enterprise, foundation. The seam
+   becomes a short vertical tick between each beat instead of a
+   column running the full height. ── */
+@media (max-width: 900px) {
+  .threshold-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .threshold-seam { display: none; }
+  .wing-head, .wing-manifest { max-width: 100%; }
+  .threshold-core {
+    position: static;
+    transform: none;
+    margin: 28px 0;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .threshold-lintel-label { font-size: 18px; }
+  .wing-name { font-size: 22px; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .threshold-atmosphere { transition: none !important; }
+  .threshold-seam-pulse { animation: none !important; opacity: 0.5 !important; top: 50% !important; }
+}
+
+/* ── Light theme ───────────────────────────────────────────── */
+html[data-theme="light"] .threshold-section {
+  background:
+    radial-gradient(ellipse 62% 38% at 50% 0%, rgba(50,120,220,0.06), transparent 62%),
+    radial-gradient(ellipse 58% 42% at 50% 100%, rgba(0,140,180,0.05), transparent 62%);
+}
+html[data-theme="light"] .threshold-lintel-label,
+html[data-theme="light"] .wing-name,
+html[data-theme="light"] .threshold-foundation-label { color: #0F1F3D; }
+html[data-theme="light"] .threshold-lintel-sub,
+html[data-theme="light"] .wing-sub,
+html[data-theme="light"] .threshold-foundation-sub,
+html[data-theme="light"] .threshold-core-sub { color: rgba(15,31,61,0.55); }
+html[data-theme="light"] .manifest-label { color: rgba(15,31,61,0.8); }
+html[data-theme="light"] .manifest-row { border-bottom-color: rgba(15,31,61,0.08); }
+html[data-theme="light"] .threshold-core {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74));
+  border-color: rgba(15,31,61,0.1);
+}
+html[data-theme="light"] .threshold-core-title { color: #0E7A8C; }
+html[data-theme="light"] .threshold-seam-line {
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,120,220,0.85) 0%,
+    rgba(0,180,224,0.65) 14%,
+    rgba(0,180,224,0.30) 50%,
+    rgba(210,120,40,0.65) 86%,
+    rgba(210,120,40,0.85) 100%
+  );
+  box-shadow: 0 0 16px 2px rgba(0,180,224,0.35);
+}
+
+/* ── MISSION SECTION ("Why VigiCore Exists") ──────────────
+   Deliberately quiet: no corner brackets, no glow, no canvas —
+   a mission statement should read like a calm, confident pause
+   between the hero and the problem/solution sections, not
+   another HUD panel. ──────────────────────────────────────── */
+.mission-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Same restrained atmosphere language as the hero/SEAM sections —
+   a section-defining glow, not a full scene, so a "quiet" editorial
+   moment still reads as art-directed rather than simply unfinished. */
+.mission-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 45%, var(--glow-healthcare, rgba(0,232,255,0.05)) 0%, transparent 68%);
+  animation: missionAtmosphereBreathe 3.4s ease-in-out 1.9s infinite;
+}
+@keyframes  missionAtmosphereBreathe {
+  0%,100% { opacity: 0.75; }
+  50%     { opacity: 1; }
+}
+
+/* Faint blueprint grid — the same architectural vocabulary as THE SEAM
+   section, at a fraction of the presence, so this quiet moment still
+   feels like it belongs to the same building rather than a plain
+   text slide dropped in between two designed sections. */
+.mission-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,200,230,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,230,0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 62% 70% at 50% 45%, black 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 45%, black 0%, transparent 72%);
+}
+
+/* Thin vertical axis behind the eyebrow/pulse/title — the same
+   single-axis idea THE SEAM builds its whole layout around, echoed
+   here at a whisper: everything in this section answers to one line. */
+.mission-axis {
+  position: absolute;
+  top: 8%; bottom: 8%;
+  left: 50%;
+  width: 1px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(0,220,255,0.14) 35%, rgba(0,220,255,0.14) 65%, transparent);
+}
+
+.mission-content { position: relative; z-index: 1; }
+/* After the initial draw, a slow breathing glow — steady, not urgent —
+   the section's point is "delay costs lives", not a frantic alarm. */
+
+.mission-content {
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
+}
+.mission-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(30px, 4.8vw, 64px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 24px;
+  clip-path: inset(0 100% 0 0);
+}
+.mission-title.in-view {
+  animation: missionTitleWipe 0.95s var(--ease-in-out, ease) 0.55s forwards;
+}
+@keyframes  missionTitleWipe {
+  to { clip-path: inset(0 0% 0 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-title { clip-path: none; animation: none !important; }
+}
+.mission-desc {
+  font-size: clamp(14.5px, 1.4vw, 17.5px);
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(185,228,248,0.75);
+}
+@media  (max-width: 640px) {
+  .mission-section { padding: 80px 24px; }
+}
+html[data-theme="light"] .mission-title { color: #0F1F3D; }
+html[data-theme="light"] .mission-desc { color: rgba(15,31,61,0.6); }
+
+@media (max-width:768px) { .section-content { padding: 80px 24px; } }
+
+

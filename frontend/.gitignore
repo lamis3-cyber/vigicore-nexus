@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+# Copiés depuis node_modules par scripts/copy-bg-model.mjs (postinstall)
+public/imgly/
+csp-script-hashes.txt
+tests-ui/node_modules

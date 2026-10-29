@@ -1,0 +1,343 @@
+/* ═══════════════════════════════════════════════════════════
+   SECTION 2 ENHANCEMENTS — Card upgrades
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── CARD 1: Live delay counter ──────────────────────────── */
+.wdc-value {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  color: rgba(255,80,80,0.9);
+  
+  min-width: 2ch;
+  text-align: right;
+  animation: counterGlow 2s ease-in-out infinite;
+}
+
+/* Pulse ring on danger dot */
+
+/* ── CARD 2: Signal labels + glitch flash ────────────────── */
+
+/* ── CARD 3: Compliance meter ────────────────────────────── */
+.wim-compliance-meter {
+  width: 100%;
+  margin: 6px 0 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,180,50,0.08);
+  display: flex;
+  flex-direction: column;
+}
+.wcm-value {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  animation: counterGlow 2.5s ease-in-out infinite;
+}
+.wcm-bar-fill {
+  height: 100%;
+  width: 0;
+  transition: width 1.6s cubic-bezier(0.22,1,0.36,1);
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 4 ENHANCEMENTS — Convergence Pipeline
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Domain cards: activity bars + incident count ─────────── */
+
+/* ── Connector: arrow glow wrapper ───────────────────────── */
+
+/* ── AI Core: 3rd ring (counter-rotate) + packets ─────────── */
+
+/* ── Output cards: header row with % ─────────────────────── */
+
+/* Stronger stream lines */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 5 ENHANCEMENTS — How It Works
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Total time bar ──────────────────────────────────────── */
+
+/* ── Step inner card ─────────────────────────────────────── */
+
+/* ── Icon ring pulse ─────────────────────────────────────── */
+
+/* Alert ring spin on step 3 */
+
+/* Check draw animation on step 4 */
+
+
+
+/* ── Step tag ────────────────────────────────────────────── */
+
+/* ── Step meta ───────────────────────────────────────────── */
+
+/* ── Connector wrap ──────────────────────────────────────── */
+
+/* Animated dashed line draw-on */
+
+/* Traveling dots */
+
+/* Arrow at end of connector */
+
+/* ── Bottom resolution stats ─────────────────────────────── */
+
+/* ── Layout adjustments ──────────────────────────────────── */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 5 CLEANUP — Fix messy layout
+   3 fixes: icon size, step numbers inside card, connector position
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── FIX 1: Remove floating step numbers above cards ──────
+   The ::before pseudo generates "1 2 3 4" floating in void.
+   We suppress it — the number now lives inside the card header. */
+
+/* ── Add step number INSIDE the card at top-left ───────── */
+
+/* ── FIX 2: Shrink icons 72px → 52px ───────────────────── */
+
+/* Adjust icon ring for smaller icon */
+
+/* ── FIX 3: Move connectors to clean between-card position ─
+   Old: top:36px (icon height) — overlaps icon ring
+   New: positioned relative to card mid-height, not icon */
+
+/* ── FIX 4: Widen cards slightly so content breathes ────── */
+
+/* ── FIX 5: Reduce inner card gap so it doesn't tower ───── */
+
+/* ── FIX 6: Tighten description text ────────────────────── */
+
+/* ── FIX 7: Reduce step-meta font to match tighter layout ─ */
+
+/* ── FIX 8: Give flow-steps more top breathing room ──────── */
+
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 5 — COMPLETE REBUILD (clean version)
+   Overrides all previous flow section rules
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ─────────────────────────────────────── */
+
+/* ── Steps container ─────────────────────────────────────── */
+
+/* ── Single connector line spanning all cards ────────────── */
+
+/* ── Step (grid cell) ────────────────────────────────────── */
+
+/* Remove old ::before floating number */
+
+/* ── Node (dot + number sitting on the line) ─────────────── */
+
+/* Node color per step */
+
+/* ── Card ────────────────────────────────────────────────── */
+
+/* ── Travelling border glow on hover ─────────────────────────
+   A pseudo-element sits behind the card. On hover a conic-
+   gradient spins around it — like a radar sweep. The card's
+   own background clips it to just the border zone.            */
+
+@property  --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+/* Per-card glow colour */
+
+/* Mask so only the border ring shows the glow (not the card face) */
+
+/* ── Card icon ───────────────────────────────────────────── */
+
+/* ── Card title ──────────────────────────────────────────── */
+
+/* ── Card description ────────────────────────────────────── */
+
+/* ── Card tag (bottom) ───────────────────────────────────── */
+
+/* ── Alert ring spin on step 3 ───────────────────────────── */
+
+/* ── Checkmark draw on step 4 ────────────────────────────── */
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 7 — ACTORS REBUILD
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Top accent bar per card ─────────────────────────────── */
+
+/* ── Color-specific border on hover ─────────────────────── */
+
+/* ── Authority card — slightly elevated ──────────────────── */
+
+/* ── Role tag ────────────────────────────────────────────── */
+
+/* ── Action line at bottom ───────────────────────────────── */
+
+/* ── Icon color per role ─────────────────────────────────── */
+
+/* ── Card layout: equal height, tag always at bottom ──────── */
+.actor-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --lift: 0px;
+  background: rgba(3,12,28,0.85);
+  border: 1px solid rgba(0,232,255,0.15);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  backdrop-filter: blur(16px);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(var(--lift)) scale(var(--card-scale,1)) perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s ease, border-color 0.28s ease;
+  min-height: 190px;
+}
+@media (max-width: 900px) {
+  .actor-card { transform: none !important; }
+}
+.actor-card p {
+  font-size: clamp(12px, 0.95vw, 12px);
+  line-height: 1.45;
+  color: rgba(160,210,240,0.65);
+  flex: 1;
+}
+
+/* ── Section title — reduce size ────────────────────────── */
+.actors-section .section-content {
+  padding: 20px 40px 56px;
+}
+.actors-section .section-title {
+  margin-bottom: 8px;
+}
+.actors-section .section-desc {
+  margin: 0 auto 16px;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 8 — WORKFLOW REBUILD
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Timeline bar ────────────────────────────────────────── */
+
+/* ── Sequence layout ─────────────────────────────────────── */
+
+
+/* ── Node card ───────────────────────────────────────────── */
+
+/* ── Per-node glow colour via data-wf ───────────────────── */
+
+/* ── Spinning border glow (same technique as flow-card) ── */
+@property  --wf-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+/* Mask inner face so only border zone shows the spin */
+
+/* ── Node icon ───────────────────────────────────────────── */
+
+/* ── Timing label ────────────────────────────────────────── */
+
+/* ── Node text ───────────────────────────────────────────── */
+
+/* ── Resolved node ───────────────────────────────────────── */
+
+/* ── Connectors ──────────────────────────────────────────── */
+
+/* Activate dots when in view */
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 8 — WORKFLOW REFINEMENTS
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── AI ENGINE core card — same size as others, teal accent ── */
+/* Restore ::after to the spinning border light (same as other nodes) */
+/* Allow the spin to play on hover */
+/* "INTELLIGENCE CORE" label — use a dedicated class instead of ::after */
+/* Also reset the ::before mask for this card */
+
+/* ── Central pulse line canvas ────────────────────────────── */
+
+/* Keep sequence above canvas */
+
+/* ── Supplier node — update label color ──────────────────── */
+
+/* ── System node — update label ──────────────────────────── */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   WORKFLOW SECTION — FINAL FIX (one horizontal row, equal cards)
+   Overrides all previous conflicting rules
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Layout: fixed connector width = equal card columns ──── */
+
+/* ── Node card — fixed equal height, no min-height issues ── */
+
+/* ── Icon — fixed size ───────────────────────────────────── */
+
+/* ── Time label ──────────────────────────────────────────── */
+
+/* ── Title ───────────────────────────────────────────────── */
+
+/* ── Action — single line, no wrap ──────────────────────── */
+
+/* ── Detail — 2 lines max ────────────────────────────────── */
+
+/* ── AI ENGINE core — fixed height, same size as other cards ── */
+/* Restore spinning border light for core card in #workflow-seq */
+/* Teal bottom light cone on hover — matches other cards */
+
+/* ── Resolved badge — pinned to bottom inside fixed height ─ */
+
+/* ── Connector — fixed 44px, centered ───────────────────── */
+
+/* ── Supplier action color ───────────────────────────────── */
+/* ── System action color ─────────────────────────────────── */
+
+/* ── Section padding fix — cards were clipped ────────────── */
+.workflow-section {
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,15,40,0.25) 0%, transparent 70%);
+}
+.workflow-section .section-content {
+  overflow: visible;
+  max-width: 1320px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESOLUTION TIMELINE — vertical card timeline
+   Same color language as the original workflow icons:
+   cyan → teal → orange → purple → green.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Accent color assignment (matches original icon palette) ── */
+
+
+

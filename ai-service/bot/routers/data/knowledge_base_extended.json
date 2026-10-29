@@ -1,0 +1,378 @@
+[
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment créer un nouveau rapport d'incident ?",
+    "answer_fr": "Pour créer un rapport : 1) Cliquez sur '+ Nouveau rapport' dans le tableau de bord. 2) Sélectionnez le type de vigilance (Matériovigilance, Pharmacovigilance, Chémovigilance, Cosmétovigilance). 3) Remplissez la description, la sévérité et les informations du dispositif. 4) Cliquez sur Soumettre. Le rapport sera analysé automatiquement par l'IA.",
+    "question_en": "How to create a new incident report?",
+    "answer_en": "To create a report: 1) Click '+ New report' in the dashboard. 2) Select the vigilance type. 3) Fill in the description, severity and device information. 4) Click Submit. The report will be automatically analyzed by AI.",
+    "role": "ALL"
+  },
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment voir mes déclarations précédentes ?",
+    "answer_fr": "Pour voir vos déclarations : 1) Allez dans la section 'Déclarations' du menu latéral. 2) Utilisez les filtres pour trier par date, statut ou sévérité. 3) Cliquez sur une déclaration pour voir ses détails, l'historique et les insights IA.",
+    "question_en": "How to view my previous declarations?",
+    "answer_en": "To view your declarations: 1) Go to the 'Declarations' section in the sidebar. 2) Use filters to sort by date, status or severity. 3) Click on a declaration to see its details, history and AI insights.",
+    "role": "ALL"
+  },
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment naviguer entre les sections du tableau de bord ?",
+    "answer_fr": "Utilisez le menu latéral gauche pour naviguer entre les sections. Chaque icône correspond à une section : Tableau de bord, Déclarations, Alertes, Produits, Personnel, Rapports et Paramètres. Cliquez sur une icône pour accéder à la section correspondante.",
+    "question_en": "How to navigate between dashboard sections?",
+    "answer_en": "Use the left sidebar to navigate between sections. Each icon corresponds to a section: Dashboard, Declarations, Alerts, Products, Staff, Reports and Settings. Click an icon to access the corresponding section.",
+    "role": "ALL"
+  },
+  {
+    "category": "REPORTS",
+    "question_fr": "Quels sont les types de rapports disponibles ?",
+    "answer_fr": "La plateforme supporte 7 types de rapports : MATERIO (dispositifs médicaux), PHARMACO (médicaments), CHIMICO (substances chimiques), DEVICE (équipements), VACCINE_REACTION (réactions vaccins), BIOLOGICAL_INCIDENT (incidents biologiques), OVERDOSE (surdosages).",
+    "question_en": "What types of reports are available?",
+    "answer_en": "The platform supports 7 report types: MATERIO (medical devices), PHARMACO (medications), CHIMICO (chemical substances), DEVICE (equipment), VACCINE_REACTION (vaccine reactions), BIOLOGICAL_INCIDENT (biological incidents), OVERDOSE (overdoses).",
+    "role": "ALL"
+  },
+  {
+    "category": "REPORTS",
+    "question_fr": "Comment modifier le statut d'un rapport ?",
+    "answer_fr": "Seul le Responsable Qualité peut modifier le statut. Pour ce faire : 1) Ouvrez le rapport. 2) Sélectionnez le nouveau statut dans la liste déroulante. 3) Ajoutez un commentaire si nécessaire. 4) Cliquez sur Mettre à jour. Les statuts disponibles : DRAFT, OPEN, ANALYZING, UNDER_REVIEW, VALIDATED, REJECTED, CLOSED, ARCHIVED.",
+    "question_en": "How to update a report status?",
+    "answer_en": "Only the Quality Manager can update the status. To do so: 1) Open the report. 2) Select the new status from the dropdown. 3) Add a comment if needed. 4) Click Update. Available statuses: DRAFT, OPEN, ANALYZING, UNDER_REVIEW, VALIDATED, REJECTED, CLOSED, ARCHIVED.",
+    "role": "RESPONSABLE"
+  },
+  {
+    "category": "REPORTS",
+    "question_fr": "Quelle est la différence entre les niveaux de sévérité ?",
+    "answer_fr": "Les 5 niveaux de sévérité sont : MINOR (incident mineur sans conséquence grave), MODERATE (impact modéré nécessitant surveillance), HIGH (impact élevé nécessitant action rapide), CRITICAL (incident critique mettant en danger des vies), FATAL (incident ayant causé un décès).",
+    "question_en": "What is the difference between severity levels?",
+    "answer_en": "The 5 severity levels are: MINOR (minor incident without serious consequences), MODERATE (moderate impact requiring monitoring), HIGH (high impact requiring quick action), CRITICAL (critical incident endangering lives), FATAL (incident that caused a death).",
+    "role": "ALL"
+  },
+  {
+    "category": "ALERTS",
+    "question_fr": "Comment créer une alerte ?",
+    "answer_fr": "Pour créer une alerte (Responsable Qualité uniquement) : 1) Ouvrez le rapport concerné. 2) Cliquez sur 'Créer une alerte'. 3) Définissez le titre, le message et la sévérité (INFO, WARNING, HIGH, CRITICAL). 4) Soumettez. Les alertes HIGH et CRITICAL déclenchent automatiquement un email à tous les responsables.",
+    "question_en": "How to create an alert?",
+    "answer_en": "To create an alert (Quality Manager only): 1) Open the relevant report. 2) Click 'Create alert'. 3) Set the title, message and severity (INFO, WARNING, HIGH, CRITICAL). 4) Submit. HIGH and CRITICAL alerts automatically trigger an email to all managers.",
+    "role": "RESPONSABLE"
+  },
+  {
+    "category": "ALERTS",
+    "question_fr": "Comment résoudre une alerte ?",
+    "answer_fr": "Pour résoudre une alerte : 1) Allez dans la section Alertes. 2) Cliquez sur l'alerte concernée. 3) Cliquez sur 'Marquer comme résolue'. 4) Ajoutez un commentaire de résolution. L'alerte sera archivée et les notifications de rappel cesseront.",
+    "question_en": "How to resolve an alert?",
+    "answer_en": "To resolve an alert: 1) Go to the Alerts section. 2) Click on the relevant alert. 3) Click 'Mark as resolved'. 4) Add a resolution comment. The alert will be archived and reminder notifications will stop.",
+    "role": "RESPONSABLE"
+  },
+  {
+    "category": "ALERTS",
+    "question_fr": "Pourquoi je reçois des rappels pour les alertes non résolues ?",
+    "answer_fr": "Le système envoie automatiquement des rappels par email pour toutes les alertes non résolues depuis plus de 3 jours. C'est un mécanisme de sécurité pour garantir qu'aucun incident critique ne soit oublié. Résolvez l'alerte pour arrêter les rappels.",
+    "question_en": "Why do I receive reminders for unresolved alerts?",
+    "answer_en": "The system automatically sends email reminders for all alerts unresolved for more than 3 days. This is a safety mechanism to ensure no critical incident is forgotten. Resolve the alert to stop the reminders.",
+    "role": "ALL"
+  },
+  {
+    "category": "TASKS",
+    "question_fr": "Comment assigner une tâche à un technicien ?",
+    "answer_fr": "Pour assigner une tâche : 1) Allez dans la section Tâches. 2) Cliquez sur 'Nouvelle tâche'. 3) Sélectionnez le technicien assigné. 4) Définissez le titre, la description, la priorité et la date d'échéance. 5) Liez la tâche à un rapport si nécessaire. Le technicien recevra une notification par email.",
+    "question_en": "How to assign a task to a technician?",
+    "answer_en": "To assign a task: 1) Go to the Tasks section. 2) Click 'New task'. 3) Select the assigned technician. 4) Set the title, description, priority and due date. 5) Link the task to a report if needed. The technician will receive an email notification.",
+    "role": "RESPONSABLE"
+  },
+  {
+    "category": "TASKS",
+    "question_fr": "Comment mettre à jour le statut d'une tâche ?",
+    "answer_fr": "Pour mettre à jour une tâche : 1) Allez dans 'Mes tâches'. 2) Cliquez sur la tâche concernée. 3) Changez le statut : OPEN → IN_PROGRESS → DONE. Si vous êtes bloqué utilisez BLOCKED. Le créateur sera notifié automatiquement à chaque changement.",
+    "question_en": "How to update a task status?",
+    "answer_en": "To update a task: 1) Go to 'My tasks'. 2) Click on the relevant task. 3) Change the status: OPEN → IN_PROGRESS → DONE. If blocked use BLOCKED. The creator will be automatically notified at each change.",
+    "role": "TECHNICIAN"
+  },
+  {
+    "category": "TASKS",
+    "question_fr": "Comment voir les tâches en retard ?",
+    "answer_fr": "Les tâches en retard sont automatiquement signalées dans votre tableau de bord avec une indication visuelle rouge. Allez dans la section Tâches et filtrez par 'En retard' pour voir toutes les tâches dont la date d'échéance est dépassée.",
+    "question_en": "How to see overdue tasks?",
+    "answer_en": "Overdue tasks are automatically flagged in your dashboard with a red visual indicator. Go to the Tasks section and filter by 'Overdue' to see all tasks past their due date.",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKSPACES",
+    "question_fr": "Comment créer un workspace de collaboration ?",
+    "answer_fr": "Pour créer un workspace : 1) Allez dans la section Workspaces. 2) Cliquez sur 'Nouveau workspace'. 3) Donnez-lui un nom et sélectionnez le type (INTERNAL, SHARED, CROSS_ORG). 4) Liez-le à un rapport si nécessaire. 5) Ajoutez les membres. Le workspace permet la communication en temps réel via chat.",
+    "question_en": "How to create a collaboration workspace?",
+    "answer_en": "To create a workspace: 1) Go to the Workspaces section. 2) Click 'New workspace'. 3) Give it a name and select the type (INTERNAL, SHARED, CROSS_ORG). 4) Link it to a report if needed. 5) Add members. The workspace enables real-time communication via chat.",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKSPACES",
+    "question_fr": "Comment utiliser @VigiBot dans un workspace ?",
+    "answer_fr": "Dans un workspace, tapez @VigiBot suivi de votre question dans le chat. VigiBot analysera automatiquement le contexte du rapport lié et vous fournira une réponse adaptée. Exemple : '@VigiBot quelle est la sévérité de ce rapport ?'",
+    "question_en": "How to use @VigiBot in a workspace?",
+    "answer_en": "In a workspace, type @VigiBot followed by your question in the chat. VigiBot will automatically analyze the context of the linked report and provide a tailored response. Example: '@VigiBot what is the severity of this report?'",
+    "role": "ALL"
+  },
+  {
+    "category": "DEVICES",
+    "question_fr": "Comment surveiller l'état d'un dispositif médical ?",
+    "answer_fr": "Pour surveiller un dispositif : 1) Allez dans la section Produits/Dispositifs. 2) Recherchez le dispositif par numéro de série ou modèle. 3) Consultez son statut (ACTIVE, INACTIVE, UNDER_MAINTENANCE, RECALLED, DECOMMISSIONED). 4) VigiBot analyse automatiquement les incidents liés et prédit les risques de panne.",
+    "question_en": "How to monitor a medical device status?",
+    "answer_en": "To monitor a device: 1) Go to the Products/Devices section. 2) Search by serial number or model. 3) Check its status (ACTIVE, INACTIVE, UNDER_MAINTENANCE, RECALLED, DECOMMISSIONED). 4) VigiBot automatically analyzes linked incidents and predicts failure risks.",
+    "role": "ALL"
+  },
+  {
+    "category": "DEVICES",
+    "question_fr": "Comment signaler une panne sur un dispositif médical ?",
+    "answer_fr": "Pour signaler une panne : 1) Créez un nouveau rapport de type MATERIO ou DEVICE. 2) Dans le rapport, sélectionnez le dispositif concerné via son numéro de série. 3) Décrivez la panne en détail (symptômes, contexte, actions déjà effectuées). 4) Sélectionnez la sévérité appropriée. VigiBot analysera et proposera des solutions.",
+    "question_en": "How to report a medical device failure?",
+    "answer_en": "To report a failure: 1) Create a new MATERIO or DEVICE report. 2) In the report, select the concerned device by serial number. 3) Describe the failure in detail (symptoms, context, actions already taken). 4) Select the appropriate severity. VigiBot will analyze and suggest solutions.",
+    "role": "ALL"
+  },
+  {
+    "category": "RECALLS",
+    "question_fr": "Comment initier un rappel de produit ?",
+    "answer_fr": "Seuls les SupplierAgent et AuthorityAgent peuvent initier un rappel. Pour ce faire : 1) Allez dans la section Rappels. 2) Cliquez sur 'Nouveau rappel'. 3) Sélectionnez le produit et les lots concernés. 4) Décrivez la raison du rappel. 5) Soumettez. L'AuthorityAgent devra approuver avant exécution.",
+    "question_en": "How to initiate a product recall?",
+    "answer_en": "Only SupplierAgent and AuthorityAgent can initiate a recall. To do so: 1) Go to the Recalls section. 2) Click 'New recall'. 3) Select the product and affected lots. 4) Describe the recall reason. 5) Submit. The AuthorityAgent must approve before execution.",
+    "role": "SUPPLIER_AGENT"
+  },
+  {
+    "category": "RECALLS",
+    "question_fr": "Qui peut approuver un rappel de produit ?",
+    "answer_fr": "Uniquement l'Authority Agent (ANSM, EMA, OMS) peut approuver un rappel de produit. C'est une exigence réglementaire pour garantir la neutralité des décisions. Une fois approuvé, toutes les organisations ayant reçu le produit/lot sont automatiquement notifiées.",
+    "question_en": "Who can approve a product recall?",
+    "answer_en": "Only the Authority Agent (ANSM, EMA, WHO) can approve a product recall. This is a regulatory requirement to ensure decision neutrality. Once approved, all organizations that received the product/lot are automatically notified.",
+    "role": "ALL"
+  },
+  {
+    "category": "ROLES",
+    "question_fr": "Quelles sont les permissions du Médecin ?",
+    "answer_fr": "Le Médecin peut : créer des rapports d'incidents, voir ses propres rapports et leur statut, participer à des workspaces, recevoir des notifications. Il ne peut pas valider/rejeter des rapports, créer des alertes ou assigner des tâches — ces actions sont réservées au Responsable Qualité.",
+    "question_en": "What are the Doctor's permissions?",
+    "answer_en": "The Doctor can: create incident reports, view their own reports and status, participate in workspaces, receive notifications. They cannot validate/reject reports, create alerts or assign tasks — these actions are reserved for the Quality Manager.",
+    "role": "DOCTOR"
+  },
+  {
+    "category": "ROLES",
+    "question_fr": "Quelles sont les permissions du Technicien ?",
+    "answer_fr": "Le Technicien peut : recevoir et traiter les tâches assignées, mettre à jour le statut des tâches (OPEN→IN_PROGRESS→DONE), ajouter des commentaires aux tâches, intervenir sur les dispositifs médicaux. Il ne peut pas prendre de décisions cliniques ou créer des rapports officiels.",
+    "question_en": "What are the Technician's permissions?",
+    "answer_en": "The Technician can: receive and process assigned tasks, update task status (OPEN→IN_PROGRESS→DONE), add comments to tasks, intervene on medical devices. They cannot make clinical decisions or create official reports.",
+    "role": "TECHNICIAN"
+  },
+  {
+    "category": "ROLES",
+    "question_fr": "Quelles sont les permissions de l'Hospital Admin ?",
+    "answer_fr": "L'Hospital Admin peut : gérer le personnel et les départements, voir le tableau de bord de l'organisation, assigner des rôles aux utilisateurs, surveiller les équipements, voir tous les rapports de l'organisation. Il ne peut pas approuver des rappels produits (réservé aux AuthorityAgent).",
+    "question_en": "What are the Hospital Admin's permissions?",
+    "answer_en": "The Hospital Admin can: manage staff and departments, view the organization dashboard, assign roles to users, monitor equipment, view all organization reports. They cannot approve product recalls (reserved for AuthorityAgent).",
+    "role": "HOSPITAL_ADMIN"
+  },
+  {
+    "category": "SECURITY",
+    "question_fr": "Comment activer l'authentification à deux facteurs ?",
+    "answer_fr": "Pour activer le 2FA : 1) Allez dans vos Paramètres. 2) Section Sécurité. 3) Activez l'authentification à deux facteurs. 4) Scannez le QR code avec Google Authenticator ou une app TOTP compatible. 5) Confirmez avec le code généré. Le 2FA sera requis à chaque connexion.",
+    "question_en": "How to enable two-factor authentication?",
+    "answer_en": "To enable 2FA: 1) Go to your Settings. 2) Security section. 3) Enable two-factor authentication. 4) Scan the QR code with Google Authenticator or a compatible TOTP app. 5) Confirm with the generated code. 2FA will be required at each login.",
+    "role": "ALL"
+  },
+  {
+    "category": "SECURITY",
+    "question_fr": "Comment réinitialiser mon mot de passe ?",
+    "answer_fr": "Pour réinitialiser votre mot de passe : 1) Sur la page de connexion, cliquez sur 'Mot de passe oublié'. 2) Entrez votre adresse email. 3) Vérifiez votre boîte mail et cliquez sur le lien reçu. 4) Créez un nouveau mot de passe (min 8 caractères, avec majuscule, chiffre et caractère spécial).",
+    "question_en": "How to reset my password?",
+    "answer_en": "To reset your password: 1) On the login page, click 'Forgot password'. 2) Enter your email address. 3) Check your email and click the received link. 4) Create a new password (min 8 characters, with uppercase, number and special character).",
+    "role": "ALL"
+  },
+  {
+    "category": "VIGIBOT",
+    "question_fr": "Qu'est-ce que VigiBot ?",
+    "answer_fr": "VigiBot est votre assistant IA intégré à MaterioVigilance. Il peut vous aider à : naviguer la plateforme, analyser les rapports d'incidents, prédire les risques de pannes sur les dispositifs médicaux, proposer des solutions techniques, et répondre à vos questions sur la vigilance médicale.",
+    "question_en": "What is VigiBot?",
+    "answer_en": "VigiBot is your AI assistant integrated into MaterioVigilance. It can help you: navigate the platform, analyze incident reports, predict failure risks on medical devices, suggest technical solutions, and answer your questions about medical vigilance.",
+    "role": "ALL"
+  },
+  {
+    "category": "VIGIBOT",
+    "question_fr": "Comment utiliser VigiBot pour analyser un rapport ?",
+    "answer_fr": "Pour analyser un rapport avec VigiBot : 1) Ouvrez le rapport concerné. 2) Cliquez sur le bouton '🤖 Analyser avec VigiBot'. 3) VigiBot analysera automatiquement la sévérité, proposera des recommandations et des actions selon votre rôle. 4) Vous pouvez poser des questions sur ce rapport dans le chat contextuel.",
+    "question_en": "How to use VigiBot to analyze a report?",
+    "answer_en": "To analyze a report with VigiBot: 1) Open the relevant report. 2) Click the '🤖 Analyze with VigiBot' button. 3) VigiBot will automatically analyze the severity, suggest recommendations and actions based on your role. 4) You can ask questions about this report in the contextual chat.",
+    "role": "ALL"
+  },
+  {
+    "category": "VIGIBOT",
+    "question_fr": "Comment VigiBot prédit les pannes des dispositifs médicaux ?",
+    "answer_fr": "VigiBot utilise un modèle ML entraîné sur l'historique des incidents. Il analyse : la fréquence des incidents (≥3 en 30 jours = risque élevé), la sévérité cumulative, la date de dernière maintenance, l'âge du dispositif, et le type de problème (erreur humaine, panne matérielle, logiciel, consommables, environnemental).",
+    "question_en": "How does VigiBot predict medical device failures?",
+    "answer_en": "VigiBot uses an ML model trained on incident history. It analyzes: incident frequency (≥3 in 30 days = high risk), cumulative severity, last maintenance date, device age, and problem type (human error, hardware failure, software, consumables, environmental).",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKFLOW",
+    "question_fr": "Quel est le cycle de vie d'un rapport d'incident ?",
+    "answer_fr": "Le cycle de vie complet : DRAFT (brouillon) → OPEN (soumis, analyse IA automatique) → ANALYZING (en cours d'analyse) → UNDER_REVIEW (examen du Responsable) → NEEDS_MORE_INFO (informations manquantes) → VALIDATED ou REJECTED → CLOSED → ARCHIVED.",
+    "question_en": "What is the lifecycle of an incident report?",
+    "answer_en": "The complete lifecycle: DRAFT → OPEN (submitted, automatic AI analysis) → ANALYZING → UNDER_REVIEW (Manager review) → NEEDS_MORE_INFO → VALIDATED or REJECTED → CLOSED → ARCHIVED.",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKFLOW",
+    "question_fr": "Combien de temps pour traiter un rapport critique ?",
+    "answer_fr": "Les rapports CRITICAL et FATAL doivent être traités en urgence. VigiBot envoie automatiquement une alerte si un rapport critique reste sans action pendant 48 heures. La réglementation algérienne (Décret 92-276) impose une transmission à la CNPM dans les délais légaux.",
+    "question_en": "How long to process a critical report?",
+    "answer_en": "CRITICAL and FATAL reports must be processed urgently. VigiBot automatically sends an alert if a critical report remains without action for 48 hours. Algerian regulations require transmission to CNPM within legal deadlines.",
+    "role": "ALL"
+  },
+  {
+    "category": "SUBSCRIPTIONS",
+    "question_fr": "Quelles sont les différences entre les plans d'abonnement ?",
+    "answer_fr": "FREE (0$/mois) : fonctionnalités de base, rapports limités. BASIC (49$/mois) : alertes avancées, gestion des tâches, collaboration workspace. PRO (149$/mois) : IA complète, analyse de patterns, gestion des rappels, support prioritaire. ENTERPRISE (499$/mois) : tout inclus + intégrations personnalisées, SLA garanti, support dédié.",
+    "question_en": "What are the differences between subscription plans?",
+    "answer_en": "FREE ($0/month): basic features, limited reports. BASIC ($49/month): advanced alerts, task management, workspace collaboration. PRO ($149/month): full AI, pattern analysis, recall management, priority support. ENTERPRISE ($499/month): everything + custom integrations, guaranteed SLA, dedicated support.",
+    "role": "ALL"
+  },
+  {
+    "category": "SUBSCRIPTIONS",
+    "question_fr": "Comment mettre à niveau mon abonnement ?",
+    "answer_fr": "Pour mettre à niveau : 1) Allez dans Paramètres → Abonnement. 2) Choisissez votre nouveau plan. 3) Payez par carte bancaire via Stripe ou par virement bancaire manuel. 4) L'upgrade est immédiat pour Stripe. Pour le virement, l'Admin confirmera le paiement manuellement.",
+    "question_en": "How to upgrade my subscription?",
+    "answer_en": "To upgrade: 1) Go to Settings → Subscription. 2) Choose your new plan. 3) Pay by credit card via Stripe or by manual bank transfer. 4) Stripe upgrade is immediate. For bank transfer, the Admin will manually confirm the payment.",
+    "role": "ALL"
+  },
+  {
+    "category": "NOTIFICATIONS",
+    "question_fr": "Comment configurer mes notifications ?",
+    "answer_fr": "Les notifications sont disponibles via 4 canaux : IN_APP (dans la plateforme), EMAIL, SMS et PUSH. Allez dans Paramètres → Notifications pour configurer vos préférences. Les alertes HIGH et CRITICAL déclenchent toujours des notifications email aux responsables, indépendamment des paramètres.",
+    "question_en": "How to configure my notifications?",
+    "answer_en": "Notifications are available via 4 channels: IN_APP (in platform), EMAIL, SMS and PUSH. Go to Settings → Notifications to configure your preferences. HIGH and CRITICAL alerts always trigger email notifications to managers, regardless of settings.",
+    "role": "ALL"
+  },
+  {
+    "category": "PRODUCTS",
+    "question_fr": "Comment ajouter un nouveau produit ou dispositif ?",
+    "answer_fr": "Pour ajouter un produit : 1) Allez dans la section Produits. 2) Cliquez sur 'Nouveau produit'. 3) Sélectionnez la catégorie (MEDICATION, VACCINE, CHEMICAL_REAGENT, BIOLOGICAL_PRODUCT, MEDICAL_CONSUMABLE, DISINFECTANT, DIAGNOSTIC_KIT). 4) Remplissez les informations (numéro de lot, date d'expiration, numéro d'enregistrement).",
+    "question_en": "How to add a new product or device?",
+    "answer_en": "To add a product: 1) Go to the Products section. 2) Click 'New product'. 3) Select the category (MEDICATION, VACCINE, CHEMICAL_REAGENT, BIOLOGICAL_PRODUCT, MEDICAL_CONSUMABLE, DISINFECTANT, DIAGNOSTIC_KIT). 4) Fill in the information (lot number, expiry date, registration number).",
+    "role": "ALL"
+  },
+  {
+    "category": "PRODUCTS",
+    "question_fr": "Comment vérifier la traçabilité d'un produit ?",
+    "answer_fr": "Pour vérifier la traçabilité : 1) Allez dans Rappels → Traçabilité. 2) Recherchez par numéro de lot ou numéro de série. 3) Consultez l'historique complet : organisations ayant reçu le produit, dates, actions effectuées. Cette information est cruciale en cas de rappel produit.",
+    "question_en": "How to check product traceability?",
+    "answer_en": "To check traceability: 1) Go to Recalls → Traceability. 2) Search by lot number or serial number. 3) View the complete history: organizations that received the product, dates, actions taken. This information is crucial in case of a product recall.",
+    "role": "ALL"
+  },
+  {
+    "category": "PHARMACOVIGILANCE",
+    "question_fr": "Comment déclarer une réaction indésirable à un médicament ?",
+    "answer_fr": "Pour déclarer une réaction médicamenteuse : 1) Créez un rapport de type PHARMACO. 2) Décrivez la réaction (nature, intensité, durée). 3) Indiquez le médicament suspect (DCI, lot, dosage). 4) Renseignez les informations patient (âge, genre, antécédents si pertinents). 5) Sélectionnez la sévérité appropriée.",
+    "question_en": "How to report an adverse drug reaction?",
+    "answer_en": "To report a drug reaction: 1) Create a PHARMACO type report. 2) Describe the reaction (nature, intensity, duration). 3) Indicate the suspect medication (INN, lot, dosage). 4) Enter patient information (age, gender, relevant history). 5) Select the appropriate severity.",
+    "role": "ALL"
+  },
+  {
+    "category": "MATERIOVIGILANCE",
+    "question_fr": "Qu'est-ce que la matériovigilance ?",
+    "answer_fr": "La matériovigilance est la surveillance des incidents liés aux dispositifs médicaux après leur mise sur le marché. Elle vise à identifier, évaluer et prévenir les risques liés aux dispositifs médicaux pour garantir la sécurité des patients. En Algérie, elle est régie par le Décret exécutif n° 92-276.",
+    "question_en": "What is materiovigilance?",
+    "answer_en": "Materiovigilance is the monitoring of incidents related to medical devices after market release. It aims to identify, evaluate and prevent risks related to medical devices to ensure patient safety. In Algeria, it is governed by Executive Decree No. 92-276.",
+    "role": "ALL"
+  },
+  {
+    "category": "MATERIOVIGILANCE",
+    "question_fr": "Quels dispositifs médicaux doivent être déclarés ?",
+    "answer_fr": "Tout incident impliquant un dispositif médical CE marqué doit être déclaré si : il a causé ou aurait pu causer un décès, une détérioration grave de l'état de santé, ou s'il révèle un dysfonctionnement systématique. Les dispositifs concernés incluent : équipements de diagnostic, implants, instruments chirurgicaux, réactifs de laboratoire.",
+    "question_en": "Which medical devices must be reported?",
+    "answer_en": "Any incident involving a CE-marked medical device must be reported if: it caused or could have caused death, serious deterioration of health, or reveals a systematic malfunction. Concerned devices include: diagnostic equipment, implants, surgical instruments, laboratory reagents.",
+    "role": "ALL"
+  },
+  {
+    "category": "CHEMOVIGILANCE",
+    "question_fr": "Comment déclarer un incident chimique ?",
+    "answer_fr": "Pour déclarer un incident chimique : 1) Créez un rapport de type CHIMICO. 2) Identifiez la substance chimique (nom, formule, concentration). 3) Décrivez l'incident (exposition, symptômes, conditions). 4) Indiquez les mesures d'urgence prises. 5) Référencez les fiches de données de sécurité (FDS) si disponibles.",
+    "question_en": "How to report a chemical incident?",
+    "answer_en": "To report a chemical incident: 1) Create a CHIMICO type report. 2) Identify the chemical substance (name, formula, concentration). 3) Describe the incident (exposure, symptoms, conditions). 4) Indicate emergency measures taken. 5) Reference safety data sheets (SDS) if available.",
+    "role": "ALL"
+  },
+  {
+    "category": "DASHBOARD",
+    "question_fr": "Quels KPIs sont disponibles dans mon tableau de bord ?",
+    "answer_fr": "Les KPIs varient selon votre rôle. Responsable Qualité : rapports par statut/sévérité, taux de résolution des alertes, taux de complétion des tâches, insights IA. Hospital Admin : personnel par type, rapports ouverts, tâches bloquées, stats départements. Technicien : tâches assignées, tâches en retard.",
+    "question_en": "What KPIs are available in my dashboard?",
+    "answer_en": "KPIs vary by role. Quality Manager: reports by status/severity, alert resolution rate, task completion rate, AI insights. Hospital Admin: staff by type, open reports, blocked tasks, department stats. Technician: assigned tasks, overdue tasks.",
+    "role": "ALL"
+  },
+  {
+    "category": "DASHBOARD",
+    "question_fr": "Comment exporter les données du tableau de bord ?",
+    "answer_fr": "Pour exporter : 1) Allez dans la section souhaitée (Rapports, Alertes, etc.). 2) Utilisez le bouton 'Exporter' ou 'Télécharger rapport PDF'. 3) Choisissez la période et le format. Les Authority Agents peuvent télécharger des rapports de conformité complets depuis leur tableau de bord.",
+    "question_en": "How to export dashboard data?",
+    "answer_en": "To export: 1) Go to the desired section (Reports, Alerts, etc.). 2) Use the 'Export' or 'Download PDF report' button. 3) Choose the period and format. Authority Agents can download full compliance reports from their dashboard.",
+    "role": "ALL"
+  },
+  {
+    "category": "SSO",
+    "question_fr": "Comment me connecter avec Google ou Microsoft ?",
+    "answer_fr": "Pour vous connecter via SSO : 1) Sur la page de connexion, cliquez sur 'Se connecter avec Google' ou 'Se connecter avec Microsoft'. 2) Authentifiez-vous avec votre compte professionnel. 3) À la première connexion, votre compte sera automatiquement créé. Les connexions SSO ne nécessitent pas de mot de passe.",
+    "question_en": "How to login with Google or Microsoft?",
+    "answer_en": "To login via SSO: 1) On the login page, click 'Login with Google' or 'Login with Microsoft'. 2) Authenticate with your professional account. 3) On first login, your account will be automatically created. SSO logins do not require a password.",
+    "role": "ALL"
+  },
+  {
+    "category": "DEPARTMENT",
+    "question_fr": "Comment créer un département dans mon organisation ?",
+    "answer_fr": "Pour créer un département (Hospital Admin uniquement) : 1) Allez dans Paramètres → Départements. 2) Cliquez sur 'Nouveau département'. 3) Sélectionnez le type (CARDIOLOGY, NEUROLOGY, PHARMACY, EMERGENCY, LABORATORY, etc.). 4) Assignez un chef de département. Les incidents peuvent ensuite être liés à ce département.",
+    "question_en": "How to create a department in my organization?",
+    "answer_en": "To create a department (Hospital Admin only): 1) Go to Settings → Departments. 2) Click 'New department'. 3) Select the type (CARDIOLOGY, NEUROLOGY, PHARMACY, EMERGENCY, LABORATORY, etc.). 4) Assign a department head. Incidents can then be linked to this department.",
+    "role": "HOSPITAL_ADMIN"
+  },
+  {
+    "category": "AI",
+    "question_fr": "Comment fonctionne l'analyse IA des rapports ?",
+    "answer_fr": "Lorsqu'un rapport est soumis, l'IA calcule automatiquement : un score de risque (0-100), un niveau de risque (LOW/MEDIUM/HIGH/CRITICAL), un niveau de confiance, et génère une explication en langage naturel. Ces insights sont visibles directement sur le rapport et dans le tableau de bord du Responsable.",
+    "question_en": "How does AI report analysis work?",
+    "answer_en": "When a report is submitted, the AI automatically calculates: a risk score (0-100), a risk level (LOW/MEDIUM/HIGH/CRITICAL), a confidence level, and generates a natural language explanation. These insights are visible directly on the report and in the Manager's dashboard.",
+    "role": "ALL"
+  },
+  {
+    "category": "AI",
+    "question_fr": "Qu'est-ce que la détection de patterns par l'IA ?",
+    "answer_fr": "La détection de patterns analyse les rapports pour identifier : clusters de fréquence (incidents répétés), récurrence de dispositifs (même équipement défaillant), clusters de départements (problèmes localisés), clusters de sévérité (aggravation), récurrence produits (lot défectueux). Ces patterns déclenchent des Signaux qui informent les décisions.",
+    "question_en": "What is AI pattern detection?",
+    "answer_en": "Pattern detection analyzes reports to identify: frequency clusters (repeated incidents), device recurrence (same failing equipment), department clusters (localized issues), severity clusters (worsening), product recurrence (defective batch). These patterns trigger Signals that inform decisions.",
+    "role": "ALL"
+  },
+  {
+    "category": "TRACEABILITY",
+    "question_fr": "Comment fonctionne la traçabilité des produits ?",
+    "answer_fr": "Le module de traçabilité enregistre chaque action sur un produit/dispositif : réception, utilisation, maintenance, rappel. En cas de rappel produit, le système identifie automatiquement toutes les organisations ayant reçu le lot concerné et leur envoie des notifications ciblées.",
+    "question_en": "How does product traceability work?",
+    "answer_en": "The traceability module records every action on a product/device: receipt, use, maintenance, recall. In case of a product recall, the system automatically identifies all organizations that received the concerned batch and sends them targeted notifications.",
+    "role": "ALL"
+  },
+  {
+    "category": "SUPPLIER",
+    "question_fr": "Comment un fournisseur peut-il proposer des solutions ?",
+    "answer_fr": "Le SupplierAgent reçoit les rapports liés à ses produits. Il peut : 1) Ouvrir le rapport et cliquer sur 'Proposer une solution'. 2) Demander à VigiBot des solutions techniques adaptées au type de problème. 3) Créer un workspace partagé (SHARED) pour collaborer avec l'hôpital. 4) Initier un rappel si nécessaire.",
+    "question_en": "How can a supplier propose solutions?",
+    "answer_en": "The SupplierAgent receives reports related to their products. They can: 1) Open the report and click 'Propose a solution'. 2) Ask VigiBot for technical solutions adapted to the problem type. 3) Create a shared workspace (SHARED) to collaborate with the hospital. 4) Initiate a recall if necessary.",
+    "role": "SUPPLIER_AGENT"
+  },
+  {
+    "category": "AUDITLOG",
+    "question_fr": "Comment consulter le journal d'audit ?",
+    "answer_fr": "Le journal d'audit enregistre toutes les actions sensibles : LOGIN, LOGOUT, CREATE, UPDATE, DELETE, APPROVE, REJECT, SUBMIT, ASSIGN. Pour le consulter : 1) Allez dans Paramètres → Journal d'audit. 2) Filtrez par utilisateur, action ou période. Disponible pour les Hospital Admin et Authority Agent.",
+    "question_en": "How to consult the audit log?",
+    "answer_en": "The audit log records all sensitive actions: LOGIN, LOGOUT, CREATE, UPDATE, DELETE, APPROVE, REJECT, SUBMIT, ASSIGN. To consult it: 1) Go to Settings → Audit log. 2) Filter by user, action or period. Available for Hospital Admin and Authority Agent.",
+    "role": "HOSPITAL_ADMIN"
+  },
+  {
+    "category": "ORGANIZATION",
+    "question_fr": "Comment enregistrer une nouvelle organisation ?",
+    "answer_fr": "Pour enregistrer une organisation : 1) Allez sur la page d'accueil. 2) Cliquez sur 'Créer un compte'. 3) Remplissez les informations de l'organisation (nom, type, email, pays, numéro d'enregistrement). 4) Créez le compte administrateur. Un abonnement FREE est automatiquement créé. L'organisation sera vérifiée par l'Admin plateforme.",
+    "question_en": "How to register a new organization?",
+    "answer_en": "To register an organization: 1) Go to the home page. 2) Click 'Create account'. 3) Fill in the organization information (name, type, email, country, registration number). 4) Create the admin account. A FREE subscription is automatically created. The organization will be verified by the platform Admin.",
+    "role": "ALL"
+  }
+]

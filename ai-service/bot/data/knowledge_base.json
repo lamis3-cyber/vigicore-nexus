@@ -1,0 +1,98 @@
+[
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment créer un rapport ?",
+    "answer_fr": "Pour créer un rapport : 1) Allez dans la section 'Rapports' du menu principal. 2) Cliquez sur 'Nouveau rapport'. 3) Sélectionnez le type (Matériovigilance, Pharmacovigilance...). 4) Remplissez la description, la sévérité et les informations du device/produit. 5) Cliquez sur 'Soumettre'. Le rapport sera automatiquement analysé par l'IA.",
+    "question_en": "How to create a report?",
+    "answer_en": "To create a report: 1) Go to the 'Reports' section in the main menu. 2) Click 'New report'. 3) Select the type (Materiovigilance, Pharmacovigilance...). 4) Fill in the description, severity and device/product information. 5) Click 'Submit'. The report will be automatically analyzed by AI.",
+    "role": "ALL"
+  },
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment voir mes tâches assignées ?",
+    "answer_fr": "Pour voir vos tâches : 1) Allez dans la section 'Tâches' du menu. 2) Cliquez sur 'Mes tâches' pour voir uniquement les tâches qui vous sont assignées. 3) Les tâches sont triées par priorité (CRITICAL → URGENT → NORMAL → LOW) et par date d'échéance.",
+    "question_en": "How to see my assigned tasks?",
+    "answer_en": "To see your tasks: 1) Go to the 'Tasks' section in the menu. 2) Click 'My tasks' to see only tasks assigned to you. 3) Tasks are sorted by priority (CRITICAL → URGENT → NORMAL → LOW) and due date.",
+    "role": "ALL"
+  },
+  {
+    "category": "NAVIGATION",
+    "question_fr": "Comment rejoindre un workspace ?",
+    "answer_fr": "Vous êtes ajouté automatiquement à un workspace par le propriétaire (OWNER). Vous recevrez une notification in-app et par email. Accédez ensuite à la section 'Workspaces' dans le menu pour voir tous vos espaces de collaboration actifs.",
+    "question_en": "How to join a workspace?",
+    "answer_en": "You are automatically added to a workspace by the owner. You will receive an in-app and email notification. Then go to the 'Workspaces' section in the menu to see all your active collaboration spaces.",
+    "role": "ALL"
+  },
+  {
+    "category": "ROLES",
+    "question_fr": "Pourquoi je ne peux pas approuver un rappel produit ?",
+    "answer_fr": "Seul le rôle 'Authority Agent' (ANSM, EMA, WHO) peut approuver les rappels produits. C'est une exigence réglementaire pour garantir la neutralité des décisions. Si vous êtes Responsable Qualité ou Fournisseur, vous pouvez initier un rappel mais pas l'approuver.",
+    "question_en": "Why can't I approve a product recall?",
+    "answer_en": "Only the 'Authority Agent' role (ANSM, EMA, WHO) can approve product recalls. This is a regulatory requirement to ensure decision neutrality. If you are a Quality Manager or Supplier, you can initiate a recall but not approve it.",
+    "role": "ALL"
+  },
+  {
+    "category": "ROLES",
+    "question_fr": "Quelles sont les permissions du Responsable Qualité ?",
+    "answer_fr": "Le Responsable Qualité peut : voir TOUS les rapports de son organisation, valider ou rejeter des rapports, créer des alertes (HIGH/CRITICAL), créer et assigner des tâches aux techniciens, créer des workspaces, et recevoir les notifications pour les nouveaux rapports.",
+    "question_en": "What are the Quality Manager permissions?",
+    "answer_en": "The Quality Manager can: see ALL reports in their organization, validate or reject reports, create alerts (HIGH/CRITICAL), create and assign tasks to technicians, create workspaces, and receive notifications for new reports.",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKFLOW",
+    "question_fr": "Quel est le cycle de vie d'un rapport ?",
+    "answer_fr": "Un rapport passe par ces statuts : DRAFT → OPEN (soumis) → ANALYZING (analyse IA) → UNDER_REVIEW (examen Responsable) → VALIDATED ou REJECTED. Si besoin d'informations supplémentaires : NEEDS_MORE_INFO. Après validation : CLOSED puis ARCHIVED.",
+    "question_en": "What is the lifecycle of a report?",
+    "answer_en": "A report goes through these statuses: DRAFT → OPEN (submitted) → ANALYZING (AI analysis) → UNDER_REVIEW (Manager review) → VALIDATED or REJECTED. If more information needed: NEEDS_MORE_INFO. After validation: CLOSED then ARCHIVED.",
+    "role": "ALL"
+  },
+  {
+    "category": "WORKFLOW",
+    "question_fr": "Comment fonctionne le processus de rappel produit ?",
+    "answer_fr": "Le processus de rappel : 1) Initiation par SupplierAgent ou AuthorityAgent. 2) Passage en UNDER_REVIEW. 3) Approbation EXCLUSIVE par AuthorityAgent. 4) Identification automatique des organisations affectées via la traçabilité. 5) Notifications automatiques à toutes les organisations concernées. Cycle : INITIATED → UNDER_REVIEW → APPROVED → IN_PROGRESS → COMPLETED.",
+    "question_en": "How does the product recall process work?",
+    "answer_en": "The recall process: 1) Initiation by SupplierAgent or AuthorityAgent. 2) Move to UNDER_REVIEW. 3) EXCLUSIVE approval by AuthorityAgent. 4) Automatic identification of affected organizations via traceability. 5) Automatic notifications to all concerned organizations. Cycle: INITIATED → UNDER_REVIEW → APPROVED → IN_PROGRESS → COMPLETED.",
+    "role": "ALL"
+  },
+  {
+    "category": "ALERTS",
+    "question_fr": "Comment créer une alerte ?",
+    "answer_fr": "Pour créer une alerte (Responsable Qualité uniquement) : 1) Ouvrez le rapport concerné. 2) Cliquez sur 'Créer une alerte'. 3) Définissez le titre, message et sévérité (INFO/WARNING/HIGH/CRITICAL). 4) L'alerte sera envoyée par email à tous les responsables si sévérité HIGH ou CRITICAL.",
+    "question_en": "How to create an alert?",
+    "answer_en": "To create an alert (Quality Manager only): 1) Open the relevant report. 2) Click 'Create alert'. 3) Set the title, message and severity (INFO/WARNING/HIGH/CRITICAL). 4) The alert will be sent by email to all managers if severity is HIGH or CRITICAL.",
+    "role": "RESPONSABLE"
+  },
+  {
+    "category": "TASKS",
+    "question_fr": "Comment mettre à jour le statut d'une tâche ?",
+    "answer_fr": "Pour mettre à jour une tâche : 1) Allez dans 'Mes tâches'. 2) Cliquez sur la tâche concernée. 3) Changez le statut : OPEN → IN_PROGRESS → DONE. Si bloqué : BLOCKED. Le créateur de la tâche sera notifié automatiquement à chaque changement de statut.",
+    "question_en": "How to update a task status?",
+    "answer_en": "To update a task: 1) Go to 'My tasks'. 2) Click on the relevant task. 3) Change the status: OPEN → IN_PROGRESS → DONE. If blocked: BLOCKED. The task creator will be automatically notified at each status change.",
+    "role": "TECHNICIAN"
+  },
+  {
+    "category": "SUBSCRIPTIONS",
+    "question_fr": "Quels sont les plans disponibles ?",
+    "answer_fr": "MaterioVigilance propose 4 plans : FREE (0$/mois) fonctionnalités de base, BASIC (49$/mois) alertes avancées et collaboration, PRO (149$/mois) IA complète et gestion des rappels, ENTERPRISE (499$/mois) tout inclus + intégrations personnalisées et SLA garanti.",
+    "question_en": "What plans are available?",
+    "answer_en": "MaterioVigilance offers 4 plans: FREE ($0/month) basic features, BASIC ($49/month) advanced alerts and collaboration, PRO ($149/month) full AI and recall management, ENTERPRISE ($499/month) everything included + custom integrations and guaranteed SLA.",
+    "role": "ADMIN"
+  },
+  {
+    "category": "SECURITY",
+    "question_fr": "Comment activer la double authentification (2FA) ?",
+    "answer_fr": "Pour activer le 2FA : 1) Allez dans vos paramètres de compte. 2) Cliquez sur 'Sécurité'. 3) Activez la double authentification. 4) Scannez le QR code avec Google Authenticator ou une app compatible TOTP. 5) Confirmez avec le code généré. Le 2FA sera requis à chaque connexion.",
+    "question_en": "How to enable two-factor authentication (2FA)?",
+    "answer_en": "To enable 2FA: 1) Go to your account settings. 2) Click 'Security'. 3) Enable two-factor authentication. 4) Scan the QR code with Google Authenticator or a TOTP compatible app. 5) Confirm with the generated code. 2FA will be required at each login.",
+    "role": "ALL"
+  },
+  {
+    "category": "VIGILANCE",
+    "question_fr": "Quelle est la différence entre matériovigilance et pharmacovigilance ?",
+    "answer_fr": "La matériovigilance concerne les incidents liés aux dispositifs médicaux (équipements, instruments, implants). La pharmacovigilance concerne les effets indésirables des médicaments et vaccins. La chémovigilance surveille les substances chimiques et réactifs dangereux. La cosmétovigilance couvre les effets indésirables des produits cosmétiques.",
+    "question_en": "What is the difference between materiovigilance and pharmacovigilance?",
+    "answer_en": "Materiovigilance concerns incidents related to medical devices (equipment, instruments, implants). Pharmacovigilance concerns adverse effects of drugs and vaccines. Chemovigilance monitors chemical substances and hazardous reagents. Cosmetovigilance covers adverse effects of cosmetic products.",
+    "role": "ALL"
+  }
+]

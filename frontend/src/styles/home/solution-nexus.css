@@ -1,0 +1,316 @@
+/* ==========================================================================
+   "VigiCore Nexus centralizes everything" — redesign (nx-*)
+   Five domains each own an arc on the hub ring (left half); one output arc
+   (right half) leaves toward the incident record. See SolutionSection.jsx.
+   Loaded AFTER polish-final.css.
+   ========================================================================== */
+
+/* status line instead of a tracked-out caps eyebrow */
+.solution-section .section-eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  text-transform: none; letter-spacing: .02em;
+  font: 600 15px/1 "Inter", sans-serif;
+}
+.solution-section .section-eyebrow::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: #2bf2b4; box-shadow: 0 0 0 4px rgba(43, 242, 180, .16);
+}
+
+.nx-pipeline {
+  position: relative; display: grid; align-items: center;
+  grid-template-columns: 276px minmax(0, 1fr) 356px; column-gap: 18px;
+  /* break out of the 1100px section column: the map needs the width to stay legible */
+  width: min(1320px, calc(100vw - 48px)); max-width: none;
+  left: 50%; margin: 14px 0 0 calc(min(1320px, calc(100vw - 48px)) / -2); text-align: left;
+}
+
+/* ---- lanes (domains) ---- */
+.nx-lanes { position: relative; z-index: 2; display: flex; flex-direction: column; }
+.nx-lane {
+  appearance: none; -webkit-appearance: none; margin: 0; font: inherit; color: inherit; text-align: left; cursor: pointer;
+  position: relative; display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  min-height: 62px; padding: 8px 6px 8px 2px; background: none; border: 0;
+  border-bottom: 1px solid rgba(170, 210, 235, .12);
+}
+.nx-lane:last-child { border-bottom: 0; }
+.nx-lane::after {                       /* the rail fills with the domain colour */
+  content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+  background: linear-gradient(90deg, rgb(var(--r)), rgba(var(--r), 0) 92%);
+  transform: scaleX(0); transform-origin: left; transition: transform .5s ease;
+}
+.nx-lane:last-child::after { bottom: 0; }
+.nx-lane.is-active::after { transform: scaleX(1); }
+.nx-lane:focus-visible { outline: 2px solid rgba(var(--r), .9); outline-offset: 2px; border-radius: 6px; }
+.nx-lane-node {
+  width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box;
+  border: 2px solid rgba(var(--r), .6); background: transparent; transition: all .35s ease;
+}
+.nx-lane.is-active .nx-lane-node { background: rgb(var(--r)); border-color: rgb(var(--r)); box-shadow: 0 0 0 5px rgba(var(--r), .18); }
+.nx-lane-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.nx-lane-name { font: 700 19px/1.1 "Rajdhani", sans-serif; color: rgba(225, 240, 250, .66); transition: color .35s ease; }
+.nx-lane.is-active .nx-lane-name { color: #fff; }
+.nx-lane-desc { font: 400 13px/1.3 "Inter", sans-serif; color: rgba(175, 205, 225, .6); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-lane-count { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.nx-lane-count b { font: 700 24px/1 "Rajdhani", sans-serif; font-variant-numeric: tabular-nums; color: rgba(225, 240, 250, .55); transition: color .35s ease; }
+.nx-lane.is-active .nx-lane-count b { color: rgb(var(--r)); }
+.nx-lane-count small { font: 500 11px/1.1 "Inter", sans-serif; color: rgba(175, 205, 225, .45); }
+
+/* ---- live map: Algeria, signals born in wilayas, the AI core at the centre ---- */
+.nx-map { position: relative; z-index: 2; width: min(100%, 520px); justify-self: center; margin-bottom: 30px; container-type: inline-size; }
+.nx-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.nx-nb { fill: rgba(150, 200, 230, .02); stroke: rgba(150, 200, 230, .08); stroke-width: .8; }
+.nx-radar { fill: none; stroke: rgba(150, 215, 240, .1); stroke-width: 1; stroke-dasharray: 2 7; }
+.nx-dz { fill: rgba(0, 160, 210, .07); }
+.nx-dotpat { fill: rgba(120, 220, 255, .3); }
+.nx-dz-tex { opacity: .9; pointer-events: none; }
+.nx-dz-line { fill: none; stroke: rgba(0, 232, 255, .55); stroke-width: 1.3; stroke-linejoin: round; filter: drop-shadow(0 0 5px rgba(0, 232, 255, .35)); }
+.nx-dz-scan {                              /* a light that runs round the border */
+  fill: none; stroke: rgb(var(--d)); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 55 945; filter: drop-shadow(0 0 5px rgba(var(--d), .9));
+  animation: nxScan 11s linear infinite; transition: stroke .5s ease;
+}
+@keyframes nxScan { to { stroke-dashoffset: -1000; } }
+.nx-minor { fill: rgba(160, 220, 245, .4); }
+
+.nx-route { fill: none; stroke: rgba(150, 205, 230, .13); stroke-width: 1.1; transition: stroke .45s ease, stroke-width .45s ease; }
+.nx-route.is-active {
+  stroke: rgba(var(--d), .95); stroke-width: 1.9; stroke-linecap: round; stroke-dasharray: 1 8;
+  filter: drop-shadow(0 0 4px rgba(var(--d), .7)); animation: nxDash 1s linear infinite;
+}
+@keyframes nxDash { to { stroke-dashoffset: -9; } }
+.nx-out-end { fill: rgb(var(--d)); filter: drop-shadow(0 0 6px rgba(var(--d), .9)); transition: fill .45s ease; }
+
+.nx-arc { fill: none; stroke-width: 6; stroke-linecap: round; stroke: rgba(var(--r), .3); transition: stroke .45s ease, filter .45s ease; }
+.nx-arc.is-active { stroke: rgb(var(--r)); filter: drop-shadow(0 0 5px rgba(var(--r), .85)); }
+.nx-hub-ticks { fill: none; stroke: rgba(150, 225, 245, .32); stroke-width: 4; stroke-dasharray: 1 7.3; animation: nxDial 90s linear infinite; }
+@keyframes nxDial { to { transform: rotate(360deg); } }
+
+.nx-node-dot { fill: rgba(205, 232, 246, .92); stroke: rgba(2, 12, 28, .9); stroke-width: 1; transition: fill .4s ease; }
+.nx-node.is-src .nx-node-dot { fill: rgb(var(--d)); filter: drop-shadow(0 0 6px rgba(var(--d), .95)); }
+.nx-node-pulse { fill: none; stroke: rgb(var(--d)); stroke-width: 1.3; transform-box: fill-box; transform-origin: center; animation: nxNodePulse 2s ease-out infinite; }
+@keyframes nxNodePulse { from { transform: scale(1); opacity: .9; } to { transform: scale(4.2); opacity: 0; } }
+.nx-lbl {
+  font: 600 12.5px/1 "Inter", sans-serif; fill: rgba(215, 235, 247, .8); pointer-events: none;
+  paint-order: stroke; stroke: rgba(3, 14, 32, .95); stroke-width: 3.6px; stroke-linejoin: round; transition: fill .35s ease;
+}
+.nx-node.is-src .nx-lbl { fill: #fff; font-weight: 700; font-size: 13.5px; }
+
+.nx-maptag {
+  position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 8px;
+  font: 600 12.5px/1 "Inter", sans-serif; color: rgba(190, 225, 240, .75); letter-spacing: .02em;
+}
+.nx-maptag i { width: 7px; height: 7px; border-radius: 50%; background: #2bf2b4; box-shadow: 0 0 0 3px rgba(43, 242, 180, .16); animation: nxLive 2.2s ease-in-out infinite; }
+@keyframes nxLive { 50% { box-shadow: 0 0 0 6px rgba(43, 242, 180, 0); } }
+
+/* ---- core: a disc at the centre of the map. Sizes follow the map width (cqw). ---- */
+.nx-hub { position: absolute; z-index: 3; aspect-ratio: 1; }
+.nx-disc {
+  position: absolute; inset: 0; border-radius: 50%; box-sizing: border-box; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5cqw;
+  background: radial-gradient(circle at 50% 22%, rgba(0, 72, 112, .96), rgba(2, 12, 28, .98) 74%);
+  border: 1px solid rgba(0, 232, 255, .32);
+  box-shadow: inset 0 0 28px rgba(0, 232, 255, .1), 0 0 36px rgba(0, 150, 255, .22);
+}
+.nx-disc > *:not(.nx-sweep) { position: relative; z-index: 1; }
+.nx-sweep {
+  position: absolute; inset: -30%; z-index: 0; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 0deg, rgba(var(--d), 0) 0deg, rgba(var(--d), 0) 250deg, rgba(var(--d), .28) 350deg, rgba(var(--d), .55) 360deg);
+  animation: nxSweep 5.2s linear infinite; transition: background .6s ease;
+}
+@keyframes nxSweep { to { transform: rotate(360deg); } }
+.nx-disc-mark { width: 3.4cqw; height: 4cqw; min-width: 14px; min-height: 16px; fill: rgba(0, 232, 255, .12); stroke: #19e6ff; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.nx-disc-mark path:last-child { fill: none; stroke: #fff; stroke-width: 1.6; }
+.nx-disc-name { font: 700 max(15px, 4.1cqw)/1 "Rajdhani", sans-serif; color: #fff; letter-spacing: .02em; text-shadow: 0 0 14px rgba(0, 232, 255, .45); }
+.nx-disc-label { font: 500 max(9px, 2cqw)/1 "Inter", sans-serif; color: rgba(150, 225, 245, .78); }
+.nx-disc .conv-core-ecg { width: 72%; padding: 0; margin-top: .6cqw; }
+.nx-disc .conv-ecg-canvas { display: block; width: 100%; height: 5cqw; }
+
+.nx-feed {                                 /* what is happening now, under the map */
+  position: absolute; left: 50%; bottom: -34px; transform: translateX(-50%); width: max-content; max-width: 100%;
+  display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 6px 12px; border-radius: 99px;
+  font: 500 12.5px/1.3 "Inter", sans-serif; color: rgba(225, 242, 252, .95);
+  border: 1px solid rgba(var(--d), .45); background: rgba(3, 14, 32, .82); backdrop-filter: blur(4px);
+  animation: nxFeedIn .45s ease both;
+}
+.nx-feed b { flex: none; width: 7px; height: 7px; border-radius: 50%; background: rgb(var(--d)); box-shadow: 0 0 10px rgb(var(--d)); }
+.nx-feed em { font-style: normal; font-weight: 700; color: rgb(var(--d)); }
+.nx-feed em::after { content: "·"; margin: 0 7px 0 8px; color: rgba(225, 242, 252, .5); }
+@keyframes nxFeedIn { from { opacity: 0; margin-bottom: -6px; } to { opacity: 1; margin-bottom: 0; } }
+
+/* ---- incident record: a sheet of paper in a dark room ---- */
+.nx-dossier {
+  position: relative; z-index: 2; box-sizing: border-box; padding: 18px 20px 16px 24px; border-radius: 10px;
+  background: linear-gradient(180deg, rgba(8, 26, 50, .94), rgba(3, 14, 32, .96)); color: #e8f4fb; overflow: hidden;
+  border: 1px solid rgba(190, 225, 245, .14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+}
+.nx-dossier::before {                    /* margin stripe in the domain colour */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: rgb(var(--d)); transition: background .5s ease;
+}
+.nx-dossier-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.nx-dossier-title { font: 700 18px/1.1 "Rajdhani", sans-serif; color: #fff; }
+.nx-dossier-tag {
+  font: 600 12px/1 "Inter", sans-serif; padding: 5px 10px; border-radius: 99px;
+  color: rgb(var(--d)); background: rgba(var(--d), .12); box-shadow: inset 0 0 0 1px rgba(var(--d), .5);
+  animation: nxFeedIn .4s ease both; white-space: nowrap;
+}
+.nx-steps { list-style: none; margin: 24px 0 0; padding: 0; }
+.nx-step { position: relative; display: flex; gap: 13px; padding-bottom: 14px; }
+.nx-step:not(:last-child)::before {
+  content: ""; position: absolute; left: 5px; top: 16px; bottom: -1px; width: 2px; border-radius: 2px;
+  background: rgba(190, 225, 240, .16); transition: background .4s ease;
+}
+.nx-step.is-done:not(:last-child)::before { background: rgb(var(--d)); }
+.nx-step-dot { flex: none; width: 12px; height: 12px; margin-top: 3px; border-radius: 50%; box-sizing: border-box; border: 2px solid rgba(190, 225, 240, .3); background: transparent; transition: all .35s ease; }
+.nx-step.is-done .nx-step-dot { border-color: rgb(var(--d)); background: rgb(var(--d)); }
+.nx-step.is-now .nx-step-dot { box-shadow: 0 0 0 5px rgba(var(--d), .25); }
+.nx-step.is-done .nx-step-dot { box-shadow: 0 0 10px rgba(var(--d), .7); }
+.nx-step-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.nx-step-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.nx-step-row b { font: 700 16px/1.2 "Rajdhani", sans-serif; color: rgba(190, 225, 240, .45); transition: color .35s ease; }
+.nx-step-row em { font: 600 12px/1 "Inter", sans-serif; font-style: normal; font-variant-numeric: tabular-nums; color: rgba(190, 225, 240, .35); transition: color .35s ease; }
+.nx-step-detail { font: 400 13px/1.4 "Inter", sans-serif; color: rgba(190, 225, 240, .4); transition: color .35s ease; }
+.nx-step.is-done .nx-step-row b { color: #fff; }
+.nx-step.is-done .nx-step-row em { color: rgb(var(--d)); }
+.nx-step.is-done .nx-step-detail { color: rgba(205, 235, 248, .82); }
+
+/* before / after as bars: the gap is the message */
+.nx-compare { display: flex; flex-direction: column; gap: 9px; padding-top: 13px; border-top: 1px solid rgba(190, 225, 240, .14); }
+.nx-compare-row { display: grid; grid-template-columns: 104px 1fr 84px; align-items: center; gap: 10px; }
+.nx-compare-label { font: 500 12px/1.2 "Inter", sans-serif; color: rgba(190, 225, 240, .6); }
+.nx-compare-track { height: 8px; border-radius: 8px; background: rgba(190, 225, 240, .1); overflow: hidden; }
+.nx-compare-track i { display: block; height: 100%; border-radius: 8px; }
+.nx-compare-track .is-bad { width: 100%; background: #ff5a62; }
+.nx-compare-track .is-good { width: 3%; min-width: 6px; background: #2bf2b4; }
+.nx-compare-row strong { font: 700 17px/1 "Rajdhani", sans-serif; text-align: right; white-space: nowrap; color: #fff; font-variant-numeric: tabular-nums; }
+
+/* ---- creative layer: sealed record ---- */
+.nx-dossier-id {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px; white-space: nowrap;
+  font: 500 12px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; color: rgba(190, 225, 240, .55);
+}
+.nx-dossier-id i { width: 3px; height: 3px; border-radius: 50%; background: rgba(190, 225, 240, .4); }
+.nx-stamp {
+  position: absolute; right: 18px; top: 58px; z-index: 3; pointer-events: none;
+  padding: 4px 9px; border-radius: 5px; border: 2px solid rgb(var(--d)); color: rgb(var(--d));
+  font: 700 13px/1 "Rajdhani", sans-serif; letter-spacing: .06em; text-transform: uppercase;
+  background: rgba(var(--d), .08); box-shadow: 0 0 18px rgba(var(--d), .3);
+  opacity: 0; transform: rotate(-6deg) scale(1.5);
+}
+.nx-stamp.is-on { opacity: .95; transform: rotate(-6deg) scale(1); animation: nxStamp .38s cubic-bezier(.2, 1.4, .4, 1) both; }
+@keyframes nxStamp { from { opacity: 0; transform: rotate(-6deg) scale(1.6); } to { opacity: .95; transform: rotate(-6deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .nx-hub-ticks, .nx-sweep, .nx-stamp.is-on, .nx-dz-scan, .nx-node-pulse, .nx-route.is-active, .nx-maptag i { animation: none; }
+  .nx-sweep { opacity: .5; }
+  .nx-dz-scan { display: none; }
+}
+html[data-theme="light"] .nx-dossier-id { color: rgba(11, 31, 51, .5); }
+html[data-theme="light"] .nx-dossier-id i { background: rgba(11, 31, 51, .3); }
+html[data-theme="light"] .nx-stamp { color: #0b1f33; border-color: rgb(var(--d)); background: rgba(var(--d), .16); box-shadow: none; }
+
+/* ---- keep the section in one screen ----
+   fitScreen.js sizes the content to the space under the navbar, but the section
+   is a min-height:100vh flex box that centres it, which pushed the bottom line
+   (button + disclaimer) past the fold. On short screens the content starts at
+   the top instead, so what fitScreen measured is what is shown. */
+@media (min-width: 901px) and (max-height: 1000px) {
+  .solution-section { align-items: flex-start; }
+  .nx-pipeline { margin-top: 6px; }
+  .nx-lane { min-height: 56px; padding-top: 6px; padding-bottom: 6px; }
+}
+
+/* ---- short screens: fitScreen shrinks everything, so the SVG labels get bigger units to stay readable ---- */
+@media (min-width: 901px) and (max-height: 800px) {
+  .nx-lbl { font-size: 15px; stroke-width: 4px; }
+  .nx-node.is-src .nx-lbl { font-size: 16px; }
+  .nx-maptag { font-size: 13.5px; }
+}
+
+/* ---- short desktop screens: tighter header and footer so the whole map can stay big ---- */
+@media (min-width: 901px) and (max-height: 940px) {
+  .solution-section .section-content { padding-top: 14px; }
+  .solution-section .section-title { font-size: clamp(28px, 5.3vh, 48px); margin-bottom: 4px; }
+  /* one-line headline: saves a whole line of height for the map */
+  .solution-section .section-title br { display: none; }
+  .solution-section .section-title-accent { margin-inline-start: .28em; }
+  .solution-section .section-desc { font-size: 14px; line-height: 1.45; margin-bottom: 2px; }
+  .nx-pipeline { margin-top: 0; }
+  .conv-metrics { margin-top: 16px; }   /* clears the status pill under the map */
+  .conv-metric-num { font-size: 26px; }
+  .conv-closing { margin-top: 8px; }
+  .conv-disclaimer { margin-top: 5px; }
+}
+
+/* ---- mid widths: slimmer side columns so the map keeps its size ---- */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .nx-pipeline { grid-template-columns: 236px minmax(0, 1fr) 320px; column-gap: 12px; }
+}
+
+/* ---- narrow screens: lanes, then the map, then the record ---- */
+@media (max-width: 900px) {
+  .nx-pipeline { grid-template-columns: 1fr; row-gap: 22px; width: 100%; max-width: 520px; left: 0; margin: 14px auto 0; }
+  .nx-map { margin-bottom: 34px; }
+  .nx-lbl { font-size: 14px; stroke-width: 3.6px; }
+  .nx-node.is-src .nx-lbl { font-size: 15px; }
+  .nx-dossier-id { max-width: 100%; }
+  .nx-disc-name { font-size: 12px; }
+  .nx-disc-label { font-size: 12px; }
+  .nx-disc-mark { min-width: 10px; min-height: 12px; }
+  .nx-stamp { top: auto; bottom: 14px; right: 16px; }
+  .nx-feed { white-space: normal; text-align: center; border-radius: 14px; bottom: -34px; }
+  .nx-dossier { margin-top: 0; }
+}
+@media (max-width: 420px) {
+  .nx-compare-row { grid-template-columns: 88px 1fr 78px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-feed, .nx-dossier-tag { animation: none; }
+  .nx-lane::after, .nx-arc { transition: none; }
+}
+
+/* ---- light theme: lanes sit on a pale page, the hub stays a dark disc ---- */
+html[data-theme="light"] .nx-lane { border-bottom-color: rgba(15, 31, 61, .12); }
+html[data-theme="light"] .nx-lane-name { color: rgba(15, 31, 61, .7); }
+html[data-theme="light"] .nx-lane.is-active .nx-lane-name { color: #0f1f3d; }
+html[data-theme="light"] .nx-lane-desc, html[data-theme="light"] .nx-lane-count small { color: rgba(15, 31, 61, .58); }
+html[data-theme="light"] .nx-lane-count b { color: rgba(15, 31, 61, .6); }
+html[data-theme="light"] .nx-arc { stroke: rgba(var(--r), .45); }
+html[data-theme="light"] .nx-feed { color: #0f1f3d; background: rgba(255, 255, 255, .9); }
+html[data-theme="light"] .nx-feed em::after { color: rgba(15, 31, 61, .4); }
+html[data-theme="light"] .nx-nb { fill: rgba(15, 31, 61, .012); stroke: rgba(15, 31, 61, .08); }
+html[data-theme="light"] .nx-radar { stroke: rgba(15, 31, 61, .12); }
+html[data-theme="light"] .nx-dz { fill: rgba(0, 120, 170, .08); }
+html[data-theme="light"] .nx-dotpat { fill: rgba(15, 80, 120, .26); }
+html[data-theme="light"] .nx-dz-line { stroke: rgba(0, 110, 150, .75); filter: none; }
+html[data-theme="light"] .nx-minor { fill: rgba(15, 31, 61, .35); }
+html[data-theme="light"] .nx-route { stroke: rgba(15, 31, 61, .2); }
+html[data-theme="light"] .nx-route.is-active { stroke: rgb(var(--d)); filter: none; }
+html[data-theme="light"] .nx-node-dot { fill: #0f1f3d; stroke: #fff; }
+html[data-theme="light"] .nx-node.is-src .nx-node-dot { fill: rgb(var(--d)); filter: none; }
+html[data-theme="light"] .nx-lbl { fill: rgba(15, 31, 61, .75); stroke: rgba(232, 237, 243, .95); }
+html[data-theme="light"] .nx-node.is-src .nx-lbl { fill: #0b1f33; }
+html[data-theme="light"] .nx-maptag { color: rgba(15, 31, 61, .65); }
+html[data-theme="light"] .nx-hub-ticks { stroke: rgba(15, 31, 61, .25); }
+html[data-theme="light"] .nx-dossier { box-shadow: 0 14px 40px rgba(15, 31, 61, .16), 0 0 0 1px rgba(15, 31, 61, .1); }
+html[data-theme="light"] .solution-section .section-eyebrow { color: #0b7a5a; }
+html[data-theme="light"] .nx-lane.is-active .nx-lane-count b { color: #0f1f3d; }
+
+/* light theme keeps the paper sheet (dark text on white) */
+html[data-theme="light"] .nx-dossier { background: #fff; color: #0b1f33; border-color: rgba(15, 31, 61, .1); }
+html[data-theme="light"] .nx-dossier-title, html[data-theme="light"] .nx-compare-row strong, html[data-theme="light"] .nx-step.is-done .nx-step-row b { color: #0b1f33; }
+html[data-theme="light"] .nx-dossier-tag { color: #0b1f33; background: rgba(var(--d), .22); box-shadow: inset 0 0 0 1px rgba(var(--d), .7); }
+html[data-theme="light"] .nx-step:not(:last-child)::before { background: rgba(11, 31, 51, .14); }
+html[data-theme="light"] .nx-step-dot { border-color: rgba(11, 31, 51, .25); background: #fff; }
+html[data-theme="light"] .nx-step.is-done .nx-step-dot { border-color: rgb(var(--d)); background: rgb(var(--d)); }
+html[data-theme="light"] .nx-step.is-done:not(:last-child)::before { background: rgb(var(--d)); }
+html[data-theme="light"] .nx-step-row b { color: rgba(11, 31, 51, .45); }
+html[data-theme="light"] .nx-step-row em, html[data-theme="light"] .nx-step-detail { color: rgba(11, 31, 51, .45); }
+html[data-theme="light"] .nx-step.is-done .nx-step-row em { color: rgba(11, 31, 51, .6); }
+html[data-theme="light"] .nx-step.is-done .nx-step-detail { color: rgba(11, 31, 51, .78); }
+html[data-theme="light"] .nx-compare { border-top-color: rgba(11, 31, 51, .14); }
+html[data-theme="light"] .nx-compare-label { color: rgba(11, 31, 51, .65); }
+html[data-theme="light"] .nx-compare-track { background: rgba(11, 31, 51, .08); }
+html[data-theme="light"] .nx-compare-track .is-bad { background: #e5484d; }
+html[data-theme="light"] .nx-compare-track .is-good { background: #12b886; }

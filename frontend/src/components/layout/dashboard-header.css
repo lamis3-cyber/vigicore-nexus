@@ -1,0 +1,74 @@
+/* Signed-in header (DashboardHeader.jsx). Same glass bar and height as the
+   public navbar (56px) so page layouts that clear it keep working. */
+.dash-nav{--dh-solid:#050f20;position:fixed;top:0;left:0;right:0;z-index:100;height:56px;display:flex;align-items:center;gap:20px;padding:0 clamp(16px,4vw,64px);background:rgba(2,8,20,.88);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid rgba(0,232,255,.10);box-shadow:0 8px 32px rgba(0,0,0,.45)}
+html[data-theme="light"] .dash-nav{--dh-solid:#ffffff;background:rgba(255,255,255,.90);box-shadow:0 8px 24px rgba(15,31,61,.08)}
+.dash-nav-brand{display:flex;align-items:center;text-decoration:none;flex:none}
+.dash-ico{width:16px;height:16px;flex:none}
+.dash-search .dash-ico{width:16px;height:16px}
+
+/* Search — centred, like the Logiciel dashboard */
+.dash-search-slot{flex:1;min-width:0;display:flex;justify-content:center}
+.dash-search{display:flex;align-items:center;gap:10px;width:100%;max-width:480px;height:36px;padding:0 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted-2);transition:border-color var(--dur-fast),background var(--dur-fast)}
+.dash-search:focus-within{border-color:var(--line-accent);background:var(--surface-hi);color:var(--cyan)}
+.dash-search input{flex:1;min-width:0;font:inherit;font-size:13px;color:var(--white);background:none;border:0;outline:0}
+.dash-search input::placeholder{color:var(--muted-2)}
+.dash-search input::-webkit-search-cancel-button{cursor:pointer}
+
+.dash-nav-right{display:flex;align-items:center;gap:10px;flex:none;margin-left:auto}
+.dash-logout:hover{color:#ff7b7b;border-color:rgba(255,123,123,.45);background:rgba(255,123,123,.08)}
+.dash-logout:disabled{opacity:.5;cursor:default}
+
+/* Account */
+.dash-user{position:relative}
+.dash-avatar{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:inherit;font-size:12px;font-weight:700;letter-spacing:.03em;color:#fff;background:linear-gradient(135deg,#6a5cf0,#8a6cf7);border:0;cursor:pointer;box-shadow:0 0 0 2px rgba(138,108,247,.35);transition:box-shadow var(--dur-fast)}
+.dash-avatar:hover,.dash-avatar[aria-expanded="true"]{box-shadow:0 0 0 3px rgba(138,108,247,.55)}
+.dash-avatar:focus-visible,.dash-nav .theme-toggle:focus-visible,.dash-search input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.dash-search input:focus-visible{outline:0}
+.dash-avatar--lg{width:46px;height:46px;font-size:15px;cursor:default}
+
+/* Solid card: content behind it (buttons, tables) must never show through */
+.dash-card{position:absolute;right:0;top:calc(100% + 10px);width:290px;padding:8px;border-radius:var(--r-md);background:var(--dh-solid);border:1px solid var(--line-accent);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+html[data-theme="light"] .dash-card{box-shadow:0 24px 60px rgba(15,31,61,.18)}
+.dash-card-id{display:flex;align-items:center;gap:12px;padding:10px 10px 14px}
+.dash-card-id>span:last-child{display:flex;flex-direction:column;min-width:0;line-height:1.3}
+.dash-card-id strong{font-size:15px;color:var(--white)}
+.dash-card-id small{font-size:12px;color:var(--muted-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dash-card-meta{margin:0;padding:12px 10px 8px;border-top:1px solid var(--line);display:grid;gap:8px}
+.dash-card-meta div{display:flex;justify-content:space-between;gap:16px;font-size:12px}
+.dash-card-meta dt{color:var(--muted-2)}
+.dash-card-meta dd{margin:0;color:var(--white);font-weight:600;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.dash-login{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--cyan);border:1px solid var(--line-accent);border-radius:var(--r-sm);padding:8px 16px}
+.dash-chip{font-size:12px;color:var(--muted);border:1px dashed var(--line-accent);border-radius:999px;padding:5px 12px}
+
+@media (max-width:720px){.dash-nav{gap:10px}.dash-search{max-width:none}.dash-card{width:min(290px,calc(100vw - 32px))}}
+@media (max-width:520px){.dash-nav .nav-logo-text{display:none}.dash-nav-right{gap:8px}}
+/* Light theme: the pale cyan icon buttons of the dark bar are near-invisible on white. */
+html[data-theme="light"] .dash-nav .theme-toggle{color:#0e7490;border-color:rgba(14,116,144,.32)}
+html[data-theme="light"] .dash-nav .theme-toggle:hover{background:rgba(14,116,144,.08);border-color:rgba(14,116,144,.55)}
+html[data-theme="light"] .dash-nav .dash-logout:hover{color:#b91c1c;border-color:rgba(185,28,28,.45);background:rgba(185,28,28,.06)}
+
+/* ── Header enhancements ── */
+.dash-nav{transition:box-shadow var(--dur-fast),background var(--dur-fast)}
+.dash-nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.4}
+.dash-nav.is-scrolled{box-shadow:0 10px 36px rgba(0,0,0,.55)}
+html[data-theme="light"] .dash-nav.is-scrolled{box-shadow:0 10px 30px rgba(15,31,61,.16)}
+.dash-crumb{display:flex;align-items:center;gap:10px;flex:none;color:var(--muted-2)}
+.dash-crumb i{font-style:normal;font-size:20px;font-weight:300;opacity:.5}
+.dash-crumb b{font-size:13px;font-weight:700;padding:5px 14px;border-radius:999px;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--line-accent)}
+.dash-search kbd{font:inherit;font-size:12px;font-weight:600;padding:1px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface-hi);color:var(--muted-2)}
+.dash-search:focus-within kbd{display:none}
+.dash-clear{flex:none;width:20px;height:20px;border-radius:50%;border:0;cursor:pointer;font-size:12px;line-height:1;color:var(--muted);background:var(--surface-hi)}.dash-clear:hover{color:var(--white);background:var(--line-accent)}
+.dash-org{display:flex;align-items:center;gap:8px;max-width:300px;min-width:0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--line-accent)}
+.dash-org-name{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.dash-org i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)}
+html[data-theme="light"] .dash-org,html[data-theme="light"] .dash-crumb b{color:#0e7490}
+.dash-user .dash-avatar{position:relative}
+.dash-user .dash-avatar::after{content:"";position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;border-radius:50%;background:var(--teal);border:2px solid var(--dh-solid)}
+.dash-avatar--lg::after{display:none}
+.dash-card{animation:dash-pop var(--dur-fast) var(--ease)}@keyframes dash-pop{from{opacity:0;transform:translateY(-6px) scale(.98)}}
+.dash-card-out{width:calc(100% - 4px);margin:6px 2px 2px;display:flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:13px;font-weight:600;padding:9px;border-radius:var(--r-sm);cursor:pointer;color:#ff7b7b;background:none;border:1px solid rgba(255,123,123,.3)}
+.dash-card-out:hover{background:rgba(255,123,123,.1)}.dash-card-out:disabled{opacity:.5;cursor:default}
+html[data-theme="light"] .dash-card-out{color:#b91c1c;border-color:rgba(185,28,28,.3)}
+@media (max-width:1000px){.dash-org{display:none}}
+@media (max-width:720px){.dash-crumb,.dash-search kbd{display:none}}

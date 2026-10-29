@@ -1,0 +1,17 @@
+.pm-section { margin: 4px 0 10px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); }
+.pm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pm-item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: var(--radius-md, 10px); background: var(--surface-1); border: 1px solid var(--border-default); }
+.pm-item.is-pending { border-left: 3px solid var(--color-amber); }
+.pm-avatar { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; font-size: 14px; font-weight: 800;
+  background: var(--color-cyan-dim); color: var(--color-cyan); }
+.pm-body { flex: 1; min-width: 0; }
+.pm-name { font-size: 14.5px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pm-meta { margin-top: 3px; font-size: 12.5px; color: var(--text-secondary); }
+.pm-badge { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: var(--color-green-dim); color: var(--color-green); }
+.pm-actions { flex: none; display: flex; gap: 8px; }
+.pm-danger { color: var(--color-red); border-color: color-mix(in srgb, var(--color-red) 45%, transparent); }
+.pm-empty { display: flex; align-items: center; gap: 14px; }
+.pm-empty > i { font-size: 28px; color: var(--text-tertiary); }
+.pm-empty strong { display: block; font-size: 14px; color: var(--text-primary); }
+.pm-empty span { font-size: 12.5px; color: var(--text-secondary); }
+@media (max-width: 700px) { .pm-item { flex-wrap: wrap; } .pm-actions { width: 100%; justify-content: flex-end; } }

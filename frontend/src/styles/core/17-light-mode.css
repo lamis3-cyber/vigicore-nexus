@@ -1,0 +1,433 @@
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — Slate Blue Strategy
+   ═══════════════════════════════════════════════════════════
+   Philosophy:
+   · Section rhythm: #FFFFFF ↔ #EDF2F9 alternating
+   · Cards: white + subtle border + soft shadow only
+   · Primary: #1A56DB (rich blue) dominant
+   · Accent: #0EA5A0 (deep teal) replaces neon cyan
+   · Text: #0F1F3D (deep navy, not black)
+   · Hero shield area: stays dark navy (built for dark canvas)
+   · Zero neon glows — shadows only
+   · Smooth 0.3s transition on all color/bg/border props
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Transition on switch ───────────────────────────────── */
+html { transition: background 0.3s ease, color 0.3s ease; }
+
+/* ── Global light base ──────────────────────────────────── */
+html[data-theme="light"] {
+  --bg:           #E8EDF3;
+  --bg-2:         #dde4ec;
+  --bg-3:         #FFFFFF;
+  --white:        #0F1F3D;
+  --cyan:         #00C8E0;
+  --teal:         #00C8E0;
+  --blue:         #00C8E0;
+  --purple:       #6D28D9;
+  --amber:        #B45309;
+  --red:          #B91C1C;
+  --glass-bg:     rgba(255,255,255,0.92);
+  --glass-border: rgba(0,200,224,0.20);
+  --cyan-bright:  #0F1F3D; 
+
+  /* These six were never redefined for light mode, so they kept their
+     dark-mode values — pale, low-opacity *white* meant to sit on a near-
+     black background. Used ~90 times site-wide (body/description text,
+     translucent card surfaces, borders), that's nearly invisible on the
+     light background: exactly the "nothing is visible" washed-out look.
+     Same role/opacity as their dark-mode counterparts, just built from
+     the light-mode ink (#0F1F3D) instead of the dark-mode white. */
+  --muted:        rgba(15,31,61,0.68);
+  --muted-2:      rgba(15,31,61,0.55);
+  --surface:      rgba(15,31,61,0.035);
+  --surface-hi:   rgba(15,31,61,0.07);
+  --line:         rgba(15,31,61,0.14);
+  --line-accent:  rgba(0,200,224,0.35);
+
+  /* --shadow-deep (used by .services-feature-panel) was never
+     redefined for light mode either, so it kept its dark-mode value:
+     a heavy 55%-opacity black shadow meant to blend into a near-black
+     page. On the light background it painted a dark smudge under the
+     panel. Rebuilt from the light-mode ink at low opacity — enough to
+     read as "this card sits above the page," not a stain. */
+  --shadow-deep: 0 20px 45px rgba(15,31,61,0.10), 0 0 30px rgba(0,200,224,0.05);
+}
+
+html[data-theme="light"] body {
+  background: #E8EDF3;
+  color: #0F1F3D;
+}
+/* Universal section background — ensures every section matches, while
+   staying slightly transparent so the animated canvas shows through. */
+html[data-theme="light"] .scroll-section, html[data-theme="light"] .hero, html[data-theme="light"] .wim-section, html[data-theme="light"] .solution-section, html[data-theme="light"] .video-section, html[data-theme="light"] .dashboard-section, html[data-theme="light"] .actors-section, html[data-theme="light"] .workflow-section, html[data-theme="light"] .contact-section, html[data-theme="light"] .cta-section {
+  background: rgba(232,237,243,0.90) !important;
+}
+
+/* Animated background canvases: re-enabled in light mode, tuned for
+   visibility against a light background instead of the dark-mode glow. */
+html[data-theme="light"] #rays-canvas {
+  opacity: 0;
+  pointer-events: none;
+}
+html[data-theme="light"] #bg-canvas {
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+html[data-theme="light"] #ambient-particles-canvas {
+  opacity: 0.75;
+  mix-blend-mode: multiply;
+}
+
+/* Kill film grain */
+html[data-theme="light"] body::after { opacity: 0; }
+
+/* ── SCROLL PROGRESS ────────────────────────────────────── */
+
+/* ── CURSOR GLOW ────────────────────────────────────────── */
+html[data-theme="light"] #cursor-glow { opacity: 0 !important; }
+
+/* ── NAVBAR ─────────────────────────────────────────────── */
+html[data-theme="light"] .navbar {
+  background: rgba(255,255,255,0.97);
+  border-bottom: none;
+  box-shadow: none;
+  backdrop-filter: blur(16px);
+}
+html[data-theme="light"] .nav-logo-text { color: #0F1F3D; }
+
+/* ── BRAND LOGO MARK — light mode ───────────────────────── */
+/* Swap dark shield fill → crisp white/light-blue glass look */
+
+/* Edge gradient → vivid cyan-to-teal */
+
+/* ECG gradient → cyan tones */
+
+/* Override the breathing glow animation to use cyan shades */
+
+/* All cyan inner strokes → keep cyan */
+html[data-theme="light"] .nav-logo-mark line,
+html[data-theme="light"] .nav-logo-mark path[stroke*="0,229,255"],
+html[data-theme="light"] .nav-logo-mark path[stroke*="rgba(0,229"] {
+  stroke: rgba(0,200,224,0.25);
+}
+/* Outer glow ring */
+html[data-theme="light"] .nav-logo-mark > path:first-of-type {
+  stroke: rgba(0,200,224,0.28);
+}
+/* VN text → cyan */
+
+/* ECG bloom glow polylines → soft cyan */
+html[data-theme="light"] .nav-logo-mark polyline[stroke*="rgba(0,255,210"] {
+  stroke: rgba(0,200,224,0.25) !important;
+}
+/* Hex grid → cyan */
+html[data-theme="light"] .nav-logo-mark g[clip-path] path {
+  stroke: #00C8E0 !important;
+}
+html[data-theme="light"] .nav-links a { color: rgba(15,31,61,0.65); }
+html[data-theme="light"] .nav-links a:hover { color: #00C8E0; }
+html[data-theme="light"] .nav-links a::after { background: #00C8E0; }
+html[data-theme="light"] .nav-cta {
+  background: linear-gradient(90deg, #00C8E0 0%, #00E5B0 100%);
+  border-color: #00C8E0;
+  color: #0a1628 !important;
+  box-shadow: 0 2px 10px rgba(0,200,224,0.28);
+  
+}
+html[data-theme="light"] .nav-cta:hover {
+  background: #009DB5;
+  box-shadow: 0 4px 18px rgba(0,200,224,0.38);
+  color: #0a1628 !important;
+}
+html[data-theme="light"] #theme-toggle,
+html[data-theme="light"] #theme-toggle-mobile {
+  background: rgba(0,200,224,0.08);
+  border-color: rgba(0,200,224,0.20);
+  color: #00C8E0;
+}
+html[data-theme="light"] .nav-hamburger span { background: #0F1F3D; }
+html[data-theme="light"] .nav-mobile-drawer {
+  background: rgba(232,237,243,0.99);
+  border-right-color: rgba(0,200,224,0.12);
+}
+html[data-theme="light"] .nav-mobile-drawer a { color: rgba(15,31,61,0.70); border-bottom-color: rgba(0,200,224,0.07); }
+html[data-theme="light"] .nav-mobile-drawer a:hover { color: #00C8E0; }
+
+/* ── Toggle icons ───────────────────────────────────────── */
+
+/* ── HERO — shield stays on dark card ──────────────────── */
+
+/* Dark island for the shield + modules */
+
+html[data-theme="light"] .btn-primary {
+  background: linear-gradient(90deg, #00C8E0 0%, #00E5B0 100%);
+  border-color: #00C8E0;
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(0,200,224,0.32);
+  
+}
+html[data-theme="light"] .nav-cta-demo {
+  background: linear-gradient(90deg, #00C8E0 0%, #00E5B0 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(0,200,224,0.32) !important;
+}
+html[data-theme="light"] .nav-cta-demo:hover {
+  background: #009DB5 !important;
+  box-shadow: 0 6px 22px rgba(0,200,224,0.42) !important;
+}
+html[data-theme="light"] .btn-primary:hover {
+  background: #009DB5;
+  box-shadow: 0 6px 26px rgba(0,200,224,0.42);
+}
+
+html[data-theme="light"] .btn-secondary:hover { border-color: #00C8E0; }
+
+/* ── SECTION TITLES ─────────────────────────────────────── */
+html[data-theme="light"] .section-eyebrow { color: #00C8E0; }
+html[data-theme="light"] .section-title { color: #0F1F3D; }
+html[data-theme="light"] .section-desc { color: rgba(15,31,61,0.55); }
+
+/* ── SECTION 2 — WHY IT MATTERS ─────────────────────────── */
+html[data-theme="light"] .wim-section { background: #E8EDF3; }
+html[data-theme="light"] .wdc-value { color: #B91C1C;  }
+html[data-theme="light"] .wcm-value { color: #B91C1C; }
+
+/* ── SECTION 4 — CONVERGENCE PIPELINE ──────────────────── */
+html[data-theme="light"] .solution-section { background: #E8EDF3; }
+
+/* Domain cards — consistent height + stronger shadow */
+
+/* AI CORE center card — frosted glass depth, not flat white */
+html[data-theme="light"] .conv-core {
+  background: linear-gradient(145deg, #eef6ff 0%, #dbeafe 100%);
+  border: 1px solid rgba(59,130,246,0.28);
+  box-shadow:
+    0 12px 40px rgba(59,130,246,0.14),
+    0 0 0 1px rgba(59,130,246,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.80);
+}
+
+/* Chevron arrows — much more visible */
+
+/* Output cards — unified consistent tinting, stronger borders */
+
+/* Bottom metrics strip — tighten gap, stronger text */
+html[data-theme="light"] .conv-metrics {
+  margin-top: 24px !important;
+}
+html[data-theme="light"] .conv-metric-num   { color: #0f2a6e !important; }
+html[data-theme="light"] .conv-metric-label { color: rgba(15,31,61,0.52) !important; }
+html[data-theme="light"] .conv-metric:not(:last-child)::after { background: rgba(26,86,219,0.14) !important; }
+html[data-theme="light"] .conv-metric-icon {
+  color: #1A56DB !important;
+  background: rgba(26,86,219,0.06) !important;
+  border-color: rgba(26,86,219,0.20) !important;
+}
+html[data-theme="light"] .conv-metric:hover .conv-metric-icon {
+  border-color: rgba(26,86,219,0.45) !important;
+  box-shadow: 0 0 14px rgba(26,86,219,0.16) !important;
+}
+html[data-theme="light"] .conv-metric:hover .conv-metric-num { text-shadow: none !important; }
+html[data-theme="light"] .conv-metric:hover { background: rgba(26,86,219,0.04) !important; }
+html[data-theme="light"] .conv-metrics::before { display: none; }
+
+html[data-theme="light"] .conv-cta {
+  background: linear-gradient(90deg, #00C8E0 0%, #00E5B0 100%);
+  border-color: #00C8E0;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,200,224,0.28);
+  
+}
+html[data-theme="light"] .conv-cta:hover { background: #009DB5; }
+
+/* ── SECTION 5 — HOW IT WORKS ───────────────────────────── */
+
+/* ── All flow cards → clean white, lifted with shadow ── */
+
+/* Remove per-color card tints entirely */
+/* Per-color tint preserved on hover in light mode */
+
+/* Text */
+
+/* Tags — accent color on white bg (this is where color lives) */
+
+/* Icon circles — white bg, colored border, SVG stays its neon color but darkened via filter */
+/* Disable dark-mode neon effects in light mode */
+
+/* SVG icon — darken the neon strokes so they're visible on white */
+
+/* Step numbers and dots */
+
+/* Connector line */
+
+/* ── VIDEO SECTION ──────────────────────────────────────── */
+html[data-theme="light"] .video-section { background: #E8EDF3; }
+html[data-theme="light"] .video-frame {
+  border: 2px solid rgba(0,200,224,0.45);
+  box-shadow: 0 10px 40px rgba(0,200,224,0.08);
+}
+html[data-theme="light"] .video-glow { opacity: 0; }
+html[data-theme="light"] .video-corner { border-color: rgba(0,200,224,0.50); }
+html[data-theme="light"] .video-placeholder { background: #ffffff; }
+html[data-theme="light"] .vp-grid {
+  background-image:
+    linear-gradient(rgba(26,86,219,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,86,219,0.04) 1px, transparent 1px);
+}
+html[data-theme="light"] .vp-scanline { opacity: 0.15; }
+html[data-theme="light"] .vp-coming-tag {
+  background: rgba(26,86,219,0.06);
+  border-color: rgba(0,200,224,0.20);
+  color: rgba(0,200,224,0.65);
+}
+html[data-theme="light"] .vp-coming-dot { background: rgba(26,86,219,0.65); box-shadow: none; }
+html[data-theme="light"] .video-meta .vt { color: #0F1F3D; }
+html[data-theme="light"] .video-meta .vd { color: rgba(15,31,61,0.42); }
+html[data-theme="light"] .video-topics span {
+  background: rgba(26,86,219,0.06);
+  border-color: rgba(0,200,224,0.14);
+  color: rgba(0,200,224,0.62);
+}
+
+/* ── DASHBOARD SECTION ──────────────────────────────────── */
+html[data-theme="light"] .dashboard-section { background: #E8EDF3; }
+html[data-theme="light"] .dashboard-section::before { opacity: 0.3; }
+html[data-theme="light"] .dashboard-frame {
+  background: #FFFFFF;
+  border: 1px solid rgba(26,86,219,0.14);
+  box-shadow: 0 12px 48px rgba(15,31,61,0.10);
+}
+html[data-theme="light"] .df-corner { border-color: #00C8E0; }
+
+/* ── PATIENT PORTAL MOCKUP (light) ──────────────────────── */
+
+/* ── ACTORS SECTION ─────────────────────────────────────── */
+html[data-theme="light"] .actors-section { background: #E8EDF3; }
+
+html[data-theme="light"] .actor-card:hover {
+  box-shadow: 0 10px 30px rgba(15,31,61,0.12);
+  border-color: rgba(0,200,224,0.20);
+}
+/* Disable dark-mode radial glow blob and icon glow in light mode */
+html[data-theme="light"] .actor-card::before { display: none !important; }
+html[data-theme="light"] .actor-card h3 { color: #0F1F3D; }
+html[data-theme="light"] .actor-card p { color: rgba(15,31,61,0.55); }
+
+/* ── WORKFLOW SECTION ───────────────────────────────────── */
+html[data-theme="light"] .workflow-section { background: #E8EDF3; }
+
+/* ── TRUST STRIP ────────────────────────────────────────── */
+html[data-theme="light"] .trust-strip {
+  background: rgba(232,237,243,0.90) !important;
+  border-top: 1px solid rgba(26,86,219,0.09);
+  border-bottom: 1px solid rgba(26,86,219,0.09);
+}
+/* Resolution timeline (.res-*) — border now picks up each step's own
+   --res-accent-glow instead of a flat neutral line, so every card's
+   border matches the color of its numbered circle in light mode too. */
+
+html[data-theme="light"] .trust-strip::before { opacity: 0; }
+
+
+html[data-theme="light"] .trust-stat-num {
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Per-stat accent top border + number color */
+
+/* Same hover transition as dark mode — only colors differ */
+
+/* ── CONTACT SECTION ────────────────────────────────────── */
+html[data-theme="light"] .contact-section { background: #E8EDF3; }
+html[data-theme="light"] .contact-section::before { opacity: 0; }
+
+/* ── CTA SECTION ────────────────────────────────────────── */
+html[data-theme="light"] .cta-section {
+  background: #E8EDF3;
+}
+html[data-theme="light"] .cta-title { color: #0F1F3D; }
+html[data-theme="light"] .cta-trust-line { color: rgba(15,31,61,0.38); }
+html[data-theme="light"] .cta-trust-line span { color: rgba(0,200,224,0.55); }
+
+/* ── FOOTER — keep dark (looks intentional) ─────────────── */
+html[data-theme="light"] footer,
+html[data-theme="light"] .site-footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,200,224,0.18);
+}
+
+/* Footer column headings (PLATFORM, COMPANY, CONTACT, STAY UPDATED) */
+html[data-theme="light"] .footer-col h4 {
+  color: #00a8c0;
+}
+
+/* Footer nav links */
+html[data-theme="light"] .footer-col a {
+  color: rgba(13,40,80,0.55);
+}
+html[data-theme="light"] .footer-col a:hover {
+  color: #00a8c0;
+  
+}
+
+/* Footer brand tagline — ONE SHIELD. FOUR VIGILANCES. */
+html[data-theme="light"] .footer-tagline {
+  color: rgba(0,160,190,0.6);
+}
+
+/* Newsletter description text */
+html[data-theme="light"] .footer-newsletter-desc {
+  color: rgba(13,40,80,0.50);
+}
+
+/* Newsletter input box */
+html[data-theme="light"] .footer-newsletter {
+  background: rgba(0,180,210,0.06);
+  border-color: rgba(0,200,224,0.28);
+}
+html[data-theme="light"] .footer-newsletter-input {
+  color: #0d1f3c;
+}
+html[data-theme="light"] .footer-newsletter-input::placeholder {
+  color: rgba(13,40,80,0.35);
+}
+html[data-theme="light"] .footer-newsletter-btn {
+  background: rgba(0,200,224,0.12);
+  border-left-color: rgba(0,200,224,0.20);
+  color: #00a8c0;
+}
+html[data-theme="light"] .footer-newsletter-btn:hover {
+  background: rgba(0,200,224,0.22);
+  color: #007a90;
+}
+
+/* Social icon links */
+html[data-theme="light"] .footer-social-link {
+  background: rgba(0,200,224,0.06);
+  border-color: rgba(0,200,224,0.22);
+  color: #00a8c0;
+}
+html[data-theme="light"] .footer-social-link:hover {
+  background: rgba(0,200,224,0.16);
+  border-color: rgba(0,200,224,0.40);
+  color: #007a90;
+}
+
+/* Bottom bar — copyright + badges */
+html[data-theme="light"] .footer-bottom {
+  color: rgba(13,40,80,0.38);
+  border-top-color: rgba(0,200,224,0.12);
+}
+
+/* Bottom compliance badges (ANSM, ISO, EU MDR) */
+html[data-theme="light"] .footer-bottom-badge {
+  color: rgba(13,40,80,0.45);
+  border-color: rgba(0,200,224,0.22);
+  background: rgba(0,200,224,0.06);
+}
+
+
+

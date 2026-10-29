@@ -1,0 +1,431 @@
+/* ── 4. HERO SECTION ─────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  z-index: 1;
+  gap: 0;
+}
+
+/* Radial glow that sits behind the shield */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 820px;
+  height: 820px;
+  transform: translate(-50%,-52%);
+  background: radial-gradient(circle,
+    rgba(0,232,255,0.075) 0%,
+    rgba(0,128,255,0.050) 40%,
+    rgba(0,255,200,0.020) 65%,
+    transparent 75%
+  );
+  pointer-events: none;
+  animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes  pulseGlow {
+  0%,100% { opacity:.68; transform:translate(-50%,-52%) scale(1); }
+  50%     { opacity:.92; transform:translate(-50%,-52%) scale(1.04); }
+}
+
+/* Small eyebrow label above the system diagram */
+
+
+/* ── 5. SYSTEM DIAGRAM (shield + 5 module cards, pentagon layout) ─── */
+
+/* Wrapper that contains the shield and all 5 cards */
+.system {
+  position: relative;
+  width: min(680px, 84vw);
+  height: min(560px, 68vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 1s 0.4s ease forwards;
+}
+
+/* Canvas for bezier connection lines between cards and shield */
+
+
+/* ── 6. MODULE CARDS ─────────────────────────────────────── */
+
+.module {
+  position: absolute;
+  width: clamp(128px, 15.5vw, 170px);
+  padding: clamp(13px, 1.6vw, 19px) clamp(11px, 1.4vw, 16px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s, filter 0.35s, opacity 0.45s;
+  cursor: default;
+  will-change: transform, box-shadow;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 8px 32px rgba(0,0,0,0.45),
+    0 2px 8px rgba(0,0,0,0.3);
+  z-index: 6;
+}
+
+/* Absolute positions of each card */
+
+
+
+
+
+/* Per-card accent colors (used in box-shadows and icon glow) */
+
+
+
+
+
+/* Hover: card lifts up */
+.module:hover { transform: translateY(-6px) scale(1.025) !important; filter: brightness(1.08); }
+.module-tl:hover { border-color: rgba(50,180,255,0.55) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(50,180,255,0.35) !important; }
+.module-tr:hover { border-color: rgba(60,200,160,0.52) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(60,200,160,0.28) !important; }
+.module-bl:hover { border-color: rgba(180,80,255,0.55) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(180,80,255,0.35) !important; }
+.module-br:hover { border-color: rgba(220,140,60,0.50) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(220,140,60,0.28) !important; }
+.module-top:hover { border-color: rgba(255,60,90,0.55) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(255,60,90,0.35) !important; }
+
+/* Each card bobs at a different rhythm */
+@keyframes  floatA { 0%,100%{transform:translateY(0px)}  50%{transform:translateY(-9px)}  }
+@keyframes  floatB { 0%,100%{transform:translateY(0px)}  50%{transform:translateY(-7px)}  }
+@keyframes  floatC { 0%,100%{transform:translateY(0px)}  50%{transform:translateY(-11px)} }
+@keyframes  floatD { 0%,100%{transform:translateY(0px)}  50%{transform:translateY(-8px)}  }
+@keyframes  floatE { 0%,100%{transform:translateY(0px)}  50%{transform:translateY(-10px)} }
+
+/* Per-card glow pulses */
+@keyframes  glowBreathBlue   { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.45),0 0 14px rgba(50,180,255,0.08)}  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(0,0,0,0.45),0 0 28px rgba(50,180,255,0.22)} }
+@keyframes  glowBreathGreen  { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.45),0 0 14px rgba(60,200,160,0.07)}  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(0,0,0,0.45),0 0 28px rgba(60,200,160,0.18)} }
+@keyframes  glowBreathPurple { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.45),0 0 14px rgba(180,80,255,0.08)} 50%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(0,0,0,0.45),0 0 28px rgba(180,80,255,0.22)} }
+@keyframes  glowBreathOrange { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.45),0 0 14px rgba(220,140,60,0.07)} 50%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(0,0,0,0.45),0 0 28px rgba(220,140,60,0.18)} }
+@keyframes  glowBreathRed    { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.45),0 0 14px rgba(255,60,90,0.08)}    50%{box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(0,0,0,0.45),0 0 28px rgba(255,60,90,0.22)} }
+
+/* Pentagon layout: one vertex straight up (Réactovigilance), the other
+   4 existing modules spaced 72° apart around the shield. Each card's
+   top-left corner is placed at (point % - half card size) so the card
+   ends up centered on its vertex without relying on `transform`
+   (which the hover/active states already claim for lift/scale).
+   Cards are sized down slightly from the base .module rule (scoped
+   to .system) so the full pentagon fits within one screen. */
+.system .module {
+  width: clamp(112px, 13vw, 148px);
+  padding: clamp(11px, 1.3vw, 15px) clamp(9px, 1.1vw, 13px);
+  gap: 7px;
+}
+.module-top {
+  top: calc(10% - 64px);
+  left: calc(50% - 65px);
+  --m-accent: rgba(255,60,90,0.7);
+  --icon-glow: rgba(255,60,90,0.7);
+  --icon-reflect: rgba(255,60,90,0.5);
+  border-color: rgba(255,60,90,0.24) !important;
+  animation: floatE 6.5s 0.2s ease-in-out infinite, glowBreathRed 5.3s 0.4s ease-in-out infinite !important;
+}
+.module-tl {
+  top: calc(38.9% - 64px);
+  left: calc(12% - 65px);
+  --m-accent: rgba(50,180,255,0.7);
+  --icon-glow: rgba(50,180,255,0.7);
+  --icon-reflect: rgba(50,180,255,0.5);
+  border-color: rgba(50,180,255,0.24) !important;
+  animation: floatA 6.2s ease-in-out infinite, glowBreathBlue   5s ease-in-out infinite !important;
+}
+.module-tr {
+  top: calc(38.9% - 64px);
+  left: calc(88% - 65px);
+  --m-accent: rgba(60,200,160,0.7);
+  --icon-glow: rgba(60,200,160,0.30);
+  --icon-reflect: rgba(60,200,160,0.25);
+  border-color: rgba(60,200,160,0.22) !important;
+  animation: floatB 7.1s 0.5s ease-in-out infinite, glowBreathGreen  5.5s 0.8s ease-in-out infinite !important;
+}
+.module-bl {
+  top: calc(85% - 64px);
+  left: calc(26.5% - 65px);
+  --m-accent: rgba(180,80,255,0.7);
+  --icon-glow: rgba(180,80,255,0.7);
+  --icon-reflect: rgba(180,80,255,0.5);
+  border-color: rgba(180,80,255,0.24) !important;
+  animation: floatC 6.7s 1s ease-in-out infinite, glowBreathPurple 4.8s 1.2s ease-in-out infinite !important;
+}
+.module-br {
+  top: calc(85% - 64px);
+  left: calc(73.5% - 65px);
+  --m-accent: rgba(220,140,60,0.65);
+  --icon-glow: rgba(220,140,60,0.55);
+  --icon-reflect: rgba(220,140,60,0.38);
+  border-color: rgba(220,140,60,0.20) !important;
+  animation: floatD 7.8s 0.3s ease-in-out infinite, glowBreathOrange 5.2s 0.5s ease-in-out infinite !important;
+}
+
+/* Card icon area */
+
+/* SVG icon itself — animated float + glow */
+
+/* Elliptical glow reflection beneath icon */
+
+/* Icon glow/lift on card hover */
+
+/* Card title label */
+
+@media (max-width:600px) {
+  .module { width:130px; padding:10px 12px; }
+  .system { height:80vw; }
+}
+
+/* Mobile: stack the system diagram vertically */
+@media (max-width:480px) {
+  .system {
+    width: 96vw;
+    height: auto !important;
+    min-height: 620px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 10px;
+    align-items: start;
+    padding: 0 8px;
+  }
+  .module {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .module-top { grid-column:1 / 3; grid-row:1; }
+  .module-tl { grid-column:1; grid-row:2; }
+  .module-tr { grid-column:2; grid-row:2; }
+  .module-bl { grid-column:1; grid-row:4; }
+  .module-br { grid-column:2; grid-row:4; }
+  .shield-wrap {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    position: static !important;
+    margin: 0 auto;
+    transform: none !important;
+  }
+  .system .module-top,
+  .system .module-tl,
+  .system .module-tr,
+  .system .module-bl,
+  .system .module-br {
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+}
+
+
+/* ── 7. HOVER INTERACTION STATES ─────────────────────────── */
+
+/* Non-hovered cards: aggressively dimmed so active card reads clearly */
+.module.is-inactive {
+  opacity: 0.13 !important;
+  filter: brightness(0.45) saturate(0.2) !important;
+  transform: scale(0.97) !important;
+  transition:
+    opacity    0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    filter     0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform  0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s ease !important;
+}
+
+/* The hovered card: fully vivid, lifted */
+.module.is-active {
+  opacity: 1 !important;
+  filter: brightness(1.12) saturate(1.15) !important;
+  transform: translateY(-6px) scale(1.03) !important;
+  transition:
+    opacity    0.25s ease,
+    filter     0.25s ease,
+    transform  0.30s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease !important;
+}
+
+/* Per-card active glow colors */
+.module-tl.is-active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 52px rgba(0,0,0,0.55), 0 0 48px rgba(50,180,255,0.48),  0 0 90px rgba(50,180,255,0.16)  !important;
+  border-color: rgba(50,180,255,0.70) !important;
+}
+.module-tr.is-active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 52px rgba(0,0,0,0.55), 0 0 48px rgba(60,200,160,0.44),  0 0 90px rgba(60,200,160,0.14)  !important;
+  border-color: rgba(60,200,160,0.68) !important;
+}
+.module-bl.is-active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 52px rgba(0,0,0,0.55), 0 0 48px rgba(180,80,255,0.48),  0 0 90px rgba(180,80,255,0.16)  !important;
+  border-color: rgba(180,80,255,0.70) !important;
+}
+.module-br.is-active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 52px rgba(0,0,0,0.55), 0 0 48px rgba(220,140,60,0.42),  0 0 90px rgba(220,140,60,0.13)  !important;
+  border-color: rgba(220,140,60,0.64) !important;
+}
+.module-top.is-active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 52px rgba(0,0,0,0.55), 0 0 48px rgba(255,60,90,0.48),  0 0 90px rgba(255,60,90,0.16)  !important;
+  border-color: rgba(255,60,90,0.70) !important;
+}
+
+/* Active card icon — stronger lift + glow */
+
+
+/* ── 8. SHIELD ───────────────────────────────────────────── */
+
+.shield-svg { width:100%; height:100%; }
+
+/* Text overlay ("VigiCore" + "NEXUS") centered inside the shield shape */
+.shield-inner-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding-bottom: 14%;
+  pointer-events: none;
+  z-index: 11;
+}
+.shield-name {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(18px,2.5vw,26px);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--white);
+  
+  line-height: 1;
+}
+.shield-sub {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(12px,1.1vw,12px);
+  font-weight: 600;
+  letter-spacing: 0.40em;
+  color: var(--cyan);
+  opacity: 0.90;
+  
+}
+
+/* ECG canvas at the shield's base */
+#ecg-canvas {
+  position: absolute;
+  bottom: 27%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58%;
+  height: 34px;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+/* Fade ECG out when info panel is active */
+.shield-wrap.info-active #ecg-canvas {
+  opacity: 0;
+}
+
+/* Concentric pulse rings that expand outward from the shield */
+.shield-wrap::before,
+.shield-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 1px solid rgba(0,232,255,0);
+  animation: shieldRingPulse 4.5s ease-out infinite;
+}
+.shield-wrap::after {
+  inset: -6px;
+  animation-delay: 2.25s;
+}
+@keyframes  shieldRingPulse {
+  0%  { opacity:0; border-color:rgba(0,232,255,0.60); transform:scale(1.00); }
+  30% { opacity:0.8; }
+  80% { border-color:rgba(0,232,255,0.06); }
+  100%{ opacity:0; border-color:rgba(0,232,255,0); transform:scale(1.18); }
+}
+
+/* Shield pulse when a module is hovered — JS adds .any-active class */
+.shield-wrap.any-active {
+  animation: shieldPulseActive 2.2s cubic-bezier(0.45,0,0.55,1) infinite !important;
+  transition: filter 0.5s ease;
+}
+@keyframes  shieldPulseActive {
+  0%  { filter: drop-shadow(0 0 18px rgba(var(--shield-rgb,0,232,255),0.70)) drop-shadow(0 0 42px  rgba(var(--shield-rgb,0,232,255),0.30)) drop-shadow(0 0 90px  rgba(0,100,255,0.16)); }
+  45% { filter: drop-shadow(0 0 28px rgba(var(--shield-rgb,0,232,255),0.95)) drop-shadow(0 0 65px  rgba(var(--shield-rgb,0,232,255),0.50)) drop-shadow(0 0 130px rgba(0,100,255,0.24)); }
+  100%{ filter: drop-shadow(0 0 18px rgba(var(--shield-rgb,0,232,255),0.70)) drop-shadow(0 0 42px  rgba(var(--shield-rgb,0,232,255),0.30)) drop-shadow(0 0 90px  rgba(0,100,255,0.16)); }
+}
+
+/* Impact ripple overlay (old layer, still used for passive particles) */
+.shield-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0,232,255,0.22) 0%, rgba(0,200,255,0.08) 40%, transparent 70%);
+  opacity: 0;
+  z-index: 13;
+  transform: scale(0.85);
+  transition: none;
+}
+@keyframes  shieldImpactFlash {
+  0%   { opacity:0;    transform:scale(0.82); }
+  8%   { opacity:0.75; transform:scale(0.96); }
+  22%  { opacity:0.38; transform:scale(1.04); }
+  55%  { opacity:0.10; transform:scale(1.09); }
+  100% { opacity:0;    transform:scale(1.14); }
+}
+.shield-ripple.flash { animation: shieldImpactFlash 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* Enhanced flash overlay — full-color radial burst */
+#shield-flash {
+  position: absolute;
+  inset: -8px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 14;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+#shield-flash.fire { animation: shieldFlashAnim 0.75s cubic-bezier(0.16,1,0.3,1) forwards; }
+@keyframes  shieldFlashAnim {
+  0%   { opacity:0;    transform:scale(0.90); }
+  12%  { opacity:0.62; transform:scale(0.98); }
+  35%  { opacity:0.28; transform:scale(1.03); }
+  70%  { opacity:0.07; transform:scale(1.07); }
+  100% { opacity:0;    transform:scale(1.10); }
+}
+
+/* Energy ring that expands outward on flash */
+#shield-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 13;
+  border: 1.5px solid transparent;
+  opacity: 0;
+}
+#shield-ring.fire { animation: shieldRingExpand 0.85s cubic-bezier(0.16,1,0.3,1) forwards; }
+@keyframes  shieldRingExpand {
+  0%   { opacity:0;    transform:scale(0.92); }
+  10%  { opacity:0.75; }
+  55%  { opacity:0.20; transform:scale(1.14); }
+  100% { opacity:0;    transform:scale(1.22); }
+}
+
+

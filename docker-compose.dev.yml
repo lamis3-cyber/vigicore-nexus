@@ -1,0 +1,23 @@
+# DEVELOPMENT ONLY — default passwords, Redis without password. Never use this file on a server (see docker-compose.prod.yml).
+# Bases de données pour le développement local (PostgreSQL + Redis).
+# Les applications (frontend, backend/*, ai-service) se lancent avec npm / uvicorn : voir README.md
+#   docker compose -f docker-compose.dev.yml up -d
+services:
+  postgres:
+    image: postgres:16
+    container_name: materio_postgres
+    environment:
+      POSTGRES_DB: materiovigilance
+      POSTGRES_USER: materio_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-materio_password}
+    # Port hôte unique pour tout le projet : 5433 (modifiable via POSTGRES_PORT)
+    ports: ["127.0.0.1:${POSTGRES_PORT:-5433}:5432"]   # local machine only
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    container_name: materio_redis
+    ports: ["127.0.0.1:6379:6379"]   # local machine only (no password: DEV ONLY, never on a server)
+    restart: unless-stopped
+volumes:
+  postgres_data:

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <!-- Set the real theme before anything paints, so there's no
+         dark→light flash on load/reload for users who saved "light".
+         Blocking + inline on purpose: it must run before first paint. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('vg-theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#00131f" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VigiCore NEXUS — One Shield. Five Vigilances.</title>
+    <meta name="description" content="VigiCore NEXUS unifies matériovigilance, pharmacovigilance, chémovigilance, cosmétovigilance and réactovigilance into one AI-driven platform, aligned with ANPP and CNPM regulatory frameworks." />
+    <meta name="keywords" content="pharmacovigilance, matériovigilance, chémovigilance, cosmétovigilance, réactovigilance, ANPP, CNPM, healthcare vigilance platform, Algeria" />
+    <meta property="og:title" content="VigiCore NEXUS — One Shield. Five Vigilances." />
+    <meta property="og:description" content="One unified AI platform that collects, analyzes, and acts on every incident across all five vigilance domains, in real time." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    <!-- Connexion aux polices ouverte tôt (gain sûr ; pas de onload inline : la CSP de production l'interdit). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@200;300;400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

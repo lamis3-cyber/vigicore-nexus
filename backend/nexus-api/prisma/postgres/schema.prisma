@@ -1,0 +1,1062 @@
+// VigiCore NEXUS — Phase 1: Foundation schema & authorization layer
+//
+// This schema is the direct implementation of the locked architecture decisions.
+// Each model/field below is annotated with the decision it encodes so future
+// phases can trace design intent back to the approved architecture document.
+//
+// Dev/local datasource: SQLite (self-contained, no external DB required to run
+// or test this phase). Swapping to PostgreSQL for a shared multi-tenant
+// deployment (Decision 8) is a `provider` change only — the schema itself
+// does not assume SQLite semantics.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Roles & domains — LOCKED, closed sets (Decision 1, Decision 2, and the
+// earlier-locked "four domains only" rule). Adding a role or domain later is
+// a deliberate architecture change, not a casual enum edit.
+// ---------------------------------------------------------------------------
+
+enum Role {
+  PATIENT
+  DOCTOR
+  PHARMACIEN
+  LABO
+  HOSPITAL
+  VIGILANCE_REVIEWER   // Decision 1
+  // ESTABLISHMENT_ADMIN = PRODUCT PROVIDER account (manufacturer / supplier /
+  // distributor that lists products on /services). It has NOTHING to do with
+  // running a hospital or clinic — that is ORG_ADMIN below. The enum value keeps
+  // its historical name so existing rows/routes keep working.
+  ESTABLISHMENT_ADMIN
+  // ORG_ADMIN = first administrator of a HEALTHCARE establishment (hospital,
+  // clinic, medical centre). Manages members, join requests and invitations;
+  // lands on the 'administrator' dashboard. No clinical access by default.
+  ORG_ADMIN
+  // FOURNISSEUR = wholesale supplier / distributor account (2026-10-27). It BUYS from manufacturers (orders,
+  // organisations = the manufacturers it buys from), receives notifications about incidents touching its products,
+  // can declare an incident and talk to the other parties. It does NOT publish product listings on /services
+  // (that stays ESTABLISHMENT_ADMIN = manufacturer). Its establishment is a SUPPLIER whose buyerCategory is
+  // DISTRIBUTOR, VERIFIED by VigiCore staff before it can place any order.
+  FOURNISSEUR
+  // Platform/National Admin intentionally NOT included — deferred per Decision 1.
+}
+
+enum Domain {
+  MATERIOVIGILANCE
+  PHARMACOVIGILANCE
+  CHEMOVIGILANCE
+  COSMETOVIGILANCE
+}
+
+enum EstablishmentType {
+  HOSPITAL
+  CLINIQUE
+  CENTRE_MEDICAL
+  OFFICINE       // Pharmacien's establishment type
+  LABORATOIRE    // Labo's establishment type
+  SYSTEM         // reserved central-queue establishment only (Decision 5)
+  SUPPLIER       // commercial entity (manufacturer / importer / distributor) that lists products on /services — NOT a healthcare workplace
+}
+
+enum DeclarationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  CLOSED
+  WITHDRAWN
+}
+
+enum CaseStatus {
+  OPENED
+  INVESTIGATING
+  RESOLVED
+  CLOSED
+}
+
+// Action vocabulary used by the authorization layer (src/auth). Kept here so
+// the Prisma schema and the authorization module share one source of truth
+// conceptually, even though this enum isn't stored on any row directly.
+enum ActionType {
+  VIEW
+  CREATE
+  EDIT
+  WITHDRAW
+  REVIEW
+  ESCALATE
+  CLOSE
+}
+
+// ---------------------------------------------------------------------------
+// Establishment / Department (Decision 3, Decision 8)
+// Department is a default scope/filter, NOT a hard isolation boundary —
+// enforced in the authorization layer (src/auth/allow.ts), not by excluding
+// data at the schema/query level. establishmentId is present on every scoped
+// record to double as the tenancy boundary (Decision 8: multi-tenant, single
+// shared instance — no separate per-organization database/deployment).
+// ---------------------------------------------------------------------------
+
+model Establishment {
+  id                String              @id @default(cuid())
+  name              String
+  type              EstablishmentType
+  // Marks the single reserved central-queue establishment (Decision 5).
+  // Exactly one row should have this set to true — enforced by the seed
+  // script, not a DB constraint (SQLite has no partial unique index support
+  // usable here without raw SQL); revisit if/when moving to PostgreSQL.
+  isSystemReserved  Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  departments       Department[]
+  affiliations      UserEstablishment[]
+  declarations      Declaration[]
+  cases             Case[]
+  permissionGrants  PermissionGrant[]
+  productListings   ProductListing[]
+  placementOrders   PlacementOrder[]
+  invitations       OrganizationInvitation[]
+  marketRequests    MarketRequest[]
+  salesOrders       SupplierOrder[]     @relation("SupplierOrderSeller")
+  purchaseOrders    SupplierOrder[]     @relation("SupplierOrderBuyer")
+
+  // Catégorie d'acheteur (commandes aux fabricants via /services, 2026-10-24) : déclarée par un administrateur
+  // de l'établissement, VÉRIFIÉE par le staff VigiCore (PLATFORM_ADMIN_EMAILS). Seule une catégorie VÉRIFIÉE
+  // autorisée (distributeur en gros, établissement public, export) peut envoyer une demande de commande.
+  // buyerCategory : DISTRIBUTOR | PUBLIC_INSTITUTION | EXPORT | PRIVATE_PHARMACY | PRIVATE_CLINIC | PRIVATE_OTHER
+  // buyerCategoryStatus : DECLARED | VERIFIED | REJECTED (null = rien déclaré)
+  buyerCategory           String?
+  buyerCategoryStatus     String?
+  buyerCategoryNote       String?
+  buyerCategoryDeclaredAt DateTime?
+  buyerCategoryDeclaredBy String?
+  buyerCategoryReviewedAt DateTime?
+  buyerCategoryReviewedBy String?
+
+  // Agrément du distributeur en gros (étape 1, 2026-10-26) — saisi par le STAFF VigiCore au moment de la
+  // vérification (POST /api/market/admin/buyers/:id/review), uniquement pour buyerCategory = DISTRIBUTOR.
+  // OPTIONNELS en V1 (nullables, jamais bloquants) : obligatoire ? à confirmer (encadrant/MIPH).
+  // Un DISTRIBUTOR vérifié sans agrément est signalé au staff (approvalIncomplete), pas refusé.
+  // approvalNumber : texte libre court validé (≤ 60 car.) ; approvalDate : jour (00:00 UTC), jamais dans le futur.
+  approvalNumber          String?
+  approvalDate            DateTime?
+
+  // Fiche société déclarée à l'inscription d'un FOURNISSEUR (2026-10-27). Tout est DÉCLARATIF (rien n'est vérifié
+  // automatiquement) : le staff VigiCore contrôle sur pièces avant de passer buyerCategoryStatus à VERIFIED.
+  // rcNumber = registre du commerce, nifNumber = numéro d'identification fiscale, declaredApprovalNumber = n° d'agrément
+  // TEL QUE SAISI PAR LE FOURNISSEUR (distinct de approvalNumber, qui est saisi par le staff après vérification).
+  rcNumber                String?
+  nifNumber               String?
+  declaredApprovalNumber  String?
+  phone                   String?
+  address                 String?
+
+  // Lien fiche produit (ProductListing) -> fabricant de VigiCore Audit (organisation qui publie des offres).
+  // Posé par le staff VigiCore ; un fabricant n'est lié qu'à un seul établissement.
+  auditManufacturerRef      String?   @unique
+  auditManufacturerLinkedAt DateTime?
+  auditManufacturerLinkedBy String?
+
+  @@index([type])
+}
+
+model Department {
+  id              String    @id @default(cuid())
+  name            String
+  establishmentId String
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  affiliations    UserEstablishment[]
+  declarations    Declaration[]
+  cases           Case[]
+  permissionGrants PermissionGrant[]
+
+  @@index([establishmentId])
+}
+
+// ---------------------------------------------------------------------------
+// User & affiliation (Decision 4)
+//
+// Role is a single, global property of the User — this mirrors the EXISTING
+// product contract already implemented in the current frontend
+// (`signup(name, email, role, password)` in src/lib/auth.js), rather than
+// introducing per-affiliation roles that the current signup flow has no way
+// to express. This is an integration choice, not a re-opening of Decision 1.
+//
+// Establishment AFFILIATION is many-to-many (Decision 4: a Doctor/Pharmacien/
+// Labo may be affiliated with more than one establishment). `isActiveContext`
+// marks which single affiliation is the user's current session default,
+// consistent with "schema supports multiple, UI restricts to one active
+// context per session."
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  displayName   String
+  role          Role
+  // Phase 2 (auth wiring) addition — not part of the original Phase 1
+  // schema. bcrypt hash only; the plaintext password never reaches storage.
+  passwordHash  String
+  // Set when the user deactivates their own account (Paramètres). The row and
+  // everything attached to it (declarations, cases, audit trail) is KEPT; the
+  // account just can't sign in any more. Only an administrator can clear it.
+  deactivatedAt DateTime?
+  // Set on every password change/reset: session cookies issued before this instant are rejected.
+  passwordChangedAt DateTime?
+  // Profession / position declared at sign-up (doctor, chef_de_service, nurse, biologist…). Informative, never a permission.
+  profession    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  affiliations          UserEstablishment[]
+  passwordResetTokens   PasswordResetToken[]
+  authoredDeclarations  Declaration[]     @relation("DeclarationAuthor")
+  subjectDeclarations   Declaration[]     @relation("DeclarationSubjectPatient")
+  reviewedCases         Case[]            @relation("CaseReviewer")
+  permissionGrantsOwned PermissionGrant[] @relation("GrantRecipient")
+  permissionGrantsIssued PermissionGrant[] @relation("GrantIssuer")
+  authoredListings      ProductListing[]  @relation("ListingAuthor")
+  placementOrders       PlacementOrder[]  @relation("OrderAuthor")
+  chatRequestsSent      ChatConnection[]  @relation("ChatConnectionRequester")
+  chatRequestsReceived  ChatConnection[]  @relation("ChatConnectionAddressee")
+  chatParticipations    ChatParticipant[]
+  chatMessages          ChatMessage[]
+  chatFiles             ChatFile[]
+
+  @@index([role])
+}
+
+model UserEstablishment {
+  id              String       @id @default(cuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id])
+  establishmentId String
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  // Optional: only meaningful when the establishment type is HOSPITAL /
+  // CLINIQUE / CENTRE_MEDICAL (Decision 3). Null for Officine/Laboratoire/
+  // System affiliations.
+  departmentId    String?
+  department      Department?  @relation(fields: [departmentId], references: [id])
+  // Marks the single affiliation used as this user's default session
+  // context (Decision 4). Application-layer responsibility to keep at most
+  // one true per user; not a DB constraint in Phase 1.
+  isActiveContext Boolean      @default(false)
+  // ── Membership lifecycle (self-registration + join request / invitation) ──
+  // status: PENDING  = the user asked to join, waiting for an org admin
+  //         ACTIVE   = approved; ONLY ACTIVE rows give any access (see attachUser)
+  //         REJECTED = the admin declined the request
+  // memberRole: ADMIN (can manage members) | MEMBER. This is the org-level
+  //             power, separate from the user's global professional `role`.
+  // initiatedBy: USER (join request) | ORG (admin invitation that was accepted)
+  status          String       @default("ACTIVE")
+  memberRole      String       @default("MEMBER")
+  initiatedBy     String       @default("USER")
+  decidedAt       DateTime?
+  // Service the applicant WROTE in the join request (free text). Informative only: the org admin attaches the real
+  // Department on approval (departmentId above); this is never used for access.
+  requestedDepartment String?
+  createdAt       DateTime     @default(now())
+
+  @@unique([userId, establishmentId])
+  @@index([userId])
+  @@index([establishmentId])
+}
+
+// ---------------------------------------------------------------------------
+// OrganizationInvitation — an org admin invites someone BY E-MAIL.
+// The person may or may not have an account yet. Joining only happens when a
+// signed-in user whose e-mail matches accepts it (then a UserEstablishment row
+// with status ACTIVE is created). No token / no e-mail sending in this phase:
+// the invitation shows up in the invitee's dashboard ("Mon organisation").
+// status: PENDING | ACCEPTED | DECLINED | REVOKED
+// ---------------------------------------------------------------------------
+
+model OrganizationInvitation {
+  id              String        @id @default(cuid())
+  establishmentId String
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  email           String        // stored lower-case
+  invitedByUserId String
+  status          String        @default("PENDING")
+  createdAt       DateTime      @default(now())
+  respondedAt     DateTime?
+
+  @@index([email, status])
+  @@index([establishmentId, status])
+}
+
+// ---------------------------------------------------------------------------
+// Declaration (canonical reporter-submitted record)
+//
+// - authorUserId / reporterRole: WHO is submitting (Correction #5).
+// - subjectPatientId: WHO the report concerns, when applicable — deliberately
+//   separate from authorUserId, nullable (a Patient's self-report may have
+//   authorUserId == subjectPatientId by convention at the application layer,
+//   but the schema does not collapse the two concepts).
+// - establishmentId is NEVER null: unaffiliated/unlinked declarations
+//   (Decision 5) are assigned to the reserved central-queue Establishment
+//   rather than introducing a null-establishment special case, so the
+//   authorization layer's org/department check has no branch to special-case.
+// - payload is stored as JSON; per-field "sensitivity" tagging (Decision 9)
+//   lives in the wizard configuration (Phase 3+), but the payload contract
+//   type below documents the tagged shape so the JSON isn't opaque/untyped
+//   at the schema-authoring level.
+// ---------------------------------------------------------------------------
+
+model Declaration {
+  id              String            @id @default(cuid())
+  domain          Domain
+  reporterRole    Role              // snapshot of author's role at submission time
+  authorUserId    String
+  author          User              @relation("DeclarationAuthor", fields: [authorUserId], references: [id])
+  subjectPatientId String?
+  subjectPatient  User?             @relation("DeclarationSubjectPatient", fields: [subjectPatientId], references: [id])
+  establishmentId String            // never null — defaults to reserved central-queue Establishment (Decision 5)
+  establishment   Establishment     @relation(fields: [establishmentId], references: [id])
+  departmentId    String?
+  department      Department?       @relation(fields: [departmentId], references: [id])
+  status          DeclarationStatus @default(DRAFT)
+  // JSON payload: domain/role-specific fields, shaped by wizard configuration
+  // (Phase 3+). See src/types/payload.ts for the sensitivity-tagged
+  // TypeScript contract this JSON is expected to satisfy.
+  payload         Json
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  // Idempotency key supplied by the browser (additive): same author + same key never creates a second row. NULL for older rows.
+  clientRequestId String?
+
+  attachments     Attachment[]
+  deliveries      DeclarationDelivery[]
+  case            Case?
+
+  @@index([domain])
+  @@index([authorUserId])
+  @@index([establishmentId])
+  @@index([departmentId])
+  @@unique([authorUserId, clientRequestId])
+  @@index([status])
+}
+
+model Attachment {
+  id            String      @id @default(cuid())
+  declarationId String
+  declaration   Declaration @relation(fields: [declarationId], references: [id])
+  fileName      String
+  mimeType      String
+  storagePath   String
+  uploadedAt    DateTime    @default(now())
+  // Additive: size/note/hash of the stored (AES-256-GCM encrypted) file.
+  sizeBytes     Int         @default(0)
+  note          String?
+  sha256        String?
+
+  @@index([declarationId])
+}
+
+// One row per real destination chosen for a native record. status is the TRUTH about that destination:
+//   CNPM: PENDING -> SENT (e-mail accepted by the SMTP server; reception NOT confirmed) | FAILED | NOT_CONFIGURED
+//   ORG : AVAILABLE (visible in the establishment's Nexus space; NOT a transmission to the organisation's VigiCore Audit)
+model DeclarationDelivery {
+  id            String      @id @default(cuid())
+  declarationId String
+  declaration   Declaration @relation(fields: [declarationId], references: [id])
+  destination   String
+  status        String
+  lastError     String?
+  attempts      Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([declarationId, destination])
+  @@index([declarationId])
+}
+
+// ---------------------------------------------------------------------------
+// Case (review-side entity; 1 Declaration -> 0..1 Case, references not
+// duplicates — Decision from the prior proposal, reaffirmed by Decision 1
+// now that Vigilance Reviewer exists to own it)
+// ---------------------------------------------------------------------------
+
+model Case {
+  id               String     @id @default(cuid())
+  declarationId    String     @unique
+  declaration      Declaration @relation(fields: [declarationId], references: [id])
+  status           CaseStatus @default(OPENED)
+  assignedReviewerId String?
+  assignedReviewer User?      @relation("CaseReviewer", fields: [assignedReviewerId], references: [id])
+  // Inherited from the Declaration at open time (per the architecture doc),
+  // stored redundantly here so a Case's scope doesn't require joining back
+  // to its Declaration for every authorization check.
+  establishmentId  String
+  establishment    Establishment @relation(fields: [establishmentId], references: [id])
+  departmentId     String?
+  department       Department? @relation(fields: [departmentId], references: [id])
+  // Minimal timeline for Phase 1 — a full CaseEvent relational model is
+  // Phase 3/4 scope (Case workflow build-out); kept as JSON for now so the
+  // schema doesn't overreach into work that isn't approved yet.
+  notes            Json?
+  createdAt        DateTime   @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([assignedReviewerId])
+  @@index([establishmentId])
+  @@index([status])
+}
+
+// ---------------------------------------------------------------------------
+// PermissionGrant (explicit-grant path in the corrected allow() rule)
+//
+// Correction #2: an explicit grant must name its own scope. It NEVER implies
+// cross-establishment access just by existing — establishmentId here is
+// REQUIRED (not nullable), and if departmentId is set, the grant is further
+// restricted to that department. There is no "global" grant shape in Phase 1.
+// ---------------------------------------------------------------------------
+
+model PermissionGrant {
+  id              String     @id @default(cuid())
+  recipientUserId String
+  recipient       User       @relation("GrantRecipient", fields: [recipientUserId], references: [id])
+  issuedByUserId  String?
+  issuedBy        User?      @relation("GrantIssuer", fields: [issuedByUserId], references: [id])
+  action          ActionType
+  // Required scope — this is what makes the grant an explicitly-scoped
+  // exception rather than an implicit broadening of access.
+  establishmentId String
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  departmentId    String?
+  department      Department?   @relation(fields: [departmentId], references: [id])
+  // Optional: restrict the grant to one specific Declaration/Case instead of
+  // the whole establishment/department scope for that action.
+  resourceId      String?
+  expiresAt       DateTime?
+  createdAt       DateTime   @default(now())
+
+  @@index([recipientUserId])
+  @@index([establishmentId])
+}
+
+// ---------------------------------------------------------------------------
+// ProductListing — PROPOSED addition, outside Phase 1's locked scope.
+//
+// This is not part of the locked vigilance architecture above (it has no
+// Domain, isn't a Declaration/Case, and ESTABLISHMENT_ADMIN's empty action
+// set in rolePermissions.ts is specifically about clinical content, which
+// this isn't). It exists so establishments can publish a public catalog of
+// their products/services — the "services page" feature.
+//
+// Flagging this explicitly rather than quietly folding it into the locked
+// model: it introduces a new resource type and should get the same kind of
+// sign-off Decision 1–8 got, not ride in as a side effect of a schema PR.
+// Treat this model (and services/authz.ts, the frontend services page) as a
+// draft for review, not an extension of the locked architecture.
+// ---------------------------------------------------------------------------
+
+enum ListingStatus {
+  DRAFT      // saved by an Establishment Admin, not yet public
+  PUBLISHED  // the organization chose to show it in the free catalog (max FREE_LISTING_LIMIT per org); public only once reviewStatus = APPROVED
+  ARCHIVED   // hidden again, kept for record-keeping
+}
+
+// Staff review of the product information. Applies to EVERY product, free or paid.
+// It checks that the listing is accurate and acceptable — it is NOT a regulatory approval
+// of the product itself (marketing authorisation, certificates...).
+enum ReviewStatus {
+  PENDING   // waiting for VigiCore staff (default for every new product)
+  APPROVED  // may be shown publicly (while status = PUBLISHED)
+  REJECTED  // refused, with reviewNote telling the organization what to fix
+}
+
+// Where on the public /services page a product appears. Each tier has its own
+// monthly price (src/services/pricing.ts is the single source of truth).
+enum ListingPlacement {
+  STANDARD     // "All products & services" catalog grid
+  RECOMMENDED  // scrolling row above the catalog
+  SPONSORED    // "What our partners are offering" strip
+  FEATURED     // full panel at the top — one partner at a time
+}
+
+enum PaymentMethod {
+  EDAHABIA_CIB   // online card payment (needs a payment-gateway integration)
+  BARIDIMOB      // BaridiMob / CCP transfer, confirmed manually
+  BANK_TRANSFER  // bank transfer, confirmed manually
+}
+
+enum OrderStatus {
+  PENDING    // created, waiting for the payment to be confirmed
+  PAID       // confirmed — the listing was published for the purchased period
+  CANCELLED  // replaced by a newer order for the same listing
+}
+
+model ProductListing {
+  id              String        @id @default(cuid())
+  establishmentId String
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  createdByUserId String
+  createdBy       User          @relation("ListingAuthor", fields: [createdByUserId], references: [id])
+
+  title           String
+  // Short line shown on the public grid card.
+  summary         String
+  // Full body shown on the listing's detail view.
+  description     String
+  category        String?
+  imageUrl        String?
+  // How imageUrl is framed wherever it's shown as a cropped cover: zoom is a
+  // percentage (100 = fit, 200 = 2x zoomed in), focusX/focusY are the CSS
+  // background-position percentages the crop centers on.
+  imageZoom       Int?          @default(100)
+  imageFocusX     Int?          @default(50)
+  imageFocusY     Int?          @default(50)
+  // "cover" crops to fill the frame (uses zoom/focus above); "contain" always
+  // shows the whole photo untouched, letterboxed — the safe choice for
+  // product photos of very different sizes/aspect ratios (e.g. a tall box vs
+  // a wide one) where cropping could hide part of the product or its label.
+  imageFit        String?       @default("cover")
+  // Only used in "contain" mode: tints the glow/frame behind the letterboxed
+  // photo with the org's own brand colour (a CSS hex string) instead of the
+  // site's default cyan. Null/empty falls back to the site default.
+  imageAccent     String?
+  // Featured-partner showcase look — only used when this listing is the organization's
+  // FEATURED card. logoShape: hexagon | circle | square; logoPlacement: seam (between picture
+  // and text) | photo (on the picture); coverSide: left | right; certifications: JSON array of
+  // up to 3 short seal labels (e.g. "ISO 13485").
+  logoUrl         String?
+  logoShape       String?       @default("hexagon")
+  logoPlacement   String?       @default("seam")
+  coverSide       String?       @default("left")
+  certifications  String?
+  contactEmail    String?
+  contactPhone    String?
+  website         String?
+
+  // Three separate questions, three separate fields:
+  //   1. does the organization want it shown?        -> status (DRAFT / PUBLISHED / ARCHIVED)
+  //   2. did staff accept the product information?   -> reviewStatus (+ reviewNote / reviewedAt)
+  //   3. is a PAID promotion running?                 -> placement + placementUntil
+  // Public = status PUBLISHED AND reviewStatus APPROVED (free catalog, STANDARD). A paid tier only
+  // lifts it into Recommended/Sponsored/Featured while placementUntil is in the future; when the
+  // period ends the product simply falls back to the free catalog — no cron job, nothing to clean up.
+  status          ListingStatus @default(DRAFT)
+  reviewStatus    ReviewStatus  @default(PENDING)
+  reviewNote      String?
+  reviewedAt      DateTime?
+  // Set by staff at review time. Paid promotion is refused unless true (health products such as
+  // prescription medicines need an explicit check before they can be advertised).
+  promoAllowed    Boolean       @default(false)
+  placement       ListingPlacement?
+  placementUntil  DateTime?
+  // Vente en gros par un FOURNISSEUR (distributeur) — 2026-11-03. sellerKind est posé par le SERVEUR à la création
+  // (jamais lu du client) : MANUFACTURER = vitrine d'un fabricant (commande via VigiCore Audit), DISTRIBUTOR = produit d'un
+  // fournisseur vérifié, commandable directement sur la plateforme (SupplierOrder). Prix visible des professionnels connectés seulement.
+  sellerKind      String        @default("MANUFACTURER")
+  unitPrice       Float?
+  priceUnit       String?
+  minOrderQty     Int?          @default(1)
+  inStock         Boolean       @default(true)
+  // Quantité disponible À LA VENTE (fournisseur). NULL = non suivie (seul `inStock` compte) ; sinon réservée à la commande
+  // (décrément atomique) et rendue au refus / à l'annulation. Jamais négative (CHECK en base).
+  stockQty        Int?
+  // Lien EXPLICITE vers le produit d'Audit (offer.ref du catalogue /nexus/v1/catalogue/offers) — 2026-10-28.
+  // Choisi par le fabricant dans ProductStudio, vérifié côté serveur (le produit doit appartenir au fabricant lié à
+  // l'établissement) et contrôlé par VigiCore à la revue. NULL = pas de lien : on reste sur la règle par fabricant
+  // (fail-open). Ne concerne que sellerKind = MANUFACTURER (un fournisseur n'a pas de produit Audit).
+  auditProductRef String?
+  orders          PlacementOrder[]
+  stats           ListingStat[]
+  likes           ListingLike[]
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([establishmentId])
+  @@index([status])
+  @@index([reviewStatus])
+  @@index([placement, placementUntil])
+  @@index([establishmentId, auditProductRef])
+}
+
+// A purchase of a placement. Kept even if the listing is later deleted
+// (listingId becomes null, listingTitle keeps the record readable) —
+// payment records must never disappear with the product they paid for.
+// Amounts are whole DZD; the server computes them, never the client.
+model PlacementOrder {
+  id              String           @id @default(cuid())
+  // Quoted by the customer when paying (e.g. VG-202609-K7QF2M) so the
+  // transfer can be matched to the order.
+  reference       String           @unique
+  listingId       String?
+  listing         ProductListing?  @relation(fields: [listingId], references: [id], onDelete: SetNull)
+  listingTitle    String
+  establishmentId String
+  establishment   Establishment    @relation(fields: [establishmentId], references: [id])
+  createdByUserId String
+  createdBy       User             @relation("OrderAuthor", fields: [createdByUserId], references: [id])
+
+  placement       ListingPlacement
+  months          Int
+  subtotal        Int
+  discount        Int
+  total           Int
+  paymentMethod   PaymentMethod
+
+  status          OrderStatus      @default(PENDING)
+  createdAt       DateTime         @default(now())
+  paidAt          DateTime?
+
+  // Proof of transfer uploaded by the organization (data URL, ≤ ~1.8 MB) so
+  // staff can check the money before confirming.
+  receiptImage    String?
+  receiptAt       DateTime?
+  // Staff reason shown to the organization when an order is rejected.
+  adminNote       String?
+  // Sequential legal invoice number (FAC-YYYY-00001), assigned the first time
+  // the invoice of a PAID order is requested.
+  invoiceNo       String?          @unique
+
+  @@index([listingId])
+  @@index([establishmentId])
+  @@index([status])
+}
+
+// Daily visit counters for a listing on the public /services page. One row per
+// listing per UTC day, incremented by POST /api/services/:id/event, so the
+// table grows by at most (listings × days) and never stores visitor data.
+model ListingStat {
+  id        String         @id @default(cuid())
+  listingId String
+  listing   ProductListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  day       String         // YYYY-MM-DD (UTC)
+  views     Int            @default(0)
+  clicks    Int            @default(0)
+  contacts  Int            @default(0)
+
+  @@unique([listingId, day])
+  @@index([day])
+}
+
+// ---------------------------------------------------------------------------
+// Messenger — people-to-people chat (Messages page of every dashboard)
+//
+// - ChatConnection: a "colleague" link. The requester sends it (PENDING), the
+//   addressee accepts (ACCEPTED) or declines (row deleted). One row per ordered
+//   pair; the API never creates the reverse pair when one already exists.
+// - ChatThread: one DIRECT conversation per pair of users; `directKey` is the two
+//   user ids sorted and joined with ":" so the pair can never have two threads.
+// - ChatMessage: kind is derived by the API (TEXT | FILE | VOICE). Deleting a
+//   message is a soft delete (deletedAt set, body cleared, file removed).
+// - ChatFile: an uploaded attachment / voice note. Bytes live on disk in
+//   server/storage/chat/<storageKey>; only participants of `threadId` can read it.
+// ---------------------------------------------------------------------------
+
+model ChatConnection {
+  id          String    @id @default(cuid())
+  requesterId String
+  requester   User      @relation("ChatConnectionRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  addresseeId String
+  addressee   User      @relation("ChatConnectionAddressee", fields: [addresseeId], references: [id], onDelete: Cascade)
+  status      String    @default("PENDING") // PENDING | ACCEPTED
+  createdAt   DateTime  @default(now())
+  respondedAt DateTime?
+
+  @@unique([requesterId, addresseeId])
+  @@index([addresseeId, status])
+}
+
+model ChatThread {
+  id           String            @id @default(cuid())
+  directKey    String            @unique
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @default(now())
+  participants ChatParticipant[]
+  messages     ChatMessage[]
+}
+
+model ChatParticipant {
+  id         String     @id @default(cuid())
+  threadId   String
+  thread     ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lastReadAt DateTime   @default(now())
+
+  @@unique([threadId, userId])
+  @@index([userId])
+}
+
+model ChatMessage {
+  id        String        @id @default(cuid())
+  threadId  String
+  thread    ChatThread    @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User          @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  body      String?
+  replyToId String?
+  replyTo   ChatMessage?  @relation("ChatMessageReply", fields: [replyToId], references: [id], onDelete: SetNull)
+  replies   ChatMessage[] @relation("ChatMessageReply")
+  file      ChatFile?
+  deletedAt DateTime?
+  createdAt DateTime      @default(now())
+
+  @@index([threadId, createdAt])
+}
+
+model ChatFile {
+  id         String       @id @default(cuid())
+  uploaderId String
+  uploader   User         @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+  threadId   String
+  name       String
+  mime       String
+  size       Int
+  isVoice    Boolean      @default(false)
+  durationMs Int?
+  storageKey String
+  messageId  String?      @unique
+  message    ChatMessage? @relation(fields: [messageId], references: [id], onDelete: SetNull)
+  createdAt  DateTime     @default(now())
+
+  @@index([threadId])
+}
+
+// ---------------------------------------------------------------------------
+// ExternalSubmission — une déclaration faite sur le Site, destinée à Audit
+// (2026-10-14, contrat Annexe A de docs/DECISIONS_D1_D10.md côté Audit).
+//
+// C'est l'enregistrement durable ET la boîte d'envoi (outbox) : la ligne est
+// écrite AVANT l'appel à Audit, donc une coupure réseau ne perd jamais une
+// déclaration ; `id` sert d'Idempotency-Key, donc un renvoi ne crée jamais un
+// doublon côté Audit.
+//
+//   PENDING       pas encore confirmée par Audit (réseau, 5xx, Audit non configuré)
+//                 -> renvoyée automatiquement (nextAttemptAt) ou à la main.
+//   RECEIVED      Audit a répondu 201/200 : auditDeclarationId renseigné.
+//   NOT_ROUTABLE  Audit a refusé le routage (422) : brouillon conservé, JAMAIS de
+//                 succès annoncé ; failureReason = raison exposée par Audit.
+//   REJECTED      Audit a refusé le contenu (400/409) : définitif.
+// ---------------------------------------------------------------------------
+model ExternalSubmission {
+  id                 String    @id @default(cuid())
+  authorUserId       String
+  // Anti double-clic : même auteur + même clientRequestId => même ligne.
+  clientRequestId    String?
+  // Contenu à envoyer (productRef, description, lotNumber, ...). Jamais de
+  // organizationId : l'organisation destinataire est décidée par Audit.
+  payload            Json
+  status             String    @default("PENDING")
+  auditDeclarationId String?   @unique
+  routingBasis       String?
+  receivedAt         DateTime?
+  failureReason      String?
+  attempts           Int       @default(0)
+  nextAttemptAt      DateTime?
+  lastError          String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@unique([authorUserId, clientRequestId])
+  @@index([authorUserId])
+  @@index([status, nextAttemptAt])
+}
+
+
+// Single-use password-reset tokens. Only the SHA-256 of the token is stored.
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// DashboardPatient — liste de suivi d'un professionnel (page « Patients suivis »).
+// Donnée de santé : lisible par son auteur, et par les rôles de revue du même
+// établissement (comme les déclarations qui y font référence).
+// Pas de relation Prisma : colonnes simples, migration purement additive.
+// ---------------------------------------------------------------------------
+model DashboardPatient {
+  id              String   @id @default(cuid())
+  ownerUserId     String
+  establishmentId String?
+  payload         Json
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  // Archivage (additif, nullable) : « supprimer » un patient l'archive, il n'est jamais effacé.
+  // Un dossier archivé est en lecture seule ; archiveHash = SHA-256 du contenu au moment de l'archivage.
+  archivedAt       DateTime?
+  archivedByUserId String?
+  archiveReason    String?
+  archiveHash      String?
+  // Retiré de l'AFFICHAGE du médecin (le dossier reste en base, archivé, jamais supprimé).
+  hiddenAt         DateTime?
+
+  @@index([ownerUserId])
+  @@index([establishmentId])
+}
+
+// ---------------------------------------------------------------------------
+// AuditEntry — journal d'audit append-only des actions faites dans les tableaux
+// de bord. L'acteur, l'établissement et la date sont écrits par le serveur.
+// ---------------------------------------------------------------------------
+model AuditEntry {
+  id              String   @id @default(cuid())
+  actorUserId     String
+  actorName       String
+  establishmentId String?
+  refType         String
+  refId           String
+  action          String
+  createdAt       DateTime @default(now())
+
+  @@index([actorUserId, createdAt])
+  @@index([establishmentId, createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// UserPreference — réglages de l'interface d'un compte (langue, texte large,
+// notifications, champs de la page Paramètres). Une ligne par utilisateur ;
+// `data` est un objet JSON { clé: texte } validé par l'API (clés et tailles bornées).
+// ---------------------------------------------------------------------------
+model UserPreference {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  data      Json
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// AssistantConversation / AssistantMessage — historique des discussions avec
+// l'assistant VigiCore AI. Une discussion appartient à UN compte (userId) ;
+// toutes les routes filtrent sur la session, jamais sur un identifiant reçu.
+// ---------------------------------------------------------------------------
+model AssistantConversation {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages  AssistantMessage[]
+
+  @@index([userId, updatedAt])
+}
+
+model AssistantMessage {
+  id             String                @id @default(cuid())
+  conversationId String
+  conversation   AssistantConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String // 'user' | 'ai'
+  text           String
+  createdAt      DateTime              @default(now())
+
+  @@index([conversationId, createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// DeclarationDraft — brouillon d'un assistant de déclaration, sauvegardé dans le compte.
+// Une ligne par (utilisateur, clé d'assistant). Visible de son seul propriétaire ; supprimé à l'envoi.
+// Pas de relation Prisma : colonnes simples, migration purement additive.
+// ---------------------------------------------------------------------------
+model DeclarationDraft {
+  id        String   @id @default(cuid())
+  userId    String
+  draftKey  String
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, draftKey])
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// PersonalRecord — données personnelles saisies par l'utilisateur lui-même dans
+// son tableau de bord (patient : produits, traitements, prises, rendez-vous,
+// allergies, maladies chroniques, contacts d'urgence, profil ; laboratoire :
+// fiche du laboratoire). `kind` est borné par l'API (personal.routes.ts) qui
+// valide aussi chaque champ de `data`. Lecture et écriture : son SEUL propriétaire.
+// Pas de relation Prisma : colonnes simples, migration purement additive.
+// ---------------------------------------------------------------------------
+model PersonalRecord {
+  id        String   @id @default(cuid())
+  userId    String
+  kind      String
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, kind])
+}
+
+// Demande de commande ou demande d'intérêt envoyée à un fabricant (VigiCore Audit), sans paiement (2026-10-24).
+// Outbox : la ligne est écrite AVANT l'envoi ; SENT seulement après confirmation d'Audit ; renvois automatiques.
+// Jamais supprimée (archive) ; chaque changement d'état lu chez Audit est ajouté à `history`.
+model MarketRequest {
+  id              String         @id @default(cuid())
+  kind            String         // ORDER | INTEREST
+  requesterUserId String
+  establishmentId String?
+  establishment   Establishment? @relation(fields: [establishmentId], references: [id])
+  clientRequestId String?
+  idempotencyKey  String         @unique
+  payload         Json
+  summary         String
+  manufacturerName String?
+  totalAmount     Float?
+  status          String         @default("PENDING") // PENDING | SENT | REJECTED
+  auditRef        String?        @unique
+  auditStatus     String?
+  history         Json?
+  failureReason   String?
+  attempts        Int            @default(0)
+  nextAttemptAt   DateTime?
+  lastError       String?
+  sentAt          DateTime?
+  statusSyncedAt  DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@unique([requesterUserId, clientRequestId])
+  @@index([establishmentId])
+  @@index([requesterUserId])
+  @@index([status, nextAttemptAt])
+}
+
+// ── Alertes de retrait de lot (étape 3, 2026-10-31) ─────────────────────────────────────────────
+// Le Site RELIT le Logiciel (GET /nexus/v1/orders/:ref, lines[].lotStatus) ; aucune nouvelle porte d'entrée.
+// Cadre (à confirmer : encadrant/MIPH, pas une règle légale). Volontairement SANS clés étrangères (ids scalaires) :
+// la migration Postgres ne dépend pas des tables encore absentes de la chaîne (voir ETAPE3-LISEZ-MOI.md).
+// Une alerte par (commande, produit, lot, événement) : la clé unique garantit l'idempotence (2 passes = 1 alerte).
+model MarketLotAlert {
+  id               String   @id @default(cuid())
+  marketRequestId  String
+  establishmentId  String?
+  requesterUserId  String
+  productRef       String   // référence produit chez le fabricant (à défaut, son nom)
+  productName      String
+  lotNumber        String
+  manufacturerName String?
+  event            String   // WITHDRAWN | REINSTATED
+  detectedAt       DateTime @default(now())
+
+  @@unique([marketRequestId, productRef, lotNumber, event])
+  @@index([marketRequestId])
+}
+
+// Un destinataire par alerte : état lu/non-lu PAR personne + état d'envoi e-mail (retry) sans jamais perdre l'alerte.
+model MarketLotAlertRecipient {
+  id                 String    @id @default(cuid())
+  alertId            String
+  userId             String
+  readAt             DateTime?
+  emailStatus        String    @default("SKIPPED") // SKIPPED | PENDING | SENT | FAILED
+  emailAttempts      Int       @default(0)
+  emailNextAttemptAt DateTime?
+  emailSentAt        DateTime?
+  emailLastError     String?   // code court uniquement, jamais de contenu
+  createdAt          DateTime  @default(now())
+
+  @@unique([alertId, userId])
+  @@index([userId, readAt])
+  @@index([emailStatus, emailNextAttemptAt])
+}
+
+// Dernière relecture d'une commande chez le Logiciel (délai minimum entre deux relectures).
+model MarketLotWatch {
+  marketRequestId String   @id
+  checkedAt       DateTime
+}
+
+// « J'aime » d'un utilisateur connecté sur une fiche produit publique (un seul par utilisateur et par fiche).
+model ListingLike {
+  id        String         @id @default(cuid())
+  listingId String
+  listing   ProductListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime       @default(now())
+
+  @@unique([listingId, userId])
+  @@index([listingId])
+}
+
+// ── Authentification à deux facteurs TOTP (opt-in, 2026-11-01) ─────────────────────────────────────
+// Choix : NOUVELLES TABLES, sans clés étrangères (ids scalaires) plutôt que des colonnes sur `User` :
+// table `User` intouchée (aucun risque pour le login existant), migration Postgres autonome sur la chaîne
+// actuelle, retour arrière = ne plus utiliser les tables. Le secret TOTP n'est JAMAIS stocké en clair (AES-256-GCM).
+model UserMfa {
+  userId         String    @id
+  secretEnc      String    // AES-256-GCM « v1.<iv>.<tag>.<ct> » (clé MFA_ENCRYPTION_KEY, AAD = userId)
+  enabledAt      DateTime? // null = configuration commencée mais non confirmée (« en attente »)
+  lastUsedStep   Int?      // dernier pas TOTP (30 s) accepté : anti-rejeu
+  failedAttempts Int       @default(0)
+  lockedUntil    DateTime? // verrouillage temporaire après trop d'échecs
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+// Codes de récupération : seul un HMAC-SHA256 (clé dérivée de MFA_ENCRYPTION_KEY) est conservé ; usage unique.
+model UserMfaRecoveryCode {
+  id        String    @id @default(cuid())
+  userId    String
+  codeHash  String
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+// Jetons de défi MFA déjà consommés (usage unique) ; purgés après expiration.
+model MfaChallengeUse {
+  jti       String   @id
+  userId    String
+  expiresAt DateTime
+
+  @@index([expiresAt])
+}
+
+// Commande (ou demande d'intérêt) adressée à un FOURNISSEUR depuis /services — 2026-11-03. AUCUN paiement en ligne.
+// Le vendeur (FOURNISSEUR vérifié) la confirme, l'expédie, la marque livrée ou la refuse ; l'acheteur suit l'état.
+// kind : ORDER | INTEREST. status ORDER : PENDING | CONFIRMED | SHIPPED | DELIVERED | CANCELLED | REJECTED ;
+// INTEREST : NEW | CONTACTED | CLOSED. lines = instantané (titre, prix, quantité) : un changement de prix ultérieur
+// ne réécrit jamais une commande passée. Jamais supprimée.
+model SupplierOrder {
+  id                    String         @id @default(cuid())
+  reference             String         @unique
+  kind                  String
+  sellerEstablishmentId String
+  sellerEstablishment   Establishment  @relation("SupplierOrderSeller", fields: [sellerEstablishmentId], references: [id])
+  buyerEstablishmentId  String?
+  buyerEstablishment    Establishment? @relation("SupplierOrderBuyer", fields: [buyerEstablishmentId], references: [id])
+  buyerUserId           String
+  clientRequestId       String?
+  status                String         @default("PENDING")
+  summary               String
+  lines                 Json
+  totalAmount           Float?
+  contact               Json
+  note                  String?
+  sellerNote            String?
+  history               Json?
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+
+  @@unique([buyerUserId, clientRequestId])
+  @@index([sellerEstablishmentId, status])
+  @@index([buyerEstablishmentId])
+  @@index([buyerUserId])
+}

@@ -1,0 +1,47 @@
+/* Global stylesheet manifest.
+   ORDER MATTERS: later files override earlier ones, so keep this sequence.
+   Page- and component-specific styles are imported next to the component
+   that owns them (see pages/ and components/). */
+
+/* core: base, theme, navbar, hero and the home sections (formerly one 7k-line index.css) */
+@import './core/01-base.css';
+@import './core/02-backgrounds.css';
+@import './core/03-theme.css';
+@import './core/04-language-dropdown.css';
+@import './core/05-navbar.css';
+@import './core/06-hero-system.css';
+@import './core/07-hero-text-buttons.css';
+@import './core/08-ecosystem-mission.css';
+@import './core/09-reveal-why.css';
+@import './core/10-problem-footer.css';
+@import './core/11-solution.css';
+@import './core/12-flow-video-actors-workflow.css';
+@import './core/13-cta-footer-contact.css';
+@import './core/14-reveal-panel-dashboard.css';
+@import './core/15-section-rebuilds.css';
+@import './core/16-trust-contact.css';
+@import './core/17-light-mode.css';
+@import './core/18-light-mode-hero-cards.css';
+@import './core/19-about-page.css';
+@import './core/20-depth-fog.css';
+@import './core/21-light-mode-tabs.css';
+@import './core/22-services-page.css';
+
+/* home page overrides, applied on top of core in this order */
+@import './home/accent-backdrop.css'; /* backdrop colour fills the whole cover area */
+@import './home/home-polish.css'; /* home page refinements (hero, navbar CTAs, sections) */
+@import './home/hero-orbit.css'; /* hero: living orbit layout (after home-polish) */
+@import './home/hero-fix.css'; /* hero: fits one screen, bigger orbit on large screens, readable card text */
+@import './home/why-polish.css'; /* "Cost of fragmentation" section: light theme, sharp text, readable sizes */
+@import './home/perf-polish.css'; /* navbar blends into the page; off-screen animations pause (see effects/offscreenPause.js) */
+@import './home/fit-screen.css'; /* dense sections fit one screen (works with effects/fitScreen.js) */
+@import './home/polish-final.css'; /* design review pass: readability, spacing, card polish */
+@import './home/solution-nexus.css'; /* "centralizes everything" section redesign */
+@import './home/hero-nexus.css'; /* hero: same look as the "centralizes everything" section */
+@import './home/why-layers.css'; /* "Cost of fragmentation" layered diagram */
+@import './home/workflow-dossier.css'; /* "From Incident to Resolution": scroll-driven case file */
+@import './home/contact-letter.css'; /* "Contact us" section: the letter on the desk (lt-*) */
+@import './home/refine.css'; /* design pass: hero detail card alignment + readable small text */
+
+/* ONE type scale + ONE navbar for all public pages (keep LAST) */
+@import './typography-system.css';

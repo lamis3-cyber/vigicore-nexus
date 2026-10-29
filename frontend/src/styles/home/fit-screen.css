@@ -1,0 +1,44 @@
+/* ==========================================================================
+   "Fit the screen" for the dense sections
+   - "The cost of fragmentation"  (#zoom-section)
+   - "Who uses VigiCore"          (.actors-section)
+   Each one is exactly one screen tall, content centred under the navbar.
+   fitScreen.js then scales whatever is still too tall (never below 62%).
+   Loaded after why-polish.css / perf-polish.css.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+
+  /* One screen per section, content centred. The page already reserves the
+     navbar's 56px with scroll-padding-top, so a section is the screen minus
+     the navbar: when you jump to it, it fills exactly the visible area. */
+  .wim-section,
+  .actors-section {
+    min-height: calc(100vh - 56px);
+    box-sizing: border-box;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wim-section { scroll-margin-top: var(--nav-h, 56px); } /* same as .scroll-section: jumps land below the navbar */
+  .wim-inner { padding-top: 12px; padding-bottom: 12px; }
+  .actors-section .section-content { padding-top: 8px; padding-bottom: 8px; }
+}
+
+/* --- short screens (laptops at 125-150% zoom): tighter vertical rhythm ----- */
+@media (min-width: 901px) and (max-height: 780px) {
+
+  /* cost of fragmentation: bigger headline (close to the other sections' titles),
+     readable card text. To make room we drop what is secondary on short
+     screens: the intro paragraph, the closing line and the ticker, plus the
+     tag in card 3 that repeats the line right above it. */
+  .wim-inner { gap: 8px; } /* room for the lifted centre card */
+  .wim-title { line-height: 1.1; }
+  .wim-anchor, .ticker-tape { display: none; }
+  .wim-disclaimer { margin-top: 2px; }
+
+  /* who uses VigiCore (selectors match home-polish.css's specificity on purpose) */
+  .actors-section .section-content .section-title { font-size: clamp(22px, 4.6vh, 40px); margin-bottom: 4px; }
+  .actors-section .section-content .section-desc { font-size: 12.5px; line-height: 1.45; margin: 0 auto 8px; }
+  .actors-section .section-content .section-eyebrow { margin-bottom: 8px; }
+}

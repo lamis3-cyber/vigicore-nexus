@@ -1,0 +1,133 @@
+/* ═══════════════════════════════════════════════════════════
+   TRUST STRIP — COMPLETE REBUILD
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Strip container ─────────────────────────────────────── */
+.trust-strip {
+  position: relative;
+  z-index: 2;
+  padding: clamp(60px,7vw,100px) clamp(24px,5vw,80px);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0,232,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(100,80,255,0.04) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(0,5,18,0) 0%, rgba(0,8,24,0.6) 50%, rgba(0,5,18,0) 100%) !important;
+  border-top: 1px solid rgba(0,232,255,0.07);
+  border-bottom: 1px solid rgba(0,232,255,0.07);
+}
+
+/* Subtle grid overlay */
+.trust-strip::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,232,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,232,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* A slow scan sweep across the whole strip — this is the section
+   that claims "24/7 AI Monitoring Capability", so the one ambient
+   motion in the background enacts that instead of just sitting
+   there. Runs behind the panels, never over the text. */
+
+/* ── Dividers ────────────────────────────────────────────── */
+
+/* ── COLUMN 1: Quote card ────────────────────────────────── */
+
+/* Top cyan accent line */
+
+/* Highlight the key stat */
+
+/* ── COLUMN 2: Stats ─────────────────────────────────────── */
+
+.trust-stat-num {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(30px,3.6vw,46px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.35), 0 0 22px var(--stat-glow, rgba(0,232,255,0.35));
+}
+
+/* Mini progress bar per stat */
+.trust-stat-bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--sb-c, rgba(0,232,255,0.6));
+  border-radius: 1px;
+  transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Colored top-border per stat card — dark mode */
+
+/* ── COLUMN 3: Badges ────────────────────────────────────── */
+
+/* 3+2 grid — no orphan */
+
+/* Status line at bottom of badges */
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media  (max-width: 900px) {
+  /* Let stacked columns shrink below their content's natural width
+     instead of forcing the whole row wider than the viewport
+     (default CSS Grid track sizing is minmax(auto, 1fr), which
+     doesn't shrink past intrinsic content size on its own). */
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT SECTION — COMPLETE REBUILD
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Section ─────────────────────────────────────────────── */
+.contact-section {
+  position: relative;
+  z-index: 2;
+  padding: clamp(30px,4vw,50px) 0;
+  overflow: hidden;
+}
+.contact-section .section-title {
+  margin-bottom: 8px;
+}
+.contact-section .section-desc {
+  margin: 0 auto 16px;
+}
+.contact-section::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(0,232,255,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 50%, rgba(100,80,255,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ── Grid layout ─────────────────────────────────────────── */
+
+/* ── LEFT PANEL ──────────────────────────────────────────── */
+
+/* Value props */
+
+/* Divider */
+
+/* Contact links */
+
+/* Mini quote */
+
+/* ── RIGHT PANEL: Form ───────────────────────────────────── */
+
+/* Form header */
+
+/* Submit button */
+
+/* Privacy note */
+
+/* Textarea rows */
+#cf-msg { min-height: 50px; resize: vertical; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+
+

@@ -1,0 +1,418 @@
+/* ==========================================================================
+   Products dashboard — two looks to compare
+     .msp--vibrant  : colourful, gradient-rich
+     .msp--showcase : visual & bold, with a live "Services page" placement map
+   Layered on top of msp-polish.css. Delete the look you don't keep.
+   ========================================================================== */
+
+/* ---------- Tab row + look switch (temporary) ---------- */
+.mg-tabrow { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.mg-tabrow .mg-tabs { margin-bottom: 0; }
+.msp-lookswitch { display: flex; align-items: center; gap: 2px; padding: 4px 4px 4px 12px; border-radius: 999px; font-size: 12px; background: var(--surface); border: 1px solid var(--line); }
+.msp-lookswitch span { margin-right: 6px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); font-size: 12px; }
+.msp-lookswitch button { font: inherit; font-weight: 600; cursor: pointer; padding: 6px 12px; border: 0; border-radius: 999px; background: none; color: var(--muted); transition: all var(--dur-fast); }
+.msp-lookswitch button:hover { color: var(--white); }
+.msp-lookswitch .on { background: var(--accent-grad); color: #021018; }
+
+/* ---------- Shared: launch checklist as one clean bar ---------- */
+.msp--vibrant .lc, .msp--showcase .lc {
+  display: grid; grid-template-columns: minmax(210px, 300px) minmax(0, 1fr) auto; align-items: center; gap: 12px 32px;
+  padding: 18px 24px; margin-bottom: 22px;
+}
+.msp--vibrant .lc-head, .msp--showcase .lc-head { display: block; margin: 0; min-width: 0; }
+.msp--vibrant .lc-head strong, .msp--showcase .lc-head strong { font-size: 15px; }
+.msp--vibrant .lc-head span, .msp--showcase .lc-head span {
+  display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.msp--vibrant .lc-prog, .msp--showcase .lc-prog { min-width: 0; width: 100%; margin-top: 12px; }
+
+/* stepper: circle + title, joined by a line */
+.msp--vibrant .lc-steps, .msp--showcase .lc-steps { display: flex; align-items: center; gap: 0; min-width: 0; }
+.msp--vibrant .lc-step, .msp--showcase .lc-step { display: flex; align-items: center; gap: 10px; flex: 1 1 0; min-width: 0; padding: 0; }
+.msp--vibrant .lc-step:last-child, .msp--showcase .lc-step:last-child { flex: 0 0 auto; }
+.msp--vibrant .lc-step > span, .msp--showcase .lc-step > span { margin: 0; font-size: 0; gap: 0; max-width: none; }   /* title only */
+.msp--vibrant .lc-step strong, .msp--showcase .lc-step strong { font-size: 14px; white-space: nowrap; }
+.msp--vibrant .lc-step:not(.is-current):not(.is-done) strong, .msp--showcase .lc-step:not(.is-current):not(.is-done) strong { color: var(--muted); }
+.msp--vibrant .lc-step:not(:last-child)::after, .msp--showcase .lc-step:not(:last-child)::after {
+  position: static; flex: 1 1 20px; min-width: 14px; margin: 0 14px; height: 2px;
+}
+
+/* the one thing to do next */
+.lc-cta { margin: 0; height: 42px; padding: 0 20px; border-radius: 12px; white-space: nowrap; box-shadow: 0 8px 22px rgba(0, 232, 255, .28); }
+
+@media (max-width: 1100px) {
+  .msp--vibrant .lc, .msp--showcase .lc { grid-template-columns: 1fr auto; }
+  .msp--vibrant .lc-steps, .msp--showcase .lc-steps { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (max-width: 700px) {
+  .msp--vibrant .lc, .msp--showcase .lc { grid-template-columns: 1fr; }
+  .lc-cta { width: 100%; }
+  .msp--vibrant .lc-steps, .msp--showcase .lc-steps { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .msp--vibrant .lc-step:not(:last-child)::after, .msp--showcase .lc-step:not(:last-child)::after { display: none; }
+}
+
+/* ==========================================================================
+   LOOK 1 — VIBRANT
+   ========================================================================== */
+.msp--vibrant::before { /* soft coloured light behind the whole page */
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+}
+.msp--vibrant .mh {
+  border: 0; padding: 32px 34px 26px; color: #fff;
+}
+.msp--vibrant .mh h1 { color: #fff; font-size: clamp(30px, 3.4vw, 46px); }
+.msp--vibrant .mh p, .msp--vibrant .msp-greet { color: rgba(255, 255, 255, .78); }
+.msp--vibrant .msp-greet strong { color: #fff; }
+.msp--vibrant .mh-actions .msp-btn--ghost { color: #fff; background: rgba(255, 255, 255, .10); border-color: rgba(255, 255, 255, .24); }
+.msp--vibrant .mh-actions .msp-btn--ghost:hover { background: rgba(255, 255, 255, .18); }
+.msp--vibrant .mh-actions a.msp-btn { color: #fff; }
+
+/* stat cards: each one has its own colour */
+.msp--vibrant .mh-stats { gap: 12px; overflow: visible; border: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.msp--vibrant .mh-stat {
+  border: 1px solid rgba(255, 255, 255, .16) !important; border-radius: 16px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--kc) 34%, transparent), rgba(255, 255, 255, .05) 75%);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.msp--vibrant .mh-stat::before { display: none; }
+.msp--vibrant .mh-stat i { color: #fff; background: color-mix(in srgb, var(--kc) 55%, transparent); box-shadow: 0 8px 20px color-mix(in srgb, var(--kc) 35%, transparent); }
+.msp--vibrant .mh-stat span { color: rgba(255, 255, 255, .72); }
+.msp--vibrant .mh-stat strong, .msp--vibrant .mh-stat.is-live strong { color: #fff; }
+.msp--vibrant .mh-stat small { color: rgba(255, 255, 255, .62); }
+
+.msp--vibrant .lc {
+  border: 1px solid transparent;
+}
+
+.msp--vibrant .mg-card { background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .015)), var(--glass-bg); }
+.msp--vibrant .mg-cover:has(> b) {
+  background: linear-gradient(135deg, hsl(var(--h, 190) 88% 56%), hsl(calc(var(--h, 190) + 60) 80% 40%) 55%, hsl(calc(var(--h, 190) + 130) 70% 28%));
+}
+.msp--vibrant .mg-new {
+  border: 2px solid transparent;
+}
+
+/* ==========================================================================
+   LOOK 3 — SHOWCASE (visual & bold)
+   ========================================================================== */
+.msp--showcase .mh { padding: 34px 34px 28px; }
+.msp--showcase .mh:has(.mh-map) {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: 26px 40px; align-items: center;
+}
+.msp--showcase .mh:has(.mh-map) .mh-row { grid-column: 1; flex-direction: column; align-items: flex-start; gap: 24px; }
+.msp--showcase .mh:has(.mh-map) .mh-map { grid-column: 2; grid-row: 1 / span 2; }
+.msp--showcase .mh:has(.mh-map) .mh-stats { grid-column: 1; }
+.msp--showcase .mh h1 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1; letter-spacing: -.03em; }
+.msp--showcase .mh h1 span { display: block; }
+.msp--showcase .mh p { font-size: 16px; }
+
+/* the map: a tilted mini "Services page" */
+.mh-map {
+  position: relative; z-index: 1; display: grid; gap: 9px; padding: 14px; border-radius: 22px;
+  border: 1px solid var(--line-accent); background: linear-gradient(180deg, var(--surface-hi), var(--surface)), var(--glass-bg);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .06);
+  transform: perspective(1400px) rotateY(-5deg) rotateX(2deg); transform-origin: 70% 50%; transition: transform .6s var(--ease);
+}
+.mh-map:hover { transform: none; }
+.mh-map-bar { display: flex; align-items: center; gap: 6px; padding: 0 4px 2px; }
+.mh-map-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-accent); }
+.mh-map-bar span { margin-left: 8px; font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--muted-2); }
+
+.pm-zone {
+  --zc: var(--cyan); display: grid; gap: 8px; width: 100%; padding: 10px 12px; text-align: left; font: inherit; color: var(--white); cursor: pointer;
+  border-radius: 13px; border: 1px solid color-mix(in srgb, var(--zc) 32%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--zc) 11%, transparent), transparent 80%);
+  transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.pm-featured { --zc: #fbbf24; }
+.pm-sponsored { --zc: #a78bfa; }
+.pm-recommended { --zc: var(--cyan); }
+.pm-standard { --zc: #5eead4; }
+.pm-zone:hover { transform: translateY(-2px); border-color: var(--zc); box-shadow: 0 10px 26px color-mix(in srgb, var(--zc) 22%, transparent); }
+.pm-zone:focus-visible { outline: 2px solid var(--zc); outline-offset: 2px; }
+.pm-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.pm-tag { display: flex; flex-direction: column; gap: 1px; font-size: 13px; font-weight: 700; min-width: 0; }
+.pm-tag em { font-style: normal; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--zc); }
+.pm-price { display: flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.pm-price b { font-size: 14px; color: var(--zc); font-variant-numeric: tabular-nums; }
+.pm-price small { font-size: 12px; color: var(--muted-2); }
+
+.pm-art { display: flex; gap: 6px; }
+.pm-art i { flex: 1; min-width: 0; border-radius: 6px; background: color-mix(in srgb, var(--zc) 20%, transparent); border: 1px solid color-mix(in srgb, var(--zc) 30%, transparent); }
+.pm-art .a-lines { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+.pm-art .a-lines i { flex: none; height: 6px; border-radius: 3px; border: 0; background: color-mix(in srgb, var(--zc) 35%, transparent); }
+.pm-art .a-lines i:first-child { width: 70%; }
+.pm-art .a-lines i:last-child { width: 45%; }
+.pm-featured .pm-art { height: 54px; }
+.pm-featured .a-img { flex: 1.1; }
+.pm-sponsored .pm-art { height: 26px; align-items: center; }
+.pm-sponsored .a-img { flex: none; width: 44px; height: 100%; }
+.pm-sponsored .a-btn { flex: none; width: 38px; height: 14px; border-radius: 99px; }
+.pm-recommended .pm-art { height: 34px; }
+.pm-standard .pm-art { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pm-standard .pm-art i { height: 16px; }
+
+.pm-live { display: inline-flex; align-items: center; gap: 7px; align-self: start; max-width: 100%; padding: 3px 10px 3px 8px; border-radius: 99px; font-size: 12px; font-weight: 700; color: #021018; background: var(--zc); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pm-live i { flex: none; width: 6px; height: 6px; border-radius: 50%; background: #021018; }
+.pm-live--taken { color: var(--muted); background: var(--surface-hi); font-weight: 600; }
+.pm-zone.is-live { border-color: var(--zc); box-shadow: 0 0 0 1px var(--zc), 0 14px 34px color-mix(in srgb, var(--zc) 25%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--zc) 20%, transparent), transparent 85%); }
+.pm-zone.is-taken { opacity: .6; }
+
+/* stats: slim and typographic (no icon boxes) */
+.msp--showcase .mh-stats { background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; overflow: visible; }
+.msp--showcase .mh-stat { padding: 16px 0 0; }
+.msp--showcase .mh-stat + .mh-stat { border-left: 0; padding-left: 18px; }
+.msp--showcase .mh-stat::before, .msp--showcase .mh-stat i { display: none; }
+.msp--showcase .mh-stat:hover { background: none; }
+.msp--showcase .mh-stat strong { font-size: 36px; letter-spacing: -.03em; }
+.msp--showcase .mh-stat.is-live strong { color: var(--teal); }
+.msp--showcase .mh-stat.is-idle strong { color: #ffb84d; }
+.msp--showcase .mh-stat.is-views strong { color: #a5b4fc; }
+.msp--showcase .mh-stat small { display: none; }
+.msp--showcase .mh:has(.mh-map) .mh-stat span { font-size: 12px; letter-spacing: .08em; }
+
+/* checklist: big outlined numerals */
+.msp--showcase .lc-step > b { width: auto; height: auto; border: 0; background: none; box-shadow: none; font-size: 28px; font-weight: 800; letter-spacing: -.03em; color: transparent; -webkit-text-stroke: 1.2px var(--muted-2); animation: none; }
+.msp--showcase .lc-step.is-current > b { -webkit-text-stroke: 0; color: var(--cyan); text-shadow: 0 0 18px rgba(0, 232, 255, .55); }
+.msp--showcase .lc-step.is-done > b { background: none; box-shadow: none; -webkit-text-stroke: 0; color: var(--teal); }
+.msp--showcase .lc-step.is-done > b .ic { width: 22px; height: 22px; }
+
+/* cards: big photo, roomy */
+.msp--showcase .mg-grid { grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 26px; }
+.msp--showcase .mg-cover { height: 240px; }
+.msp--showcase .mg-card { border-radius: 24px; }
+.msp--showcase .mg-body h3 { font-size: 20px; }
+.msp--showcase .mg-new { min-height: 420px; border-radius: 24px; }
+
+@media (max-width: 1000px) {
+  .msp--showcase .mh:has(.mh-map) { grid-template-columns: 1fr; }
+  .msp--showcase .mh:has(.mh-map) .mh-map { grid-column: 1; grid-row: auto; transform: none; }
+  .msp--showcase .mh:has(.mh-map) .mh-stats { grid-column: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .mh-map { transition: none; } }
+
+
+/* ==========================================================================
+   LOOK 3 — COMPACT (data-first, Stripe / Linear style)
+   Slim header, flat stat tiles, underline tabs, one-line checklist,
+   and every product as a single row instead of a big card.
+   ========================================================================== */
+.mg-status2 { display: none; }   /* only used by the Compact list */
+
+/* ---------- Slim header (no big hero card) ---------- */
+.msp--compact .mh {
+  display: flex; flex-direction: column; gap: 20px; padding: 0; margin-bottom: 22px; overflow: visible;
+  background: none; border: 0; box-shadow: none; border-radius: 0;
+}
+.msp--compact .mh::before, .msp--compact .mh::after { display: none; }
+.msp--compact .mh-row { align-items: flex-end; }
+.msp--compact .msp-eyebrow { margin-bottom: 4px; }
+.msp--compact .mh h1 { font-size: 30px; letter-spacing: -.02em; }
+.msp--compact .mh h1 span { background: none; -webkit-text-fill-color: currentColor; color: var(--muted-2); font-weight: 500; }
+.msp--compact .mh p { margin-top: 4px; font-size: 14px; }
+.msp--compact .mh-actions .msp-btn { height: 38px; padding: 0 16px; border-radius: 10px; font-size: 13.5px; }
+
+/* ---------- Flat stat tiles ---------- */
+.msp--compact .mh-stats { gap: 12px; overflow: visible; border: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.msp--compact .mh-stat {
+  padding: 14px 16px; gap: 12px; border: 1px solid var(--line) !important; border-radius: 14px; background: var(--surface);
+}
+.msp--compact .mh-stat::before { display: none; }
+.msp--compact .mh-stat i { width: 36px; height: 36px; border-radius: 10px; box-shadow: none; }
+.msp--compact .mh-stat i .ic { width: 18px; height: 18px; }
+.msp--compact .mh-stat strong { font-size: 24px; }
+.msp--compact .mh-stat span { font-size: 12px; }
+.msp--compact .mh-stat small { font-size: 12px; }
+.msp--compact .mh-stat .mg-spark { width: 54px; height: 22px; }
+
+/* ---------- Underline tabs ---------- */
+.msp--compact .mg-tabrow { margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+.msp--compact .mg-tabs { gap: 22px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.msp--compact .mg-tabs button { padding: 10px 2px; margin-bottom: -1px; border-radius: 0; background: none; box-shadow: none; border-bottom: 2px solid transparent; color: var(--muted); }
+.msp--compact .mg-tabs button:hover:not(.on) { background: none; color: var(--white); }
+.msp--compact .mg-tabs button.on { background: none; box-shadow: none; color: var(--cyan); border-bottom-color: var(--cyan); }
+.msp--compact .msp-lookswitch { margin-bottom: 6px; }
+
+/* ---------- Launch checklist: one slim line ---------- */
+.msp--compact .lc {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px;
+  padding: 10px 12px 10px 18px; margin-bottom: 18px; border-radius: 12px; border-left: 3px solid var(--cyan);
+  background: linear-gradient(90deg, var(--cyan-dim), transparent 70%);
+}
+.msp--compact .lc-steps { display: none; }
+.msp--compact .lc-head { display: flex; align-items: center; gap: 18px; margin: 0; min-width: 0; }
+.msp--compact .lc-head > div:first-child { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.msp--compact .lc-head strong { font-size: 14px; white-space: nowrap; }
+.msp--compact .lc-head span { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msp--compact .lc-prog { min-width: 0; width: 130px; margin: 0 0 0 auto; flex: none; }
+.msp--compact .lc-cta { height: 36px; padding: 0 16px; border-radius: 10px; box-shadow: 0 6px 16px rgba(0, 232, 255, .22); }
+
+/* ---------- Products as rows ---------- */
+.msp--compact .mg-bar { padding-bottom: 14px; margin-bottom: 14px; }
+.msp--compact .mg-grid { grid-template-columns: 1fr; gap: 10px; }
+
+.msp--compact .mg-new {
+  min-height: 0; height: 60px; flex-direction: row; justify-content: flex-start; gap: 14px; padding: 0 18px; border-radius: 14px;
+}
+.msp--compact .mg-new b { width: 34px; height: 34px; border-radius: 10px; font-size: 20px; box-shadow: none; }
+.msp--compact .mg-new:hover b { transform: none; }
+.msp--compact .mg-new strong { font-size: 14.5px; }
+.msp--compact .mg-new small { margin-left: 4px; }
+
+.msp--compact .mg-card {
+  display: grid; grid-template-columns: 72px minmax(0, 1.5fr) auto minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto; column-gap: 20px; row-gap: 3px; align-items: center; padding: 12px 16px; border-radius: 14px; flex-direction: unset;
+}
+.msp--compact .mg-card:hover { transform: none; box-shadow: 0 8px 24px rgba(0, 0, 0, .28), 0 0 0 1px var(--line-accent); }
+.msp--compact .mg-body { display: contents; }
+
+.msp--compact .mg-cover { grid-column: 1; grid-row: 1 / 4; width: 72px; height: 72px; border-radius: 12px; align-self: center; }
+.msp--compact .mg-cover::before, .msp--compact .mg-cover::after, .msp--compact .mg-open, .msp--compact .mg-status { display: none; }
+.msp--compact .mg-cover > b { width: 40px; height: 40px; border-radius: 12px; font-size: 20px; box-shadow: none; }
+
+.msp--compact .mg-chip { grid-column: 2; grid-row: 1; justify-self: start; padding: 2px 8px; font-size: 12px; }
+.msp--compact .mg-body h3 { grid-column: 2; grid-row: 2; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msp--compact .mg-body p { grid-column: 2; grid-row: 3; font-size: 13px; -webkit-line-clamp: 1; }
+.msp--compact .mg-status2 { display: inline-flex; grid-column: 3; grid-row: 1 / 4; align-self: center; align-items: center; gap: 6px; padding: 4px 11px 4px 9px; white-space: nowrap; }
+.msp--compact .mg-status2::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.msp--compact .mg-place { grid-column: 4; grid-row: 1 / 4; align-self: center; margin: 0; padding: 0; border: 0; font-size: 13px; }
+.msp--compact .mg-stats { grid-column: 5; grid-row: 1 / 4; align-self: center; padding: 0; border: 0; background: none; gap: 4px 14px; }
+.msp--compact .mg-stats span { display: flex; flex-direction: column; font-size: 12px; line-height: 1.15; }
+.msp--compact .mg-stats b { font-size: 15px; }
+.msp--compact .mg-stats--empty { display: block; font-size: 12px; }
+.msp--compact .mg-spark { display: none; }
+.msp--compact .mg-foot { grid-column: 6; grid-row: 1 / 4; align-self: center; flex-wrap: nowrap; padding: 0; gap: 6px; }
+.msp--compact .mg-foot .mg-first { margin-left: 0; }
+
+@media (max-width: 1180px) {
+  .msp--compact .mg-card { grid-template-columns: 72px minmax(0, 1fr) auto; grid-template-rows: auto auto auto auto auto; }
+  .msp--compact .mg-status2 { grid-row: 1; }
+  .msp--compact .mg-place { grid-column: 2 / -1; grid-row: 4; align-self: start; margin-top: 6px; }
+  .msp--compact .mg-stats { grid-column: 2 / -1; grid-row: 5; align-self: start; }
+  .msp--compact .mg-foot { grid-column: 1 / -1; grid-row: 6; margin-top: 10px; flex-wrap: wrap; }
+  .msp--compact .mh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .msp--compact .lc { grid-template-columns: 1fr; }
+  .msp--compact .lc-head { flex-wrap: wrap; gap: 8px; }
+  .msp--compact .lc-prog { margin-left: 0; width: 100%; }
+}
+
+
+/* ==========================================================================
+   VIBRANT v2 — brand cyan / blue / teal + hero composition
+   Everything below only applies inside .msp--vibrant.
+   ========================================================================== */
+
+.msp--vibrant::before {
+  background:
+    radial-gradient(720px 440px at 8% 4%, rgba(0, 232, 255, .14), transparent 65%),
+    radial-gradient(660px 420px at 95% 14%, rgba(58, 130, 255, .13), transparent 65%),
+    radial-gradient(720px 520px at 62% 104%, rgba(0, 255, 204, .09), transparent 65%);
+}
+
+/* ---------- Hero: deep navy with cyan / blue / teal light ---------- */
+.msp--vibrant .mh {
+  background:
+    radial-gradient(540px 300px at 6% -10%, rgba(0, 232, 255, .42), transparent 62%),
+    radial-gradient(560px 340px at 98% 0%, rgba(58, 130, 255, .38), transparent 62%),
+    radial-gradient(460px 260px at 42% 125%, rgba(0, 255, 204, .22), transparent 62%),
+    linear-gradient(135deg, #061a33 0%, #08294a 50%, #0a3560 100%);
+  box-shadow: 0 34px 80px rgba(2, 30, 70, .55), inset 0 0 0 1px rgba(255, 255, 255, .10);
+}
+.msp--vibrant .mh::before {
+  background: radial-gradient(closest-side, rgba(0, 232, 255, .30), rgba(0, 255, 204, .08) 55%, transparent 75%); opacity: .9;
+}
+.msp--vibrant .mh::after { /* fine dot grid, fading in from the right */
+  content: ""; position: absolute; inset: 0; pointer-events: none; display: block;
+  background: radial-gradient(circle, rgba(255, 255, 255, .16) 1px, transparent 1.4px) 0 0 / 22px 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000); mask-image: linear-gradient(90deg, transparent 30%, #000);
+}
+.msp--vibrant .mh h1 span { background: linear-gradient(90deg, #8ff6ff, #35e3ff 50%, #4dffd2); -webkit-background-clip: text; background-clip: text; }
+.msp--vibrant .msp-org { color: #b8f8ff; background: rgba(255, 255, 255, .10); border-color: rgba(255, 255, 255, .24); }
+
+/* layout: text + actions on the left, composition on the right, stats underneath */
+.msp--vibrant .mh:has(.ha) {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 22px 32px; align-items: center;
+}
+.msp--vibrant .mh:has(.ha) .mh-row { grid-column: 1; flex-direction: column; align-items: flex-start; gap: 24px; }
+.msp--vibrant .mh:has(.ha) .ha { grid-column: 2; grid-row: 1; }
+.msp--vibrant .mh:has(.ha) .mh-stats { grid-column: 1 / -1; }
+
+/* buttons: brand cyan */
+.msp--vibrant .mh-actions .msp-btn--primary {
+  color: #021018; font-weight: 700; background: linear-gradient(135deg, #00e8ff, #00ffcc);
+  box-shadow: 0 10px 28px rgba(0, 232, 255, .38), inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+.msp--vibrant .mh-actions .msp-btn--primary:hover:not(:disabled) { box-shadow: 0 14px 34px rgba(0, 232, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .45); }
+
+/* stat cards: cyan / green / amber / indigo (no pink) */
+.msp--vibrant .mh-stat { --kc: #35e3ff; }
+.msp--vibrant .mh-stat.is-live { --kc: #34d399; }
+.msp--vibrant .mh-stat.is-idle { --kc: #fbbf24; }
+.msp--vibrant .mh-stat.is-views { --kc: #8fa8ff; }
+.msp--vibrant .mh-stat .mg-spark { color: #fff; }
+
+/* ---------- Hero composition: three floating glass cards ---------- */
+.ha { position: relative; z-index: 1; height: 268px; min-width: 0; }
+.ha-card {
+  position: absolute; color: #fff; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .24);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .20), rgba(255, 255, 255, .05));
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 26px 54px rgba(1, 14, 40, .5), inset 0 1px 0 rgba(255, 255, 255, .32);
+  transform: rotate(var(--r, 0deg)); animation: ha-float 7s ease-in-out infinite;
+}
+@keyframes ha-float {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-9px) rotate(var(--r, 0deg)); }
+}
+.ha-product { left: 4%; top: 6%; width: 236px; padding: 10px; }
+.ha-img {
+  height: 116px; border-radius: 12px; background: linear-gradient(135deg, hsl(var(--h, 190) 85% 55%), hsl(calc(var(--h, 190) + 50) 80% 38%)); background-size: cover; background-position: center;
+}
+.ha-chip { position: absolute; top: 18px; left: 18px; padding: 3px 9px; border-radius: 99px; font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #021018; background: linear-gradient(135deg, #00e8ff, #00ffcc); }
+.ha-product b { display: block; margin: 11px 2px 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ha-lines { display: block; margin: 0 2px 4px; }
+.ha-lines i { display: block; height: 6px; margin-top: 7px; border-radius: 3px; background: rgba(255, 255, 255, .28); width: 82%; }
+.ha-lines i + i { width: 54%; }
+
+.ha-chart { right: 2%; top: 0; width: 206px; padding: 14px 16px 16px; animation-delay: -2.4s; animation-duration: 8s; }
+.ha-chart small { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .72); }
+.ha-chart strong { display: block; margin-top: 2px; font-size: 30px; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.ha-bars { display: flex; align-items: flex-end; gap: 6px; height: 58px; margin-top: 10px; }
+.ha-bars i { flex: 1; height: var(--v); border-radius: 5px 5px 2px 2px; background: linear-gradient(180deg, #b6f7ff, #22d3ee); }
+.ha-bars.is-demo i { opacity: .45; }
+
+.ha-live { right: 14%; bottom: 4%; display: flex; align-items: center; gap: 10px; padding: 11px 18px; font-size: 14px; font-weight: 700; animation-delay: -4.6s; animation-duration: 6s; }
+.ha-live i { width: 9px; height: 9px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 0 rgba(52, 211, 153, .6); animation: ha-ping 2s ease-out infinite; }
+@keyframes ha-ping { 0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, .6); } 80%, 100% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); } }
+
+.ha-orb { position: absolute; border-radius: 50%; filter: blur(34px); pointer-events: none; }
+.ha-orb1 { left: 38%; bottom: -8%; width: 170px; height: 170px; background: #00ffcc; opacity: .22; }
+.ha-orb2 { right: -2%; top: 22%; width: 150px; height: 150px; background: #2f7bff; opacity: .38; }
+
+@media (max-width: 960px) {
+  .msp--vibrant .mh:has(.ha) { grid-template-columns: 1fr; }
+  .msp--vibrant .mh:has(.ha) .ha { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ha-card, .ha-live i { animation: none; } }
+
+/* ---------- rest of the Vibrant page: cyan / blue (replace the earlier violet touches) ---------- */
+.msp--vibrant .mg-tabs .on { background: linear-gradient(135deg, #00e8ff, #3a9bff); color: #021018; box-shadow: 0 8px 22px rgba(0, 200, 255, .32); }
+.msp--vibrant .lc {
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(120deg, rgba(0, 232, 255, .7), rgba(58, 130, 255, .55), rgba(0, 255, 204, .55)) border-box;
+}
+.msp--vibrant .lc-prog i::after { background: linear-gradient(90deg, #00e8ff, #3a9bff); }
+.msp--vibrant .lc-step.is-done > b { background: linear-gradient(135deg, #00e8ff, #00ffcc); color: #021018; }
+.msp--vibrant .lc-step.is-done:not(:last-child)::after { background: linear-gradient(90deg, #00e8ff, #3a9bff); }
+.msp--vibrant .mg-card:hover { box-shadow: 0 24px 54px rgba(0, 0, 0, .45), 0 0 0 1px var(--cyan), 0 0 44px rgba(0, 232, 255, .16); }
+.msp--vibrant .mg-chip { color: #7df6ff; background: rgba(0, 232, 255, .12); }
+.msp--vibrant .mg-new {
+  background:
+    linear-gradient(180deg, var(--cyan-dim), transparent 85%) padding-box,
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(130deg, #00e8ff, #3a9bff, #00ffcc) border-box;
+}
+.msp--vibrant .mg-new b { background: linear-gradient(135deg, #00e8ff, #00ffcc); color: #021018; }

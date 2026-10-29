@@ -1,0 +1,365 @@
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE
+   ═══════════════════════════════════════════════════════════ */
+.about-page { padding-top: 90px; }
+
+/* The hero previously had no viewport constraint at all — on a
+   tall/narrow window the shield visual (aspect-ratio 1/1 sized off
+   its grid column) could render taller than the screen, spilling
+   below the fold on first load. Tie both the section and the visual
+   to the viewport height so the whole hero fits in one screen. */
+.about-hero {
+  min-height: calc(100dvh - 90px);
+  display: flex;
+  align-items: center;
+}
+
+.about-hero-grid {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(20px, 3.5vh, 48px) clamp(20px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.about-hero-text { text-align: left; }
+.about-hero-title { text-align: left; margin-left: 0; font-size: clamp(28px, 4.4vw, 52px); }
+.about-hero-desc { text-align: left; margin: 16px 0 0; max-width: 520px; }
+
+.about-hero-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  --shield-cap: min(440px, 58dvh);
+  max-height: var(--shield-cap);
+  max-width: var(--shield-cap);
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 1px solid rgba(0,232,255,0.14);
+  background: rgba(0,12,28,0.6);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1100ms var(--ease);
+}
+.about-hero-visual.in-view { opacity: 1; }
+.about-hero-visual canvas { display: block; }
+
+.about-shield-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  perspective: 1200px;
+  filter: drop-shadow(0 0 28px rgba(0,229,255,0.25));
+}
+.about-shield-spin {
+  position: relative;
+  width: 58%;
+  max-width: 260px;
+  aspect-ratio: 210 / 245;
+  transform-style: preserve-3d;
+  animation: aboutShieldSpin 10s linear infinite;
+}
+.about-shield-svg { width: 100%; height: auto; display: block; }
+
+.about-shield-extrude {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.about-shield-edge-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+.about-shield-edge-layer svg { width: 100%; height: 100%; display: block; }
+
+.about-shield-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.about-shield-face--back svg { width: 100%; height: 100%; display: block; }
+
+/* "VigiCore / NEXUS" glued to the shield face itself, styled like the
+   hero shield's inner text. It's on the same face as the artwork (and,
+   on the back face, riding the face's own rotateY(180) correction) so it
+   turns with the shield and never appears backwards. */
+.about-shield-inner-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding-bottom: 14%;
+  pointer-events: none;
+}
+.about-shield-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  line-height: 1;
+}
+.about-shield-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(12px, 0.9vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  color: #00e5ff;
+  opacity: 0.9;
+}
+
+@keyframes aboutShieldSpin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-shield-spin { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .about-hero-grid { grid-template-columns: 1fr; padding-top: 32px; }
+  .about-hero-text { text-align: center; }
+  .about-hero-title, .about-hero-desc { text-align: center; margin-left: auto; margin-right: auto; }
+  .about-hero-visual { max-width: 340px; margin: 0 auto; max-height: 340px; order: -1; }
+}
+
+.about-mission .section-content { padding: 24px 40px 48px; max-width: 1100px; }
+.about-mission-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-mission-text p {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(185,228,248,0.70);
+  margin-top: 16px;
+}
+.about-mission-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.about-stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px 18px 24px;
+  border: 1px solid rgba(0,232,255,0.14);
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(0,232,255,0.05), rgba(0,12,28,0.6) 30%);
+  overflow: hidden;
+  transition: transform .4s var(--ease), border-color .4s var(--ease);
+}
+.about-stat::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--cyan), var(--teal));
+  box-shadow: 0 0 12px rgba(0,232,255,0.5);
+}
+.about-stat:hover {
+  transform: translateX(4px);
+  border-color: rgba(0,232,255,0.3);
+}
+.about-stat-num {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+}
+.about-stat-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: rgba(160,210,240,0.55);
+  margin-top: 4px;
+}
+
+.about-values { position: relative; overflow: hidden; }
+.about-values .section-content { padding: 24px 40px 64px; position: relative; z-index: 2; }
+
+/* Atmosphere layer — same blueprint-grid + depth-fog language as the
+   dashboard section, so this section reads as part of the same
+   spatial world instead of a plain content block. */
+.about-values-atmosphere {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,232,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,232,255,0.022) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.about-values-atmosphere::before {
+  content: ""; position: absolute; left: 50%; top: 10%;
+  width: 70%; height: 60%; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0,180,255,0.07) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+
+/* Each card sits at a slightly different depth/height — a shallow
+   spatial arrangement rather than four identical boxes in a row —
+   and carries its own accent glow, corner-bracket edge and a subtle
+   perspective tilt on hover instead of a flat translateY. */
+.about-value-card {
+  position: relative;
+  padding: 24px 20px 22px;
+  border: 1px solid rgba(var(--v-color), 0.35);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgba(6,18,36,0.82) 0%, rgba(3,10,22,0.88) 100%);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(var(--v-color), 0.06);
+  transform: translateY(var(--v-offset, 0px)) translateZ(0);
+  transition: transform .5s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.about-value-card:nth-child(2) { --v-offset: 14px; }
+.about-value-card:nth-child(3) { --v-offset: -8px; }
+.about-value-card:nth-child(4) { --v-offset: 10px; }
+.about-value-card:hover {
+  transform: translateY(calc(var(--v-offset, 0px) - 8px)) translateZ(0) scale(1.015);
+  border-color: rgba(var(--v-color), 0.4);
+  box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 40px rgba(var(--v-color), 0.14), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.about-value-index {
+  position: absolute; top: 16px; right: 18px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  color: rgba(var(--v-color), 0.4);
+}
+.about-value-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--v-color), 0.3);
+  background: radial-gradient(circle at 30% 25%, rgba(var(--v-color), 0.18), rgba(var(--v-color), 0.05));
+  color: rgba(var(--v-color), 0.95);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 0 18px rgba(var(--v-color), 0.12), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.about-value-icon svg { width: 21px; height: 21px; }
+.about-value-card h3 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--white);
+  margin-bottom: 7px;
+}
+.about-value-card p {
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(160,210,240,0.58);
+}
+/* Bottom edge that lights up on hover — the card's own thin seam of
+   light, echoing THE SEAM's vertical light-line language. */
+.about-value-edge {
+  position: absolute; left: 14px; right: 14px; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--v-color), 0), rgba(var(--v-color), 0));
+  transition: background .4s var(--ease);
+}
+.about-value-card:hover .about-value-edge {
+  background: linear-gradient(90deg, transparent, rgba(var(--v-color), 0.65), transparent);
+}
+
+.about-ecosystem { position: relative; overflow: hidden; }
+.about-ecosystem .section-content {
+  padding: 48px 40px 16px;
+  position: relative; z-index: 2;
+}
+.about-ecosystem-atmosphere {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(0,232,255,0.05) 0%, transparent 70%);
+}
+.about-ecosystem-atmosphere::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 1px; height: 70%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(180deg, transparent, rgba(0,232,255,0.14), transparent);
+}
+
+.about-cta { position: relative; overflow: hidden; }
+.about-cta .section-content {
+  padding: 24px 40px 80px;
+  text-align: center;
+  position: relative; z-index: 2;
+}
+.about-cta .section-desc { margin: 0 auto 20px; }
+.about-cta-btn { display: inline-flex; 
+font-size: 12px;
+  padding: 0 22px;
+  height: 38px;
+}
+.about-cta-atmosphere {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(0,255,204,0.06) 0%, transparent 70%);
+}
+
+/* ── ABOUT PAGE — light theme ─────────────────────────────
+   .about-mission-text p, .about-stat and .about-value-card were
+   never themed: the paragraph used a pale cyan-white only readable
+   on a dark page, and the stat/value cards kept their hardcoded dark
+   background while their heading text switched to var(--white)
+   (dark navy in light mode) — dark-on-dark, unreadable. Give them
+   real light surfaces so the already-themed text colors land on the
+   right background. ── */
+html[data-theme="light"] .about-mission-text p {
+  color: rgba(15,31,61,0.68);
+}
+html[data-theme="light"] .about-stat {
+  background: linear-gradient(90deg, rgba(0,200,224,0.07), #FFFFFF 30%);
+  border-color: rgba(0,200,224,0.16);
+  box-shadow: 0 2px 10px rgba(15,31,61,0.05);
+}
+html[data-theme="light"] .about-stat:hover {
+  border-color: rgba(0,200,224,0.32);
+}
+html[data-theme="light"] .about-stat-label {
+  color: rgba(15,31,61,0.55);
+}
+html[data-theme="light"] .about-value-card {
+  background: #FFFFFF;
+  border-color: rgba(var(--v-color), 0.30);
+  box-shadow: 0 2px 10px rgba(15,31,61,0.06);
+}
+html[data-theme="light"] .about-value-card:hover {
+  box-shadow: 0 16px 40px rgba(15,31,61,0.10), 0 0 30px rgba(var(--v-color), 0.12);
+}
+html[data-theme="light"] .about-value-card p {
+  color: rgba(15,31,61,0.62);
+}
+html[data-theme="light"] .about-value-index {
+  color: rgba(var(--v-color), 0.55);
+}
+
+@media (max-width: 900px) {
+  .about-mission-grid { grid-template-columns: 1fr; }
+  .about-values-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-value-card { transform: none !important; }
+}
+@media (max-width: 560px) {
+  .about-values-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-value-card { transition: none; }
+}
+

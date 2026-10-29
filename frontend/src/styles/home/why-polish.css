@@ -1,0 +1,38 @@
+/* ==========================================================================
+   "The cost of fragmentation" section (WhySection.jsx)
+   Loaded after index.css, so these rules win without touching the old ones.
+   ========================================================================== */
+
+/* --- 1. Light theme ------------------------------------------------------ */
+/* The red headline was salmon on a pale grey page (contrast ~2:1). */
+html[data-theme="light"] .wim-title em { color: #C62828; }
+html[data-theme="light"] .wim-title-sub { color: #B42318; }
+
+/* The side cards are dark glass in light mode but the centre card was pale
+   pink, so it looked like a different section. Make it dark glass too (it is
+   the "core failure" card, it should be the strongest one). */
+
+/* --- 2. Sharp text on the centre card ------------------------------------ */
+/* scale(1.04) rasterised the text blurry. Lift only, and make the card wider
+   instead of scaling it. */
+
+/* --- 3. Readable sizes (nothing below 10px) ------------------------------ */
+
+/* --- 4. Fill the empty middle of cards 1 and 2 with something useful ----- */
+.wdc-value { line-height: 1; }
+
+/* --- 5. Illustrative numbers: one caption under the cards ---------------- */
+.wcm-value::after { content: "*"; opacity: .75; }
+.wim-disclaimer {
+  text-align: center;
+  letter-spacing: .02em;
+}
+.wim-disclaimer::before { content: "* "; }
+
+/* --- 6. Ticker: visible but still in the background --------------------- */
+.ticker-tape-track span { color: rgba(0, 232, 255, .5); }
+.ticker-tape-track .ticker-sep { color: rgba(0, 232, 255, .3); }
+html[data-theme="light"] .ticker-tape-track span { color: rgba(15, 31, 61, .5); }
+html[data-theme="light"] .ticker-tape-track .ticker-sep { color: rgba(15, 31, 61, .3); }
+
+/* the "NON-COMPLIANT" status line was 8.5px */

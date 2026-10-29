@@ -1,0 +1,283 @@
+/* ==========================================================================
+   polish-final.css  —  LOAD LAST (after fit-screen.css)
+   Design review pass: readability, spacing, consistency.
+   Only overrides; nothing in the older files has to be touched.
+   Rule of thumb used here: UPPERCASE + wide tracking only for titles and
+   buttons; small supporting text is sentence case, >= 11.5px, higher contrast.
+   ========================================================================== */
+
+/* ---------- 0. Shared tokens ------------------------------------------- */
+:root {
+  --pf-text-soft: rgba(205, 232, 248, .82);   /* secondary text on dark */
+  --pf-text-mute: rgba(185, 228, 248, .66);   /* captions, still >= 4.5:1 */
+}
+
+/* ---------- 1. NAVBAR: a bit larger, less tracking -------------------- */
+.navbar .nav-links a {
+  font-size: 13.5px;
+  letter-spacing: .04em;
+  padding: 6px 13px;
+}
+.navbar .nav-cta-demo,
+.navbar .nav-cta { letter-spacing: .04em; }
+
+/* ---------- 2. HERO ---------------------------------------------------- */
+/* eyebrow: still a label, but readable (the 0.24em tracking tired the eye) */
+.hero .hero-intro .hero-eyebrow { font-size: clamp(12px, .95vw, 13px); }
+.hero .hero-intro .hero-title-xl { letter-spacing: .01em; }
+
+/* body copy: slightly heavier + more contrast (weight 300 on dark was thin) */
+.hero .hero-intro .hero-desc {
+  font-weight: 400;
+  color: rgba(214, 236, 248, .88);
+  letter-spacing: .01em;
+}
+
+/* buttons: same family, less tracking */
+.hero .hero-cta { letter-spacing: .04em; }
+
+/* trust badges: quiet inline credentials (a dot + sentence-case text) instead of
+   two more outlined pills next to the buttons: one less "box" in the left column */
+
+/* detail card: a light "readout" tied to the orbit by its coloured edge, not a
+   second boxed section stacked under the pitch (no border box, no heavy glass,
+   no shadow). The slot keeps a fixed height so the left column does not jump
+   each time the orbit moves to the next module. */
+.hero .hero-intro .vigi-detail-slot { align-items: flex-start; }
+.hero .hero-intro .vigi-detail-card {
+  border-left: 3px solid rgb(var(--tab-rgb, 0, 232, 255));
+}
+.hero .hero-intro .vigi-detail-link { margin-top: 10px; }
+
+/* orbit cards: readable names + sub-lines (>= 12px, higher contrast, little tracking) */
+.vigi-orbit .vigi-tab .vigi-tab-label {
+  font-size: clamp(12px, 2.5cqw, 15px);
+  letter-spacing: .02em;
+  color: rgba(232, 244, 252, .96);
+}
+.vigi-orbit .vigi-tab.active .vigi-tab-label { color: #fff; }
+.vigi-orbit .vigi-tab .vigi-tab-sub {
+  text-transform: none;
+  letter-spacing: .01em;
+  font-size: clamp(12px, 2.2cqw, 13px);
+  font-weight: 600;
+  color: rgba(235, 245, 252, .9);
+  color: color-mix(in srgb, rgb(var(--tab-rgb, 0, 232, 255)) 32%, #fff);
+}
+html[data-theme="light"] .vigi-orbit .vigi-tab:not(.active) .vigi-tab-label { color: rgba(10, 28, 56, .92); }
+html[data-theme="light"] .vigi-orbit .vigi-tab .vigi-tab-sub {
+  color: color-mix(in srgb, rgb(var(--tab-rgb, 0, 160, 190)) 55%, #0b1a2e);
+}
+/* inactive cards were dimmed to .85 (text included): keep them calm but legible */
+.vigi-tab:not(.is-hidden):not(.active):not(:hover):not(:focus-visible) { opacity: .94; }
+.vigi-orbit .vigi-tab .vigi-tab-num {
+  font-size: 12px;
+  min-width: 26px;
+  text-align: center;
+  background: rgba(3, 12, 24, .96);        /* solid chip: nothing shows through */
+}
+
+/* ---------- 3. "COST OF FRAGMENTATION" -------------------------------- */
+/* 3a. air under the navbar + around the headline */
+@media (min-width: 901px) {
+  .wim-inner { max-width: min(1520px, 100%); padding: 20px 48px 14px; gap: 14px; }    /* room for the lifted centre card */
+}
+.wim-title-sub { display: block; margin-top: 2px; }
+
+/* 3b. cards: same padding / rhythm, widgets pinned to the bottom so the three
+       cards line up instead of leaving random holes */
+
+/* 3c. card number: ONE clean chip with a status dot; the scattered blinking
+       dots (they collided with the numbers) are replaced by it */
+
+/* 3d. "CORE FAILURE": a full pill inside the card, in the same row as the icon
+       and the number (it used to be cut by the card's border) */
+
+/* 3e. card 1: bigger counter + timeline labels */
+.wdc-value { font-size: 54px; }
+
+/* 3f. card 2: the waveform now fills its card (viewBox fixed in the JSX) and the
+       3 labels sit exactly above their 3 waves */
+
+/* 3g. card 3: readable bars; the card tag repeated the status line, so hide it */
+
+/* 3h. caption + closing line */
+
+/* ---------- 4. SHORT SCREENS (laptops / zoomed browsers) --------------- *
+ * fit-screen.css already compacts this section; keep our readability floor. */
+@media (min-width: 901px) and (max-height: 780px) {
+  .wdc-value { font-size: 34px; }
+}
+
+/* ---------- 5. LIGHT THEME safety nets --------------------------------- */
+html[data-theme="light"] .hero .hero-intro .hero-desc { color: rgba(15, 31, 61, .82); }
+html[data-theme="light"] .hero .hero-intro .vigi-detail-desc { color: rgba(15, 31, 61, .82); }
+
+/* ---------- 6. MEDIUM-HEIGHT SCREENS (<= 1000px tall) ------------------ *
+ * fitScreen.js zooms the section out when it is taller than the window, which
+ * shrinks all text. Make the section naturally shorter instead, so the zoom
+ * stays at ~1: the long intro line goes (the headline already says it) and the
+ * headline gets a size tied to the window height. */
+@media (min-width: 901px) and (max-height: 1000px) {
+  .wim-title { font-size: clamp(30px, 6.4vh, 56px); line-height: 1.12; }
+  .wim-title-sub { font-size: clamp(20px, 3.8vh, 32px); }
+  .wim-anchor { margin-top: 0; }
+  .ticker-tape { display: none; }
+}
+
+/* light theme: the cards stay dark glass, so the badge must too; eyebrow needs a darker red */
+
+
+/* ==========================================================================
+   7. "COST OF FRAGMENTATION" — final pass
+   (kept at the very end of the file so it wins over sections 3-6 above)
+   ========================================================================== */
+
+/* 7a. The eyebrow was cut by the navbar. The section is a flex column with
+       `justify-content: center`; when its content is taller than the screen,
+       centring pushes the overflow UP as well, under the fixed navbar. Auto
+       margins centre the content when there is room and fall back to top
+       alignment (never negative) when there is not. */
+@media (min-width: 901px) {
+  .wim-section,
+  .actors-section { justify-content: flex-start; }
+  .wim-section .wim-inner { width: 100%; margin-top: auto; margin-bottom: auto; }
+  .actors-section .section-content { margin-top: auto; margin-bottom: auto; }
+  .wim-section { padding-top: 20px; padding-bottom: 6px; }
+}
+
+/* 7b. Cards: no more empty holes. The three cards share one height (the centre
+       one is the tallest); the widget of cards 1 and 3 absorbs the spare room
+       instead of leaving a gap under the paragraph. */
+.wim-compliance-meter { margin-top: 2px; }
+.wim-compliance-meter { flex: 1 1 auto; justify-content: space-between; gap: 8px; }
+
+/* 7c. Centre card: "No unified signal" is real text under the waveform now,
+       not 8px SVG text hidden behind the pulses and the X marks. */
+/* the signal labels sit directly above their waves: readable contrast */
+
+/* 7d. Coverage bars: solid, saturated fills on a visible track (they were
+       40-75% alpha red/orange on a near-black card) */
+.wcm-bar-fill  { border-radius: 4px; }
+.wcm-value { font-size: 15px; color: #ff9aa4; }
+
+/* 7e. Status line: 12px, sentence case, bright enough to read (was 11px,
+       spaced-out uppercase, 60% red on dark red) */
+
+/* 7f. "46 days": the figure and its caption */
+.wim-disclaimer { margin: 6px 0 0; font-size: 12.5px; color: rgba(200, 232, 248, .72); }
+html[data-theme="light"] .wim-disclaimer { color: rgba(15, 31, 61, .72); }
+
+/* 7g. Letter-spacing: titles and buttons only */
+
+/* 7h. Short screens (<= 700px tall, e.g. a 1080p laptop at 150%): compact the
+       section so fitScreen.js only has to shrink it a little */
+@media (min-width: 901px) and (max-height: 700px) {
+  .wim-title { font-size: clamp(26px, 5.4vh, 40px); }
+  .wim-title-sub { font-size: clamp(17px, 3.4vh, 24px); }
+  .wim-inner { padding-top: 10px; padding-bottom: 6px; gap: 8px; }
+  .wdc-value { font-size: 40px; }
+}
+
+/* ==========================================================================
+   Review pass 2
+   1. navbar auto-hides on scroll down, returns on scroll up
+   2. hero: lighter module readout (no tag chips)
+   3. "Cost of fragmentation": three equal, taller cards
+   ========================================================================== */
+
+/* 1 ─ navbar */
+.navbar { transition: translate .32s cubic-bezier(.4, 0, .2, 1), background .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.navbar.nav-hidden { translate: 0 -110%; /* not transform: the entrance animation holds it */ pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .navbar { transition: none; } }
+
+/* 2 ─ hero readout: number, title, one description, link */
+.hero .hero-intro .vigi-detail-slot { min-height: 138px; margin-top: clamp(10px, 2vh, 22px); }
+
+/* 3 ─ equal cards. The centre one keeps its emphasis through colour and glow,
+   not through size, so the three tops and bottoms line up. */
+@media (min-width: 901px) {
+  /* spend the extra height on the visuals, not on empty gaps */
+  .wim-compliance-meter { flex: 0 0 auto; margin-top: auto !important; }
+}
+
+/* Home hero: no navbar over the hero on desktop. It slides in when the mouse
+   reaches the top edge (.nav-peek) or a nav link has keyboard focus. */
+.nav-peek { display: none; }
+@media (min-width: 901px) {
+  .nav-peek { display: block; position: fixed; top: 0; left: 0; right: 0; height: 18px; z-index: 999; }
+  .navbar.nav-over-hero { translate: 0 -110%; pointer-events: none; }
+  .nav-peek:hover + .navbar.nav-over-hero,
+  .navbar.nav-over-hero:hover,
+  .navbar.nav-over-hero:focus-within { translate: 0 0; pointer-events: auto; }
+}
+
+/* Bigger headline on "The cost of fragmentation" (desktop). Card height is
+   trimmed a little so the whole section still fits one screen. */
+@media (min-width: 901px) {
+  .wim-title { font-size: clamp(34px, 7.8vh, 72px); line-height: 1.1; }
+  .wim-title-sub { font-size: clamp(22px, 4.8vh, 42px); }
+}
+@media (min-width: 901px) and (max-height: 780px) {
+  .wim-title { font-size: clamp(30px, 7.2vh, 52px); }
+  .wim-title-sub { font-size: clamp(19px, 4.4vh, 32px); }
+}
+
+/* Hint that the hidden navbar is reachable (home hero, desktop only):
+   a small bright-cyan bar at the top edge (brand colour). Near-white core plus a
+   dark edge under it keep it readable on the teal hero glow. */
+.nav-peek-hint { display: none; }
+@media (min-width: 901px) {
+  .nav-peek .nav-peek-hint {
+    display: block; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+    width: clamp(160px, 14vw, 260px); height: 5px; border-radius: 0 0 8px 8px;
+    background: linear-gradient(90deg, rgba(0,240,255,0), #19f0ff 22%, #d9ffff 50%, #19f0ff 78%, rgba(0,240,255,0));
+    box-shadow: 0 2px 0 rgba(0, 8, 24, .9), 0 4px 12px rgba(0, 8, 24, .85), 0 0 22px rgba(0, 240, 255, .75);
+    pointer-events: none; opacity: 0; transition: opacity .3s ease;
+    animation: peekPulse 2.6s ease-in-out infinite;
+  }
+  .nav-peek:has(+ .navbar.nav-over-hero) .nav-peek-hint { opacity: 1; }
+  .nav-peek:hover .nav-peek-hint { opacity: 0 !important; }
+  @keyframes peekPulse { 0%, 100% { filter: brightness(.8); } 50% { filter: brightness(1.15); } }
+}
+@media (prefers-reduced-motion: reduce) { .nav-peek-hint { animation: none !important; } }
+
+
+/* ==========================================================================
+   "VigiCore Nexus centralizes everything" — flow diagram (v2)
+   Five quiet rows feed one core through curved paths; only the ACTIVE domain
+   is coloured, so the eye follows one signal at a time. See SolutionSection.jsx.
+   ========================================================================== */
+
+/* rows */
+
+/* hub */
+
+/* story */
+
+/* metrics: no box, just four figures */
+.conv-metrics { background: none; border: 0; box-shadow: none; backdrop-filter: none; padding: 0; margin-top: 24px; max-width: 780px; overflow: visible; }
+.conv-metrics::before, .conv-metrics .df-corner, .conv-metric-icon { display: none; }
+.conv-metric { padding: 2px 12px; gap: 3px; }
+.conv-closing { margin-top: 18px; text-align: center; }
+.conv-cta.conv-cta--center { display: inline-flex; justify-content: center; gap: 12px; padding: 11px 28px; font-size: 12.5px; }
+.conv-disclaimer { margin: 9px 0 0; font: 400 11.5px/1.4 "Inter", sans-serif; color: rgba(175, 220, 240, .45); }
+
+/* keep the whole section in one screen */
+@media (min-width: 901px) {
+  .solution-section .section-content { padding-top: 22px; padding-bottom: 12px; }
+  .solution-section .section-title { font-size: clamp(30px, 6.2vh, 56px); line-height: 1.12; }
+  .solution-section .section-desc { margin-bottom: 8px; }
+}
+@media (min-width: 901px) and (max-height: 1000px) {
+  .conv-metrics { margin-top: 18px; }
+  .conv-closing { margin-top: 12px; }
+}
+
+/* narrow screens: a simple stacked layout, no path overlay */
+
+/* light theme */
+html[data-theme="light"] .conv-disclaimer { color: rgba(15, 31, 61, .55); }
+
+/* light theme: the hub stays a dark disc, so its title must stay light */
+html[data-theme="light"] .conv-metrics { background: none !important; border: 0 !important; box-shadow: none !important; }

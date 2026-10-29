@@ -1,0 +1,879 @@
+/* ==========================================================================
+   Public Services page — polish layer (loaded after index.css)
+   Uses the site tokens only, so dark and light themes both work.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.services-hero-sub {
+  max-width: 58ch; margin: 0 auto; text-align: center; font-size: clamp(.95rem, 1.2vw, 1.05rem); line-height: 1.55; color: var(--muted);
+}
+
+/* Search: a proper, roomy search field */
+.services-hero .services-search {
+  max-width: 680px; margin-top: var(--sp-3); padding: 15px 22px; gap: 14px; border-radius: 999px;
+  background: var(--surface-hi); border-color: var(--line-accent);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .05);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.services-hero .services-search:focus-within {
+  border-color: var(--cyan); box-shadow: 0 0 0 4px var(--cyan-dim), 0 16px 50px rgba(0, 232, 255, .16);
+}
+.services-search svg { width: 20px; height: 20px; color: var(--cyan); }
+.services-search input { font-size: 1.02rem; }
+.services-search-kbd {
+  flex: none; display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px; border-radius: 7px;
+  font: 600 .78rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted-2); background: var(--surface); border: 1px solid var(--line); border-bottom-width: 2px;
+}
+.services-search-clear {
+  flex: none; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; border: 0; cursor: pointer;
+  font-size: .78rem; color: var(--muted); background: var(--surface-hi); transition: background var(--dur-fast), color var(--dur-fast);
+}
+.services-search-clear:hover { color: var(--ink); background: var(--cyan-dim); }
+
+/* quick category shortcuts under the search */
+.services-popular { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: var(--sp-2); }
+.services-popular span { font-size: 0.75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2); margin-right: 4px; }
+.services-popular button {
+  --chip-accent: var(--cyan); cursor: pointer; padding: 5px 13px; border-radius: 999px; font: inherit; font-size: .8rem; font-weight: 600; color: var(--muted);
+  background: color-mix(in srgb, var(--chip-accent) 8%, transparent); border: 1px solid color-mix(in srgb, var(--chip-accent) 30%, transparent);
+  transition: color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast) var(--ease);
+}
+.services-popular button:hover { color: var(--ink); background: color-mix(in srgb, var(--chip-accent) 18%, transparent); transform: translateY(-1px); }
+
+/* trust row as quiet pills */
+.services-trust-item { border-radius: 999px; border: 1px solid var(--line); }
+
+/* stats: four glass cards with icons */
+.services-hero .services-stat-strip {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; max-width: 900px; margin-top: var(--sp-4);
+}
+.services-stat {
+  flex-direction: row; align-items: center; gap: 14px; min-width: 0; padding: 16px 18px; text-align: left;
+  border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, var(--surface-hi), var(--surface));
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: border-color var(--dur-fast), transform var(--dur-fast) var(--ease);
+}
+.services-stat:hover { border-color: var(--line-accent); transform: translateY(-2px); }
+.services-stat-ico {
+  flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; color: var(--cyan);
+  background: var(--cyan-dim); box-shadow: 0 0 0 1px var(--line-accent);
+}
+.services-stat-ico svg { width: 20px; height: 20px; }
+.services-stat-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; align-items: flex-start; }
+.services-stat-value { font-size: clamp(1.5rem, 2.4vw, 2rem); font-variant-numeric: tabular-nums; }
+.services-stat-label { max-width: none; text-align: left; line-height: 1.25; }
+@media (max-width: 860px) { .services-hero .services-stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .services-hero .services-stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+
+/* ---------- Category rail: sticky filter bar, accent per category ---------- */
+.services-rail-sentinel { height: 1px; margin-bottom: -1px; pointer-events: none; }
+.services-category-rail-section {
+  position: sticky; top: var(--nav-h, 70px); z-index: 40; padding-top: 10px; padding-bottom: 14px; background: none;
+  transition: background var(--dur-fast), box-shadow var(--dur-fast);
+}
+/* glass bar only while pinned under the navbar (no dark block over the hero before that) */
+.services-category-rail-section.is-stuck {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--line);
+}
+.services-category-rail {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 28px), transparent 100%);
+}
+.services-chip { --chip-accent: var(--cyan); padding: 9px 16px 9px 14px; }
+.services-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--chip-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip-accent) 22%, transparent); }
+/* "All categories" was always painted as selected; only the active chip gets the fill now */
+.services-chip:first-child:not(.services-chip--active) {
+  background: var(--surface); border-color: var(--line); color: var(--muted); box-shadow: none; filter: none;
+}
+.services-chip:first-child:not(.services-chip--active):hover { border-color: var(--line-accent); color: var(--ink); }
+.services-chip:first-child:not(.services-chip--active) .services-chip-count { background: var(--surface-hi); color: var(--muted-2); }
+.services-chip--active:not(:first-child) {
+  background: linear-gradient(135deg, var(--chip-accent), color-mix(in srgb, var(--chip-accent) 55%, #ffffff));
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--chip-accent) 40%, transparent), inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.services-chip--active .services-chip-dot { background: #04141c; box-shadow: none; }
+.services-chip:hover:not(.services-chip--active) { border-color: color-mix(in srgb, var(--chip-accent) 55%, transparent); }
+
+/* ---------- Section headings: subtitle + accent rule ---------- */
+.services-section-sub { margin: 8px 0 0; max-width: 62ch; font-size: .95rem; line-height: 1.5; color: var(--muted); text-align: inherit; }
+.services-marquee-head .services-section-sub { margin-left: auto; margin-right: auto; }
+.services-marquee-head .section-eyebrow, .services-recommended-head .section-eyebrow, .services-feature-heading .section-eyebrow,
+.services-listing-section .section-eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.services-recommended-head .section-eyebrow::before, .services-feature-heading .section-eyebrow::before, .services-listing-section .section-eyebrow::before {
+  content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--accent-grad);
+}
+.services-recommended-title { font-size: clamp(1.35rem, 2.2vw, 1.8rem); }
+
+/* ---------- Catalog toolbar ---------- */
+.services-toolbar { flex-wrap: wrap; row-gap: 10px; padding-bottom: var(--sp-2); margin-bottom: var(--sp-3); }
+.services-toolbar-count { font-size: .9rem; }
+.services-toolbar-clear { margin-right: auto; margin-left: 12px; }
+.services-sort { display: inline-flex; align-items: center; gap: 10px; margin-left: auto; }
+.services-sort span { font-size: 0.75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); }
+.services-sort select {
+  -webkit-appearance: none; appearance: none; cursor: pointer; padding: 8px 34px 8px 14px; border-radius: 999px; font: inherit; font-size: .85rem; font-weight: 600;
+  color: var(--ink); background: var(--surface) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238fb7c9' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 13px center;
+  border: 1px solid var(--line); transition: border-color var(--dur-fast);
+}
+.services-sort select:hover { border-color: var(--line-accent); }
+.services-sort select:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+/* ---------- Catalog cards ---------- */
+.pcard::after { /* thin accent line along the top edge, in the category colour */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, var(--pcard-accent), transparent 75%); opacity: .85;
+}
+.pcard-tag {
+  padding: 3px 10px; margin-bottom: 8px; border-radius: 999px; line-height: 1.3;
+  color: var(--pcard-accent); background: color-mix(in srgb, var(--pcard-accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pcard-accent) 32%, transparent);
+}
+
+/* ---------- Pagination ---------- */
+.services-pagination-num.is-active { box-shadow: 0 4px 16px rgba(0, 232, 255, .30); }
+
+@media (prefers-reduced-motion: reduce) {
+  .services-stat, .services-popular button, .services-chip { transition: none; }
+}
+
+
+/* ==========================================================================
+   WOW layer — cinematic hero, live search, partner marquee, interactive cards
+   ========================================================================== */
+
+/* ---------- Hero: bigger headline, moving light ---------- */
+.services-hero { position: relative; }
+.services-hero .section-title { line-height: 1.04; letter-spacing: -.01em; }
+.services-hero .section-title-accent {
+  background-image: linear-gradient(90deg, #00e8ff, #8ff6ff 35%, #00ffcc 65%, #00e8ff);
+  background-size: 220% auto; animation: svc-shine 8s linear infinite;
+}
+@keyframes svc-shine { to { background-position: 220% center; } }
+
+.services-hero-aurora {
+  position: absolute; overflow: hidden; pointer-events: none; z-index: 0;
+}
+.services-hero-aurora::before, .services-hero-aurora::after { content: ""; position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.services-hero-aurora::before { width: 46vw; height: 46vw; max-width: 760px; max-height: 760px; left: -8%; top: -18%; background: radial-gradient(closest-side, rgba(0, 232, 255, .45), transparent); animation: svc-drift 16s ease-in-out infinite alternate; }
+.services-hero-aurora::after { width: 42vw; height: 42vw; max-width: 700px; max-height: 700px; right: -6%; top: -8%; background: radial-gradient(closest-side, rgba(58, 130, 255, .38), rgba(0, 255, 204, .12) 60%, transparent); animation: svc-drift 20s ease-in-out -6s infinite alternate-reverse; }
+@keyframes svc-drift { to { transform: translate(9%, 12%) scale(1.15); } }
+.services-hero > .section-content { position: relative; z-index: 2; }
+
+/* ---------- Floating product cards beside the hero (wide screens) ---------- */
+.hf { display: none; position: absolute; inset: 0; z-index: 1; pointer-events: none; --px: 0; --py: 0; }
+@media (min-width: 1360px) { .hf { display: block; } }
+.hf-card {
+  position: absolute; width: 212px;
+  transform: translate3d(calc(var(--px) * var(--d) * -1px), calc(var(--py) * var(--d) * -1px), 0); transition: transform .3s ease-out;
+}
+.hf-in {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--ac) 32%, var(--line));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--ac) 16%, var(--surface-hi)), var(--surface));
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, .38), 0 0 34px color-mix(in srgb, var(--ac) 14%, transparent), inset 0 1px 0 rgba(255, 255, 255, .08);
+  animation: hf-bob 7s ease-in-out infinite; animation-delay: var(--dl, 0s);
+}
+@keyframes hf-bob { 50% { transform: translateY(-9px); } }
+.hf-ico {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 15%, transparent); border: 1px solid color-mix(in srgb, var(--ac) 32%, transparent);
+  background-size: cover; background-position: center;
+}
+.hf-ico svg { width: 22px; height: 22px; }
+.hf-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hf-txt b { font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hf-txt small { font-size: 0.75rem; color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* left column */
+.hf-0 { left: 2%; top: 12%; } .hf-1 { left: 5.5%; top: 38%; } .hf-2 { left: 1.5%; top: 64%; }
+/* right column */
+.hf-3 { right: 2%; top: 7%; } .hf-4 { right: 5.5%; top: 34%; } .hf-5 { right: 1.5%; top: 61%; }
+
+/* ---------- Search: live suggestions ---------- */
+.services-hero .services-search { position: relative; z-index: 50; }
+.services-suggest {
+  position: absolute; left: 0; right: 0; top: calc(100% + 12px); z-index: 60; padding: 8px; border-radius: 22px; text-align: left;
+  background: var(--glass-bg, var(--surface-hi)); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  border: 1px solid var(--line-accent); box-shadow: 0 30px 70px rgba(0, 0, 0, .5);
+  animation: svc-pop .18s var(--ease) both;
+}
+@keyframes svc-pop { from { opacity: 0; transform: translateY(-6px) scale(.985); } }
+.services-suggest-item {
+  --chip-accent: var(--cyan); display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 0; border-radius: 14px;
+  font: inherit; text-align: left; color: var(--ink); background: none; cursor: pointer; transition: background var(--dur-fast);
+}
+.services-suggest-item.is-active { background: color-mix(in srgb, var(--chip-accent) 14%, transparent); }
+.services-suggest-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--chip-accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--chip-accent) 22%, transparent); }
+.services-suggest-main { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1; }
+.services-suggest-main b { font-size: .95rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.services-suggest-main small { font-size: .78rem; color: var(--muted-2); }
+.services-suggest-tag {
+  flex: none; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--chip-accent); background: color-mix(in srgb, var(--chip-accent) 14%, transparent); border: 1px solid color-mix(in srgb, var(--chip-accent) 30%, transparent);
+}
+.services-suggest-all {
+  display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 4px; padding: 10px 14px; border: 0; border-top: 1px solid var(--line);
+  border-radius: 0 0 14px 14px; font: inherit; font-size: .85rem; font-weight: 600; color: var(--cyan); background: none; cursor: pointer;
+}
+.services-suggest-all:hover { background: var(--cyan-dim); }
+.services-suggest-all kbd { font: 600 .75rem ui-monospace, Menlo, monospace; padding: 2px 7px; border-radius: 6px; color: var(--muted-2); background: var(--surface); border: 1px solid var(--line); }
+
+/* ---------- Partner marquee ---------- */
+.services-orgs { position: relative; z-index: 2; padding: 4px 0 26px; text-align: center; }
+.services-orgs-label { display: block; margin-bottom: 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-2); }
+.services-orgs-mask {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.services-orgs-track { display: flex; gap: 14px; width: max-content; animation: svc-marquee 46s linear infinite; }
+.services-orgs-mask:hover .services-orgs-track { animation-play-state: paused; }
+@keyframes svc-marquee { to { transform: translateX(-50%); } }
+.services-orgs-item {
+  display: inline-flex; align-items: center; gap: 10px; flex: none; padding: 7px 18px 7px 8px; border-radius: 999px; white-space: nowrap;
+  font-size: .9rem; font-weight: 600; color: var(--muted); background: var(--surface); border: 1px solid var(--line);
+}
+.services-orgs-item b {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 0.75rem; font-weight: 800; letter-spacing: .02em; color: #fff;
+  background: linear-gradient(135deg, hsl(var(--h) 75% 52%), hsl(calc(var(--h) + 45) 70% 38%));
+}
+
+/* ---------- Cards: cursor spotlight + sheen ---------- */
+.pcard::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .25s var(--ease);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--pcard-accent) 26%, transparent), transparent 46%);
+}
+.pcard:hover::before { opacity: 1; }
+.pcard:hover { box-shadow: 0 26px 60px rgba(0, 0, 0, .5), 0 0 0 1px color-mix(in srgb, var(--pcard-accent) 55%, transparent), 0 0 46px color-mix(in srgb, var(--pcard-accent) 18%, transparent); }
+
+/* ---------- Featured partner: a light travelling round the border ---------- */
+@property --svc-ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.services-feature-panel::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: conic-gradient(from var(--svc-ang), transparent 0 58%, var(--cyan) 76%, var(--teal) 88%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: svc-spin 7s linear infinite;
+}
+@keyframes svc-spin { to { --svc-ang: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .services-hero .section-title-accent, .services-hero-aurora::before, .services-hero-aurora::after, .hf-in, .services-orgs-track, .services-feature-panel::after { animation: none; }
+  .hf-card { transition: none; }
+}
+
+
+/* ==========================================================================
+   Fixes
+   ========================================================================== */
+
+/* 1) No shadow under the navbar on this page */
+body:has(.services-page) .navbar,
+body:has(.services-page) .navbar.scrolled { box-shadow: none; }
+
+/* 2) Aurora starts behind the navbar and fades in from the top: no visible band / hard edge */
+.services-hero-aurora {
+  inset: -160px 0 0;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 220px, #000 50%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 220px, #000 50%, transparent 100%);
+}
+
+/* 3) Headline on two lines, not three */
+.services-hero > .section-content { max-width: 1120px !important; }
+.services-hero .section-title { font-size: clamp(2.4rem, 4.5vw, 4rem); }
+.services-hero .services-hero-sub, .services-hero .section-desc { max-width: 58ch; }
+
+/* 4) Eyebrow with side rules */
+.services-hero .section-eyebrow { display: inline-flex; align-items: center; gap: 14px; }
+.services-hero .section-eyebrow::before, .services-hero .section-eyebrow::after {
+  content: ""; width: 46px; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan));
+}
+.services-hero .section-eyebrow::after { transform: scaleX(-1); }
+
+/* 5) Featured / Recommended / Catalogue were left-aligned on wide screens (no auto margins): centre them */
+.services-page .services-feature-section .section-content,
+.services-page .services-recommended-section .section-content,
+.services-page .services-listing-section .section-content { margin-left: auto; margin-right: auto; }
+
+/* 6) The hero section clips its overflow (site-wide .scroll-section rule): that cut the aurora with a hard line right
+      under the navbar. Clip sideways only, so the aurora can fade in from above the section. */
+.services-hero { overflow-x: clip; overflow-y: visible; }
+
+/* 7) Section subtitles follow their heading's alignment (they sat off-centre under centred titles) */
+.services-marquee-head .services-section-sub,
+.services-recommended-head .services-section-sub,
+.services-listing-section .services-section-sub { margin-left: auto; margin-right: auto; text-align: center; }
+.services-feature-heading .services-section-sub { margin-left: 0; margin-right: 0; text-align: left; }
+
+/* 8) First impression ---------------------------------------------------- */
+/* Headline always breaks as:  "The marketplace for healthcare" / "safety products & services"
+   (with the real Rajdhani font "safety" used to stay alone at the end of line 1). */
+.services-hero .section-title-accent { display: block; }
+.services-hero .section-title { text-wrap: balance; }
+.services-hero-sub { text-wrap: balance; }
+/* trust row: quieter (no boxes), so the search and the stats stay the focus */
+.services-trust-item { background: none; border-color: transparent; padding: 4px 8px; }
+
+/* Phones: the keyboard hint is useless there and it truncated the placeholder; tighter trust row and stat cards */
+@media (max-width: 700px) {
+  .services-search-kbd { display: none; }
+  .services-hero .services-search { padding: 12px 18px; }
+  .services-trust-row { gap: 2px 14px; }
+  .services-trust-item { font-size: .78rem; padding: 2px 4px; }
+  .services-popular { margin-top: var(--sp-1); }
+  .services-stat { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
+  .services-stat-ico { width: 36px; height: 36px; border-radius: 10px; }
+  .services-stat-ico svg { width: 18px; height: 18px; }
+  .services-stat-label { font-size: .78rem; }
+}
+
+/* ==========================================================================
+   9) Hero fits the first screen on laptop-height viewports
+   --------------------------------------------------------------------------
+   On a ~1280x600 CSS viewport (a 1080p laptop at 150% display scaling) the
+   stat cards at the bottom of the hero were sliced by the fold. The hero's
+   vertical rhythm was fixed in px, so it never adapted to the available
+   height. Below 760px of height every gap, the headline and the card padding
+   now scale with the viewport (vh) so the whole hero — including the four
+   stat cards — stays in the first screen. Taller screens are untouched.
+   ========================================================================== */
+@media (max-height: 760px) and (min-width: 701px) {
+  .about-page.services-page { padding-top: 70px; }
+  .services-hero.about-hero .section-content {
+    padding-top: clamp(8px, 2.6vh, 28px);
+    padding-bottom: clamp(14px, 3vh, 28px);
+  }
+  .services-hero .section-eyebrow { margin-bottom: clamp(6px, 1.6vh, 16px); }
+  .services-hero .section-title {
+    font-size: clamp(2rem, min(4.5vw, 9.2vh), 4rem);
+    margin-bottom: clamp(6px, 1.5vh, 14px);
+  }
+  .services-hero .services-hero-sub { font-size: clamp(.9rem, 1.15vw, 1.05rem); line-height: 1.5; }
+  .services-hero .services-search { margin-top: clamp(10px, 2.6vh, 24px); padding: clamp(10px, 2vh, 15px) 22px; }
+  .services-hero .services-popular { margin-top: clamp(8px, 1.8vh, 16px); }
+  .services-hero .services-trust-row { margin-top: clamp(4px, 1.2vh, 16px); }
+  .services-hero .services-stat-strip { margin-top: clamp(12px, 2.8vh, 24px); gap: 12px; }
+  .services-hero .services-stat { padding: clamp(10px, 2vh, 16px) 18px; }
+  .services-hero .services-stat-value { font-size: clamp(1.3rem, min(2.4vw, 4.8vh), 2rem); }
+}
+
+/* Very short windows: drop the least useful row instead of letting the cards fall off the fold */
+@media (max-height: 560px) and (min-width: 701px) {
+  .services-hero .services-trust-row { display: none; }
+}
+
+/* ==========================================================================
+   10) The hero owns the first screen; "Trusted by partner organizations"
+       starts on the second one
+   --------------------------------------------------------------------------
+   The partner strip used to peek in at the bottom of the first screen, cut in
+   half by the fold. The hero now fills exactly one viewport (below the fixed
+   navbar offset of .about-page) and centres its content, so the strip, the
+   category rail and everything after it begin on the next screen.
+   ========================================================================== */
+.services-hero.about-hero {
+  min-height: calc(100dvh - 90px);
+}
+@media (max-height: 760px) and (min-width: 701px) {
+  .services-hero.about-hero {
+    min-height: calc(100dvh - 70px);
+  }
+}
+
+/* a little air above the partner strip so its label is never touching the fold */
+.services-orgs { padding-top: 26px; }
+
+
+/* ==========================================================================
+   SPONSORED — cross-fading showcase (no blank gaps, readable pace, progress bar)
+   ========================================================================== */
+.services-marquee-head { margin-bottom: var(--sp-4); }
+.sp-wrap { position: relative; max-width: 1020px; margin: 0 auto; padding: 0 var(--sp-3); }
+.sp-stage { position: relative; display: grid; }
+.sp-slide {
+  --sp-accent: var(--cyan); grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr);
+  border-radius: 28px; overflow: hidden; min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--sp-accent) 30%, var(--line));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sp-accent) 9%, var(--surface-hi)), var(--surface));
+  box-shadow: 0 34px 80px rgba(0, 0, 0, .40), 0 0 70px color-mix(in srgb, var(--sp-accent) 9%, transparent);
+  opacity: 0; visibility: hidden; transform: translateX(26px) scale(.985);
+  transition: opacity .5s var(--ease), transform .5s var(--ease), visibility 0s linear .5s;
+}
+.sp-slide.is-active {
+  opacity: 1; visibility: visible; transform: none;
+  transition: opacity .55s var(--ease) .12s, transform .55s var(--ease) .12s, visibility 0s;
+}
+
+/* media panel: tinted gradient + dot texture + glass icon tile, or the partner's own photo */
+.sp-media {
+  position: relative; min-height: 290px; display: grid; place-items: center; background-size: cover; background-position: center;
+  background-image: linear-gradient(150deg, color-mix(in srgb, var(--sp-accent) 42%, #0a1a2e), color-mix(in srgb, var(--sp-accent) 8%, #04101e) 85%);
+}
+.sp-media:not(.has-photo)::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, .18) 1.2px, transparent 1.5px) 0 0 / 20px 20px;
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 45%, #000, transparent); mask-image: radial-gradient(70% 70% at 50% 45%, #000, transparent);
+}
+.sp-media.has-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(2, 10, 24, .55)); pointer-events: none; }
+.sp-icon {
+  position: relative; display: grid; place-items: center; width: 96px; height: 96px; border-radius: 28px; color: #fff;
+  background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .30); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .35);
+}
+.sp-icon svg { width: 46px; height: 46px; }
+.sp-avatar {
+  position: absolute; left: 22px; bottom: 22px; z-index: 1; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px;
+  font-size: .82rem; font-weight: 800; letter-spacing: .03em; color: #04141c; background: var(--sp-accent); box-shadow: 0 8px 22px color-mix(in srgb, var(--sp-accent) 45%, transparent);
+}
+.sp-media .services-card-demo-badge { position: absolute; top: 18px; left: 18px; z-index: 1; }
+
+.sp-body { display: flex; flex-direction: column; gap: 12px; padding: 36px 40px 32px; min-width: 0; }
+.sp-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.sp-org { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--sp-accent); }
+.sp-cat {
+  padding: 2px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--sp-accent); background: color-mix(in srgb, var(--sp-accent) 14%, transparent); border: 1px solid color-mix(in srgb, var(--sp-accent) 30%, transparent);
+}
+.sp-body h3 { margin: 0; font-size: clamp(1.4rem, 2.3vw, 1.9rem); line-height: 1.15; letter-spacing: -.01em; }
+.sp-body p { margin: 0; max-width: 52ch; font-size: .98rem; line-height: 1.6; color: var(--muted); }
+.sp-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
+.sp-stat { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sp-stat b { font-size: 1.7rem; line-height: 1; letter-spacing: -.02em; color: var(--sp-accent); font-variant-numeric: tabular-nums; }
+.sp-stat span { font-size: .78rem; color: var(--muted-2); }
+.sp-cta {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-size: .9rem; font-weight: 700; white-space: nowrap; text-decoration: none;
+  color: #04141c; background: var(--sp-accent); box-shadow: 0 10px 26px color-mix(in srgb, var(--sp-accent) 38%, transparent);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast);
+}
+.sp-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 34px color-mix(in srgb, var(--sp-accent) 55%, transparent); }
+.sp-cta svg { width: 16px; height: 16px; }
+
+.sp-nav {
+  position: absolute; top: 50%; z-index: 3; width: 44px; height: 44px; margin-top: -22px; display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+  font-size: 1.5rem; line-height: 1; color: var(--ink); background: var(--glass-bg, var(--surface-hi)); border: 1px solid var(--line-accent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: background var(--dur-fast), transform var(--dur-fast) var(--ease);
+}
+.sp-nav:hover { background: var(--cyan-dim); transform: scale(1.08); }
+.sp-prev { left: -22px; } .sp-next { right: -22px; }
+
+.sp-controls { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 22px; }
+.sp-count { font-size: .95rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink); }
+.sp-count em { font-style: normal; font-weight: 500; color: var(--muted-2); }
+.sp-controls .services-marquee-dots { margin: 0; }
+.sp-progress { position: relative; width: 120px; height: 3px; border-radius: 3px; overflow: hidden; background: var(--line); }
+.sp-progress i { position: absolute; inset: 0 auto 0 0; width: 100%; border-radius: inherit; background: var(--accent-grad); transform-origin: left; animation: sp-fill 5.2s linear forwards; }
+@keyframes sp-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.sp-wrap:hover .sp-progress i { animation-play-state: paused; }
+
+@media (max-width: 900px) {
+  .sp-slide { grid-template-columns: 1fr; }
+  .sp-media { min-height: 180px; }
+  .sp-body { padding: 26px 24px 24px; }
+  .sp-nav { display: none; }
+  .sp-foot { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .sp-slide, .sp-slide.is-active { transition: none; transform: none; } .sp-progress i { animation: none; transform: none; } }
+
+/* ==========================================================================
+   CATALOG CARDS — left-aligned, glass icon tile, accent texture, arrow on hover
+   ========================================================================== */
+.pcard:not(.pcard--photo-card) .pcard-bg:not(.pcard-bg--photo) {
+  align-items: flex-start; justify-content: flex-start; padding: 20px;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--pcard-accent) 22%, transparent) 1.2px, transparent 1.5px) 0 0 / 18px 18px,
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--pcard-accent) 30%, transparent), transparent 62%),
+    linear-gradient(165deg, color-mix(in srgb, var(--pcard-accent) 10%, #0b1a2c), #050e1b 75%);
+}
+.pcard .pcard-bg:not(.pcard-bg--photo) > svg {
+  box-sizing: content-box; width: 28px; height: 28px; max-width: none; max-height: none; padding: 13px; opacity: 1; border-radius: 17px; color: var(--pcard-accent);
+  background: color-mix(in srgb, var(--pcard-accent) 16%, rgba(255, 255, 255, .04)); border: 1px solid color-mix(in srgb, var(--pcard-accent) 38%, transparent);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--pcard-accent) 22%, transparent), inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+.pcard--big .pcard-bg:not(.pcard-bg--photo) { padding: 30px; }
+.pcard--big .pcard-bg:not(.pcard-bg--photo) > svg { width: 44px; height: 44px; max-width: none; max-height: none; padding: 20px; border-radius: 24px; }
+
+.pcard-body { position: relative; text-align: left; align-items: flex-start; }
+.pcard-body h3 { letter-spacing: -.01em; }
+.pcard-org { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
+.pcard-org::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pcard-accent); flex: none; }
+.pcard-body::after { /* arrow chip that appears on hover/focus */
+  content: "→"; position: absolute; right: 18px; top: 14px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  font-size: 1rem; font-weight: 700; color: #04141c; background: var(--pcard-accent);
+  opacity: 0; transform: translate(-6px, 6px) scale(.8); transition: opacity var(--dur-fast), transform var(--dur-fast) var(--ease);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--pcard-accent) 45%, transparent);
+}
+.pcard:hover .pcard-body::after, .pcard:focus-visible .pcard-body::after { opacity: 1; transform: none; }
+
+/* Sponsored: the demo badge must hug its text (it was stretching across the whole media panel) */
+.sp-media .services-card-demo-badge { right: auto; width: auto; max-width: max-content; }
+
+
+/* ==========================================================================
+   FEATURED PARTNER — compact, so heading + partner tabs + panel fit in ONE screen
+   (it used to be ~690px tall: the checklist and CTA were cut off below the fold,
+   and the sticky category rail covered the top)
+   ========================================================================== */
+.services-feature-section { padding-top: var(--sp-3); padding-bottom: var(--sp-3); }
+.services-feature-content { max-width: 1120px; }
+.services-feature-heading { align-items: center; margin-bottom: var(--sp-2); }
+.services-feature-body { padding: 30px 38px; }
+.services-feature-body h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); margin-bottom: 8px; }
+.services-feature-body p {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 14px; font-size: .95rem; line-height: 1.55;
+}
+.services-feature-checklist { flex-direction: row; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 16px; }
+
+/* laptop-height screens (≤ 820px tall, e.g. a 1920×1080 monitor at 125–150% scaling) */
+@media (max-height: 820px) {
+  .services-feature-heading .services-section-sub { display: none; }
+  .services-feature-heading .services-recommended-title { margin-bottom: 0; font-size: clamp(1.3rem, 2vw, 1.7rem); }
+  .services-feature-section { padding-top: var(--sp-2); padding-bottom: var(--sp-2); }
+  .services-feature-body { padding: 22px 30px; }
+  .services-feature-body p { -webkit-line-clamp: 2; margin-bottom: 10px; }
+  .services-feature-checklist { margin-bottom: 12px; }
+  /* the sticky category rail is slimmer too, so it covers less of the screen */
+  .services-category-rail-section { padding-top: 6px; padding-bottom: 8px; }
+  .services-chip { padding: 6px 14px 6px 12px; font-size: .86rem; }
+}
+@media (max-height: 680px) {
+  .services-feature-body h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .services-feature-body { padding: 18px 26px; }
+}
+@media (max-width: 860px) {
+  .services-feature-checklist { flex-direction: column; }
+}
+
+/* Featured heading: eyebrow sits on the title's left edge (it was drifting right) */
+.services-feature-heading .section-eyebrow { display: flex; justify-content: flex-start; text-align: left; }
+
+/* ---------- Rail follows the navbar ----------
+   When the navbar slides away (scroll down) the category rail moves up into its place;
+   when the navbar comes back (scroll up) the rail goes back under it. No empty gap. */
+.services-category-rail-section { transition: top .32s cubic-bezier(.4, 0, .2, 1), background var(--dur-fast), box-shadow var(--dur-fast); }
+html.nav-is-hidden .services-category-rail-section { top: 0; }
+@media (prefers-reduced-motion: reduce) { .services-category-rail-section { transition: background var(--dur-fast), box-shadow var(--dur-fast); } }
+
+/* ==========================================================================
+   SPONSORED — 3D spotlight carousel
+   The active card sits in the centre and tilts with the pointer; the previous / next
+   cards peek in from the sides, turned towards the centre. Click a side card to jump to it.
+   ========================================================================== */
+.services-marquee-section { overflow-x: clip; }
+.sp-wrap { max-width: 1320px; }
+.sp-stage { --tx: 0; --ty: 0; perspective: 1500px; padding: 14px 0 22px; }
+.sp-slide {
+  justify-self: center; width: min(900px, 100%); will-change: transform, opacity;
+  opacity: 0; visibility: hidden; transform: scale(.7);
+  transition: opacity .6s var(--ease), transform .7s var(--ease), filter .6s var(--ease), visibility 0s linear .6s;
+}
+.sp-slide.is-prev, .sp-slide.is-next {
+  visibility: visible; opacity: .5; cursor: pointer; z-index: 1; filter: saturate(.75) brightness(.8);
+  transition: opacity .6s var(--ease), transform .7s var(--ease), filter .6s var(--ease), visibility 0s;
+}
+.sp-slide.is-prev { transform: translateX(-70%) rotateY(26deg) scale(.82); }
+.sp-slide.is-next { transform: translateX(70%) rotateY(-26deg) scale(.82); }
+.sp-slide.is-prev:hover, .sp-slide.is-next:hover { opacity: .8; filter: saturate(.95) brightness(.95); }
+.sp-slide.is-active {
+  z-index: 2; opacity: 1; visibility: visible; filter: none;
+  background-color: #050f1c; /* opaque base, so the neighbouring cards never show through */
+  transform: rotateY(calc(var(--tx) * 4deg)) rotateX(calc(var(--ty) * -3deg));
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .5), 0 0 90px color-mix(in srgb, var(--sp-accent) 26%, transparent);
+  transition: opacity .6s var(--ease), transform .25s ease-out, filter .6s var(--ease), visibility 0s;
+}
+.sp-tag {
+  position: absolute; top: 18px; right: 18px; z-index: 2; padding: 4px 11px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+  color: #d6f3ff; background: rgba(0, 0, 0, .42); border: 1px solid rgba(255, 255, 255, .14);
+}
+.sp-prev { left: max(8px, calc(50% - 482px)); }
+.sp-next { right: max(8px, calc(50% - 482px)); }
+@media (max-width: 900px) {
+  .sp-stage { perspective: none; padding: 0 0 14px; }
+  .sp-slide.is-prev, .sp-slide.is-next { opacity: 0; visibility: hidden; pointer-events: none; }
+  .sp-slide.is-active { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-slide.is-active { transform: none; }
+  .sp-slide.is-prev { transform: translateX(-70%) scale(.82); } .sp-slide.is-next { transform: translateX(70%) scale(.82); }
+}
+
+/* ==========================================================================
+   CATALOG v2 — filter sidebar · 1 big + 6 small bento · compare mode
+   ========================================================================== */
+.cat-layout { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: 28px; align-items: start; }
+.cat-main { min-width: 0; }
+
+/* --- sidebar --- */
+.cat-filters {
+  position: sticky; top: calc(var(--nav-h, 70px) + 96px);
+  padding: 18px 20px 20px; border-radius: 22px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(8px);
+  transition: top .32s var(--ease);
+}
+html.nav-is-hidden .cat-filters { top: 96px; }
+.cat-filters-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
+  font: 700 .78rem "Rajdhani", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan); }
+.cat-filters-head button { background: none; border: 0; color: var(--muted-2); font-size: .78rem; cursor: pointer; letter-spacing: 0; text-transform: none; }
+.cat-filters-head button:hover { color: var(--ink); }
+.cat-group h4 { margin: 14px 0 6px; font: 700 .7rem "Rajdhani", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-2); }
+.cat-opt {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 7px 6px; margin: 0 -6px; width: calc(100% + 12px);
+  background: none; border: 0; border-radius: 10px; color: var(--ink); font-size: .9rem; text-align: left; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.cat-opt:hover { background: color-mix(in srgb, var(--c) 10%, transparent); }
+.cat-opt:focus-visible { outline: 2px solid var(--c); outline-offset: 1px; }
+.cat-opt em { margin-left: auto; font-style: normal; color: var(--muted-2); font-size: .78rem; }
+.cat-box { flex: none; position: relative; width: 17px; height: 17px; border-radius: 5px; border: 1.5px solid var(--c); transition: background var(--dur-fast) var(--ease); }
+.cat-opt.is-on .cat-box { background: var(--c); }
+.cat-opt.is-on .cat-box::after { content: "✓"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; font-style: normal; color: #021018; }
+.cat-range { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 5px; outline: none; cursor: pointer;
+  background: linear-gradient(90deg, var(--cyan) var(--v), color-mix(in srgb, var(--ink) 16%, transparent) var(--v)); }
+.cat-range::-webkit-slider-thumb { -webkit-appearance: none; width: 17px; height: 17px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px var(--cyan); border: 0; }
+.cat-range::-moz-range-thumb { width: 17px; height: 17px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px var(--cyan); border: 0; }
+.cat-range:focus-visible { outline: 2px solid var(--cyan); outline-offset: 6px; }
+.cat-range-val { margin: 9px 0 0; font-size: .8rem; color: var(--muted-2); }
+.cat-switch { position: relative; display: flex; align-items: center; justify-content: space-between; margin-top: 16px; font-size: .9rem; cursor: pointer; }
+.cat-switch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.cat-switch i { position: relative; width: 40px; height: 22px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 18%, transparent); transition: background var(--dur-fast) var(--ease); }
+.cat-switch i::after { content: ""; position: absolute; left: 3px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform var(--dur-fast) var(--ease); }
+.cat-switch input:checked + i { background: var(--cyan); }
+.cat-switch input:checked + i::after { transform: translateX(18px); background: #021018; }
+.cat-switch input:focus-visible + i { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+/* --- bento: 1 big tile (left, 3 rows) + 6 small (2 columns x 3 rows) --- */
+.cat-main .services-bento { grid-template-columns: 1.2fr 1fr 1fr; grid-auto-rows: 196px; gap: 14px; }
+.cat-main .pcard--big { grid-column: 1; grid-row: span 3; }
+
+/* profile-score ring (top-left) */
+.pcard-score {
+  position: absolute; left: 12px; top: 12px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  background: conic-gradient(var(--pcard-accent) calc(var(--sc) * 1%), rgba(160,205,230,.2) 0);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--pcard-accent) 35%, transparent);
+}
+.pcard-score b { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: rgba(2,10,20,.92); color: #fff; font: 700 .74rem/1 "Rajdhani", sans-serif; }
+
+/* compare toggle (top-right): appears on hover / focus, always shown once picked */
+.pcard-compare {
+  position: absolute; right: 12px; top: 12px; z-index: 3; display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px;
+  border: 0; border-radius: 999px; background: var(--cyan); color: #021018; cursor: pointer;
+  font: 700 .72rem "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase;
+  opacity: 0; transform: translateY(-4px); transition: opacity .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
+}
+.pcard:hover .pcard-compare, .pcard:focus-within .pcard-compare, .pcard-compare.is-on { opacity: 1; transform: none; }
+.pcard-compare.is-on { width: 30px; height: 30px; padding: 0; justify-content: center; background: var(--pcard-accent); font-size: 14px; }
+.pcard-compare:disabled { cursor: not-allowed; }
+.pcard:hover .pcard-compare:disabled { opacity: .4; }
+.pcard-demo-badge ~ .pcard-compare { top: 46px; }
+.pcard-compare:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (hover: none) { .pcard-compare { opacity: 1; transform: none; } }
+.pcard.is-compared { border-color: var(--pcard-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--pcard-accent) 55%, transparent), 0 0 44px color-mix(in srgb, var(--pcard-accent) 35%, transparent); }
+
+/* --- compare tray --- */
+.cat-tray {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 80; width: min(1020px, calc(100% - 32px));
+  display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--cyan) 55%, transparent); background: #06142a;
+  box-shadow: 0 20px 70px rgba(0,0,0,.55), 0 0 56px color-mix(in srgb, var(--cyan) 18%, transparent); animation: cat-tray-in .35s var(--ease) both;
+}
+@keyframes cat-tray-in { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.cat-tray-label { font: 700 .75rem "Rajdhani", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan); }
+.cat-tray-items { display: flex; gap: 10px; flex: 1; min-width: 0; overflow: hidden; }
+.cat-chip { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 6px 8px 6px 6px; border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--pcard-accent, var(--cyan)) 55%, transparent); background: color-mix(in srgb, var(--pcard-accent, var(--cyan)) 12%, transparent); }
+.cat-chip-text { display: grid; min-width: 0; }
+.cat-chip-text b { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px; }
+.cat-chip-text small { color: var(--muted-2); font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px; }
+.cat-chip button { background: none; border: 0; color: var(--muted-2); font-size: 1.1rem; line-height: 1; padding: 0 4px; cursor: pointer; }
+.cat-chip button:hover { color: var(--ink); }
+.cat-chip--empty { padding: 12px 14px; border: 1.5px dashed var(--line); background: none; color: var(--muted-2); font-size: .8rem; white-space: nowrap; }
+.cat-thumb { flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,.06) center / cover no-repeat; }
+.cat-thumb--icon svg { width: 22px; height: 22px; color: var(--pcard-accent, var(--cyan)); }
+.cat-tray-clear { background: none; border: 0; color: var(--muted-2); font-size: .82rem; cursor: pointer; }
+.cat-tray-go { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 0; border-radius: 14px; background: var(--cyan); color: #021018; cursor: pointer; white-space: nowrap;
+  font: 700 .8rem "Rajdhani", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.cat-tray-go svg { width: 14px; height: 14px; }
+.cat-tray-go:disabled { opacity: .45; cursor: not-allowed; }
+
+/* --- side-by-side compare ("duel") --- */
+.cat-duel { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgba(2,8,18,.78); backdrop-filter: blur(6px); animation: cat-fade .2s both; }
+@keyframes cat-fade { from { opacity: 0; } to { opacity: 1; } }
+.cat-duel-panel {
+  position: relative; width: min(1120px, 100%); max-height: calc(100vh - 48px); overflow: auto; padding: 26px 32px 26px; border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--cyan) 45%, transparent); background: #06142a;
+  box-shadow: 0 50px 120px rgba(0,0,0,.7), 0 0 100px color-mix(in srgb, var(--cyan) 14%, transparent); animation: cat-pop .3s var(--ease) both;
+}
+@keyframes cat-pop { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+.cat-duel-close { position: absolute; right: 18px; top: 12px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--ink); font-size: 1.3rem; cursor: pointer; }
+.cat-duel-eyebrow { margin-bottom: 12px; font: 700 .75rem "Rajdhani", sans-serif; letter-spacing: .22em; text-transform: uppercase; color: var(--cyan); }
+.cat-duel-grid { display: grid; grid-template-columns: 130px repeat(var(--n), minmax(0, 1fr)); gap: 0 18px; align-items: center; }
+.cat-duel-head { text-align: center; padding: 8px 6px 14px; border-radius: 20px; background: radial-gradient(closest-side at 50% 32%, color-mix(in srgb, var(--pcard-accent) 22%, transparent), transparent 80%); }
+.cat-duel-media .cat-thumb { width: 100%; height: 128px; border-radius: 16px; background-size: contain; background-color: transparent; }
+.cat-duel-media .cat-thumb--icon svg { width: 56px; height: 56px; }
+.cat-duel-tag { display: block; margin-top: 8px; font: 700 .72rem "Rajdhani", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--pcard-accent); }
+.cat-duel-head h3 { margin: 2px 0; font: 700 1.45rem/1.1 "Rajdhani", sans-serif; color: var(--ink); }
+.cat-duel-org { color: var(--muted-2); font-size: .85rem; }
+.cat-duel-label { padding: 12px 0; border-top: 1px solid var(--line); font: 700 .7rem "Rajdhani", sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2); align-self: stretch; display: flex; align-items: center; }
+.cat-duel-cell { padding: 12px 6px; border-top: 1px solid var(--line); text-align: center; font-size: .92rem; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+.cat-duel-cell b { display: block; font: 700 1.6rem/1 "Rajdhani", sans-serif; }
+.cat-duel-cell.is-best b { color: var(--pcard-accent); }
+.cat-duel-bar { display: block; height: 6px; margin-top: 7px; border-radius: 6px; background: color-mix(in srgb, var(--ink) 12%, transparent); }
+.cat-duel-bar i { display: block; height: 100%; border-radius: 6px; background: var(--pcard-accent); opacity: .55; }
+.cat-duel-cell.is-best .cat-duel-bar i { opacity: 1; box-shadow: 0 0 14px var(--pcard-accent); }
+.cat-duel-cell--text { text-align: left; color: var(--muted); font-size: .85rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cat-duel-yes { color: #19e3d1; font-weight: 600; }
+.cat-duel-no { color: var(--muted-2); }
+.cat-duel-cell a { color: var(--cyan); font-weight: 600; }
+.cat-duel-cta { padding-top: 16px; border-top: 1px solid var(--line); text-align: center; align-self: stretch; }
+.cat-duel-btn { display: inline-block; padding: 12px 18px; border-radius: 13px; background: var(--cyan); color: #021018; font: 700 .78rem "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cat-duel-btn.is-off { background: none; border: 1px dashed var(--line); color: var(--muted-2); }
+
+/* --- responsive --- */
+@media (max-width: 1100px) {
+  .cat-layout { grid-template-columns: 1fr; gap: 16px; }
+  .cat-filters { position: static; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 28px; }
+  .cat-filters-head { grid-column: 1 / -1; }
+  .cat-main .services-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 230px; }
+  .cat-main .pcard--big { grid-column: span 2; grid-row: span 2; }
+}
+@media (max-width: 720px) {
+  .cat-tray { flex-wrap: wrap; bottom: 12px; }
+  .cat-tray-items { flex-basis: 100%; order: 3; }
+  .cat-duel-grid { grid-template-columns: 84px repeat(var(--n), minmax(0, 1fr)); gap: 0 8px; }
+  .cat-duel-panel { padding: 22px 14px; }
+}
+@media (max-width: 560px) {
+  .cat-main .services-bento { grid-template-columns: 1fr; grid-auto-rows: 280px; }
+  .cat-main .pcard--big { grid-column: auto; grid-row: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .cat-tray, .cat-duel, .cat-duel-panel { animation: none; } }
+
+html[data-theme="light"] .cat-tray, html[data-theme="light"] .cat-duel-panel { background: #fff; }
+html[data-theme="light"] .cat-duel { background: rgba(20,30,50,.5); }
+
+.cat-main .pcard-body::after { display: none; } /* the Compare button owns the top-right corner */
+
+/* The listing section used `overflow: hidden`, which turns it into a scroll container and silently
+   breaks `position: sticky` on the filter sidebar (it slid under the category rail). `clip` hides
+   the same overflow without becoming a scroll container, so the sidebar sticks below the rail. */
+.scroll-section.services-listing-section { overflow: visible; overflow-x: clip; }
+
+/* ==========================================================================
+   Catalog polish: calm notice, left-aligned filters, spacing on cards.
+   ========================================================================== */
+.services-state--notice { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 18px auto 26px; padding: 10px 16px; max-width: 640px;
+  border-radius: 999px; font-size: .88rem; color: var(--muted); text-align: left; }
+.services-notice-btn { background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; color: var(--cyan); font: inherit; font-weight: 700; font-size: .82rem; cursor: pointer; }
+.services-notice-btn:hover { border-color: var(--cyan); }
+
+.cat-filters, .cat-filters .cat-group, .cat-range-val { text-align: left; }
+.cat-filters-head { justify-content: space-between; }
+
+/* category tag never touches the icon tile: a slightly taller card and a smaller tile */
+.cat-main .services-bento { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 224px; }
+.cat-main .pcard .pcard-bg:not(.pcard-bg--photo) > svg { width: 22px; height: 22px; padding: 11px; border-radius: 14px; }
+.cat-main .pcard:not(.pcard--photo-card) .pcard-bg:not(.pcard-bg--photo) { padding: 18px; }
+
+/* Compare button: breathing room from the corner (the Example badge is gone) */
+.pcard-compare { right: 14px; top: 14px; }
+
+/* Results / sort bar: pinned directly under the category rail, so rail + bar read as ONE header.
+   Cards scroll underneath it and are covered by its glass background (same recipe as the rail),
+   no masking, no dead gap. ServicesPage.jsx sets --rail-h and data-stuck. */
+@media (min-width: 901px) {
+  .cat-main .services-toolbar {
+    position: sticky; top: calc(var(--nav-h, 70px) + var(--rail-h, 83px)); z-index: 30;
+    padding: 12px 4px; margin-bottom: var(--sp-3);
+    border-radius: 0 0 16px 16px;
+  }
+  html.nav-is-hidden .cat-main .services-toolbar { top: var(--rail-h, 83px); }
+  /* glass lives on a pseudo-element so it can be a little wider than the bar WITHOUT moving the text or the bar's box
+     (negative margins on the bar itself were capped by max-width and shifted it off the card grid) */
+  .cat-main .services-toolbar::before {
+    content: ""; position: absolute; inset: 0 -10px; z-index: -1; border-radius: 0 0 16px 16px; pointer-events: none;
+    background: color-mix(in srgb, var(--bg) 80%, transparent); /* same recipe as the category rail */
+    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 var(--line), 0 12px 24px -16px rgba(0, 0, 0, .55);
+    opacity: 0; transition: opacity .2s var(--ease);
+  }
+  .cat-main .services-toolbar[data-stuck]::before { opacity: 1; }
+  /* sidebar pins at the same line as the bar */
+  .cat-filters { top: calc(var(--nav-h, 70px) + var(--rail-h, 83px) + 14px); }
+  html.nav-is-hidden .cat-filters { top: calc(var(--rail-h, 83px) + 14px); }
+}
+
+/* Hover text must never climb over the icon tile: taller cards + a 2-line summary. */
+@media (min-width: 901px) { .cat-main .services-bento { grid-auto-rows: 240px; } }
+.cat-main .pcard-hover-detail p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.cat-main .pcard:hover .pcard-hover-detail, .cat-main .pcard:focus-within .pcard-hover-detail { max-height: 56px; }
+
+/* ==========================================================================
+   Catalog cards v3 — information first, quieter chrome.
+   1) The summary is always visible (2 lines); only the action links wait for hover. The cards no longer
+      look empty until you hover them. Cards are a bit taller to hold it, titles clamp to 2 lines.
+   2) Compare is always visible as a small ghost "+" and expands to "+ Compare" on hover, so the feature
+      is discoverable without hovering (and on touch).
+   ========================================================================== */
+@media (min-width: 901px) { .cat-main .services-bento { grid-auto-rows: 272px; } }
+
+.cat-main .pcard-body h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+
+.cat-main .pcard .pcard-hover-detail,
+.cat-main .pcard:hover .pcard-hover-detail,
+.cat-main .pcard:focus-within .pcard-hover-detail { max-height: none; opacity: 1; overflow: visible; margin-top: 8px; }
+.cat-main .pcard-hover-detail p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.45; }
+.cat-main .pcard-hover-detail .pcard-links { display: flex; flex-wrap: wrap; gap: 6px 14px; max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+  transition: max-height var(--dur-med) var(--ease), opacity var(--dur-fast) var(--ease), margin-top var(--dur-med) var(--ease); }
+.cat-main .pcard:hover .pcard-links, .cat-main .pcard:focus-within .pcard-links { max-height: 32px; opacity: 1; margin-top: 8px; }
+@media (hover: none) { .cat-main .pcard-hover-detail .pcard-links { max-height: 32px; opacity: 1; margin-top: 8px; } }
+
+.cat-main .pcard-compare {
+  gap: 0; height: 30px; min-width: 30px; padding: 0; justify-content: center;
+  opacity: 1; transform: none;
+  background: color-mix(in srgb, var(--ink) 9%, transparent); color: var(--ink);
+  border: 1px solid var(--line); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.cat-main .pcard-compare span { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: max-width .25s var(--ease), opacity .2s var(--ease), padding .25s var(--ease); }
+.cat-main .pcard:hover .pcard-compare:not(.is-on),
+.cat-main .pcard:focus-within .pcard-compare:not(.is-on) { background: var(--cyan); color: #021018; border-color: transparent; padding: 0 12px; }
+.cat-main .pcard:hover .pcard-compare:not(.is-on) span,
+.cat-main .pcard:focus-within .pcard-compare:not(.is-on) span { max-width: 90px; opacity: 1; padding-left: 6px; }
+.cat-main .pcard-compare.is-on { width: 30px; padding: 0; background: var(--pcard-accent); color: #021018; border-color: transparent; }
+.cat-main .pcard-compare:disabled:not(.is-on) { opacity: .4; }
+
+/* « Voir détails » : lien toujours visible vers la fiche /services/:id (tactile compris). */
+.pcard .pcard-details {
+  position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 12px;
+  border-radius: 999px; border: 1px solid var(--line-accent); color: var(--cyan); font-size: .8rem; font-weight: 700; text-decoration: none;
+  background: rgba(0, 0, 0, .18); transition: background .2s ease, border-color .2s ease;
+}
+.pcard .pcard-details:hover, .pcard .pcard-details:focus-visible { background: var(--cyan-dim); border-color: var(--cyan); outline: none; }
+[dir="rtl"] .pcard .pcard-details span { transform: scaleX(-1); }
+html[data-theme="light"] .pcard .pcard-details { background: #fff; }
+
+/* ==========================================================================
+   Catalog cards v4 — photo ABOVE, text BELOW (no more text printed over the product photo).
+   The image gets its own fixed zone at the top of the card; the title / organization / summary /
+   « Voir détails » sit in a solid panel underneath, so nothing overlaps the picture. The score ring
+   and the Compare button stay pinned over the photo corners (they are small and have their own chip).
+   ========================================================================== */
+.cat-main .services-bento { grid-auto-rows: minmax(396px, auto); }
+.cat-main .pcard { justify-content: flex-start; }
+.cat-main .pcard .pcard-bg {
+  position: relative; inset: auto; flex: 0 0 176px; height: 176px; width: 100%;
+  overflow: hidden;
+}
+.cat-main .pcard:hover .pcard-bg { transform: none; } /* the zoom would spill over the text panel */
+.cat-main .pcard .pcard-bg--photo { background-size: cover; }
+.cat-main .pcard-body {
+  flex: 1 1 auto; display: flex; flex-direction: column; align-items: flex-start;
+  background: var(--surface); padding: 14px var(--sp-3) 18px;
+  border-top: 1px solid var(--line);
+}
+html[data-theme="light"] .cat-main .pcard-body { background: #fff; }
+.cat-main .pcard-body .pcard-details { margin-top: auto; align-self: flex-start; }
+.cat-main .pcard-hover-detail, .cat-main .pcard-detail--static { margin-bottom: 10px; }
+/* the big tile keeps its larger title but the same photo-above layout */
+.cat-main .pcard--big .pcard-bg { flex-basis: 55%; height: auto; }
+@media (max-width: 560px) {
+  .cat-main .services-bento { grid-auto-rows: minmax(380px, auto); }
+}

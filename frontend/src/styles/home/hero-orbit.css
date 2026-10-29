@@ -1,0 +1,520 @@
+/* ==========================================================================
+   HERO — "living orbit" layout (loaded after home-polish.css)
+   Two columns: pitch + CTAs + module detail on the left, the shield with the
+   five vigilance modules orbiting it on the right. The orbit previews each
+   module on its own (see Hero.jsx) until the visitor takes control.
+   ========================================================================== */
+
+/* ---------- layout ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  column-gap: clamp(16px, 3vw, 56px);
+  padding: calc(56px + clamp(10px, 2.5vh, 28px)) 5% clamp(44px, 7vh, 64px);
+  text-align: left;
+}
+.hero::before { top: 50%; left: 72%; }
+
+.hero-intro {
+  align-items: flex-start;
+  text-align: left;
+  max-width: 560px;
+  margin: 0;
+}
+.hero-intro .hero-eyebrow::before { display: none; }
+.hero-cta-row { justify-content: flex-start; }
+
+/* detail card now lives under the CTAs */
+.hero-intro .vigi-detail-slot {
+  flex: none;
+  width: 100%;
+  max-width: 460px;
+  min-height: 170px;
+  margin-top: clamp(8px, 2vh, 20px);
+}
+
+/* ---------- the orbit ---------- */
+.vigi-orbit {
+  position: relative;
+  z-index: 5;
+  width: min(720px, 100%, calc(100vh - 130px));
+  aspect-ratio: 1;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeUp .6s .1s ease forwards;
+}
+
+.vigi-orbit-ring {
+  position: absolute;
+  inset: 16%;
+  border: 1px dashed rgba(0, 232, 255, .22);
+  border-radius: 50%;
+  animation: vigiOrbitSpin 48s linear infinite;
+  pointer-events: none;
+}
+.vigi-orbit-ring--inner {
+  inset: 30%;
+  border-color: rgba(0, 232, 255, .13);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+@keyframes vigiOrbitSpin { to { transform: rotate(360deg); } }
+
+.vigi-orbit-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+.vigi-orbit-line {
+  stroke: rgba(var(--tab-rgb, 0, 232, 255), .55);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 8;
+  vector-effect: non-scaling-stroke;
+  opacity: .3;
+  animation: vigiLineFlow 1.2s linear infinite;
+  transition: opacity .3s ease, stroke-width .3s ease;
+}
+.vigi-orbit-line.active { opacity: 1; stroke-width: 2.5; }
+@keyframes vigiLineFlow { to { stroke-dashoffset: -24; } }
+
+/* tabs: the existing pills, placed around the shield */
+.vigi-tabbar {
+  display: contents;
+  opacity: 1;
+  animation: none;
+}
+.vigi-tab {
+  position: absolute;
+  z-index: 6;
+  left: var(--ox, 50%);
+  top: var(--oy, 50%);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.vigi-tab:hover { transform: translate(-50%, calc(-50% - 2px)); }
+
+/* stage: only the shield now, centred in the orbit */
+.vigi-orbit .vigi-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  margin: 0;
+  max-width: none;
+  width: auto;
+  gap: 0;
+  zoom: 1;
+  opacity: 1;
+  animation: none;
+  pointer-events: none;
+}
+.vigi-orbit .shield-wrap { margin-left: 0; pointer-events: auto; }
+
+/* scroll cue: always visible now that everything fits on one screen */
+.hero-scroll-cue { display: flex; }
+.hero-scroll-cue span { color: rgba(0, 232, 255, .8); font-size: 12px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; row-gap: 12px; text-align: center; }
+  .hero-intro { align-items: center; text-align: center; max-width: 640px; margin: 0 auto; }
+  .hero-cta-row { justify-content: center; }
+  .hero-intro .vigi-detail-slot { min-height: 150px; margin-left: auto; margin-right: auto; }
+  .hero::before { left: 50%; top: 70%; }
+  .vigi-orbit { width: min(560px, 100%); }
+}
+@media (max-width: 600px) {
+  .vigi-tab-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vigi-orbit-ring, .vigi-orbit-line { animation: none; }
+}
+
+
+/* ==========================================================================
+   Fixes after first real render (overlaps + left column alignment)
+   ========================================================================== */
+
+/* shield: smaller, so the side pills never touch it */
+.vigi-orbit .shield-wrap {
+  height: auto;
+  aspect-ratio: 210 / 245;
+}
+.vigi-orbit .shield-name {
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.vigi-orbit .shield-sub { letter-spacing: .1em; }
+
+/* pills: more compact so five of them fit around the shield */
+.vigi-tab {
+  font-size: 12px;
+  letter-spacing: .07em;
+}
+
+/* left column: everything left-aligned and width-capped (the original
+   rules use 2-class selectors, so these need the same weight) */
+.hero .hero-intro { max-width: 540px; }
+.hero .hero-intro .hero-eyebrow { text-align: left; }
+.hero .hero-intro .hero-eyebrow::after { display: none; }
+.hero .hero-intro .hero-title-xl,
+.hero .hero-intro .hero-desc { text-align: left; }
+.hero .hero-intro .hero-desc { max-width: 46ch; }
+
+/* scroll cue: the fadeUp animation overwrote translateX(-50%) and pushed it
+   off-centre; centre it with auto margins instead */
+.hero .hero-scroll-cue {
+  left: 0;
+  right: 0;
+  width: max-content;
+  margin: 0 auto;
+  transform: none;
+}
+
+@media (max-width: 960px) {
+  .hero .hero-intro .hero-eyebrow,
+  .hero .hero-intro .hero-title-xl,
+  .hero .hero-intro .hero-desc { text-align: center; }
+  .hero .hero-intro .hero-desc { margin: 0 auto; }
+}
+
+
+/* ==========================================================================
+   Sequential reveal + polish
+   ========================================================================== */
+
+/* modules join the shield one at a time */
+.vigi-tab {
+  transition:
+    border-color .3s ease, background .3s ease, color .3s ease,
+    box-shadow .3s ease, transform .5s cubic-bezier(.22, 1, .36, 1),
+    opacity .35s ease, visibility 0s;
+}
+.vigi-tab.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.55);
+  transition: none;
+}
+.vigi-orbit-line.is-hidden { opacity: 0; stroke-width: 1.5; }
+
+/* the newest pill pops in with a short light burst */
+.vigi-tab:not(.is-hidden) { animation: vigiPillIn .55s cubic-bezier(.22, 1, .36, 1); }
+@keyframes vigiPillIn {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--tab-rgb, 0, 232, 255), .7); }
+  100% { box-shadow: 0 0 0 26px rgba(var(--tab-rgb, 0, 232, 255), 0); }
+}
+
+/* active pill: much easier to spot */
+.vigi-tab.active {
+  border-color: rgba(var(--tab-rgb, 0, 232, 255), .95);
+  background: rgba(var(--tab-rgb, 0, 232, 255), .18);
+  box-shadow:
+    0 0 0 1px rgba(var(--tab-rgb, 0, 232, 255), .55),
+    0 0 26px rgba(var(--tab-rgb, 0, 232, 255), .55),
+    0 0 64px rgba(var(--tab-rgb, 0, 232, 255), .25);
+}
+
+/* shield is the hero of the orbit */
+.vigi-orbit .shield-name { font-size: clamp(13px, 1.45vw, 21px); }
+
+/* lighter detail card + breathing room above the scroll cue */
+.hero { padding-bottom: clamp(64px, 10vh, 92px); }
+.hero .hero-intro .vigi-detail-slot { max-width: 420px; }
+.hero .hero-intro .vigi-detail-title { margin-bottom: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vigi-tab:not(.is-hidden) { animation: none; }
+}
+
+
+/* ==========================================================================
+   Module cards, dock ring and data flow
+   ========================================================================== */
+
+/* ---------- cards ---------- */
+.vigi-tab {
+  border-radius: 18px;
+}
+.vigi-tab-icon {
+  background: radial-gradient(circle at 30% 25%,
+    rgba(var(--tab-rgb, 0, 232, 255), .28), rgba(var(--tab-rgb, 0, 232, 255), .05) 72%);
+  border: 1px solid rgba(var(--tab-rgb, 0, 232, 255), .28);
+}
+.vigi-tab-icon svg { width: 90%; height: 90%; }
+.vigi-tab-text { display: flex; flex-direction: column; text-align: left; }
+.vigi-tab-sub {
+  font-weight: 600;
+}
+.vigi-tab.active .vigi-tab-sub { opacity: 1; }
+.vigi-tab-num {
+  position: absolute;
+  top: -9px;
+  right: 14px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: rgb(var(--tab-rgb, 0, 232, 255));
+  background: #04101c;
+  border: 1px solid rgba(var(--tab-rgb, 0, 232, 255), .5);
+}
+.vigi-tab.active .vigi-tab-icon {
+  background: radial-gradient(circle at 30% 25%,
+    rgba(var(--tab-rgb, 0, 232, 255), .45), rgba(var(--tab-rgb, 0, 232, 255), .1) 72%);
+  border-color: rgba(var(--tab-rgb, 0, 232, 255), .7);
+}
+
+/* countdown bar: shows when the next module will light up */
+.vigi-orbit.is-cycling .vigi-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(var(--tab-rgb, 0, 232, 255));
+  box-shadow: 0 0 8px rgb(var(--tab-rgb, 0, 232, 255));
+  transform-origin: left center;
+  animation: vigiTabProgress var(--cycle-ms, 3600ms) linear forwards;
+}
+@keyframes vigiTabProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ---------- dock ring around the shield ---------- */
+
+/* ---------- lines + data packets ---------- */
+.vigi-orbit-line.active { filter: drop-shadow(0 0 3px rgb(var(--tab-rgb, 0, 232, 255))); }
+
+@media (max-width: 600px) {
+  .vigi-tab-sub { display: none; }
+  .vigi-tab-num { right: 6px; }
+}
+
+
+/* ---------- final spacing pass ---------- */
+/* equal-width cards (long labels may still grow them a little) */
+
+
+/* ==========================================================================
+   Balance + readability pass (v2)
+   Everything is sized from the orbit's own width (cqw units), so the cards,
+   shield and spacing scale together on any screen / zoom level.
+   Works with the ORBIT_POS + ARC_R values in Hero.jsx.
+   ========================================================================== */
+
+.vigi-orbit { container-type: inline-size; }
+
+/* a bit bigger on short screens (the old limit was 100vh - 130px). Cards, icons
+   and shield all scale with the orbit, so the design stays the same. */
+
+/* shield size (% of the orbit). Side cards sit a bit higher (see ORBIT_POS)
+   so the shield can grow without touching them. */
+.vigi-orbit .shield-wrap { width: 26%; }
+
+/* cards: width follows the orbit */
+.vigi-tab {
+  box-sizing: border-box;
+  width: 42cqw;
+  min-width: 0;
+  padding: 1.3cqw 2.2cqw 1.3cqw 1.5cqw;
+  gap: 1.8cqw;
+}
+.vigi-tab-icon {
+  width: clamp(36px, 9.4cqw, 56px);
+  height: clamp(36px, 9.4cqw, 56px);
+  flex: none;
+  border-radius: 12px;
+}
+.vigi-tab-text { min-width: 0; gap: 2px; }
+.vigi-tab-label {
+  white-space: nowrap;
+}
+.vigi-tab-sub {
+  white-space: nowrap;
+  color: rgba(225, 240, 250, .85);
+  color: color-mix(in srgb, rgb(var(--tab-rgb, 0, 232, 255)) 55%, #fff);
+  opacity: 1;
+}
+html[data-theme="light"] .vigi-tab-sub {
+  color: rgb(var(--tab-rgb, 0, 160, 190));
+  color: color-mix(in srgb, rgb(var(--tab-rgb, 0, 160, 190)) 58%, #0b1a2e);
+}
+html[data-theme="light"] .vigi-tab:not(.is-hidden):not(.active):not(:hover):not(:focus-visible) { opacity: .95; }
+
+/* active card: gentle zoom, never touches the shield */
+.vigi-tab.active { transform: translate(-50%, -50%) scale(1.04); }
+#tab-tl { transform-origin: 0 50%; }    /* right-hand card: grow to the right */
+#tab-br { transform-origin: 100% 50%; } /* left-hand card: grow to the left */
+
+/* less extreme letter-spacing: eyebrow + navbar */
+
+.navbar .nav-links a {
+  color: rgba(205, 232, 248, .82);
+}
+.navbar .nav-links a:hover { color: #fff; }
+html[data-theme="light"] .navbar .nav-links a { color: rgba(15, 31, 61, .78); }
+html[data-theme="light"] .navbar .nav-links a:hover { color: #00A9C0; }
+
+/* detail card (left): coloured edge ties it to the active module */
+
+@media (max-width: 600px) {
+  .vigi-tab { width: auto; }
+  /* phones: an old rule (legacy .system layout) pushed the shield to the left;
+     keep it centred in the orbit */
+  .vigi-orbit .shield-wrap { margin: 0; position: relative !important; }
+}
+
+
+/* ==========================================================================
+   Radar: a sweep turns around the shield and lands on the active module.
+   All five cards stay visible; only the one under the sweep is lit.
+   ========================================================================== */
+
+/* registered so the browser can animate the colour smoothly */
+@property --sr { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --sg { syntax: '<number>'; inherits: false; initial-value: 232; }
+@property --sb { syntax: '<number>'; inherits: false; initial-value: 255; }
+@property --sl { syntax: '<number>'; inherits: false; initial-value: 60; }
+
+.vigi-radar {
+  position: absolute;
+  inset: 8%;
+  z-index: 2;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(from 0deg,
+    transparent 0deg 245deg,
+    rgba(var(--sr), var(--sg), var(--sb), 0) 245deg,
+    rgba(var(--sr), var(--sg), var(--sb), .24) 330deg,
+    rgba(var(--sr), var(--sg), var(--sb), .55) 358deg,
+    rgba(var(--sr), var(--sg), var(--sb), .9) 360deg);
+  /* the beam fades out just before the card: --sl is set per module in Hero.jsx */
+  -webkit-mask-image: radial-gradient(closest-side, transparent 30%, #000 40%, #000 calc(var(--sl) * 1% - 9%), transparent calc(var(--sl) * 1% - 1%));
+          mask-image: radial-gradient(closest-side, transparent 30%, #000 40%, #000 calc(var(--sl) * 1% - 9%), transparent calc(var(--sl) * 1% - 1%));
+  transition:
+    transform 1.1s cubic-bezier(.45, .05, .25, 1), opacity .5s ease,
+    --sr 1.1s ease, --sg 1.1s ease, --sb 1.1s ease, --sl 1.1s ease;
+}
+.vigi-radar.is-on { opacity: 1; }
+
+/* inactive cards are dimmed; the lit one (or the hovered one) is full */
+
+/* ping: a ring expands from the card the sweep just reached */
+.vigi-tab.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgb(var(--tab-rgb, 0, 232, 255));
+  pointer-events: none;
+  animation: vigiPing .9s ease-out 1 both;
+}
+@keyframes vigiPing {
+  from { transform: scale(1); opacity: .85; }
+  to   { transform: scale(1.14, 1.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vigi-radar { transition: none; }
+  .vigi-tab.active::before { animation: none; opacity: 0; }
+}
+
+
+/* ==========================================================================
+   Detail card: action link  +  light-theme contrast
+   ========================================================================== */
+
+.hero .hero-intro .vigi-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  color: color-mix(in srgb, rgb(var(--tab-rgb, 0, 232, 255)) 70%, #fff);
+}
+.hero .hero-intro .vigi-detail-link span { transition: transform .2s ease; }
+.hero .hero-intro .vigi-detail-link:hover,
+.hero .hero-intro .vigi-detail-link:focus-visible { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.hero .hero-intro .vigi-detail-link:hover span,
+.hero .hero-intro .vigi-detail-link:focus-visible span { transform: translateX(4px); }
+
+html[data-theme="light"] .hero .hero-intro .vigi-detail-link { color: rgb(var(--tab-rgb, 0, 160, 190)); filter: brightness(.72) saturate(1.1); }
+html[data-theme="light"] .hero .hero-intro .vigi-detail-link:hover { color: #0F1F3D; filter: none; }
+
+/* light theme: the cyan gradient on "Five Vigilances." and the eyebrow were too pale on a white background */
+html[data-theme="light"] .hero-title-xl em {
+  background: linear-gradient(90deg, #0A7F96 0%, #0C93A0 55%, #0A8F72 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* light theme: darker tint for the number and tags in the detail card */
+/* (the base light rule for .sip-tag uses !important, so this one must too) */
+
+
+/* ==========================================================================
+   Trust badges stay visible on short screens + names on phone cards
+   ========================================================================== */
+
+/* home-polish.css hid the badges below 680px of height; they are the credibility
+   signals, so keep them, just more compact */
+
+/* phones: icon + short name under it (the label used to be hidden) */
+@media (max-width: 600px) {
+  .vigi-tab {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 6px 5px;
+    min-width: 66px;
+  }
+  .vigi-tab-icon { width: 36px; height: 36px; }
+  .vigi-tab-text { display: block; text-align: center; }
+  /* (hero-fix.css loads after this file and sets a bigger label size, so this
+     selector is more specific on purpose) */
+  .vigi-orbit .vigi-tab .vigi-tab-label {
+    display: block;
+    font-size: clamp(12px, 2.5cqw, 12px);
+    letter-spacing: .02em;
+    line-height: 1.1;
+    white-space: nowrap;      /* full name, never truncated */
+  }
+  .vigi-orbit .vigi-tab .vigi-tab-sub { display: none; }
+}
+
+/* a little air between the trust badges and the detail card */
+
+/* light theme: the trust badges were pale cyan on a pale page */
+
+
+/* ==========================================================================
+   Phones — the five cards stay inside the screen, and the orbit comes up
+   closer to the pitch (it used to start at ~65% of the screen height).
+   ========================================================================== */
+@media (max-width: 600px) {
+  /* side cards were centred on 13% / 87% of the orbit and spilled past the edge:
+     keep each card's centre far enough from the border for half its width */
+  .vigi-tab {
+    --half: 52px;
+    left: clamp(var(--half), var(--ox, 50%), calc(100% - var(--half)));
+  }
+  html .hero { row-gap: 4px; padding-top: calc(var(--nav-h, 56px) + 6px); padding-bottom: 48px; }
+  html .hero .hero-title-xl { font-size: clamp(34px, 10.5vw, 44px); line-height: 1.04; }
+  html .hero .hero-desc { font-size: 15px; line-height: 1.45; margin-bottom: 14px; }
+  html .hero .hero-intro .vigi-detail-slot .vigi-detail-card { padding: 12px 14px; }
+  /* the pills already show name + count: on a phone the card keeps title, badge and link only */
+  html .hero .hero-intro .vigi-detail-slot .vigi-detail-desc { display: none; }
+  html .hero .hero-intro .vigi-detail-slot { margin-top: 8px; min-height: 0; height: auto; }
+  html .hero .hero-cta-row { margin-bottom: 0; }
+  html .vigi-orbit { width: min(350px, 100%); margin-top: 0; }
+}

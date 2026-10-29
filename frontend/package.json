@@ -1,0 +1,36 @@
+{
+  "name": "vigicore-nexus",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "node scripts/copy-bg-model.mjs"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "^1.4.5",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "chart.js": "^4.5.1",
+    "gsap": "^3.12.5",
+    "jsqr": "^1.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6",
+    "three": "^0.165.0",
+    "zxing-wasm": "^3.1.5"
+  },
+  "devDependencies": {
+    "@imgly/background-removal-data": "^1.4.5",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2"
+  },
+  "overrides": {
+    "lodash": "^4.18.1",
+    "zod": "^3.25.76"
+  }
+}

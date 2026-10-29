@@ -1,0 +1,148 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS design tokens — change these to reskin the whole site */
+:root {
+  --bg:           #020a18;
+  --cyan:         #00e8ff;
+  --cyan-bright:  #40f0ff;
+  --cyan-dim:     rgba(0,232,255,0.16);
+  --cyan-glow:    rgba(0,232,255,0.50);
+  --teal:         #00ffcc;
+  --teal-dim:     rgba(0,255,204,0.10);
+  --blue:         #0a80ff;
+  --blue-mid:     rgba(10,128,255,0.25);
+  --white:        #e4f3ff;
+  --muted:        rgba(175,225,245,0.72);
+  --glass-bg:     rgba(3,14,32,0.78);
+  --glass-border: rgba(0,232,255,0.20);
+
+  /* ── Unified design system (2026 audit) ─────────────────
+     Single accent gradient. Reserve --enterprise / --authority
+     for their specific contexts only — never as decoration. */
+  --accent-grad:  linear-gradient(135deg, var(--cyan) 0%, var(--teal) 100%);
+  --ink:          var(--white);
+  --muted-2:      rgba(175,225,245,0.60);   /* labels / eyebrows — AA-safe on --bg */
+  --enterprise:   #dc8c3c;
+  --authority:    #3296ff;
+
+  /* Surfaces — the one card language for the whole site */
+  --surface:      rgba(255,255,255,0.03);
+  --surface-hi:   rgba(255,255,255,0.05);
+  --line:         rgba(255,255,255,0.08);
+  --line-accent:  rgba(0,232,255,0.25);
+
+  /* Spacing — 8pt grid */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 64px; --sp-7: 96px; --sp-8: 128px;
+
+  /* Radius */
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px;
+
+  /* Elevation */
+  --shadow-card: 0 24px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+  --shadow-card-hover: 0 28px 70px rgba(0,0,0,.5), 0 0 32px rgba(0,232,255,.10), inset 0 1px 0 rgba(255,255,255,.06);
+
+  /* Motion — expanded scale. --ease / --dur-fast / --dur-slow (above)
+     are untouched; these add the missing steps so every section's
+     motion can be pulled from the same palette instead of one-off
+     values scattered per component. */
+  --ease: cubic-bezier(.16,1,.3,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+  --ease-spring: cubic-bezier(.22,1.4,.36,1);
+  --dur-instant: 120ms;
+  --dur-fast: 240ms;
+  --dur-med: 420ms;
+  --dur-slow: 700ms;
+  --dur-cinematic: 1200ms;
+
+  /* Depth — z-index layers, named so stacking order is declared once
+     instead of guessed per component. */
+  --z-bg: 0;
+  --z-content: 2;
+  --z-nav: 50;
+  --z-overlay: 80;
+  --z-modal: 100;
+
+  /* Atmosphere — soft-focus scale for foreground/background separation
+     (used to give sections a sense of depth without full 3D). */
+  --blur-sm: 4px;
+  --blur-md: 14px;
+  --blur-lg: 32px;
+
+  /* Elevation — additional steps beyond --shadow-card / --shadow-card-hover
+     (both kept as-is) for surfaces that sit further back or further
+     forward in a section's spatial composition. */
+  --shadow-ambient: 0 12px 32px rgba(0,0,0,.35);
+  --shadow-deep: 0 40px 100px rgba(0,0,0,.55), 0 0 60px rgba(0,232,255,.06);
+
+  /* Glow — unify naming across domains so any section can reach for
+     "the healthcare glow" / "the enterprise glow" / "the seam glow"
+     by name instead of re-deriving rgba values each time. */
+  --glow-healthcare: rgba(0,232,255,0.45);
+  --glow-enterprise: rgba(220,140,60,0.40);
+  --glow-seam:       rgba(50,200,220,0.40);
+}
+
+/* ── Accessibility: visible focus ring everywhere (uses the site's
+     existing --cyan, no new color introduced) ─────────────────── */
+
+
+/* ── Accessibility: respect reduced-motion preference site-wide ──── */
+
+/* Unified card primitive — opt-in via class="vc-card".
+   Every new/refactored surface (actor, ecosystem, metric, dashboard,
+   contact) should converge on this instead of a bespoke recipe. */
+
+/* ── Accessibility: visible keyboard focus everywhere ───── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Accessibility: respect reduced-motion preference ───── */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--white);
+  cursor: default;
+}
+
+/* Subtle film-grain noise overlay on top of everything */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+
+
+/* Un seul bouton « afficher le mot de passe » : celui du site.
+   Edge ajoute son propre œil (et une croix d'effacement) dans les champs mot de passe : on les masque. */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}

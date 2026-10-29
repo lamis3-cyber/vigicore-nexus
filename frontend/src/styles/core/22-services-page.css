@@ -1,0 +1,1517 @@
+/* ===========================================================================
+   Services page — public marketplace catalog + admin "manage listings" page.
+   Reuses existing tokens (--surface, --line, --cyan, --sp-*, --r-*) and the
+   .form-row/.form-group/.form-submit classes already defined above, so it
+   matches the rest of the site without introducing a second design system.
+
+   Section map (each visually distinct on purpose, so nothing reads as a
+   repeat of the section before it):
+     hero            → search + trust row + stat strip
+     category rail   → sticky-feel chip filter, marketplace-style browsing
+     marquee         → sponsor strip, continuous auto-scroll, tile cards with
+                        a gradient "media" header + overlapping org avatar
+     feature panel   → asymmetric square editorial panel (mesh visual +
+                        floating stat card + ribbon) with a side thumbnail
+                        strip — square/checklist language on purpose, so it
+                        never reads as a reskin of the marquee's rounded
+                        tile-strip pattern
+     recommended row → compact horizontal scroller ("pour vous")
+     catalog grid    → the full public listing grid, hover-reveals a CTA
+   =========================================================================== */
+
+/* -- Hero, condensed --------------------------------------------------------
+   This hero carries a lot more stacked content than the other .about-hero
+   pages (title + desc + search + trust row + stat strip vs. just a title +
+   desc), so inheriting .about-hero's full-viewport min-height and the
+   generic .section-content 100px top/bottom padding pushed everything well
+   past the fold on a normal laptop screen. Trim both here, scoped to this
+   page only, so the hero reads as one glance rather than a scroll. */
+.services-hero {
+  min-height: auto;
+}
+.services-hero.about-hero .section-content {
+  padding-top: clamp(28px, 6vh, 64px);
+  padding-bottom: clamp(24px, 5vh, 48px);
+}
+.services-hero .section-title { margin-bottom: 14px; }
+.services-hero .section-desc { margin-bottom: 0; }
+.services-hero .services-search { margin-top: var(--sp-3); }
+.services-hero .services-trust-row { margin-top: var(--sp-2); }
+.services-hero .services-stat-strip { margin-top: var(--sp-3); }
+
+.services-search {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  max-width: 480px;
+  margin: var(--sp-3) auto 0;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+/* Light mode: var(--line) at 0.14 opacity and var(--surface) at 0.035
+   opacity give almost no separation from the pale body background —
+   the search bar all but disappears. Lift it onto a solid white
+   surface with a firmer border and a soft shadow so it reads as an
+   input. */
+html[data-theme="light"] .services-search {
+  background: #ffffff;
+  border-color: rgba(15,31,61,0.16);
+  box-shadow: 0 2px 10px rgba(15,31,61,0.06);
+}
+html[data-theme="light"] .services-search:focus-within {
+  border-color: var(--line-accent);
+  box-shadow: 0 2px 14px rgba(0,200,224,0.14);
+}
+
+.services-search:focus-within {
+  border-color: var(--line-accent);
+}
+
+.services-search svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--muted-2);
+}
+
+.services-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.services-search input::placeholder {
+  color: var(--muted-2);
+}
+
+/* -- Hero trust row (small credibility signals above the stat strip) ------ */
+
+.services-trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  margin: var(--sp-3) auto 0;
+}
+
+.services-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted-2);
+}
+
+.services-trust-item svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--teal);
+}
+
+/* -- Hero trust strip ----------------------------------------------------- */
+
+.services-stat-strip {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin: var(--sp-4) auto 0;
+  max-width: 720px;
+  flex-wrap: wrap;
+}
+
+.services-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 90px;
+}
+
+.services-stat-value {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  color: var(--cyan-bright);
+  line-height: 1;
+}
+
+.services-stat-label {
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  letter-spacing: 0.02em;
+  text-align: center;
+  max-width: 14ch;
+}
+
+@media (max-width: 640px) {
+  .services-stat-strip { gap: var(--sp-2) var(--sp-4); }
+}
+
+/* -- Category filter rail -------------------------------------------------- */
+
+.services-category-rail-section {
+  position: relative;
+  z-index: 2;
+  padding: 0 40px var(--sp-4);
+  display: flex;
+  justify-content: center;
+}
+
+.services-category-rail {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  max-width: 1100px;
+  width: 100%;
+  padding: 4px 4px var(--sp-1);
+  scrollbar-width: thin;
+}
+
+.services-chip {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.services-chip:hover {
+  border-color: var(--line-accent);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.services-chip:first-child {
+  background: linear-gradient(135deg, #00e8ff 0%, #00ffcc 100%);
+  border-color: transparent;
+  color: #000;
+  box-shadow: 0 2px 14px rgba(0,232,255,0.30), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.services-chip:first-child:hover {
+  box-shadow: 0 4px 22px rgba(0,232,255,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  color: #000;
+}
+
+.services-chip:first-child .services-chip-count {
+  background: rgba(0,0,0,0.15);
+  color: #000;
+}
+
+.services-chip--active {
+  background: linear-gradient(135deg, #00e8ff 0%, #00ffcc 100%);
+  border-color: transparent;
+  color: #000;
+  box-shadow: 0 2px 14px rgba(0,232,255,0.30), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.services-chip--active:hover {
+  box-shadow: 0 4px 22px rgba(0,232,255,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.services-chip--active .services-chip-count {
+  background: rgba(0,0,0,0.15);
+  color: #000;
+}
+
+.services-chip-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--surface-hi);
+  color: var(--muted-2);
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+
+/* Light mode: same washed-out-border issue as .services-search above,
+   applied to the inactive category pills. White surface + a firmer
+   border keeps them from blending into the page. Excludes
+   .services-chip--active so it keeps its cyan gradient fill instead
+   of being overwritten white by this higher-specificity selector. */
+html[data-theme="light"] .services-chip:not(.services-chip--active):not(:first-child) {
+  background: #ffffff;
+  border-color: rgba(15,31,61,0.14);
+  box-shadow: 0 1px 4px rgba(15,31,61,0.05);
+}
+html[data-theme="light"] .services-chip:not(.services-chip--active):not(:first-child):hover {
+  border-color: var(--line-accent);
+  box-shadow: 0 2px 8px rgba(0,200,224,0.12);
+}
+
+html[data-theme="light"] .services-chip:first-child {
+  background: linear-gradient(135deg, #00e8ff 0%, #00ffcc 100%);
+  border-color: transparent;
+  color: #000;
+  box-shadow: 0 2px 14px rgba(0,232,255,0.30), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+html[data-theme="light"] .services-chip:first-child:hover {
+  box-shadow: 0 4px 22px rgba(0,232,255,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+  filter: brightness(1.08);
+  color: #000;
+}
+
+@media (max-width: 640px) {
+  .services-category-rail-section { padding: 0 20px var(--sp-3); }
+}
+
+/* -- Catalog toolbar (result count + active filter) ------------------------ */
+
+.services-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  max-width: 100%;
+  margin: 0 0 var(--sp-2);
+  padding-bottom: var(--sp-1);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted-2);
+}
+
+.services-toolbar-count strong {
+  color: var(--cyan);
+}
+
+.services-toolbar-clear {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.services-toolbar-clear:hover {
+  border-color: var(--line-accent);
+  color: var(--ink);
+}
+
+.services-listing-section {
+  padding-top: 0;
+}
+
+.services-state {
+  text-align: center;
+  padding: var(--sp-6) var(--sp-2);
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.services-state--notice {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+}
+
+.services-state--notice a {
+  color: var(--cyan);
+}
+
+/* ── Pagination (numbered, Google-style) ───────────────────────────── */
+.services-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--sp-5);
+}
+
+.services-pagination-num,
+.services-pagination-arrow {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.services-pagination-num:hover,
+.services-pagination-arrow:hover:not(:disabled) {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.services-pagination-num.is-active {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #021018;
+}
+
+.services-pagination-arrow {
+  font-size: 1.1rem;
+}
+
+.services-pagination-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.services-pagination-ellipsis {
+  min-width: 24px;
+  text-align: center;
+  color: var(--muted-2);
+}
+
+@media (max-width: 480px) {
+  .services-pagination { gap: 3px; }
+  .services-pagination-num,
+  .services-pagination-arrow { min-width: 32px; height: 32px; font-size: 0.82rem; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.services-state-clear {
+  margin-top: var(--sp-2);
+}
+
+/* Skeleton loading grid — mirrors .services-bento's own 1-big + N-small
+   shape (see ServicesBentoSkeleton) so real cards don't cause a layout
+   jump when they replace this. */
+.services-bento-skeleton { pointer-events: none; }
+
+.pcard-skeleton {
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    100deg,
+    var(--surface) 30%,
+    var(--surface-hi) 50%,
+    var(--surface) 70%
+  );
+  background-size: 200% 100%;
+  animation: services-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.pcard-skeleton--big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 560px) {
+  .pcard-skeleton--big { grid-column: span 1; grid-row: span 1; }
+}
+
+@keyframes services-skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcard-skeleton { animation: none; background-position: 0 0; }
+}
+
+/* -- Catalog grid + product card ------------------------------------------- */
+
+/* -- Catalog bento grid — main /services product wall ---------------------
+   Image-forward "product tile" cards (icon/photo fills the whole tile,
+   copy sits in a bottom gradient overlay), one enlarged tile per page for
+   rhythm, plus a light 3D tilt on hover (see handlePcardTilt in the
+   component). Deliberately its own class set — not a .services-card
+   variant — so it can't drift out of sync with the compact "pour vous"
+   row or the spotlight panel, which keep the older card language. */
+.services-bento {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 280px;
+  gap: var(--sp-3);
+}
+
+@media (max-width: 1100px) {
+  .services-bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px; }
+}
+
+@media (max-width: 980px) {
+  .services-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 260px; }
+}
+
+@media (max-width: 560px) {
+  .services-bento { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+}
+
+.pcard {
+  /* Per-category accent, set inline via --pcard-accent; falls back to the
+     site cyan for any listing without a mapped category. */
+  --pcard-accent: var(--cyan);
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  will-change: transform;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.pcard:hover,
+.pcard:focus-visible {
+  border-color: var(--pcard-accent);
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px var(--pcard-accent), 0 0 30px color-mix(in srgb, var(--pcard-accent) 22%, transparent);
+  z-index: 3;
+}
+
+.pcard:focus-visible {
+  outline: none;
+}
+
+/* The tilt's on-screen travel is proportional to card size, so the small
+   grid tiles need their own, more emphatic hover cue (brighter glow +
+   visible lift) to read clearly next to the one enlarged tile. */
+.pcard:not(.pcard--big):hover,
+.pcard:not(.pcard--big):focus-visible {
+  box-shadow: var(--shadow-card-hover), 0 0 0 1px var(--pcard-accent), 0 0 26px color-mix(in srgb, var(--pcard-accent) 30%, transparent);
+}
+
+.pcard--big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 560px) {
+  .pcard--big { grid-column: span 1; grid-row: span 1; }
+}
+
+.pcard-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pcard-accent);
+  background:
+    radial-gradient(circle at 25% 20%, color-mix(in srgb, var(--pcard-accent) 18%, transparent) 0%, transparent 55%),
+    radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--pcard-accent) 12%, transparent) 0%, transparent 55%),
+    var(--surface-hi);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.pcard:hover .pcard-bg {
+  transform: scale(1.06);
+}
+
+.pcard-bg svg {
+  width: 22%;
+  height: 22%;
+  max-width: 68px;
+  max-height: 68px;
+  opacity: 0.55;
+}
+
+.pcard--big .pcard-bg svg {
+  max-width: 108px;
+  max-height: 108px;
+}
+
+.pcard-bg--photo {
+  background-size: cover;
+  background-position: center;
+}
+
+/* "Show whole photo" covers: instead of blurring the photo itself to fill
+   the letterbox space (looks muddy on product shots, which are mostly flat
+   colour/white), the space gets the same designed, on-brand glow every
+   photo-less card already uses (see .pcard-bg above) — clean and
+   professional whatever the photo looks like. A bordered, padded "mat"
+   sits inside that glow (like a passe-partout around a framed print) so
+   the photo never touches the card's raw edge, and its accent colour can
+   be overridden per-product via the --pcard-accent custom property (an
+   org's own brand colour instead of the site default cyan) wherever this
+   markup sets it. The crisp photo (.if-smart-fg) always stays fully
+   visible and uncropped, with a soft drop shadow so it reads as placed on
+   the card, not floating flat. */
+.if-smart { overflow: hidden; }
+.if-smart-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Default is a neutral studio-softbox look — a soft light halo fading to
+     the card's own dark surface, like real product photography — rather
+     than a saturated colour wash. --pcard-accent (set per-product from
+     imageAccent) still overrides this default when an org wants their own
+     brand colour instead. */
+}
+.if-smart-frame {
+  position: absolute;
+  inset: 9%;
+  border-radius: 12px;
+  pointer-events: none;
+}
+.if-smart-fg {
+  position: absolute;
+  inset: 6%;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+}
+/* "No background": the person explicitly asked for the photo to sit bare on
+   the card, so the glow and mat are removed entirely rather than faded —
+   only the photo (.if-smart-fg) and its drop shadow remain. */
+.if-smart[data-accent="transparent"] .if-smart-bg,
+.if-smart[data-accent="transparent"] .if-smart-frame {
+  display: none;
+}
+
+.pcard-demo-badge {
+  top: 14px;
+  right: 14px;
+  left: auto;
+  color: var(--cyan);
+}
+
+html[data-theme="light"] .pcard-demo-badge {
+  color: var(--white);
+}
+
+.pcard-body {
+  position: relative;
+  z-index: 1;
+  padding: var(--sp-3) var(--sp-3) 22px;
+  background: linear-gradient(0deg, rgba(2,10,20,0.94) 10%, rgba(2,10,20,0.55) 55%, transparent 100%);
+}
+
+.pcard-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--pcard-accent);
+  margin-bottom: 4px;
+}
+
+.pcard-body h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 2px;
+  line-height: 1.3;
+}
+
+.pcard--big .pcard-body h3 {
+  font-size: 1.6rem;
+}
+
+.pcard-org {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted-2);
+}
+
+.pcard-hover-detail {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-med) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+
+/* :focus-within still applies (keyboard tab), and the article itself is now
+   tabbable (tabIndex=0) so a tap-to-focus on touch devices reveals this too
+   — hover is no longer the only way in. */
+.pcard:hover .pcard-hover-detail,
+.pcard:focus-within .pcard-hover-detail {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+/* The big tile has room to spare, so its summary/links are shown by
+   default rather than gated behind hover/focus — no reason to hide the
+   most useful copy on the one card that can afford to show it. */
+.pcard-detail--static {
+  margin-top: 10px;
+  max-width: 46ch;
+}
+
+.pcard-detail p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.pcard--big .pcard-detail p {
+  font-size: 0.92rem;
+}
+
+.pcard-links {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.pcard-links a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--pcard-accent);
+}
+
+.pcard-links a:hover {
+  text-decoration: underline;
+}
+
+/* .pcard-body sits over a fixed-dark scrim (rgba(2,10,20,…), by design, so
+   the title/org/description read cleanly over whatever art or photo is in
+   the card's image area) — it never changes with the theme. But its text
+   uses --ink / --muted / --muted-2, which correctly means "light text" in
+   dark mode and now correctly means "dark navy" in light mode everywhere
+   else on the page. On this one always-dark scrim, that flip gives dark
+   text on a dark background. Pin these three back to light colors so the
+   card stays readable regardless of site theme. */
+/* .pcard-body's scrim was pinned permanently dark (by design, for photo
+   backgrounds) with text pinned permanently light to match. That made
+   every catalog tile show a black-scrim/white-text footer even in light
+   mode, clashing hard against the rest of the light theme. Give light
+   mode its own light scrim + dark text instead, so the card matches the
+   page it's sitting in while still reading cleanly over any product photo. */
+html[data-theme="light"] .pcard-body {
+  background: linear-gradient(0deg, rgba(255,255,255,0.97) 12%, rgba(255,255,255,0.82) 55%, transparent 100%);
+}
+html[data-theme="light"] .pcard-body h3 { color: var(--ink); }
+html[data-theme="light"] .pcard-org { color: var(--muted-2); }
+html[data-theme="light"] .pcard-detail p { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pcard, .pcard-bg { transition: none; }
+}
+
+.services-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.services-card:hover {
+  border-color: var(--line-accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Light mode: same as .services-promo-tile — var(--surface) is a
+   faint navy wash that reads as flat gray. .services-card-body has
+   no background of its own, so it inherits this; make it white so
+   the bottom half of the card reads clean against the tinted top
+   image area instead of blending into a gray slab. */
+html[data-theme="light"] .services-card {
+  background: #ffffff;
+}
+
+html[data-theme="light"] .services-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 20px 45px rgba(15,31,61,0.14), 0 0 0 1px rgba(0,200,224,0.25), 0 0 40px rgba(0,200,224,0.35);
+}
+
+.services-card-image {
+  position: relative;
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface-hi);
+  overflow: hidden;
+  transition: background-size var(--dur-slow) var(--ease);
+}
+
+.services-card:hover .services-card-image {
+  background-size: 108%;
+}
+
+.services-card-image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  background: linear-gradient(135deg, rgba(0,232,255,0.10) 0%, rgba(0,255,204,0.05) 100%);
+}
+
+.services-card-image--placeholder svg {
+  width: 30%;
+  height: 30%;
+  max-width: 48px;
+  max-height: 48px;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+/* Hover CTA overlay — turns the catalog grid from a directory of listings
+   into something that reads as browsable products, the way a real
+   marketplace grid invites a click on every tile, not just the title. */
+
+.services-card:hover .services-card-image--placeholder svg {
+  opacity: 0.4;
+}
+
+.services-card-body {
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.services-card-tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.services-card-body h3 {
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.services-card-body p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.services-card-org {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.services-card-org::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.services-card-demo-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(3,14,32,0.75);
+  border: 1px solid var(--line-accent);
+  color: var(--cyan);
+  backdrop-filter: blur(4px);
+}
+
+html[data-theme="light"] .services-card-demo-badge {
+  color: #ffffff;
+}
+
+/* "Verified partner" badge — small marketplace trust signal, sits opposite
+   the demo badge (top-left) so both can coexist without overlapping. */
+
+/* Used instead of the global .reveal-fade/.in-view pattern for anything
+   that mounts asynchronously (after the services fetch resolves) — that
+   pattern relies on useSectionReveal's IntersectionObserver, which only
+   ever looks at the elements present the moment the section first mounts.
+   Cards/banners added later (once `status` changes) are never observed and
+   stay stuck at opacity:0 forever. A plain CSS animation runs whenever the
+   element itself appears in the DOM, with no observer/timing dependency. */
+.services-fade-in {
+  /* "backwards" (not "both"): stays invisible during the staggered delay,
+     but releases the `transform` property once the entrance finishes, so
+     it can't keep overriding the bento cards' hover-tilt transform. */
+  animation: services-fade-in-kf 0.45s var(--ease, ease-out) backwards;
+}
+
+@keyframes services-fade-in-kf {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -- Admin: manage listings ------------------------------------------------ */
+
+/* -- Sponsor marquee ("pub"): continuous auto-scroll, 2030-glass tiles ----- */
+
+.services-marquee-section {
+  position: relative;
+  z-index: 2;
+  /* Bottom padding bumped up from the section's default sp-6 (64px):
+     with only 24px (dots' padding-top) + the dots themselves before this
+     padding kicked in, the card read as sitting right at the section's
+     edge — barely any visible "inside this gray section" buffer below
+     it, unlike above where the heading naturally added that breathing
+     room. sp-7 (96px) gives it a clearly visible, comparable margin. */
+  padding: var(--sp-6) 0 var(--sp-7);
+  overflow: hidden;
+}
+
+.services-marquee-head {
+  text-align: center;
+  padding: 0 40px var(--sp-3);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.services-marquee-title {
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  margin: 4px 0 0;
+}
+/* Was a CSS mask-image + forced compositing layer (transform: translateZ(0)).
+   That fixed hover-shadow clipping but adds real GPU cost (mask compositing
+   + an extra layer) on a page that's already busy with canvas particles and
+   backdrop-filter blur — on weaker hardware that can show up as dropped
+   frames / a blank flash while scrolling. A plain gradient overlay achieves
+   the same taper far more cheaply: two solid divs, color-matched to the
+   page background, sitting on top of the track. Nothing to composite,
+   nothing for a hovered card's shadow to escape. */
+
+.services-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--sp-3);
+  padding: 6px 0;
+  animation: services-marquee-scroll 42s linear infinite;
+}
+
+/* translateX(-50%) only lines up perfectly with the start of the
+   duplicated set when the track has no gap between cards. With
+   `gap` in play, the track's total width is 2N cards + (2N-1) gaps,
+   so the exact halfway point of one full set is N cards + N gaps —
+   which is *further* than -50% by half a gap. Landing short by
+   half a gap is what showed up as a visible empty sliver right as
+   the strip snapped back to the start. Push the endpoint out by
+   half a gap so it lines up exactly with the first duplicated card. */
+@keyframes services-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - (var(--sp-3) / 2))); }
+}
+
+@keyframes services-recommended-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - (var(--sp-2) / 2))); }
+}
+
+/* Single-slot variant: one partner tile centered on screen, auto-advancing
+   (see promoRotator/useAutoIndex in ServicesPage.jsx) instead of the
+   continuous scroll strip above. Reuses .services-promo-tile as the base
+   card look and just overrides sizing/centering + fade-in on remount. */
+
+/* The edge-fade gradients above exist to mask a continuously scrolling
+   strip; there's nothing scrolling under a single centered card, and on
+   narrower viewports they'd fade out part of the card itself. */
+
+/* Wide banner instead of the narrow stacked card: media becomes a left
+   column (icon + avatar) and the copy takes the rest of the width, so the
+   single slot actually uses the section's width instead of floating as a
+   small box in a lot of empty background.
+   Media is pinned with inset:0 (not flex height:auto + stretch) so it is
+   *guaranteed* to fill the card's full height edge-to-edge — the stretch
+   approach left it a hair short of the card's actual height, exposing a
+   sliver of the card's own rounded corner underneath it (looked like the
+   bottom corner was "split" into two curves). */
+
+.services-marquee-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-top: var(--sp-3);
+}
+
+.services-marquee-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--line-accent);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), width var(--dur-fast) var(--ease);
+}
+
+.services-marquee-dot:hover {
+  background: var(--cyan-glow);
+}
+
+.services-marquee-dot.is-active {
+  width: 22px;
+  background: var(--cyan);
+}
+
+/* Slow-rotating conic glow traced just behind the border — reads as a
+   "live" premium product slot rather than a static tile, without
+   competing with the marquee's own scroll motion. */
+
+/* Light mode: --shadow-ambient / --shadow-card-hover are still the
+   dark-mode values (heavy black glows meant for a near-black page),
+   so here they paint a muddy gray smudge under the card instead of a
+   glow. Drop the shadow for this tile in light mode; the border
+   already separates it from the section background. */
+/* Light mode: --surface-hi is a 7%-opacity navy wash over the page
+   background, which reads as a flat gray panel rather than a card.
+   Give the tile a solid white background instead so it lifts off
+   the section and the content panel reads clean. */
+
+/* Diagonal light sheen that sweeps across on hover — a small, unmistakably
+   "premium product slot" cue borrowed from flagship marketplace ads. */
+
+/* "Media" header: gives each sponsor tile an actual product-banner feel
+   instead of a bare icon floating on the card body, and hosts the overlap-
+   ping org avatar the way marketplace gig/listing cards do. */
+
+@media (prefers-reduced-motion: reduce) {
+  .services-marquee-track {
+    animation: none;
+  }
+}
+
+/* -- Featured partner panel ("Labo à la Une") ------------------------------
+   Deliberately NOT a tile strip like the marquee above: one large editorial
+   panel with a tabbed switcher, so the two promotional sections never read
+   as the same component reskinned. */
+
+/* The site-wide .scroll-section rule (min-height:100vh + vertical centering)
+   is meant for the long cinematic story sections elsewhere on the site. The
+   marketplace sections below have much shorter, denser content, so forcing
+   them to fill a full viewport just leaves a large empty band above/below
+   the actual panel. Override to plain, content-height sections instead —
+   this also reads more like a real marketplace page (dense/scannable)
+   rather than a slow scroll-story. */
+.services-page .services-feature-section,
+.services-page .services-recommended-section,
+.services-page .services-listing-section {
+  min-height: 0;
+  display: block;
+  padding: var(--sp-6) 0;
+}
+
+.services-page .services-feature-section .section-content,
+.services-page .services-recommended-section .section-content,
+.services-page .services-listing-section .section-content {
+  padding: 0 40px;
+}
+
+/* The listing grid is the densest, most "product wall" part of the page —
+   let it claim more of a wide viewport than the narrower 1100px story
+   sections above it, so the bento tiles can grow instead of leaving a
+   big unused band of background down the sides. */
+.services-page .services-listing-section .section-content {
+  max-width: 1560px;
+}
+
+@media (max-width: 640px) {
+  .services-page .services-feature-section .section-content,
+  .services-page .services-recommended-section .section-content,
+  .services-page .services-listing-section .section-content {
+    padding: 0 20px;
+  }
+}
+
+.services-feature-section {
+  padding-top: var(--sp-2);
+}
+
+.services-feature-content {
+  max-width: 1080px;
+}
+
+/* Header row: title on the left, a thumbnail strip of the other candidates
+   on the right — replaces the old centered-pill-tabs-under-the-panel
+   layout so this section's overall shape reads nothing like the marquee
+   above it (dense strip of tiles) or the chip rail higher up the page. */
+.services-feature-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-3);
+}
+
+.services-feature-thumbs {
+  display: flex;
+  gap: 8px;
+}
+
+.services-feature-thumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.services-feature-thumb:hover {
+  border-color: var(--line-accent);
+  color: var(--ink);
+}
+
+.services-feature-thumb--active {
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+  color: var(--ink);
+}
+
+.services-feature-thumb-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+  background: var(--surface-hi);
+  color: var(--cyan-bright);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.services-feature-thumb--active .services-feature-thumb-mark {
+  background: var(--accent-grad);
+  color: #021018;
+}
+
+.services-feature-thumb-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .services-feature-thumbs { overflow-x: auto; max-width: 100%; padding-bottom: 4px; }
+  .services-feature-thumb-name { display: none; }
+}
+
+/* Asymmetric square-panel layout — deliberately not the rounded pill/tile
+   language used by the chips and the marquee, so this reads as a distinct
+   "editorial spotlight" rather than another row of cards. */
+.services-feature-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 0;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+  text-align: left;
+  isolation: isolate;
+}
+
+/* A slow-breathing aurora halo around the whole panel — this is the one
+   place on the marketplace page that gets this treatment, so "featured
+   partner" reads as the single most premium slot on the page rather than
+   a bigger version of the marquee tiles above it. */
+.services-feature-panel::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(120deg, var(--cyan) 0%, transparent 30%, transparent 70%, var(--teal) 100%);
+  opacity: 0.55;
+  filter: blur(1px);
+  animation: services-feature-halo 7s ease-in-out infinite;
+}
+
+@keyframes services-feature-halo {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-feature-panel::before { animation: none; opacity: 0.45; }
+}
+
+.services-feature-visual {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-hi);
+  overflow: hidden;
+}
+
+.services-feature-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 24%, rgba(0,255,204,0.24) 0%, transparent 42%),
+    radial-gradient(circle at 78% 70%, rgba(0,232,255,0.26) 0%, transparent 48%),
+    linear-gradient(160deg, rgba(0,232,255,0.06), transparent 60%);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  animation: services-feature-mesh-drift 9s ease-in-out infinite;
+}
+
+@keyframes services-feature-mesh-drift {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.06) translate(-1.5%, 1.5%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-feature-mesh { animation: none; }
+}
+
+/* Orbiting ring around the product mark — the one small "hero" flourish
+   reserved for this panel, echoing a spotlight/stage-light without adding
+   another icon language to the page. */
+.services-feature-visual::after {
+  content: "";
+  position: absolute;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  border: 1px dashed var(--line-accent);
+  animation: services-feature-orbit 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes services-feature-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-feature-visual::after { animation: none; }
+}
+
+.services-feature-mesh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 40%, transparent 100%);
+}
+
+.services-feature-ribbon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #00e8ff !important;
+  background: rgba(3,14,32,0.7);
+  border: 1px solid var(--line-accent);
+  padding: 5px 14px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-ambient);
+  backdrop-filter: blur(6px);
+}
+
+/* Light mode: this sits on the same light cyan/teal gradient panel as
+   .services-feature-float-card and the "Example" badge, so it keeps the
+   dark glass treatment for contrast — just white text instead of cyan. */
+html[data-theme="light"] .services-feature-ribbon {
+  color: #ffffff !important;
+}
+
+.services-feature-mark {
+  position: relative;
+  z-index: 1;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-lg);
+  color: var(--cyan-bright);
+  background: rgba(3,14,32,0.35);
+  border: 1px solid var(--line-accent);
+  box-shadow: 0 0 40px var(--glow-healthcare);
+  backdrop-filter: blur(8px);
+  animation: services-feature-mark-in 0.5s var(--ease) both;
+}
+
+@keyframes services-feature-mark-in {
+  from { opacity: 0; transform: scale(0.92) rotate(-4deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.services-feature-mark svg {
+  width: 42%;
+  height: 42%;
+}
+
+.services-feature-float-card {
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 18px;
+  border-radius: var(--r-md);
+  background: rgba(3,14,32,0.7);
+  border: 1px solid var(--line-accent);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-ambient);
+}
+
+.services-feature-float-value {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+html[data-theme="light"] .services-feature-float-value {
+  color: #ffffff;
+}
+
+.services-feature-float-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.services-feature-body {
+  position: relative;
+  padding: var(--sp-5);
+  background: var(--surface);
+  animation: services-fade-in-kf 0.4s var(--ease) both;
+}
+
+.services-feature-demo-badge {
+  position: static;
+  display: inline-block;
+  margin-bottom: 10px;
+  backdrop-filter: none;
+}
+
+.services-feature-body .services-card-org {
+  margin-bottom: 6px;
+}
+
+.services-feature-body h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.services-feature-body p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 var(--sp-2);
+  max-width: 60ch;
+}
+
+/* Checklist instead of pill tags — the pill shape is already used by the
+   category chips and the promo stat/CTA row, so a checklist keeps this
+   panel visually its own thing. */
+.services-feature-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-3);
+}
+
+.services-feature-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.services-feature-checklist li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  color: var(--teal);
+}
+
+.services-feature-checklist li span svg {
+  width: 11px;
+  height: 11px;
+}
+
+.services-spotlight-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.services-spotlight-cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.services-spotlight-cta:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 780px) {
+  .services-feature-panel {
+    grid-template-columns: 1fr;
+  }
+  .services-feature-visual { min-height: 220px; }
+  .services-feature-body { padding: var(--sp-4); }
+}
+
+/* -- "Pour vous" recommended row ----------------------------------------- */
+
+/* -- "Pour vous" recommended row — auto-scrolling, mirrors the sponsored
+   marquee above it instead of a short static row that leaves empty space
+   once the viewport is wider than the handful of demo cards. ------------- */
+
+.services-recommended-section {
+  padding-top: var(--sp-2);
+  padding-bottom: var(--sp-2);
+}
+
+.services-recommended-head {
+  padding-bottom: var(--sp-2);
+}
+
+.services-recommended-title {
+  font-size: 1.3rem;
+  margin: 4px 0 0;
+}
+
+.services-recommended-mask {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+/* Same swap as .services-marquee: gradient overlay divs instead of a CSS
+   mask + forced compositing layer, to avoid the GPU/perf cost of both on
+   an already animation-heavy page. */
+.services-recommended-mask::before,
+.services-recommended-mask::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(110px, 20%);
+  z-index: 4;
+  pointer-events: none;
+}
+.services-recommended-mask::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+}
+.services-recommended-mask::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+}
+
+.services-recommended-track {
+  display: flex;
+  width: max-content;
+  gap: var(--sp-2);
+  padding: 24px 0 10px;
+  animation: services-recommended-scroll 50s linear infinite;
+}
+
+.services-recommended-mask:hover .services-recommended-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-recommended-track {
+    animation: none;
+  }
+  .services-recommended-mask {
+    overflow-x: auto;
+  }
+}
+
+.services-card--compact {
+  flex: 0 0 220px;
+}
+
+.services-card--compact .services-card-image {
+  height: 110px;
+}
+
+.services-card--compact .services-card-body h3 {
+  font-size: 0.98rem;
+}

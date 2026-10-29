@@ -1,0 +1,72 @@
+# Production reverse proxy (Caddy: automatic HTTPS). One public origin serves the SPA AND proxies /api,
+# so the session cookie is same-site and CORS is not needed in the browser.
+#
+#   SITE_ADDRESS=nexus.example.org   (the real domain; Caddy obtains the certificate)
+#   API_UPSTREAM=api:4000            (default for docker-compose.prod.yml)
+#   CSP_SCRIPT_HASHES                (contents of dist/csp-script-hashes.txt, filled by the web image build)
+#
+# Not validated against a running Caddy in the authoring sandbox — run `caddy validate` first (docs/DEPLOYMENT.md).
+
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	# --- API + Server-Sent Events -------------------------------------------------
+	handle /api/* {
+		reverse_proxy {$API_UPSTREAM:api:4000} {
+			# SSE (/api/call/stream): never buffer, never cut. The app sends a ping every 20 s.
+			flush_interval -1
+			transport http {
+				read_timeout 0
+				write_timeout 0
+				dial_timeout 5s
+				response_header_timeout 0
+			}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+	handle /health* {
+		reverse_proxy {$API_UPSTREAM:api:4000}
+	}
+
+	# --- Static SPA ---------------------------------------------------------------
+	root * /srv
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(self), microphone=(self), geolocation=()"
+		# Cross-origin isolation: onnxruntime-web (AI cut-out) needs SharedArrayBuffer for threaded wasm.
+		# `credentialless` keeps Google Fonts working (same values as vite.config.js).
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Embedder-Policy "credentialless"
+		# connect-src 'self' covers /api. Formspree is NOT allowed: the contact form posts to /api/contact.
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' blob: {$CSP_SCRIPT_HASHES}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+		-Server
+	}
+
+	# Large binary assets: immutable cache; wasm/onnx must keep their exact bytes and MIME type.
+	@heavy path /imgly/* /assets/* /fonts/*
+	header @heavy Cache-Control "public, max-age=31536000, immutable"
+	@wasm path *.wasm
+	header @wasm Content-Type "application/wasm"
+	# index.html (and every client-side route that falls back to it) must always be revalidated.
+	@spa not path /assets/* /imgly/* /fonts/*
+	header @spa Cache-Control "no-cache"
+
+	# Dashboard is its own HTML entry; everything else is the SPA (client-side routes).
+	handle /dashboard* {
+		try_files {path} /dashboard/index.html
+		file_server
+	}
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

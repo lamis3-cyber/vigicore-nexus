@@ -1,0 +1,110 @@
+/* ── 2b. DIM MODE — theme token overrides ────────────────── */
+
+/* Smooth transition for ALL theme-affected properties */
+html[data-theme="dim"] *,
+html[data-theme="dim"] *::before,
+html[data-theme="dim"] *::after {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
+
+/* Dim mode — desaturated deep slate, all glows softened */
+html[data-theme="dim"] {
+  --bg:           #0e1520;
+  --white:        #c8dff0;
+  --cyan:         #00b8d4;
+  --teal:         #00c896;
+  --glass-bg:     rgba(20,36,58,0.75);
+  --glass-border: rgba(0,184,212,0.18);
+}
+
+html[data-theme="dim"] body {
+  background: #0e1520;
+}
+
+/* Soften canvas backgrounds in dim mode */
+html[data-theme="dim"] #bg-canvas,
+html[data-theme="dim"] #ambient-particles-canvas {
+  opacity: 0.45;
+}
+
+html[data-theme="dim"] #ambient-glow {
+  opacity: 0.35;
+}
+
+html[data-theme="dim"] #rays-canvas {
+  opacity: 0.3;
+}
+
+/* Soften hero glow effects */
+html[data-theme="dim"] .shield-wrap {
+  filter: drop-shadow(0 0 14px rgba(0,184,212,0.45))
+          drop-shadow(0 0 36px rgba(0,80,200,0.18));
+}
+
+/* Soften section backgrounds */
+html[data-theme="dim"] .scroll-section, html[data-theme="dim"] .hero, html[data-theme="dim"] .trust-strip {
+  background: #0e1520;
+}
+
+/* Navbar in dim mode */
+html[data-theme="dim"] .navbar {
+  background: rgba(14,21,32,0.92);
+  border-bottom-color: rgba(0,184,212,0.12);
+}
+
+/* Cards in dim mode */
+html[data-theme="dim"] .actor-card {
+  background: rgba(18,28,45,0.85);
+}
+
+/* ── THEME TOGGLE BUTTON ─────────────────────────────────── */
+
+/* .theme-toggle defined below in Navbar section */
+
+.theme-icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dark mode: show moon, hide sun */
+html[data-theme="dark"] .theme-icon--moon  { opacity: 1; transform: scale(1) rotate(0deg); }
+html[data-theme="dark"] .theme-icon--sun   { opacity: 0; transform: scale(0.6) rotate(90deg); }
+
+/* Dim mode: show sun, hide moon */
+html[data-theme="dim"]  .theme-icon--moon  { opacity: 0; transform: scale(0.6) rotate(-90deg); }
+html[data-theme="dim"]  .theme-icon--sun   { opacity: 1; transform: scale(1) rotate(0deg); }
+
+/* Mobile theme row in drawer */
+.mobile-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 4px;
+  border-top: 1px solid rgba(0,232,255,0.08);
+  margin-top: 8px;
+}
+
+.mobile-theme-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,232,255,0.5);
+}
+
+.theme-toggle--mobile {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,232,255,0.18);
+  background: rgba(0,232,255,0.05);
+}
+

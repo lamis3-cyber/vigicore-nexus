@@ -1,0 +1,191 @@
+Device ID;Device Name;Category;Department;Manufacturer Examples;Risk Class;Typical Incident;Failure Mode;Severity;Preventive Action
+LD051;Anaerobic Chamber;Laboratory Device;Microbiology;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD063;Analytical Balance;Laboratory Device;General;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD046;Autoclave;Laboratory Device;Microbiology;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD023;Autoimmune Analyzer;Laboratory Device;Immunology;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD104;Automated Aliquotter;Laboratory Device;Automation;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD103;Automated Sample Sorter;Laboratory Device;Automation;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD036;Automatic Stainer;Laboratory Device;Pathology;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD097;Barcode Printer;Laboratory Device;IT;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD098;Barcode Scanner;Laboratory Device;IT;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD094;Benchtop Centrifuge;Laboratory Device;General;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD043;Biosafety Cabinet;Laboratory Device;Microbiology;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD056;Blood Bag Sealer;Laboratory Device;Blood Bank;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD047;Blood Culture Analyzer;Laboratory Device;Microbiology;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD003;Blood Gas Analyzer;Laboratory Device;Chemistry;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD055;Blood Mixer;Laboratory Device;Blood Bank;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD052;Blood Refrigerator;Laboratory Device;Blood Bank;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD016;Blood Smear Stainer;Laboratory Device;Hematology;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD011;CBC Analyzer;Laboratory Device;Hematology;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD018;Cell Counter;Laboratory Device;Hematology;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD009;Centrifuge;Laboratory Device;General;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD074;Chemotherapy Hood;Laboratory Device;Oncology;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD021;CLIA Analyzer;Laboratory Device;Immunology;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD001;Clinical Chemistry Analyzer;Laboratory Device;Chemistry;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD045;CO2 Incubator;Laboratory Device;Microbiology;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD013;Coagulation Analyzer;Laboratory Device;Hematology;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD048;Colony Counter;Laboratory Device;Microbiology;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD037;Coverslipper;Laboratory Device;Pathology;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD058;Crossmatch Analyzer;Laboratory Device;Blood Bank;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD095;Cryogenic Storage Tank;Laboratory Device;General;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD035;Cryostat;Laboratory Device;Pathology;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD079;CT Scanner;Laboratory Device;Radiology;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD076;CT Simulator;Laboratory Device;Radiotherapy;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD105;Decapper;Laboratory Device;Automation;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD042;Digital Slide Scanner;Laboratory Device;Pathology;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD026;DNA Extractor;Laboratory Device;Molecular;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD031;DNA Sequencer;Laboratory Device;Molecular;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD067;Dry Bath;Laboratory Device;General;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD002;Electrolyte Analyzer;Laboratory Device;Chemistry;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD019;ELISA Reader;Laboratory Device;Immunology;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD020;ELISA Washer;Laboratory Device;Immunology;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD033;Embedding Station;Laboratory Device;Pathology;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD012;ESR Analyzer;Laboratory Device;Hematology;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD022;FIA Analyzer;Laboratory Device;Immunology;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD005;Flame Photometer;Laboratory Device;Chemistry;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD040;Float Bath;Laboratory Device;Pathology;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD085;Fluorescence Microscope;Laboratory Device;General;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD007;Fluorometer;Laboratory Device;Chemistry;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD086;Fume Hood;Laboratory Device;General;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD080;Gamma Camera;Laboratory Device;Radiology;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD029;Gel Documentation System;Laboratory Device;Molecular;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD028;Gel Electrophoresis;Laboratory Device;Molecular;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD041;Grossing Station;Laboratory Device;Pathology;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD014;Hemoglobin Analyzer;Laboratory Device;Hematology;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD039;Histology Oven;Laboratory Device;Pathology;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD068;Hot Plate;Laboratory Device;General;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD070;Ice Maker;Laboratory Device;General;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD044;Incubator;Laboratory Device;Microbiology;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD071;Infusion Pump;Laboratory Device;Oncology;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD083;Inverted Microscope;Laboratory Device;General;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD101;Lab Information System Terminal;Laboratory Device;IT;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD060;Lab Refrigerator;Laboratory Device;General;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD099;Label Printer;Laboratory Device;IT;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD073;Laminar Flow Cabinet;Laboratory Device;Oncology;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD075;Linear Accelerator;Laboratory Device;Radiotherapy;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD096;Liquid Nitrogen Tank;Laboratory Device;General;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD062;Magnetic Stirrer;Laboratory Device;General;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD049;MALDI-TOF;Laboratory Device;Microbiology;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD092;Microplate Incubator;Laboratory Device;General;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD090;Microplate Reader;Laboratory Device;General;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD091;Microplate Washer;Laboratory Device;General;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD081;Microscope;Laboratory Device;General;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD078;MRI;Laboratory Device;Radiology;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD030;Nanodrop;Laboratory Device;Molecular;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD006;Nephelometer;Laboratory Device;Chemistry;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD087;Orbital Shaker;Laboratory Device;General;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD008;Osmometer;Laboratory Device;Chemistry;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD024;PCR Thermocycler;Laboratory Device;Molecular;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD077;PET CT;Laboratory Device;Radiology;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD065;pH Meter;Laboratory Device;General;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD084;Phase Contrast Microscope;Laboratory Device;General;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD053;Plasma Freezer;Laboratory Device;Blood Bank;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD054;Platelet Incubator;Laboratory Device;Blood Bank;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD064;Precision Balance;Laboratory Device;General;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD025;Real-Time PCR;Laboratory Device;Molecular;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD106;Recapper;Laboratory Device;Automation;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD093;Refrigerated Centrifuge;Laboratory Device;General;Siemens;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD015;Reticulocyte Analyzer;Laboratory Device;Hematology;Thermo Fisher;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD027;RNA Extractor;Laboratory Device;Molecular;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD088;Rocking Shaker;Laboratory Device;General;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD034;Rotary Microtome;Laboratory Device;Pathology;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD038;Slide Dryer;Laboratory Device;Pathology;Bio-Rad;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD017;Slide Maker;Laboratory Device;Hematology;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD107;Slide Scanner Loader;Laboratory Device;Automation;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD102;Specimen Transport System;Laboratory Device;Automation;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD004;Spectrophotometer;Laboratory Device;Chemistry;Beckman Coulter;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD082;Stereo Microscope;Laboratory Device;General;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD072;Syringe Pump;Laboratory Device;Oncology;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD032;Tissue Processor;Laboratory Device;Pathology;Sysmex;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD089;Tube Roller;Laboratory Device;General;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD057;Tube Stripper;Laboratory Device;Blood Bank;Sakura;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD059;Ultra Low Freezer;Laboratory Device;General;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD100;UPS;Laboratory Device;IT;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD069;Vacuum Pump;Laboratory Device;General;Qiagen;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD050;VITEK Analyzer;Laboratory Device;Microbiology;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD061;Vortex Mixer;Laboratory Device;General;Abbott;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD066;Water Bath;Laboratory Device;General;Leica;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+LD010;Water Purification System;Laboratory Device;General;Roche;IIa;Calibration error or malfunction;Mechanical/Software;Moderate;Routine maintenance and calibration
+;Patient Monitoring;;;;;;;;
+;Bedside Patient Monitor;Patient Monitoring;;;;;;;
+;ECG Monitor;Patient Monitoring;;;;;;;
+;Holter Monitor;Patient Monitoring;;;;;;;
+;Pulse Oximeter;Patient Monitoring;;;;;;;
+;Capnograph;Patient Monitoring;;;;;;;
+;Cardiology;;;;;;;;
+;ECG Machine;Cardiology;;;;fausses alarmes,perte totale du signal ECG associée à une augmentation de la résistance;;;
+;Defibrillator;Cardiology;;;;désigne une défaillance technique, un choc inapproprié ou une complication clinique grave nécessitant une prise en charge médicale urgente                                                          Choc inapproprié : L'appareil délivre un choc électrique par erreur suite à une fausse détection d'arythmie ou une interférence.Dysfonctionnement de sonde : Déplacement, fracture ou usure prématurée des câbles reliant le boîtier au muscle cardiaque.Défaut de stimulation/défibrillation : Refus de l'appareil de délivrer un choc nécessaire ou épuisement prématuré de la batterie.Infection ou hématome : Complication locale au niveau de la zone d'implantation du boîtier sous-cutané;;;
+;Echocardiography System;Cardiology;;;;Communication Failures: Critical findings (such as valve vegetations or aortic dissections) failing to reach the treating physician.Technical Artifacts: Misinterpreting ultrasound echoes as false pathologies like masses or thrombi.Procedural Complications: Adverse reactions to sedatives or minor physical trauma during invasive TEE exams.Equipment Malfunctions: Probe failures, electrical issues, or software freezing during active cardiac assessments;;;
+;Holter Recorder;Cardiology;;;;"La tachycardie : une accélération anormale et soudaine des battements cardiaques.La bradycardie : un ralentissement excessif du cœur, souvent sous les 50 battements par minute.Les extrasystoles : des battements prématurés ou ""sauts"" de cœur, très fréquents mais parfois ressentis comme des ratés.Les pauses cardiaques : un arrêt temporaire de la conduction électrique pendant quelques secondes.La fibrillation auriculaire : un rythme totalement irrégulier et anarchique des oreillettes                                                                                                                                              Le décollement d'une électrode : la sueur ou les mouvements peuvent détacher un capteur, créant des ""artefacts"" (parasites) sur le tracé.Le débranchement d'un câble : une déconnexion accidentelle d'un fil relié au boîtier.La batterie faible : une coupure d'alimentation qui arrête prématurément l'enregistrement.";;;
+;Respiratory;;;;;;;;
+;Mechanical Ventilator;Respiratory;;;;Barotrauma / Volutrauma: High airway pressures or excessive volumes rupture fragile lung tissue, causing air leaks or a collapsed lung (pneumothorax).                                  Circuit Disconnection: The breathing tube or gas supply line detaches, leading to sudden loss of delivered volume and severe low oxygen (hypoxia).                                         Tube Obstruction: Mucus plugs, kinking, or biting of the endotracheal tube block airflow.                                                                                                                                                Equipment Malfunction: Power failures, gas source failures, or silent alarm faults prevent proper machine function.;;;
+;CPAP;Respiratory;;;;Equipment Contamination: Dirty water chambers or masks grow bacteria and mold, leading to lung infections.  Foam Breakdown: Older or recalled machines (such as certain Philips models) can degrade and release tiny toxic particles into the airway.Incorrect Pressure Settings: Pressure that is too low can cause suffocation feelings, while pressure that is too high can cause chest discomfort or central apneas.Mask Malfunction or Fit Issues: Severe air leaks or rebreathing exhaled carbon dioxide due to a blocked exhalation port.;;;
+;BiPAP;Respiratory;;;; Worsening acidosis, exhaustion, or dropping oxygen levels despite pressure support.Mechanical/Fitting Issues: Disconnected tubing, incorrect pressure settings, or severe mask air leaks.Secretions or Aspiration: Inability to clear heavy phlegm or vomiting into the non-invasive mask.;;;
+;Oxygen Concentrator;Respiratory;;;;Device Failure: Power cuts, system malfunctions, or battery drainage that abruptly stop oxygen supply.Thermal Burns: Fire outbreaks caused by sparks, smoking, or open flames near the concentrated oxygen stream.Cannula Strangulation: Entanglement in long oxygen tubing, posing a physical choking hazard to patients.Physical Trauma: Severe trips, falls, or impact injuries resulting from long cords and heavy equipment.Inhalation Injuries: Severe lung damage or smoke inhalation following an oxygen-accelerated fire.                                                                                      Severe Hypoxia: Rapid drop in blood oxygen levels due to unannounced machine shutoffs or blocked filters.Carbon Dioxide Retention: Toxic buildup of \(CO_{2}\) in the blood from incorrect flow settings or restricted exhalation.Oxygen Toxicity: Lung damage caused by breathing excessively high concentrations of oxygen for too long.Nasal Mucosal Drying: Severe nosebleeds, inflammation, or tissue cracks from lack of proper bubble humidification.                                                                                      Oxygen Delivery Error: The device stops generating adequate oxygen, prompting on-screen alerts, triggering audible alarms, or shutting down without warning.Rapid Patient Desaturation: Sudden drops in a patient's blood oxygen saturation (SpO?) levels occur due to unannounced machine output drops, directly causing acute shortness of breath.Exacerbation of Chronic Illness: Severe respiratory incidents or medical crises that force immediate emergency hospitalization due to sudden oxygen deprivation.Life-Threatening Events: Near-fatal events where patients almost pass out or experience cardiovascular stress—such as a heart attack—due to sudden hypoxia.2. Thermal Burns & Combustion (Adverse Event Reports)User-Induced Fires: Open flames (most commonly from patients smoking or using lighters near the nasal cannula) catch fire in the high-oxygen environment.Rapid Fire Propagation: Fires that spread instantly down the oxygen tubing to the patient’s face, clothing, and bedding.Severe Burn Injuries: Extensive thermal trauma and deep tissue burns, often requiring immediate admission to specialized hospital burn units.Fatalities: Death resulting directly from severe burns, smoke inhalation, or related systemic trauma sustained during an oxygen-accelerated fire.                                                                                                                   Device Overheating: Internal component errors that cause mechanical assemblies to melt during prolonged, normal use.Spontaneous Combustion: Hardware defects causing the unit to emit smoke or spontaneously catch fire without an external spark source.Class I Regulatory Recalls: Official FDA Recall Actions designated for structural defects likely to cause serious injury or death, such as those issued for defective internal components.;;;
+;Nebulizer;Respiratory;;;;Bronchospasm: The mist can sometimes irritate airways and trigger sudden wheezing.Device Contamination: Dirty masks or cups can breed bacteria and cause lung infections.Wrong Medication Dose: Using expired or incorrect liquid mixtures can fail to stop an attack;;;
+;Infusion;;;;;;;;
+;Infusion Pump;Infusion;;;;Over-infusion: Medication delivers too fast or exceeds the set limit, risking toxicity or overdose.Under-infusion / Stoppage: Blockages, pinched lines, or paused states block vital therapy.Free Flow: Gravity forces fluid past an unsealed or broken internal mechanism straight into the patient.Alarm Failures: The device fails to sound an alert during a critical occlusion or empty bag.;;;
+;Syringe Pump;Infusion;;;;Le débit libre (Free-flow) : La seringue est mal clipsée. Le piston s'actionne sous l'effet de la gravité. Le produit se vide instantanément chez le patient.Le bolus post-occlusion : Une tubulure se coude. La pression monte. L'infirmière plie la tubulure pour la déboucher. La pression accumulée libère un volume massif de produit d'un coup.Le retard d'alarme : Le moteur tourne mais le piston ne touche pas la seringue (mauvais calibrage). Le patient ne reçoit rien pendant des heures sans que l'appareil ne sonne.Erreur d'unité : Programmation d'un débit en ml/h au lieu de µg/kg/min. Cela multiplie par dix ou cent la dose requise.;;;
+;PCA Pump;Infusion;;;;Programming and Dosing Errors: Entering the wrong drug concentration or incorrect dose limits into smart pumps, frequently resulting in a tenfold overdose or complete failure to deliver adequate medication.PCA by Proxy: A well-meaning family member, visitor, or unauthorized staff member pressing the hand-held dosing button while the patient is asleep or sedated.Unsecured Syringe/Gravity Flow: Mechanical failures or unlatched syringe pistons allowing free-flow medication delivery driven purely by gravity instead of controlled pumping.Under-infusion Malfunctions: Device stalls, blocked lines, or hardware failures preventing scheduled or requested bolus doses from reaching the patient.;;;
+;Insulin Pump;Infusion;;;;"Infusion Set Blockages: Kinked cannulas, bent tubing, or dried insulin occluding the catheter can abruptly stop insulin delivery, triggering rapid hyperglycemia.Unintentional Delivery: Mechanical or software glitches can occasionally cause a ""runaway pump"" effect, delivering an unrequested bolus of insulin that leads to acute hypoglycemia.Site Complications: Local skin infections, bleeding, or adhesive failures can cause inflammation or leakage where the cannula enters the skin.User and Design Errors: Confusing interface layouts, missed alarms, or improper priming can interrupt therapy";;;
+;Radiology;;;;;;;;
+;CT Scanner;Radiology;;;;Radiation Overdose: Incorrect default protocol settings or overriding safety alerts can subject patients to prolonged X-ray exposure.Human/Operational Error: Technicians accidentally repeating scans or failing to adjust parameters for smaller patients or children.Mechanical or Equipment Failure: Rare structural failures, such as loose gantry components or parts detaching during operations.Patient Identification Errors: Performing the wrong scan or scanning the incorrect body part due to miscommunication. ;;;
+;MRI;Radiology;;;;Projectile (Missile) Effects: Ferromagnetic objects like oxygen tanks, tools, IV poles, or personal metal items are violently pulled into the scanner.Thermal Burns: Conductive loops formed by cables, monitoring leads, or patient skin contact can cause radiofrequency-induced burns.Implant Malfunctions: Cardiac pacemakers or neurostimulators can malfunction or shift if not switched to an MRI-safe mode.Protocol Breaches: Unauthorized room access due to lapses in multi-zone security screening.;;;
+;X-ray System;Radiology;;;;Equipment Malfunctions: Hardware or software crashes mid-procedure, or fluoroscopy beams failing to shut off when expected.Human and Process Errors: Misreading patient referrals, failing to verify patient identification, or X-raying the wrong body part.Training Gaps: Incorrect default settings or language barriers in equipment manuals leading to unintentional radiation overdoses.IT and Data Failures: Communication breakdowns in picture archiving and communication systems (PACS) or missing electronic orders;;;
+;Ultrasound;Radiology;;;;Normal Incidence: The sound beam hits the tissue boundary straight on at a 90-degree right angle.Oblique Incidence: The sound beam hits the tissue boundary at any angle that is not 90 degrees.;;;
+;Mammography;Radiology;;;;"Equipment & Image Quality Deficiencies: Failing standard quality control tests, resulting in blurred, low-resolution, or unreadable images that could lead to missed diagnoses.Implant-Related Incidents: Rare physical complications during the mechanical compression phase of the exam, such as a breast implant rupture or leak.Personnel Non-Compliance: A radiology clinic operating without proper certification or utilizing an interpreting physician who does not meet the strict training standards required to read mammograms independently.                                         Craniocaudal (CC) Incident: A superior-to-inferior (top-to-bottom) view.Mediolateral Oblique (MLO) Incident: A lateral-to-medial view taken at an angle, which is essential for capturing the armpit area and the pectoral muscle.                        Interval Cancer Incidence: Cancers that appear symptomatically in the timeframe between two routine screening appointments after a previous ""normal"" reading.Screen-Detected Incidence: The overall rate of true positive breast cancer cases captured directly by annual or biennial mammograms.";;;
+;Operating Room;;;;;;;;
+;Anesthesia Machine;Operating Room;;;;Ventilator failure: Sudden mechanical stoppage, display errors, or internal leaks.Gas delivery issues: Pipeline disconnects, depleted gas cylinders, or vaporizer leaks.Circuit fires: Ignition from electrical devices or warmers interacting with high oxygen concentrations.Component blockages: Stuck unidirectional valves or exhausted/caked carbon dioxide absorbents.;;;
+;Operating Table;Operating Room;;;;Accidental Remote Activation: Research notes that anesthesiologists can unintentionally activate the table's remote control with their hips or thighs, causing the table to tilt mid-surgery.Table Tipping: Unlocking the floor wheels shifts the weight fulcrum. If a bariatric (obese) patient is repositioned without proper support staff, the entire table can tip over.Patient Falls: Medical malpractice cases often involve patients slipping off the table because straps were not secured before the table was tilted laterally to access organs like the appendix.Battery and Power Failures: Neglecting to charge the internal lead-acid battery can cause the table to lose power and freeze in a specific position during a procedure.;;;
+;Surgical Light;Operating Room;;;;Structural Collapse: Ceiling suspension arms or heavy light heads fall mid-operation due to worn out components, vibrations, or broken securing screws.Thermal Burns: High-intensity LED or halogen convergence creates excessive radiant energy, leading to patient skin burns.Mechanical Drift: Suspension boom arms drift or drop unexpectedly during procedures, obstructing the sterile field.Airflow Disruption: Bulky lighthead shapes interfere with laminar airflow systems, potentially increasing infection risks;;;
+;Electrosurgical Unit;Operating Room;;;;Patient Return Electrode Burns: Occurs when the dispersive grounding pad has poor adhesion, dries out, or is placed over scars, hair, or bony prominences, concentrating electrical current and causing thermal skin injuries.Stray Energy and Coupling: In monopolar or laparoscopic setups, capacitive coupling or direct insulation failure can transfer high-frequency electrical current to unintended internal tissues or organs.Operating Room Fires: Triggered when an ESU spark or active electrode ignites pooled alcohol-based skin preps or high concentrations of oxygen under surgical drapes.;;;
+;Endoscopy;;;;;;;;
+;Gastroscope;Endoscopy;;;; Mild pain or irritation lasting a day or two.Bleeding: Minor bleeding can happen if a tissue sample (biopsy) is taken.Dental trauma: Accidental scuffs or chips to teeth or crowns.Perforation: A rare tear in the wall of the esophagus or stomach requiring treatment (<1 in 2,500).;;;
+;Colonoscope;Endoscopy;;;;Perforation: A tear or hole in the wall of the colon or upper GI tract, occurring in roughly 0.1% to 0.2% of procedures.Hemorrhage: Significant bleeding, usually linked to tissue removal or a biopsy (polypectomy).Infections: Post-procedure bacterial infections or sepsis resulting from a compromised mucosal barrier.Sedation Complications: Cardiopulmonary stress or adverse reactions to anesthesia medications;;;
+;Bronchoscope;Endoscopy;;;;;;;
+;Laparoscope;Endoscopy;;;;;;;
+;Emergency;;;;;;;;
+;AED;Emergency;;;;;;;
+;Manual Defibrillator;Emergency;;;;;;;
+;Transport Ventilator;Emergency;;;;;;;
+;CSSD;;;;;;;;
+;Steam Autoclave;CSSD;;;;;;;
+;Plasma Sterilizer;CSSD;;;;;;;
+;Washer Disinfector;CSSD;;;;;;;
+;Pharmacy;;;;;;;;
+;Automated Dispensing Cabinet;Pharmacy;;;;;;;
+;Drug Refrigerator;Pharmacy;;;;;;;
+;Compounding Hood;Pharmacy;;;;;;;
+;Rehabilitation;;;;;;;;
+;TENS Unit;Rehabilitation;;;;;;;
+;Laser Therapy Device;Rehabilitation;;;;;;;
+;CPM Machine;Rehabilitation;;;;;;;
+;Robotic Surgery;;;;;;;;
+;Surgical Robot Console;Robotic Surgery;;;;;;;
+;Robotic Arm;Robotic Surgery;;;;;;;
+;Dental;;;;;;;;
+;Dental Chair;Dental;;;;;;;
+;Dental X-ray;Dental;;;;;;;
+;Ultrasonic Scaler;Dental;;;;;;;
+;Ophthalmology;;;;;;;;
+;Slit Lamp;Ophthalmology;;;;;;;
+;Autorefractor;Ophthalmology;;;;;;;
+;Tonometer;Ophthalmology;;;;;;;
+;ENT;;;;;;;;
+;Audiometer;ENT;;;;;;;
+;Tympanometer;ENT;;;;;;;
+;Obstetrics;;;;;;;;
+;Fetal Monitor;Obstetrics;;;;;;;
+;Delivery Bed;Obstetrics;;;;;;;
+;Neonatal;;;;;;;;
+;Incubator;Neonatal;;;;;;;
+;Phototherapy Unit;Neonatal;;;;;;;
+;Nuclear Medicine;;;;;;;;
+;Gamma Camera;Nuclear Medicine;;;;;;;
+;PET Scanner;Nuclear Medicine;;;;;;;
+;Medical Gas;;;;;;;;
+;Flowmeter;Medical Gas;;;;;;;
+;Vacuum Regulator;Medical Gas;;;;;;;
+;Biomedical Infrastructure;;;;;;;;
+;UPS;Biomedical Infrastructure;;;;;;;
+;Barcode Printer;Biomedical Infrastructure;;;;;;;

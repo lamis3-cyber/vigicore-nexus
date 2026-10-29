@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Performance + navbar polish (loaded after index.css)
+   ========================================================================== */
+
+/* --- Navbar: no hard band between the navbar and the hero ------------------ */
+
+/* at the very top: transparent, flat. The hero glow runs under it. */
+.navbar:not(.scrolled) {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+/* once scrolled it is 96% opaque, so the 20px blur was invisible but the
+   browser still re-blurred the whole page behind it on every scroll frame */
+.navbar.scrolled {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+html[data-theme="light"] .navbar:not(.scrolled) {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+/* --- Off-screen sections do not animate ------------------------------------ */
+.vg-offscreen,
+.vg-offscreen *,
+.vg-offscreen *::before,
+.vg-offscreen *::after {
+  animation-play-state: paused !important;
+}
+html[data-theme="light"] .navbar.scrolled {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+
+/* --- Scroll fluide : couches plein écran sans mélange ni flou ----------------
+   #depth-fog était une couche fixe plein écran avec mix-blend-mode + blur + animation d'opacité :
+   le navigateur recomposait toute la page derrière elle à chaque image du défilement.
+   Les mêmes dégradés, en simple transparence et sans animation, rendent presque pareil pour bien moins cher. */
+html #depth-fog,
+html[data-theme="dim"] #depth-fog,
+html[data-theme="light"] #depth-fog {
+  mix-blend-mode: normal;
+  filter: none;
+  animation: none;
+  will-change: auto;
+}
+html #depth-fog { opacity: 0.6; }
+html[data-theme="dim"] #depth-fog,
+html[data-theme="light"] #depth-fog { opacity: 0.3; }
+
+/* Pendant le défilement (classe posée par effects/scrollState.js) : pas de flou d'arrière-plan sur les cartes de la page.
+   Leurs fonds sont presque opaques ; le flou revient 140 ms après l'arrêt. La barre de navigation et les fenêtres
+   (hors <main>) ne sont pas touchées. */
+html.vg-scrolling main *,
+html.vg-scrolling main *::before,
+html.vg-scrolling main *::after {
+  -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+}

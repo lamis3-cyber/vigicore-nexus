@@ -1,0 +1,117 @@
+# Production stack. Secrets come from ./.env.production (NEVER committed; template: .env.production.example).
+#
+#   Site only (public site + dashboards + API + PostgreSQL, HTTPS by Caddy):
+#     docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build
+#
+#   Complete platform (adds VigiCore Audit API, its PostgreSQL, Redis and the AI service, all on the PRIVATE network):
+#     docker compose -f docker-compose.prod.yml --env-file .env.production --profile audit up -d --build
+#   Requires the backend/audit-api folder (with its Dockerfile) and, in .env.production,
+#   AUDIT_BASE_URL=http://audit-api:5100 + NEXUS_SERVICE_JWT_SECRET (same value on both sides). See docs/DEPLOYMENT.md.
+#
+# Profile "audit" needs in .env.production: AUDIT_POSTGRES_PASSWORD, REDIS_PASSWORD, NEXUS_SERVICE_JWT_SECRET, BOT_SERVICE_TOKEN
+# (scripts/check-env-prod.sh checks them before start). Only the `web` service publishes ports (80/443). Databases, Redis, Audit and the AI service are never exposed.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes: [db_data:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"], interval: 10s, timeout: 5s, retries: 10 }
+    # no `ports:` — the database is reachable only from the compose network
+
+  api:
+    build: { context: ./backend/nexus-api }
+    restart: unless-stopped
+    depends_on: { db: { condition: service_healthy } }
+    env_file: .env.production
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      TRUST_PROXY: "1"          # exactly one proxy (Caddy) sits in front
+      STORAGE_DIR: /data/storage
+    volumes: [storage_data:/data/storage]
+    stop_grace_period: 20s
+    # On start: `prisma migrate deploy` + idempotent seed, then the server (backend/nexus-api/docker-entrypoint.sh).
+    # SINGLE INSTANCE ONLY: SSE call signaling state is in memory (see docs/DEPLOYMENT.md).
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        SITE_URL: ${SITE_URL:-}
+        VITE_LEGAL_PUBLISHER_NAME: ${VITE_LEGAL_PUBLISHER_NAME:-}
+        VITE_LEGAL_ADDRESS: ${VITE_LEGAL_ADDRESS:-}
+        VITE_LEGAL_REGISTRATION: ${VITE_LEGAL_REGISTRATION:-}
+        VITE_LEGAL_CONTACT_EMAIL: ${VITE_LEGAL_CONTACT_EMAIL:-}
+        VITE_LEGAL_DPO_CONTACT: ${VITE_LEGAL_DPO_CONTACT:-}
+        VITE_LEGAL_HOST: ${VITE_LEGAL_HOST:-}
+        VITE_LEGAL_LAST_UPDATED: ${VITE_LEGAL_LAST_UPDATED:-}
+    restart: unless-stopped
+    depends_on: [api]
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS (public domain)}
+      API_UPSTREAM: api:4000
+    ports: ["80:80", "443:443"]
+    volumes: [caddy_data:/data, caddy_config:/config]
+
+  # ---------------------------------------------------------------------------------------------
+  # Profile "audit": VigiCore Audit (Logiciel) + AI service. Private network only (no `ports:`).
+  # ---------------------------------------------------------------------------------------------
+  audit-db:
+    profiles: [audit]
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${AUDIT_POSTGRES_DB:-materiovigilance}
+      POSTGRES_USER: ${AUDIT_POSTGRES_USER:-materio_user}
+      POSTGRES_PASSWORD: ${AUDIT_POSTGRES_PASSWORD:-}
+    volumes: [audit_db_data:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"], interval: 10s, timeout: 5s, retries: 10 }
+
+  redis:
+    profiles: [audit]
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-}", "--appendonly", "yes"]
+    volumes: [redis_data:/data]
+
+  audit-api:
+    profiles: [audit]
+    build: { context: ./backend/audit-api }
+    restart: unless-stopped
+    depends_on: { audit-db: { condition: service_healthy }, redis: { condition: service_started } }
+    # Audit's own variables (JWT_SECRET, NEXUS_GATEWAY_USER_ID…): template = backend/audit-api/.env.example
+    env_file:
+      - path: .env.audit.production
+        required: false
+    environment:
+      NODE_ENV: production
+      PORT: "5100"
+      DATABASE_URL: postgresql://${AUDIT_POSTGRES_USER:-materio_user}:${AUDIT_POSTGRES_PASSWORD}@audit-db:5432/${AUDIT_POSTGRES_DB:-materiovigilance}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      NEXUS_SERVICE_JWT_SECRET: ${NEXUS_SERVICE_JWT_SECRET:-}
+      AI_SERVICE_URL: http://ai-service:8000
+      BOT_SERVICE_TOKEN: ${BOT_SERVICE_TOKEN:-}
+
+  ai-service:
+    profiles: [audit]
+    build: { context: ./ai-service }
+    restart: unless-stopped
+    depends_on: { audit-db: { condition: service_healthy }, redis: { condition: service_started } }
+    environment:
+      ENVIRONMENT: production
+      PORT: "8000"
+      DATABASE_URL: postgresql+asyncpg://${AUDIT_POSTGRES_USER:-materio_user}:${AUDIT_POSTGRES_PASSWORD}@audit-db:5432/${AUDIT_POSTGRES_DB:-materiovigilance}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      BACKEND_URL: http://audit-api:5100
+      FRONTEND_URL: https://${SITE_ADDRESS}
+      BOT_SERVICE_TOKEN: ${BOT_SERVICE_TOKEN:-}
+      ANTHROPIC_API_KEY: ${AI_ANTHROPIC_API_KEY:-}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+
+volumes: { db_data: {}, storage_data: {}, caddy_data: {}, caddy_config: {}, audit_db_data: {}, redis_data: {} }

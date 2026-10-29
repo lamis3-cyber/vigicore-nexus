@@ -1,0 +1,230 @@
+/* ── 9. HERO TEXT BLOCK ──────────────────────────────────── */
+
+/* Decorative line + text eyebrow */
+.hero-eyebrow {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(12px,1vw,12px);
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+}
+.hero-eyebrow::before { background: linear-gradient(90deg, transparent, rgba(0,232,255,0.6)); }
+.hero-eyebrow::after  { background: linear-gradient(270deg, transparent, rgba(0,232,255,0.6)); }
+
+/* Main headline */
+.hero-title-xl {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(30px,4.8vw,64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 14px;
+  
+}
+.hero-title-xl em {
+  font-style: normal;
+  background: linear-gradient(90deg, #00e8ff 0%, #40f0ff 40%, #00ffcc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Description paragraph */
+.hero-desc {
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  color: rgba(185,228,248,0.82);
+  max-width: 520px;
+  text-align: center;
+  margin: 0 auto 14px;
+}
+
+/* Scroll hint at the bottom of the hero */
+.scroll-hint {
+  margin-top: clamp(20px,3.2vh,32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.5s ease forwards;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.scroll-hint:hover {
+  opacity: 0.85;
+  transform: translateY(3px);
+}
+.scroll-hint:hover .scroll-arrow {
+  animation-play-state: paused;
+}
+.scroll-hint span {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(0,232,255,0.42);
+}
+.scroll-arrow { animation: scrollBounce 2.4s ease-in-out infinite; }
+.scroll-arrow svg { display: block; }
+
+@keyframes  scrollBounce {
+  0%,100% { transform:translateY(0);  }
+  40%     { transform:translateY(7px); }
+  60%     { transform:translateY(5px); }
+}
+
+
+/* ── 10. BUTTONS ─────────────────────────────────────────── */
+
+/* Primary filled button */
+.btn-primary {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--accent-grad);
+  padding: 15px 38px;
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), filter 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+/* Shimmer sweep on hover */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.28), transparent);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::before { left: 140%; }
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn-primary:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.10);
+}
+
+/* Secondary outlined button */
+.btn-secondary {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: transparent;
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid rgba(0,232,255,0.35);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary svg { transition: transform 0.2s; }
+.btn-secondary:hover {
+  border-color: rgba(0,232,255,0.80);
+  box-shadow: 0 0 32px rgba(0,232,255,0.28), inset 0 0 32px rgba(0,232,255,0.08);
+  color: var(--cyan-bright);
+  transform: translateY(-3px) scale(1.02);
+}
+.btn-secondary:hover svg { transform: translateX(4px); }
+
+/* CTA row of buttons */
+.hero-cta-row {
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+@media (max-width:600px) {
+  .hero-cta-row { flex-direction: column; }
+  .hero-title-xl { font-size: 28px; }
+}
+
+
+/* ── 11. SCROLL SECTIONS (shared layout) ─────────────────── */
+
+.scroll-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+  scroll-margin-top: var(--nav-h, 56px);
+}
+.section-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1100px;
+  width: 100%;
+  padding: 100px 40px;
+}
+.section-eyebrow {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+  
+}
+.section-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(30px,4.8vw,64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 20px;
+  
+}
+.section-desc {
+  font-size: clamp(14px,1.4vw,17px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(185,228,248,0.8);
+  max-width: 620px;
+  margin: 0 auto 40px;
+}
+

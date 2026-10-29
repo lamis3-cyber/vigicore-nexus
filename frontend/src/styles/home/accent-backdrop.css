@@ -1,0 +1,31 @@
+/* Backdrop colour = the WHOLE image area.
+   Before: the chosen colour was only a faint glow (9-22 %) and a thin frame, so the site's default blue
+   showed through around the photo and only the inner square looked different.
+   Now: the colour fills the entire cover area (soft light in the middle, slightly deeper at the edges),
+   and the inner frame becomes a neutral, translucent passe-partout that looks right on ANY colour.
+   Applies everywhere the backdrop is used: the studio preview, the dashboard gallery and the public Services page.
+   Loaded after index.css (see main.jsx), so it overrides the .if-smart-* rules there. */
+.if-smart-bg {
+  background:
+    radial-gradient(75% 75% at 50% 40%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(160deg,
+      var(--pcard-accent, #eef1f6) 0%,
+      color-mix(in srgb, var(--pcard-accent, #eef1f6) 72%, black) 100%);
+}
+.if-smart-frame {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Very light backdrops (white / near-white) stay clean: the darkening toward the bottom corner is faded out
+   as lightness approaches 1, so pure white fills the WHOLE image area instead of turning grey.
+   Colours below ~90 % lightness keep exactly the same look as before. */
+@supports (color: oklch(from red l c h)) {
+  .if-smart-bg {
+    background:
+      radial-gradient(75% 75% at 50% 40%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%),
+      linear-gradient(160deg,
+        var(--pcard-accent, #eef1f6) 0%,
+        oklch(from var(--pcard-accent, #eef1f6) calc(l * (1 - 0.3 * (1 - clamp(0, (l - 0.9) * 10, 1)))) c h) 100%);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "vigicore-nexus-ui-tests",
+  "private": true,
+  "description": "Tests de composants (jsdom) du Site, isolés pour ne pas modifier les dépendances du projet. Lancer : npm install && npm test",
+  "scripts": { "test": "vitest run" },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "jsdom": "^25.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vitest": "^2.1.9"
+  }
+}

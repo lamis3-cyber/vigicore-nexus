@@ -1,0 +1,169 @@
+/* ── 16. SECTION: HOW IT WORKS (flow steps) ─────────────── */
+
+/* Animated connector line between steps */
+
+
+/* Step number label (from data-step attribute) */
+
+
+/* ── 17. SECTION: VIDEO ──────────────────────────────────── */
+
+.video-section {
+  background: radial-gradient(ellipse at 50% 60%, rgba(0,30,60,0.2) 0%, transparent 70%);
+}
+.video-section .section-content { perspective: 1800px; }
+.video-frame {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,232,255,0.2);
+  backdrop-filter: blur(20px);
+  background: rgba(2,10,24,0.85);
+  aspect-ratio: 16/9;
+  --tilt-x: 3deg;
+  --tilt-y: 0deg;
+  transform: perspective(1800px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  box-shadow: 0 0 60px rgba(0,232,255,0.08), 0 30px 80px rgba(0,0,0,0.5);
+  transition: box-shadow 0.4s, transform .5s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+.video-frame:hover { box-shadow: 0 0 80px rgba(0,232,255,0.18), 0 30px 80px rgba(0,0,0,0.6); }
+@media (prefers-reduced-motion: reduce), (max-width: 900px) {
+  .video-frame { transform: none !important; transition: none !important; }
+}
+
+.video-glow {
+  position: absolute; inset: -2px;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: 0 0 40px rgba(0,232,255,0.15), inset 0 0 40px rgba(0,232,255,0.05);
+  pointer-events: none;
+  animation: videoGlowPulse 4s ease-in-out infinite;
+}
+@keyframes  videoGlowPulse { 0%,100%{opacity:0.7;} 50%{opacity:1;} }
+
+/* Corner bracket decorations */
+.video-corner { position:absolute; width:20px; height:20px; border-color:rgba(0,232,255,0.7); border-style:solid; z-index:3; }
+.vc-tl { top:12px; left:12px;   border-width:1.5px 0 0 1.5px; border-radius:3px 0 0 0; }
+.vc-tr { top:12px; right:12px;  border-width:1.5px 1.5px 0 0; border-radius:0 3px 0 0; }
+.vc-bl { bottom:12px; left:12px;  border-width:0 0 1.5px 1.5px; border-radius:0 0 0 3px; }
+.vc-br { bottom:12px; right:12px; border-width:0 1.5px 1.5px 0; border-radius:0 0 3px 0; }
+
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; cursor: pointer;
+  background: linear-gradient(135deg, rgba(0,15,35,0.9) 0%, rgba(0,5,20,0.95) 100%);
+}
+.play-btn { width:72px; height:72px; transition:transform 0.3s; position: relative; }
+.video-placeholder:hover .play-btn { transform: scale(1.12); }
+.play-btn::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0,232,255,0.28);
+  animation: playRingSpin 14s linear infinite;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .play-btn::before { animation: none; }
+}
+@keyframes  playRingSpin {
+  to { transform: rotate(360deg); }
+}
+
+.video-meta {
+  display: flex; gap: 16px; align-items: center;
+  font-family: "Rajdhani", sans-serif; font-size:12px; font-weight:600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.vt { color:var(--cyan); }
+.vd { color:rgba(160,210,240,0.5); }
+
+.video-topics { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.video-topics span {
+  font-family: "Rajdhani", sans-serif; font-size:12px; font-weight:600;
+  letter-spacing: 0.14em; text-transform:uppercase;
+  color: rgba(0,232,255,0.5);
+  padding: 4px 10px;
+  border: 1px solid rgba(0,232,255,0.15);
+  border-radius: 100px;
+  background: rgba(0,232,255,0.04);
+}
+
+
+/* ── 18. SECTION: ACTORS / STAKEHOLDERS ─────────────────── */
+
+.actors-section {
+  background: radial-gradient(ellipse at 50% 40%, rgba(0,20,50,0.2) 0%, transparent 70%);
+}
+
+.actor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--card-color, rgba(0,232,255,0.02)) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity .35s;
+  pointer-events: none;
+}
+.actor-card:hover::before { opacity: 1; }
+.actor-card h3 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(13px, 1.3vw, 16px); font-weight:700; letter-spacing:0.1em;
+  color: var(--white); text-transform:uppercase;
+}
+
+
+/* Pair row (Enterprise + Authority) — same fixed card width as the Portal
+   grid above, just 2 tracks instead of 3, so every card in the section
+   shares one consistent size. */
+/* Unified 8-card grid: replaces the stacked Portal/Enterprise/Authority
+   groups. Each card carries its own env badge instead of a full section
+   header per group, so 8 roles fit in roughly half the vertical space. */
+
+
+/* ── 18b. SECTION: OUR ECOSYSTEM (PORTAL / ENTERPRISE) ──── */
+
+/* ── Icon boxes: swap dark-navy tint for white + colored border ── */
+
+/* ── Section eyebrow tag ── */
+
+/* ── Audience pills — were pale text on pale tint, invisible on white ── */
+
+/* ── Example callout — text and background were near-invisible on white ── */
+
+/* ── CTA links — bright neon cyan/amber on white is low-contrast ── */
+
+/* ── Sync badge center caption — was pale blue-on-white ── */
+
+/* ── Hover shadow was a heavy black glow meant for dark bg ── */
+
+/* ── Ambient background glow blobs — dial back so white isn't tinted ── */
+
+
+/* ── 19. SECTION: WORKFLOW SEQUENCE ─────────────────────── */
+
+
+
+
+/* Individual step node */
+
+
+/* Top ambient glow per node */
+
+
+
+/* Square icon container matching WIM/problem card style */
+
+
+
+
+/* Arrow connector between nodes */
+
+

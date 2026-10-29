@@ -1,0 +1,239 @@
+/* ══════════════════════════════════════════════════════════
+   DEPTH FOG + EDGE VIGNETTE — site-wide cinematic atmosphere
+   ──────────────────────────────────────────────────────────
+   Two fixed, pointer-events:none layers shared by every route
+   (home, /about) that already mounts the canvas/glow stack:
+
+   1. #edge-vignette — a soft radial darkening toward the four
+      screen edges. This is what makes the starfield + section
+      content read as sitting *inside* a lit volume rather than
+      flat against a page background, the way a real camera lens
+      or a dark exhibit hall would frame it. Pure opacity/gradient,
+      no blur cost.
+
+   2. #depth-fog — three large, very low-opacity radial washes
+      fixed to the viewport (not the page), tinted with the site's
+      existing healthcare / seam / enterprise glow tokens and
+      offset at different vertical anchors. Because they're
+      viewport-fixed they drift past underneath the scrolling
+      content, so section boundaries blend into one continuous
+      lit environment instead of cutting from one flat background
+      to the next — "atmosphere" and "transitions between
+      sections" from the brief, achieved with two divs and zero
+      new JS or WebGL cost.
+
+   Both sit at z:0, below content (--z-content: 2) and above the
+   canvases (z:0/1), matching the layering already declared for
+   #ambient-glow. prefers-reduced-motion users still get the
+   static gradients — only the breathing keyframe is skipped.
+   ════════════════════════════════════════════════════════════ */
+
+#edge-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 140% 100% at 50% 50%,
+      transparent 45%,
+      rgba(1,5,12,0.30) 78%,
+      rgba(1,4,10,0.62) 100%);
+}
+
+#depth-fog {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  background:
+    radial-gradient(ellipse 60% 40% at 18% 8%,  var(--glow-healthcare) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 38% at 82% 38%, var(--glow-enterprise) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 42% at 50% 72%, var(--glow-seam) 0%, transparent 65%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  animation: depthFogDrift 26s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes depthFogDrift {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #depth-fog { animation: none; opacity: 0.7; }
+}
+
+/* Dim/light theme: keep the fog readable instead of muddying a
+   brighter surface — same tokens, lower blend strength. */
+html[data-theme="dim"] #depth-fog,
+html[data-theme="light"] #depth-fog {
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+}
+html[data-theme="light"] #edge-vignette {
+  background:
+    radial-gradient(ellipse 140% 100% at 50% 50%,
+      transparent 55%,
+      rgba(160,180,200,0.14) 82%,
+      rgba(140,160,185,0.24) 100%);
+}
+
+/* ── VIGI TABS + SIDE DETAIL CARD (hero) ─────────────────────────── */
+
+.vigi-tabbar {
+  position: relative;
+  z-index: 6;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.vigi-tab {
+  display: flex;
+  align-items: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  cursor: pointer;
+  color: rgba(200,225,240,0.65);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.vigi-tab:hover {
+  border-color: rgba(var(--tab-rgb, 0,232,255), 0.45);
+  color: rgba(255,255,255,0.9);
+}
+
+.vigi-tab.active {
+  color: #fff;
+}
+
+.vigi-tab-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vigi-tab-icon svg {
+  filter:
+    drop-shadow(0 0 2px rgba(var(--tab-rgb, 0,232,255), 0.4))
+    drop-shadow(0 0 6px rgba(var(--tab-rgb, 0,232,255), 0.15));
+  transition: filter 0.3s ease;
+}
+
+.vigi-tab.active .vigi-tab-icon svg,
+.vigi-tab:hover .vigi-tab-icon svg {
+  filter:
+    drop-shadow(0 0 4px rgba(var(--tab-rgb, 0,232,255), 0.75))
+    drop-shadow(0 0 12px rgba(var(--tab-rgb, 0,232,255), 0.35));
+}
+
+/* Stage: shield beside the detail card, centered as a group so the pair
+   doesn't feel pinned to the left with dead space on the right (fix #4). */
+.vigi-stage {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 11vw, 160px);
+  width: 100%;
+  max-width: 1220px;
+  margin: clamp(16px, 3vw, 40px) auto 0;
+  padding-left: 0;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s 0.45s ease forwards;
+}
+
+.vigi-detail-slot {
+  position: relative;
+  flex: 1 1 300px;
+  min-width: 260px;
+  max-width: 420px;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.vigi-detail-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(120,225,255,0.72);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  max-width: 240px;
+  text-shadow: 0 0 16px rgba(0,232,255,0.18);
+}
+
+.vigi-detail-placeholder-arrow {
+  font-size: 20px;
+  color: rgba(0,232,255,0.75);
+  animation: vigiArrowBob 2.2s ease-in-out infinite;
+}
+
+@keyframes vigiArrowBob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%      { transform: translateY(-4px); opacity: 0.9; }
+}
+
+.vigi-detail-card {
+  width: 100%;
+  padding: 22px 24px 24px;
+  background: var(--glass-bg);
+  border: 1px solid rgba(var(--tab-rgb, 0,232,255), 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 12px 40px rgba(0,0,0,0.45),
+    0 0 40px rgba(var(--tab-rgb, 0,232,255), 0.10);
+  animation: vigiCardIn 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@keyframes vigiCardIn {
+  0%   { opacity: 0; transform: translateX(-14px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.vigi-detail-title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.vigi-detail-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(210,230,245,0.72);
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .vigi-stage {
+    justify-content: center;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .vigi-tab { border-radius: 12px; }
+  .vigi-stage { flex-direction: column; }
+  .vigi-detail-slot { max-width: 100%; }
+}
+

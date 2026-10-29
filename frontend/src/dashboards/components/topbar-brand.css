@@ -1,0 +1,22 @@
+/* The public site loads Rajdhani from index.html; the dashboard page (dashboard/index.html)
+   loads no web font at all, so the wordmark fell back to a system font. */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+
+/* Dashboard topbar brand = the public navbar's brand (same shield, same wordmark,
+   same sizes). Loaded after theme.css, so these rules win over the old .logo-* ones. */
+:root { --topbar-height: 56px; } /* = the public navbar height */
+
+.topbar .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; cursor: pointer; }
+.topbar .nav-logo-mark { width: 28px; height: 33px; flex-shrink: 0; animation: navShieldBreath 4.5s ease-in-out infinite; }
+.topbar .nav-logo-text {
+  font-family: "Rajdhani", var(--font-sans, sans-serif);
+  font-weight: 700; font-size: 13px; letter-spacing: 0.10em; line-height: normal;
+  color: #0f2a4d;
+}
+[data-theme="dark"] .topbar .nav-logo-text { color: #fff; }
+.topbar .nav-logo-text span {
+  font-style: normal;
+  background: linear-gradient(90deg, #0a8fb0 0%, #0aa88c 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+[data-theme="dark"] .topbar .nav-logo-text span { background-image: linear-gradient(90deg, #00e8ff 0%, #00ffcc 100%); }

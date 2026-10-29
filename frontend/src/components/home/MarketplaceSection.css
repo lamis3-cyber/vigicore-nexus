@@ -1,0 +1,57 @@
+/* Product Marketplace announcement (.mkt-*). Exactly one screen tall. */
+.mkt {
+  --ink: #eaf6ff; --mute: rgba(176, 208, 226, .82); --line: rgba(160, 205, 230, .16); --panel: rgba(4, 16, 32, .9); --ac: 25,227,209;
+  position: relative; z-index: 1; box-sizing: border-box; width: 100%; color: var(--ink); min-height: 100svh; display: flex; align-items: center; scroll-margin-top: 0;
+  padding: clamp(76px, 11vh, 110px) 24px clamp(28px, 5vh, 56px);
+  background: radial-gradient(900px 560px at 76% 50%, rgba(var(--c), .16), transparent 70%); transition: background 1s;
+}
+html[data-theme="light"] .mkt { --ink: #0F1F3D; --mute: rgba(15, 31, 61, .72); --line: rgba(15, 31, 61, .16); --panel: rgba(255, 255, 255, .94); --ac: 0,140,170; }
+.mkt-new { display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden; font: 700 12px "Rajdhani", sans-serif; letter-spacing: .26em; padding: 6px 14px 6px 7px; border-radius: 999px; border: 1px solid rgba(var(--ac), .45); background: rgba(var(--ac), .08); }
+.mkt-new b { background: rgb(var(--ac)); color: #021018; padding: 3px 9px; border-radius: 999px; letter-spacing: .14em; }
+.mkt-new::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; left: -80px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent); animation: mkt-sh 3.4s infinite; }
+@keyframes mkt-sh { to { left: 130%; } }
+/* Same headline treatment as the first hero (.hero-title-xl): Rajdhani 700, .03em tracking, cyan-to-mint gradient on the second line */
+.mkt-h { margin: clamp(10px, 2vh, 18px) 0 0; font-family: "Rajdhani", sans-serif; font-weight: 700; font-size: clamp(2rem, min(5vw, 8.4vh), 4.4rem); line-height: 1.05; letter-spacing: .03em; color: var(--white, #fff); }
+.mkt-h em { display: block; font-style: normal; background: linear-gradient(90deg, #00e8ff 0%, #40f0ff 40%, #00ffcc 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+html[data-theme="light"] .mkt-h { color: #0F1F3D; }
+.mkt-lead { margin: clamp(10px, 2vh, 16px) 0 0; max-width: 520px; font: 400 clamp(14px, 2.1vh, 17px)/1.55 "Inter", sans-serif; color: var(--mute); }
+.mkt-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(12px, 3vh, 24px); }
+.mkt-btn { font: 700 12.5px "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; padding: 12px 18px; border-radius: 12px; white-space: nowrap; transition: .3s; }
+.mkt-btn--p { background: rgb(var(--ac)); color: #021018; box-shadow: 0 0 28px rgba(var(--ac), .35); }
+.mkt-btn--p:hover { transform: translateY(-2px); }
+.mkt-btn--g { border: 1px solid var(--line); color: var(--ink); background: rgba(255,255,255,.03); }
+.mkt-btn--g:hover { border-color: rgb(var(--ac)); }
+.mkt-wrap { width: 100%; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(20px, 3vw, 44px); align-items: center; }
+.mkt-trio { list-style: none; margin: clamp(14px, 3vh, 24px) 0 0; padding: 0; display: grid; gap: 10px; }
+.mkt-trio li { padding-inline-start: 16px; border-inline-start: 2px solid rgb(var(--c)); transition: border-color .8s; }
+.mkt-trio h4 { margin: 0 0 1px; font: 700 19px "Rajdhani", sans-serif; }
+.mkt-trio p { margin: 0; max-width: 60ch; font: 400 13.5px/1.5 "Inter", sans-serif; color: var(--mute); unicode-bidi: plaintext; }
+.mkt-stage { position: relative; height: min(600px, calc(100svh - 130px)); min-height: 440px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(160,205,230,.16); background: radial-gradient(closest-side at 50% 42%, rgba(var(--c), .2), #030d1b 82%); box-shadow: 0 30px 90px rgba(0,0,0,.45), 0 0 80px rgba(var(--c), .12); transition: background 1s; color: #eaf6ff; }
+.mkt-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.mkt-chips { position: absolute; left: 14px; right: 14px; top: 14px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 3; }
+.mkt-chip { appearance: none; cursor: pointer; font: 700 11px "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; border: 1px solid rgba(160,205,230,.18); background: rgba(4,16,32,.7); color: rgba(176,208,226,.85); display: flex; align-items: center; gap: 6px; transition: .4s; }
+.mkt-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--k); }
+.mkt-chip.on { color: #fff; border-color: var(--k); box-shadow: 0 0 16px color-mix(in srgb, var(--k) 45%, transparent); }
+.mkt-chip:focus-visible { outline: 2px solid rgb(var(--ac)); outline-offset: 2px; }
+.mkt-pop { position: absolute; z-index: 2; opacity: 0; transform: translateY(10px) scale(.96); transition: opacity .6s, transform .6s cubic-bezier(.2,.9,.3,1); pointer-events: none; }
+.mkt-pop.on { opacity: 1; transform: none; }
+.mkt-score { left: 20px; bottom: 26px; width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(rgb(var(--c)) calc(var(--v) * 1%), rgba(160,205,230,.14) 0); box-shadow: 0 0 40px rgba(var(--c), .35); }
+.mkt-score > div { width: 86px; height: 86px; border-radius: 50%; background: #04121f; display: grid; place-content: center; text-align: center; }
+.mkt-score b { display: block; font: 700 30px/1 "Rajdhani", sans-serif; }
+.mkt-score small { font: 700 8px "Rajdhani", sans-serif; letter-spacing: .06em; white-space: nowrap; color: rgba(176,208,226,.85); }
+.mkt-ins { right: 18px; bottom: 26px; width: 236px; padding: 13px 16px; border-radius: 18px; border: 1px solid rgba(160,205,230,.18); background: rgba(4,16,32,.82); backdrop-filter: blur(10px); }
+.mkt-ins header { display: flex; justify-content: space-between; font: 700 10.5px "Rajdhani", sans-serif; letter-spacing: .18em; color: rgba(176,208,226,.85); }
+.mkt-ins header span { color: rgb(var(--ac)); display: flex; gap: 6px; align-items: center; }
+.mkt-ins header span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgb(var(--ac)); animation: mkt-bl 1.4s infinite; }
+@keyframes mkt-bl { 50% { opacity: .25; } }
+.mkt-r { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 9px; }
+.mkt-r b { display: block; font: 700 24px/1 "Rajdhani", sans-serif; font-variant-numeric: tabular-nums; }
+.mkt-r small { font-size: 12px; color: rgba(176,208,226,.85); }
+.mkt-name { left: 140px; right: 270px; bottom: 44px; text-align: start; }
+.mkt-name span { font: 700 11px "Rajdhani", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: rgb(var(--c)); }
+.mkt-name h5 { margin: 3px 0 2px; font: 700 clamp(20px, 2.2vw, 24px)/1.1 "Rajdhani", sans-serif; unicode-bidi: plaintext; }
+.mkt-name small { font-size: 12px; color: rgba(176,208,226,.85); }
+.mkt-fine { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; font-size: 12px; color: rgba(176,208,226,.55); }
+@media (max-width: 980px) { .mkt { min-height: auto; padding-block: 90px 56px; } .mkt-wrap { grid-template-columns: 1fr; } .mkt-stage { height: 520px; } }
+@media (max-width: 560px) { .mkt-score { display: none; } .mkt-name { left: 16px; right: 16px; bottom: 112px; text-align: center; } .mkt-ins { left: 14px; right: 14px; width: auto; bottom: 22px; } }
+@media (prefers-reduced-motion: reduce) { .mkt-new::after, .mkt-ins header span::before { animation: none; } .mkt-pop { transition: none; } }

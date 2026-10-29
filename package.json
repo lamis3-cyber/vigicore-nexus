@@ -1,0 +1,20 @@
+{
+  "name": "vigicore",
+  "private": true,
+  "description": "VigiCore NEXUS + VigiCore Audit — monorepo (frontend, backend/nexus-api, backend/audit-api, ai-service)",
+  "scripts": {
+    "install:all": "npm --prefix frontend install && npm --prefix backend/nexus-api install && npm --prefix backend/audit-api install",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:nexus-api": "npm --prefix backend/nexus-api run dev",
+    "dev:audit-api": "npm --prefix backend/audit-api run dev",
+    "dev:ai": "cd ai-service && uvicorn main:app --reload --port 8000",
+    "build:frontend": "npm --prefix frontend run build",
+    "test:nexus-api": "npm --prefix backend/nexus-api test",
+    "test:frontend": "npm --prefix frontend/tests-ui test",
+    "test:audit-api": "npm --prefix backend/audit-api test",
+    "hygiene": "node scripts/repo-hygiene.mjs check",
+    "pack": "node scripts/repo-hygiene.mjs pack"
+  }
+}

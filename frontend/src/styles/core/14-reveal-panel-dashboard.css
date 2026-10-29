@@ -1,0 +1,268 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   PROGRESSIVE REVEAL + SHIELD INFO PANEL — New styles
+   Added to support cinematic system reveal and hover-driven info panel.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Module pre-reveal / reveal states ─────────────────────────────── */
+
+/**
+ * Initial state: modules are invisible and shifted slightly outward.
+ * JS removes this class in sequence to trigger the animated reveal.
+ */
+
+/**
+ * Revealed state: smooth fade + scale in.
+ * Once JS adds this class, CSS handles the transition.
+ */
+
+/* Allow float animations to re-engage after reveal (applied via JS addClass) */
+
+/* Keep inactive/active class overrides working after reveal */
+
+
+/* ── Shield info panel ───────────────────────────────────────────────── */
+
+/*
+ * The shield SVG is a pentagon — usable flat area is roughly
+ * the middle 60% horizontally and top 70% vertically (ECG sits at bottom).
+ * All sizing must respect these physical constraints.
+ */
+
+/* MODULE NUMBER — eyebrow label */
+
+/* MODULE NAME — bold, glowing, single line */
+
+/* DESCRIPTION — flows naturally to fill available space */
+
+
+/* TAGS — vertical stack, fully readable */
+
+/* Show only first 2 tags */
+
+
+/* ── Visibility transitions for the panel swap ──────────────────────── */
+
+/* Hidden → invisible, so it doesn't block the layout */
+
+/* Visible → animate in */
+
+/* Default text also gets the transition when it re-appears */
+
+/* When shield is active with any module hovered, enhance the panel glow */
+
+/* Thin decorative scan-line at top of the panel for holographic feel */
+
+
+/* ── Hero hint text: update to reflect hover instruction ──────────────── */
+/* The hero-desc already mentions hovering is the interaction;
+   we add a subtle "explore modules" prompt that appears after modules reveal */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   FINAL ENHANCEMENTS — v-final
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
+
+/* ── CURSOR GLOW (desktop only) ──────────────────────────── */
+@media  (pointer: fine) {
+  #cursor-glow {
+    position: fixed; width: 340px; height: 340px;
+    border-radius: 50%; pointer-events: none; z-index: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center,
+      rgba(0,232,255,0.025) 0%, rgba(0,128,255,0.010) 40%, transparent 70%);
+    transition: opacity 0.4s ease; opacity: 0;
+  }
+  body:hover #cursor-glow { opacity: 1; }
+}
+
+/* ── NAV ACTIVE LINK UNDERLINE ───────────────────────────── */
+.nav-links a {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(175, 218, 240, 0.55);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 50%;
+  height: 1px;
+  background: var(--cyan);
+  border-radius: 2px;
+  opacity: 0;
+  box-shadow: 0 0 8px var(--cyan);
+  transition: width 0.25s ease;
+  width: 0;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ── DASHBOARD SECTION ───────────────────────────────────── */
+.dashboard-section {
+  position: relative; overflow: hidden;
+}
+.dashboard-section::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,232,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,232,255,0.022) 1px, transparent 1px);
+  background-size: 60px 60px; pointer-events: none;
+}
+
+.dashboard-section .section-content {
+  perspective: 1800px;
+}
+
+.dashboard-frame {
+  position: relative; margin: 28px auto 0;
+  max-width: 1100px; border-radius: 12px;
+  border: 1px solid rgba(0,232,255,0.18);
+  background: rgba(2,8,20,0.93); backdrop-filter: blur(12px);
+  overflow: hidden;
+  --tilt-x: 4deg;
+  --tilt-y: 0deg;
+  transform: perspective(1800px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+  box-shadow:
+    0 0 0 1px rgba(0,232,255,0.07),
+    0 44px 100px rgba(0,0,0,0.65),
+    0 10px 40px rgba(0,0,0,0.5),
+    0 0 70px rgba(0,100,200,0.09);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-frame { transform: none !important; transition: none !important; }
+}
+@media (max-width: 900px) {
+  .dashboard-frame { transform: none !important; }
+}
+
+.df-corner { position: absolute; width: 16px; height: 16px; z-index: 10; }
+.df-corner--tl { top:0;left:0; border-top:1.5px solid var(--cyan); border-left:1.5px solid var(--cyan); }
+.df-corner--tr { top:0;right:0; border-top:1.5px solid var(--cyan); border-right:1.5px solid var(--cyan); }
+.df-corner--bl { bottom:0;left:0; border-bottom:1.5px solid var(--cyan); border-left:1.5px solid var(--cyan); }
+.df-corner--br { bottom:0;right:0; border-bottom:1.5px solid var(--cyan); border-right:1.5px solid var(--cyan); }
+
+/* Sidebar */
+@keyframes  dotPulse {
+  0%,100% {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 0 6px var(--cyan);
+}
+  50% {
+  opacity: 0.7;
+  transform: scale(0.85);
+  box-shadow: 0 0 14px var(--cyan);
+}
+}
+
+/* Main */
+
+/* KPI */
+
+/* Mid row */
+
+/* Feed */
+
+/* Domain bars */
+.db-domain-bar-fill { height:100%; width:0; border-radius:2px; transition:width 1.4s cubic-bezier(0.22,1,0.36,1); }
+
+/* Dashboard caption */
+
+/* Dashboard responsive */
+
+/* ── PATIENT PORTAL MOCKUP (dashboard-frame content) ────── */
+
+/* Header */
+
+/* Body split: icon rail + main */
+
+/* Icon + label sidebar rail */
+
+/* Main content */
+
+/* AI summary card */
+
+/* KPI row — 5 cards */
+
+/* Recall banner */
+
+/* Footer status bar */
+
+/* ── VIDEO PLACEHOLDER UPGRADE ───────────────────────────── */
+.vp-scanline {
+  position:absolute; inset:0; pointer-events:none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,232,255,0.012) 3px, rgba(0,232,255,0.012) 4px);
+  z-index:1;
+}
+.vp-grid {
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background-image: linear-gradient(rgba(0,232,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,232,255,0.03) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+.vp-coming-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: "Rajdhani",sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,232,255,0.55);
+  border: 1px solid rgba(0,232,255,0.18);
+  background: rgba(0,232,255,0.04);
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.vp-coming-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(0,232,255,0.7); box-shadow:0 0 6px rgba(0,232,255,0.6);
+  animation:dotPulse 1.5s ease-in-out infinite;
+}
+.vp-play-ring { animation:playRingPulse 3s ease-in-out infinite; }
+@keyframes  playRingPulse { 0%,100%{stroke-opacity:0.4}50%{stroke-opacity:0.8} }
+.vp-progress-bar {
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:rgba(0,232,255,0.08);
+}
+.vp-progress-fill {
+  height:100%; width:0%;
+  background:linear-gradient(90deg, var(--teal), var(--cyan));
+  box-shadow:0 0 6px rgba(0,232,255,0.5);
+  animation:vpProgressIdle 8s ease-in-out infinite;
+}
+@keyframes  vpProgressIdle {
+  0%{width:0%} 40%{width:65%} 60%{width:65%} 100%{width:0%}
+}
+
+/* ── ACTOR CARD HOVER IMPROVEMENT ────────────────────────── */
+
+.actor-card:hover {
+  --lift: -7px;
+  --card-scale: 1.018;
+  border-color: var(--card-color, rgba(0,232,255,0.22));
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 16px var(--card-glow, rgba(0,232,255,0.05));
+}
+
+/* ── ACCESSIBILITY: fix sip-desc minimum size ────────────── */
+
+
+

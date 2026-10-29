@@ -1,0 +1,35 @@
+/* Placeholder kept in a placement section (Sponsored / Featured / Recommended) while it has no product. */
+.services-empty-slot {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 22px 26px; margin: 18px 0;
+  border: 1px dashed color-mix(in srgb, var(--cyan, #00e8ff) 45%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--cyan, #00e8ff) 5%, transparent);
+  color: inherit;
+}
+.services-empty-slot span { opacity: .8; }
+.services-empty-slot a {
+  font-weight: 600; text-decoration: none; white-space: nowrap;
+  padding: 8px 16px; border-radius: 999px;
+  border: 1px solid var(--cyan, #00e8ff); color: var(--cyan, #00e8ff);
+}
+.services-empty-slot a:hover { background: color-mix(in srgb, var(--cyan, #00e8ff) 14%, transparent); }
+
+/* Category rail: every chip on ONE line, no horizontal scroll.
+   The chips shrink (font, padding, gap scale with the viewport width) so that 8 of them fit side by side.
+   Below 900px there is no room for one line, so they wrap instead of scrolling. */
+.services-category-rail {
+  flex-wrap: nowrap; justify-content: center; gap: clamp(4px, .5vw, 8px);
+  overflow: visible; max-width: min(1600px, 100%);
+  -webkit-mask-image: none; mask-image: none;
+}
+.services-category-rail .services-chip {
+  flex: 0 1 auto; min-width: 0; gap: clamp(4px, .45vw, 8px);
+  padding: clamp(5px, .5vw, 8px) clamp(8px, .85vw, 14px) clamp(5px, .5vw, 8px) clamp(7px, .7vw, 12px);
+  font-size: clamp(.68rem, .9vw, .85rem);
+}
+.services-category-rail .services-chip-count { font-size: clamp(.62rem, .8vw, .75rem); padding-inline: clamp(4px, .5vw, 7px); }
+.services-category-rail .services-chip-dot { width: clamp(6px, .6vw, 8px); height: clamp(6px, .6vw, 8px); }
+@media (max-width: 900px) {
+  .services-category-rail { flex-wrap: wrap; }
+}

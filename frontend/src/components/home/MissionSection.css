@@ -1,0 +1,37 @@
+/* "Delay dial": a seconds dial and patient monitor behind the Mission statement. Decorative, driven by MissionSection.jsx. */
+.mission-section { --md-tick: rgba(185,228,248,.5); --md-major: rgba(235,248,255,.95); --md-ring: rgba(185,228,248,.16); --md-text: #cfe9f7; min-height: max(100svh, 720px); --d: min(90vh, 920px, 94vw); }
+html[data-theme="light"] .mission-section { --md-tick: rgba(15,31,61,.38); --md-major: rgba(15,31,61,.85); --md-ring: rgba(15,31,61,.14); --md-text: #26405f; }
+.md-hud { position: absolute; left: 50%; top: 50%; width: var(--d); height: var(--d); transform: translate(-50%, -50%); pointer-events: none; z-index: 1; }
+.md-dial { position: absolute; left: 50%; top: 50%; width: var(--d); height: var(--d); transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; }
+.md-dial svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.md-rc { stroke: var(--md-ring); }
+.md-rc2 { stroke: var(--md-ring); opacity: .6; }
+.md-tn { stroke: var(--md-tick); }
+.md-tm { stroke: var(--md-major); }
+.md-count { position: absolute; left: 50%; top: 8.5%; transform: translateX(-50%); text-align: center; line-height: 1; }
+.md-count small, .md-mon small { display: block; font: 700 11px "Rajdhani", sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--md-text); opacity: .75; }
+.md-count b { display: block; margin-top: 6px; font: 700 clamp(24px, 3.2vw, 38px)/1 "Rajdhani", sans-serif; font-variant-numeric: tabular-nums; letter-spacing: .06em; color: color-mix(in srgb, #ff5a4a calc(var(--risk) * 100%), var(--md-text)); }
+.md-mon { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); width: 56%; text-align: center; }
+.md-ecg { display: block; width: 100%; height: clamp(54px, 9vh, 88px); margin-top: 6px; }
+.md-dial[data-flash] .md-rc { animation: md-ok 1.3s ease-out; }
+.md-hud[data-flash] .md-count b { animation: md-okt 1.3s ease-out; }
+@keyframes md-ok { 0% { stroke: #00f0d8; stroke-width: 8; } 100% { stroke-width: 2; } }
+@keyframes md-okt { 0% { color: #00f0d8; } }
+.md-hint { position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; font: 500 11.5px "Inter", sans-serif; letter-spacing: .05em; color: var(--md-text); opacity: .5; z-index: 1; }
+.mission-section .mission-content { position: relative; z-index: 1; width: 100%; max-width: calc(var(--d) * .74); }
+/* Type scales with the dial so the statement always sits inside the ring, whatever the zoom or window height. */
+.mission-section .mission-title { font-size: clamp(24px, calc(var(--d) * .074), 64px); line-height: 1.12; margin-bottom: calc(var(--d) * .024); }
+.mission-section .mission-desc { font-size: clamp(13px, calc(var(--d) * .0225), 17.5px); line-height: 1.7; }
+@media (max-width: 700px) {
+  .mission-section { --d: 150vw; flex-direction: column; padding: 84px 22px 64px; }
+  .mission-section .mission-content { max-width: 100%; order: 1; }
+  .mission-section .mission-title { font-size: clamp(26px, 8.4vw, 40px); margin-bottom: 16px; }
+  .mission-section .mission-desc { font-size: 15px; line-height: 1.7; }
+  .md-dial { opacity: .55; }
+  .md-hud { display: contents; }
+  .md-count { position: static; transform: none; order: 0; margin-bottom: 18px; z-index: 1; }
+  .md-mon { position: static; transform: none; order: 2; width: 88%; margin-top: 22px; z-index: 1; }
+  .md-hint { display: none; }
+}
+@media (hover: none) { .md-hint { display: none; } }
+@media (prefers-reduced-motion: reduce) { .md-dial[data-flash] .md-rc, .md-hud[data-flash] .md-count b { animation: none; } }

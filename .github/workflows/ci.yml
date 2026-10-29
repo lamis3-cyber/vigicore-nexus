@@ -1,0 +1,61 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      # Fails if git tracks a .env, a database, a SQL backup, storage/, a virtualenv, a private key or an archive.
+      - run: node scripts/repo-hygiene.mjs check
+
+  nexus-api:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend/nexus-api } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: backend/nexus-api/package-lock.json }
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npx tsc --noEmit
+      - run: npm test
+        env: { JWT_SECRET: ci-only-test-secret }
+      - name: Postgres schema is in sync with the SQLite one
+        run: node scripts/check-schema-sync.mjs
+      - run: npm audit --omit=dev --audit-level=high
+
+  audit-api:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend/audit-api } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: backend/audit-api/package-lock.json }
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npm test
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: frontend/package-lock.json }
+      - run: npm ci
+      - run: npm run build
+      - name: UI tests
+        working-directory: frontend/tests-ui
+        run: npm install && npm test
+
+  ai-service:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: ai-service } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python -c "import main"

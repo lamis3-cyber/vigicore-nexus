@@ -1,0 +1,501 @@
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — HERO FIX
+   Shield + modules stay exactly as dark mode
+   Only the page background around them changes to #E8EDF3
+   ═══════════════════════════════════════════════════════════ */
+
+
+
+/* Kill the radial cyan glow behind shield — wrong on light bg */
+
+
+/* .system gets its own dark island — exact dark mode colors preserved */
+
+
+/* Module cards in the system — keep dark mode colors exactly */
+
+
+
+
+/* Hero text area below the system — light mode colors */
+html[data-theme="light"] .hero-eyebrow { color: #00C8E0;  }
+html[data-theme="light"] .hero-eyebrow::before,
+html[data-theme="light"] .hero-eyebrow::after {
+  background: linear-gradient(90deg, transparent, rgba(0,200,224,0.50)) !important;
+}
+html[data-theme="light"] .hero-title-xl { color: #0F1F3D;  }
+html[data-theme="light"] .hero-title-xl em { color: #0EA5A0;  }
+html[data-theme="light"] .hero-desc {
+  color: rgba(15,31,61,0.58);
+}
+
+html[data-theme="light"] .btn-secondary {
+  background: transparent !important;
+  border-color: rgba(0,200,224,0.30) !important;
+  color: #00C8E0 !important;
+}
+
+/* Scroll-down hint */
+
+/* "Explore the platform" text + arrow — visible on light bg */
+html[data-theme="light"] .scroll-hint span {
+  color: rgba(0,150,180,0.85) !important;
+}
+html[data-theme="light"] .scroll-arrow line,
+html[data-theme="light"] .scroll-arrow polyline {
+  stroke: rgba(0,150,180,0.75) !important;
+}
+
+/* "Hover or tap a module to explore" hint */
+
+/* top-label above shield */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — HERO SYSTEM ISLAND FIX v2
+   System island + module cards = exact shield color
+   ═══════════════════════════════════════════════════════════ */
+
+/* System island — matches shield dark navy exactly */
+
+
+/* Module cards — same dark navy as island, no glass effect */
+html[data-theme="light"] .module {
+  background: rgba(3,14,32,0.95) !important;
+  border-color: rgba(0,232,255,0.18) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Keep each module card's own accent border colors — don't override */
+
+
+
+
+
+/* Module card hover — keep exact dark mode hover */
+
+
+
+
+
+
+/* Module name text — keep light */
+
+/* Hero background around the island */
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — MODULE CARDS (overridden by final block below)
+   ═══════════════════════════════════════════════════════════ */
+/* Note: final LIGHT MODE block at bottom of file is the canonical override */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — HERO WITH VISIBLE CARDS ON SOFT BACKGROUND
+   Background: soft blue-gray mist matching reference screenshot
+   Cards: dark glass with accent borders, fully visible
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hero background — soft icy blue-gray as in screenshot */
+html[data-theme="light"] .hero {
+  background: rgba(232,237,243,0.90) !important;
+}
+
+/* Kill any pseudo-element dark overlays on hero */
+html[data-theme="light"] .hero::before {
+  opacity: 0 !important;
+}
+
+/* System container — transparent so gradient shows through */
+html[data-theme="light"] .system {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* Module cards — white frosted glass with visible border, matches screenshot */
+html[data-theme="light"] .module,
+html[data-theme="light"] .module-tl,
+html[data-theme="light"] .module-tr,
+html[data-theme="light"] .module-bl,
+html[data-theme="light"] .module-br,
+html[data-theme="light"] .module-top {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(14px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.5) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 120, 180, 0.10),
+    0 1px 0 rgba(255,255,255,0.9) inset !important;
+}
+
+/* Per-card accent borders — stronger, more visible */
+html[data-theme="light"] .module-tl {
+  border-color: rgba(50,180,255,0.24) !important;
+  border: 2px solid rgba(50, 180, 255, 0.55) !important;
+}
+html[data-theme="light"] .module-tr {
+  border-color: rgba(60,200,160,0.22) !important;
+  border: 2px solid rgba(60, 200, 160, 0.52) !important;
+}
+html[data-theme="light"] .module-bl {
+  border-color: rgba(180,80,255,0.24) !important;
+  border: 2px solid rgba(180, 80,  255, 0.52) !important;
+}
+html[data-theme="light"] .module-br {
+  border-color: rgba(220,140,60,0.20) !important;
+  border: 2px solid rgba(220, 140,  60, 0.50) !important;
+}
+html[data-theme="light"] .module-top {
+  border-color: rgba(255,60,90,0.24) !important;
+  border: 2px solid rgba(255, 60, 90, 0.55) !important;
+}
+
+/* Module title text — dark navy, readable on white card */
+
+/* Module hover — lift with accent glow */
+html[data-theme="light"] .module:hover {
+  border-color: rgba(0,232,255,0.45) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,232,255,0.08) !important;
+  transform: translateY(-6px) scale(1.025) !important;
+  filter: brightness(1.04) !important;
+}
+html[data-theme="light"] .module-tl:hover {
+  border-color: rgba(50,180,255,0.70) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 40px rgba(50,180,255,0.28) !important;
+}
+html[data-theme="light"] .module-tr:hover {
+  border-color: rgba(60,200,160,0.65) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 40px rgba(60,200,160,0.22) !important;
+}
+html[data-theme="light"] .module-bl:hover {
+  border-color: rgba(180,80,255,0.70) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 40px rgba(180,80,255,0.28) !important;
+}
+html[data-theme="light"] .module-br:hover {
+  border-color: rgba(220,140,60,0.65) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 40px rgba(220,140,60,0.22) !important;
+}
+html[data-theme="light"] .module-top:hover {
+  border-color: rgba(255,60,90,0.70) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 40px rgba(255,60,90,0.28) !important;
+}
+
+/* Connection lines canvas — full opacity on light bg */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — CENTER WIM CARD WARM DARK BACKGROUND
+   Matches the dark warm red from image reference
+   ═══════════════════════════════════════════════════════════ */
+
+
+
+
+/* Text inside center card — keep readable on dark bg */
+
+
+
+
+/* Signal labels and broken signal colors */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — CENTER CARD: light warm pinkish-red background
+   ═══════════════════════════════════════════════════════════ */
+
+/* Text — readable on light warm bg */
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — CONV DOMAIN CARDS: tinted light backgrounds
+   Each domain gets its own accent color as a very soft tint
+   ═══════════════════════════════════════════════════════════ */
+
+/* Override the white background on all domain cards */
+
+/* Matériovigilance — cyan/blue tint */
+
+/* Pharmacovigilance — teal/green tint */
+
+/* Chémovigilance — purple tint */
+
+/* Cosmétovigilance — amber/orange tint */
+
+/* Réactovigilance — red tint */
+
+/* Activity bars inside each card — slightly more visible on light */
+
+/* Domain desc text — slightly darker for readability */
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — ALL CARDS TINTED
+   Every card gets its accent color as a soft background tint
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── HOW IT WORKS — Flow cards — tinted per accent (v11 style) ── */
+
+
+
+
+/* Light mode — override glow colours to be richer for white bg */
+
+/* Make ::before match the white card face */
+
+/* ── ACTORS — 5 stakeholder cards ───────────────────────── */
+html[data-theme="light"] .actor-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(26,86,219,0.09);
+  box-shadow: 0 4px 16px rgba(15,31,61,0.06) !important;
+}
+
+
+/* ── WORKFLOW NODES ──────────────────────────────────────── */
+/* Light mode wf-node — per-card colour tints */
+
+/* Light mode — ::before mask: transparent so card background shows through correctly */
+
+/* ── TRUST STATS ─────────────────────────────────────────── */
+
+
+/* ── CONTACT VALUE PROP CARDS ────────────────────────────── */
+
+/* ── WIM CARDS (side cards, not center) ──────────────────── */
+
+/* Card 1 — full dark navy/teal (matches dark reference screenshot) */
+/* Restore dark-mode text colors inside card 1 */
+
+/* Card 3 — full dark navy/orange (matches dark reference screenshot) */
+/* Restore dark-mode text colors inside card 3 */
+
+/* CORE FAILURE badge — light mode: red/crimson to match card identity */
+
+/* ── Card 02 number — darker crimson, on-brand but visible ── */
+
+/* ── Ticker tape + anchor strip — dark band with readable cyan ──
+   Was rgba(8,15,28,0.07): at 7% opacity against a white page the
+   "dark band" the comment promised never actually showed up — the
+   strip read as blank, and the already-low-opacity cyan text
+   (0.22-0.75) had nothing to contrast against. Bumped to a near-
+   solid navy so the band itself is visible edge-to-edge (the
+   .ticker-tape mask-image still fades it out at the two ends). */
+html[data-theme="light"] .ticker-tape {
+  background: rgba(8,15,28,0.92);
+  border-top: 1px solid rgba(0,180,210,0.18);
+  border-bottom: 1px solid rgba(0,180,210,0.10);
+}
+html[data-theme="light"] .ticker-tape-track span    { color: rgba(0,200,224,0.75) !important; }
+html[data-theme="light"] .ticker-tape-track .ticker-sep { color: rgba(0,200,224,0.35) !important; }
+html[data-theme="light"] .wim-anchor-text  { color: rgba(0,150,185,0.80) !important; }
+html[data-theme="light"] .wim-anchor-line  {
+  background: linear-gradient(90deg, transparent, rgba(0,160,195,0.32), transparent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   LIGHT MODE — NAV & FOOTER LOGO SHIELD (SVG gradient stops)
+   ══════════════════════════════════════════════════════════ */
+
+/* Shield body fill → frosted glass blue-white */
+
+/* Edge gradient → cyan-teal */
+
+/* ECG gradient → cyan-teal */
+
+/* VN text → cyan */
+html[data-theme="light"] .nav-logo-mark text {
+  fill: rgba(0,180,210,0.90) !important;
+}
+
+/* All inline cyan strokes → keep cyan */
+html[data-theme="light"] .nav-logo-mark line {
+  stroke: rgba(0,200,224,0.15) !important;
+}
+html[data-theme="light"] .nav-logo-mark path[stroke^="rgba(0,229,255"] {
+  stroke: rgba(0,200,224,0.28) !important;
+}
+html[data-theme="light"] .nav-logo-mark path[stroke^="rgba(0,229"] {
+  stroke: rgba(0,200,224,0.28) !important;
+}
+/* ECG bloom glow → cyan */
+html[data-theme="light"] .nav-logo-mark polyline[stroke^="rgba(0,255"] {
+  stroke: rgba(0,200,224,0.25) !important;
+}
+
+/* Breathing glow → cyan drops */
+html[data-theme="light"] .nav-logo-mark {
+  animation: navShieldBreath-light 4.5s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 6px rgba(0,200,224,0.60)) drop-shadow(0 2px 8px rgba(0,255,184,0.28)) !important;
+}
+@keyframes  navShieldBreath-light {
+  0%,100% {
+  filter: drop-shadow(0 0 5px rgba(0,200,224,0.55)) drop-shadow(0 0 12px rgba(0,255,184,0.22)) !important;
+}
+  50% {
+  filter: drop-shadow(0 0 11px rgba(0,200,224,0.88)) drop-shadow(0 0 24px rgba(0,255,184,0.42)) !important;
+}
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   LIGHT MODE — HERO SHIELD
+   Only the inside fill changes. Border, rings, glow = dark mode unchanged.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Shield body fill → light frosted glass (only this changes vs dark mode) */
+
+/* Shield text → dark navy (readable on the light interior) */
+
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   LIGHT MODE — Shield hover info panel text (readable on light interior)
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   LOGO LOCK — Keep logo shield identical in light & dark mode
+   Overrides every earlier light-mode gradient stop rule
+   Applies to: Navbar (.nav-logo-mark), Hero (.shield-svg),
+               Footer (.ft-logo-mark / .footer-logo-mark)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Shield body fill → always dark navy ─────────────────── */
+html[data-theme="light"] #sg1 stop:first-child {
+  stop-color: #001a2e !important;
+  stop-opacity: 1 !important;
+}
+html[data-theme="light"] #sg1 stop:last-child {
+  stop-color: #000d1a !important;
+  stop-opacity: 1 !important;
+}
+
+/* Handle nth-child selectors too */
+html[data-theme="light"] #sg1 stop:nth-child(1) {
+  stop-color: #001a2e !important;
+  stop-opacity: 1 !important;
+}
+html[data-theme="light"] #sg1 stop:nth-child(2) {
+  stop-color: #000d1a !important;
+  stop-opacity: 1 !important;
+}
+
+/* ── Shield edge glow → keep original cyan ───────────────── */
+html[data-theme="light"] #sg-edge stop:nth-child(1) {
+  stop-color: #00e5ff !important;
+  stop-opacity: 0.9 !important;
+}
+html[data-theme="light"] #sg-edge stop:nth-child(2) {
+  stop-color: #00ffc8 !important;
+  stop-opacity: 0.6 !important;
+}
+html[data-theme="light"] #sg-edge stop:nth-child(3) {
+  stop-color: #0a7aff !important;
+  stop-opacity: 0.8 !important;
+}
+
+/* ── ECG gradient → keep original cyan ───────────────────── */
+html[data-theme="light"] #ecg-grad stop:nth-child(1) {
+  stop-color: #00ffcc !important; stop-opacity: 0 !important;
+}
+html[data-theme="light"] #ecg-grad stop:nth-child(2) {
+  stop-color: #00ffcc !important; stop-opacity: 0.9 !important;
+}
+html[data-theme="light"] #ecg-grad stop:nth-child(3) {
+  stop-color: #00f0ff !important; stop-opacity: 1 !important;
+}
+html[data-theme="light"] #ecg-grad stop:nth-child(4) {
+  stop-color: #38c8ff !important; stop-opacity: 0.9 !important;
+}
+html[data-theme="light"] #ecg-grad stop:nth-child(5) {
+  stop-color: #38c8ff !important; stop-opacity: 0 !important;
+}
+
+/* ── VN/VigiCore text inside shield → original cyan ──────── */
+html[data-theme="light"] .nav-logo-mark text, html[data-theme="light"] .shield-svg text {
+  fill: rgba(0, 229, 255, 0.75) !important;
+}
+
+/* ── Inner grid lines & corner brackets → original cyan ──── */
+html[data-theme="light"] .nav-logo-mark line, html[data-theme="light"] .shield-svg line {
+  stroke: rgba(0, 229, 255, 0.07) !important;
+}
+html[data-theme="light"] .nav-logo-mark path[d*="L50,70"],
+html[data-theme="light"] .nav-logo-mark path[d*="L62,55"],
+html[data-theme="light"] .shield-svg path[d*="L50,70"],
+html[data-theme="light"] .shield-svg path[d*="L62,55"] {
+  stroke: rgba(0, 229, 255, 0.35) !important;
+}
+
+/* ── Hex grid overlay → original cyan ────────────────────── */
+html[data-theme="light"] .nav-logo-mark g[clip-path] path, html[data-theme="light"] .shield-svg g[clip-path] path {
+  stroke: #00e5ff !important;
+}
+
+/* ── ECG bloom glow polylines → original cyan ────────────── */
+html[data-theme="light"] .nav-logo-mark polyline, html[data-theme="light"] .shield-svg polyline {
+  stroke: rgba(0, 255, 210, 0.22) !important;
+}
+
+/* ── Outer glow ring & shield animation → dark mode style ── */
+html[data-theme="light"] .nav-logo-mark, html[data-theme="light"] .shield-svg {
+  animation: navShieldBreath 4.5s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.35)) drop-shadow(0 0 18px rgba(0,255,200,0.15)) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SHIELD TEXT LOCK — Keep all shield text white/cyan in light mode
+   since the shield background is now always dark navy
+   ══════════════════════════════════════════════════════════════ */
+
+/* Default state: VigiCore + NEXUS text */
+
+
+html[data-theme="light"] .shield-wrap.any-active .shield-name,
+html[data-theme="light"] .shield-wrap.any-active .shield-sub {
+  color: var(--white) !important;
+}
+
+/* Hover panel: module number, name, description, tags */
+
+
+
+
+
+/* Also cover the older panel class names (panel-name, panel-desc, panel-number, panel-tags) */
+
+/* ══════════════════════════════════════════════════════════════
+   SHIELD TEXT — Light mode = identical to dark mode
+   Shield bg is always dark navy, so all text must stay bright.
+   Simply revert every light-mode override back to dark values.
+   ══════════════════════════════════════════════════════════════ */
+html[data-theme="light"] .shield-name,
+html[data-theme="light"] .shield-wrap.any-active .shield-name {
+  color: #ffffff !important;
+}
+html[data-theme="light"] .shield-sub,
+html[data-theme="light"] .shield-wrap.any-active .shield-sub {
+  color: var(--cyan) !important;
+  opacity: 0.90 !important;
+}
+
+/* Hover panel — number, name, desc, tags */
+
+/* Older panel class names */
+

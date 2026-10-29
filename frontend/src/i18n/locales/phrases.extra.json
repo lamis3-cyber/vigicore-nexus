@@ -1,0 +1,4950 @@
+{
+  "Nouvelle discussion": {
+    "ar": "محادثة جديدة",
+    "en": "New discussion"
+  },
+  "Combien de contacts ai-je ?": {
+    "ar": "كم عدد جهات الاتصال لدي؟",
+    "en": "How many contacts do I have?"
+  },
+  "Ai-je des messages non lus ?": {
+    "ar": "هل لدي رسائل غير مقروءة؟",
+    "en": "Do I have unread messages?"
+  },
+  "Combien de déclarations ai-je ?": {
+    "ar": "كم عدد التصريحات لدي؟",
+    "en": "How many reports do I have?"
+  },
+  "Notifications et alertes": {
+    "ar": "الإشعارات والتنبيهات",
+    "en": "Notifications and alerts"
+  },
+  "Enregistrement impossible": {
+    "ar": "تعذّر الحفظ",
+    "en": "Unable to save"
+  },
+  "Réinitialisation impossible": {
+    "ar": "تعذّرت إعادة التعيين",
+    "en": "Unable to reset"
+  },
+  "Réglages réinitialisés": {
+    "ar": "تمت إعادة تعيين الإعدادات",
+    "en": "Settings reset"
+  },
+  "Les réglages enregistrés sur votre compte ont été effacés.": {
+    "ar": "تم مسح الإعدادات المحفوظة في حسابك.",
+    "en": "The settings saved on your account have been cleared."
+  },
+  "Réinitialiser mes réglages enregistrés": {
+    "ar": "إعادة تعيين إعداداتي المحفوظة",
+    "en": "Reset my saved settings"
+  },
+  "Vos informations ont été enregistrées sur votre compte.": {
+    "ar": "تم حفظ معلوماتك في حسابك.",
+    "en": "Your information has been saved to your account."
+  },
+  "Ces préférences sont enregistrées sur votre compte. Les notifications s'affichent dans l'application ; l'envoi par e-mail n'est pas encore activé.": {
+    "ar": "تُحفظ هذه التفضيلات في حسابك. تظهر الإشعارات داخل التطبيق؛ أما الإرسال عبر البريد الإلكتروني فغير مفعّل بعد.",
+    "en": "These preferences are saved on your account. Notifications appear in the application; sending by e-mail is not yet enabled."
+  },
+  "Invitez, validez et gérez les comptes de votre établissement.": {
+    "ar": "ادعُ حسابات مؤسستك وصادق عليها وأدرها.",
+    "en": "Invite, validate and manage your facility's accounts."
+  },
+  "Langue de l'interface": {
+    "ar": "لغة الواجهة",
+    "en": "Interface language"
+  },
+  "La caméra n'est accessible qu'en HTTPS (ou localhost). Ouvrez le site en https:// ou utilisez « Scanner une photo ».": {
+    "ar": "لا يمكن الوصول إلى الكاميرا إلا عبر HTTPS (أو localhost). افتح الموقع عبر https:// أو استخدم «مسح صورة».",
+    "en": "The camera is only accessible over HTTPS (or localhost). Open the site with https:// or use “Scan a photo”."
+  },
+  "Ce navigateur ne permet pas l'accès à la caméra. Utilisez « Scanner une photo ».": {
+    "ar": "هذا المتصفح لا يتيح الوصول إلى الكاميرا. استخدم «مسح صورة».",
+    "en": "This browser does not allow camera access. Use “Scan a photo”."
+  },
+  "Aucune caméra détectée sur cet appareil. Utilisez « Scanner une photo ».": {
+    "ar": "لم يتم اكتشاف أي كاميرا على هذا الجهاز. استخدم «مسح صورة».",
+    "en": "No camera detected on this device. Use “Scan a photo”."
+  },
+  "La caméra est utilisée par une autre application. Fermez-la puis réessayez.": {
+    "ar": "الكاميرا مستخدمة من تطبيق آخر. أغلقه ثم أعد المحاولة.",
+    "en": "The camera is being used by another application. Close it and try again."
+  },
+  "Impossible d'ouvrir la caméra. Utilisez « Scanner une photo » ou saisissez le lot manuellement.": {
+    "ar": "تعذّر فتح الكاميرا. استخدم «مسح صورة» أو أدخل رقم الدفعة يدوياً.",
+    "en": "Unable to open the camera. Use “Scan a photo” or enter the lot manually."
+  },
+  "Scanner le QR / DataMatrix": {
+    "ar": "مسح رمز QR / DataMatrix",
+    "en": "Scan the QR / DataMatrix"
+  },
+  "Passer en français": {
+    "ar": "التبديل إلى الفرنسية",
+    "en": "Switch to English"
+  },
+  "Déclarer un": {
+    "ar": "تصريح عن",
+    "en": "Report a"
+  },
+  "Déclarer une": {
+    "ar": "تصريح عن",
+    "en": "Report a"
+  },
+  "Envoyer la déclaration": {
+    "ar": "إرسال التصريح",
+    "en": "Send the report"
+  },
+  "Appel terminé": {
+    "ar": "انتهت المكالمة",
+    "en": "Call ended"
+  },
+  "Appel vidéo entrant…": {
+    "ar": "مكالمة فيديو واردة…",
+    "en": "Incoming video call…"
+  },
+  "Ça sonne…": {
+    "ar": "جارٍ الرنين…",
+    "en": "Ringing…"
+  },
+  "Votre session a expiré. Reconnectez-vous pour continuer.": {
+    "ar": "انتهت جلستك. أعد تسجيل الدخول للمتابعة.",
+    "en": "Your session has expired. Sign in again to continue."
+  },
+  "Le service est momentanément indisponible. Réessayez dans un instant.": {
+    "ar": "الخدمة غير متاحة مؤقتاً. أعد المحاولة بعد قليل.",
+    "en": "The service is temporarily unavailable. Try again in a moment."
+  },
+  "Impossible de joindre le serveur. Vérifiez votre connexion puis réessayez.": {
+    "ar": "تعذّر الاتصال بالخادم. تحقق من اتصالك ثم أعد المحاولة.",
+    "en": "Cannot reach the server. Check your connection, then try again."
+  },
+  "Ouvrir le profil": {
+    "ar": "فتح الملف الشخصي",
+    "en": "Open profile"
+  },
+  "Ces informations sont indicatives et ne remplacent pas l'avis de votre médecin traitant.": {
+    "ar": "هذه المعلومات إرشادية ولا تغني عن رأي طبيبك المعالج.",
+    "en": "This information is indicative and does not replace the advice of your attending physician."
+  },
+  "Ces informations sont indicatives et ne remplacent pas votre jugement professionnel.": {
+    "ar": "هذه المعلومات إرشادية ولا تحل محل حكمك المهني.",
+    "en": "This information is indicative and does not replace your professional judgment."
+  },
+  "VigiCore AI — Personnel médical": {
+    "ar": "VigiCore AI — الطاقم الطبي",
+    "en": "VigiCore AI — Medical staff"
+  },
+  "VigiCore AI — Hôpital · Qualité/Vigilance": {
+    "ar": "VigiCore AI — المستشفى · الجودة/اليقظة",
+    "en": "VigiCore AI — Hospital · Quality/Vigilance"
+  },
+  "VigiCore AI — Hôpital · Administration": {
+    "ar": "VigiCore AI — المستشفى · الإدارة",
+    "en": "VigiCore AI — Hospital · Administration"
+  },
+  "VigiCore AI — Clinique · Qualité/Vigilance": {
+    "ar": "VigiCore AI — العيادة · الجودة/اليقظة",
+    "en": "VigiCore AI — Clinic · Quality/Vigilance"
+  },
+  "VigiCore AI — Centre médical · Qualité/Vigilance": {
+    "ar": "VigiCore AI — المركز الطبي · الجودة/اليقظة",
+    "en": "VigiCore AI — Medical center · Quality/Vigilance"
+  },
+  "VigiCore AI — Centre médical · Administration": {
+    "ar": "VigiCore AI — المركز الطبي · الإدارة",
+    "en": "VigiCore AI — Medical center · Administration"
+  },
+  "Pharmacie hospitalière": {
+    "ar": "الصيدلية الاستشفائية",
+    "en": "Hospital pharmacy"
+  },
+  "Bloc opératoire": {
+    "ar": "الجناح الجراحي",
+    "en": "Operating theatre"
+  },
+  "Médecine générale": {
+    "ar": "الطب العام",
+    "en": "General medicine"
+  },
+  "Vigilance Qualité": {
+    "ar": "يقظة الجودة",
+    "en": "Quality Vigilance"
+  },
+  "Configuration des appels indisponible.": {
+    "ar": "إعدادات المكالمات غير متاحة.",
+    "en": "Call configuration unavailable."
+  },
+  "Signal d’appel refusé.": {
+    "ar": "تم رفض إشارة المكالمة.",
+    "en": "Call signalling refused."
+  },
+  "Une erreur est survenue.": {
+    "ar": "حدث خطأ.",
+    "en": "An error occurred."
+  },
+  "Impossible de joindre le serveur.": {
+    "ar": "تعذّر الاتصال بالخادم.",
+    "en": "Cannot reach the server."
+  },
+  "Le mot de passe actuel est incorrect.": {
+    "ar": "كلمة المرور الحالية غير صحيحة.",
+    "en": "The current password is incorrect."
+  },
+  "Le mot de passe doit contenir au moins 8 caractères.": {
+    "ar": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.",
+    "en": "The password must contain at least 8 characters."
+  },
+  "Le nouveau mot de passe doit être différent de l'actuel.": {
+    "ar": "يجب أن تختلف كلمة المرور الجديدة عن الحالية.",
+    "en": "The new password must be different from the current one."
+  },
+  "Vous êtes le seul administrateur de votre organisation. Nommez d'abord un autre administrateur.": {
+    "ar": "أنت المسؤول الوحيد في مؤسستك. عيّن مسؤولاً آخر أولاً.",
+    "en": "You are the only administrator of your organization. Appoint another administrator first."
+  },
+  "Votre session a expiré. Reconnectez-vous.": {
+    "ar": "انتهت جلستك. أعد تسجيل الدخول.",
+    "en": "Your session has expired. Sign in again."
+  },
+  "Numéro de lot vide.": {
+    "ar": "رقم الدفعة فارغ.",
+    "en": "Empty lot number."
+  },
+  "Lot non référencé dans la base ANPP": {
+    "ar": "دفعة غير مسجّلة في قاعدة بيانات الوكالة الوطنية للمنتجات الصيدلانية",
+    "en": "Lot not listed in the ANPP database"
+  },
+  "Lot absent de la base ANPP": {
+    "ar": "دفعة غير موجودة في قاعدة بيانات الوكالة الوطنية للمنتجات الصيدلانية",
+    "en": "Lot absent from the ANPP database"
+  },
+  "Aucun rappel connu (information non suffisante pour conclure)": {
+    "ar": "لا يوجد أي سحب معروف (معلومات غير كافية للجزم)",
+    "en": "No known recall (insufficient information to conclude)"
+  },
+  "activité récente": {
+    "ar": "نشاط حديث",
+    "en": "recent activity"
+  },
+  "Sans organisation": {
+    "ar": "بدون مؤسسة",
+    "en": "No organization"
+  },
+  "Déclaration transmise": {
+    "ar": "تم إرسال التصريح",
+    "en": "Report transmitted"
+  },
+  "Complément demandé": {
+    "ar": "طُلب استكمال",
+    "en": "Additional information requested"
+  },
+  "Déclaration clôturée": {
+    "ar": "تم إغلاق التصريح",
+    "en": "Report closed"
+  },
+  "Aucun document": {
+    "ar": "لا توجد وثائق",
+    "en": "No document"
+  },
+  "Aucun document dans ce domaine pour le moment.": {
+    "ar": "لا توجد وثائق في هذا المجال حالياً.",
+    "en": "No document in this domain at the moment."
+  },
+  "Vous: ": {
+    "ar": "أنت: ",
+    "en": "You: "
+  },
+  "Vous : ": {
+    "ar": "أنت: ",
+    "en": "You: "
+  },
+  "Cabinet indépendant": {
+    "ar": "عيادة مستقلة",
+    "en": "Independent practice"
+  },
+  "Aucune alerte": {
+    "ar": "لا توجد تنبيهات",
+    "en": "No alert"
+  },
+  "Aucune alerte dans ce domaine pour le moment.": {
+    "ar": "لا توجد تنبيهات في هذا المجال حالياً.",
+    "en": "No alert in this domain at the moment."
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre activité pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص نشاطك حالياً.",
+    "en": "No safety alert or product recall concerns your activity at the moment."
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre établissement pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص مؤسستك حالياً.",
+    "en": "No safety alert or product recall concerns your facility at the moment."
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre établissement pour le moment": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص مؤسستك حالياً",
+    "en": "No safety alert or product recall concerns your facility at the moment"
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre clinique pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص عيادتك حالياً.",
+    "en": "No safety alert or product recall concerns your clinic at the moment."
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre laboratoire pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص مخبرك حالياً.",
+    "en": "No safety alert or product recall concerns your laboratory at the moment."
+  },
+  "Aucune alerte de sécurité ni rappel produit ne concerne votre centre médical pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أمني أو سحب منتج يخص مركزك الطبي حالياً.",
+    "en": "No safety alert or product recall concerns your medical center at the moment."
+  },
+  "Aucune alerte ni rappel de produit ne vous concerne pour le moment.": {
+    "ar": "لا يوجد أي تنبيه أو سحب منتج يخصك حالياً.",
+    "en": "No alert or product recall concerns you at the moment."
+  },
+  "Aucune alerte active": {
+    "ar": "لا توجد تنبيهات نشطة",
+    "en": "No active alert"
+  },
+  "Aucun rappel": {
+    "ar": "لا توجد عمليات سحب",
+    "en": "No recall"
+  },
+  "Aucun rappel produit enregistré pour le moment.": {
+    "ar": "لا توجد عمليات سحب منتجات مسجّلة حالياً.",
+    "en": "No product recall recorded at the moment."
+  },
+  "Non renseignée": {
+    "ar": "غير مذكورة",
+    "en": "Not provided"
+  },
+  "Aucun patient suivi": {
+    "ar": "لا يوجد مرضى متابَعون",
+    "en": "No patient followed"
+  },
+  "Les patients de votre portefeuille apparaîtront ici.": {
+    "ar": "سيظهر هنا المرضى التابعون لك.",
+    "en": "The patients in your portfolio will appear here."
+  },
+  "Nom du cabinet": {
+    "ar": "اسم العيادة",
+    "en": "Practice name"
+  },
+  "À risque": {
+    "ar": "معرّض للخطر",
+    "en": "At risk"
+  },
+  "Laboratoires connectés": {
+    "ar": "المخابر المتصلة",
+    "en": "Connected laboratories"
+  },
+  " clôturée(s)": {
+    "ar": " مغلق(ة)",
+    "en": " closed"
+  },
+  "À risque / en retard": {
+    "ar": "معرّض للخطر / متأخر",
+    "en": "At risk / overdue"
+  },
+  " — étape : ": {
+    "ar": " — المرحلة: ",
+    "en": " — step: "
+  },
+  " produit(s) transmis à ": {
+    "ar": " منتج(ات) أُرسلت إلى ",
+    "en": " product(s) transmitted to "
+  },
+  "Demande envoyée à ": {
+    "ar": "أُرسل الطلب إلى ",
+    "en": "Request sent to "
+  },
+  "Stock limité": {
+    "ar": "مخزون محدود",
+    "en": "Limited stock"
+  },
+  "Marquer confirmée": {
+    "ar": "تأكيد",
+    "en": "Mark as confirmed"
+  },
+  "Marquer livrée": {
+    "ar": "تحديد كمُسلَّمة",
+    "en": "Mark as delivered"
+  },
+  "Graphique en barres montrant le nombre de déclarations soumises par mois sur les 6 derniers mois": {
+    "ar": "مخطط أعمدة يبيّن عدد التصريحات المقدّمة شهرياً خلال آخر 6 أشهر",
+    "en": "Bar chart showing the number of reports submitted per month over the last 6 months"
+  },
+  "Aucune déclaration enregistrée pour votre établissement pour le moment.": {
+    "ar": "لا يوجد أي تصريح مسجّل لمؤسستك حالياً.",
+    "en": "No report recorded for your facility at the moment."
+  },
+  " retourné. Remboursement/échange géré selon le décret n° 92-276.": {
+    "ar": " أُعيد. يُدار الاسترداد/الاستبدال وفق المرسوم رقم 92-276.",
+    "en": " returned. Refund/exchange handled according to Decree No. 92-276."
+  },
+  " retourné.": {
+    "ar": " أُعيد.",
+    "en": " returned."
+  },
+  "Personnel médical": {
+    "ar": "الطاقم الطبي",
+    "en": "Medical staff"
+  },
+  "votre organisation": {
+    "ar": "مؤسستك",
+    "en": "your organization"
+  },
+  "Infirmier(ère)": {
+    "ar": "ممرض(ة)",
+    "en": "Nurse"
+  },
+  "Assistant(e) médical(e)": {
+    "ar": "مساعد(ة) طبي(ة)",
+    "en": "Medical assistant"
+  },
+  "Aucun personnel": {
+    "ar": "لا يوجد موظفون",
+    "en": "No staff"
+  },
+  "Le personnel de l'établissement apparaîtra ici.": {
+    "ar": "سيظهر هنا موظفو المؤسسة.",
+    "en": "The facility's staff will appear here."
+  },
+  "Tous les réactifs": {
+    "ar": "كل الكواشف",
+    "en": "All reagents"
+  },
+  "Réactifs": {
+    "ar": "الكواشف",
+    "en": "Reagents"
+  },
+  "Infos demandées": {
+    "ar": "معلومات مطلوبة",
+    "en": "Information requested"
+  },
+  "Invitation acceptée.": {
+    "ar": "تم قبول الدعوة.",
+    "en": "Invitation accepted."
+  },
+  "Demande annulée.": {
+    "ar": "تم إلغاء الطلب.",
+    "en": "Request cancelled."
+  },
+  "Vous avez quitté l’établissement.": {
+    "ar": "لقد غادرت المؤسسة.",
+    "en": "You have left the facility."
+  },
+  "Demande envoyée à l’administrateur.": {
+    "ar": "تم إرسال الطلب إلى المسؤول.",
+    "en": "Request sent to the administrator."
+  },
+  "Invitation envoyée.": {
+    "ar": "تم إرسال الدعوة.",
+    "en": "Invitation sent."
+  },
+  "Membre ajouté.": {
+    "ar": "تمت إضافة العضو.",
+    "en": "Member added."
+  },
+  "Demande refusée.": {
+    "ar": "تم رفض الطلب.",
+    "en": "Request declined."
+  },
+  "Invitation annulée.": {
+    "ar": "تم إلغاء الدعوة.",
+    "en": "Invitation cancelled."
+  },
+  "Membre retiré.": {
+    "ar": "تمت إزالة العضو.",
+    "en": "Member removed."
+  },
+  "reçue par la vigilance": {
+    "ar": "استلمتها اليقظة",
+    "en": "received by vigilance"
+  },
+  "enregistrée, envoi en cours": {
+    "ar": "مسجّلة، الإرسال جارٍ",
+    "en": "saved, sending in progress"
+  },
+  "non reçue — à renvoyer": {
+    "ar": "لم تُستلم — يجب إعادة الإرسال",
+    "en": "not received — to be resent"
+  },
+  "sans destinataire pour le moment": {
+    "ar": "بلا مستلم حالياً",
+    "en": "no recipient for the moment"
+  },
+  "Éruption cutanée": {
+    "ar": "طفح جلدي",
+    "en": "Skin rash"
+  },
+  "Maux de tête": {
+    "ar": "صداع",
+    "en": "Headache"
+  },
+  "1 à 3 jours": {
+    "ar": "من 1 إلى 3 أيام",
+    "en": "1 to 3 days"
+  },
+  "4 à 7 jours": {
+    "ar": "من 4 إلى 7 أيام",
+    "en": "4 to 7 days"
+  },
+  "Plus d'une semaine": {
+    "ar": "أكثر من أسبوع",
+    "en": "More than a week"
+  },
+  "Toujours présents": {
+    "ar": "لا تزال موجودة",
+    "en": "Still present"
+  },
+  "Symptômes bénins n'entravant pas les activités quotidiennes.": {
+    "ar": "أعراض خفيفة لا تعيق الأنشطة اليومية.",
+    "en": "Mild symptoms that do not interfere with daily activities."
+  },
+  "Gêne notable, consultation médicale recommandée.": {
+    "ar": "إزعاج ملحوظ، يُنصح باستشارة طبية.",
+    "en": "Noticeable discomfort, medical consultation recommended."
+  },
+  "Hospitalisation ou incapacité significative.": {
+    "ar": "دخول المستشفى أو عجز كبير.",
+    "en": "Hospitalization or significant disability."
+  },
+  "Menace vitale, perte de conscience, détresse respiratoire.": {
+    "ar": "خطر على الحياة، فقدان الوعي، ضيق تنفس.",
+    "en": "Life-threatening, loss of consciousness, respiratory distress."
+  },
+  "Oui, j'ai arrêté": {
+    "ar": "نعم، توقفت",
+    "en": "Yes, I stopped"
+  },
+  "Non, j'ai continué": {
+    "ar": "لا، واصلت",
+    "en": "No, I continued"
+  },
+  "J'ai réduit la dose": {
+    "ar": "خفّضت الجرعة",
+    "en": "I reduced the dose"
+  },
+  "Oui, disparition complète": {
+    "ar": "نعم، اختفت تماماً",
+    "en": "Yes, completely gone"
+  },
+  "Oui, amélioration partielle": {
+    "ar": "نعم، تحسّن جزئي",
+    "en": "Yes, partially improved"
+  },
+  "Non, symptômes persistants": {
+    "ar": "لا، الأعراض مستمرة",
+    "en": "No, symptoms persist"
+  },
+  "Médicament non arrêté": {
+    "ar": "الدواء لم يُتوقف",
+    "en": "Medication not stopped"
+  },
+  "Médecin traitant": {
+    "ar": "الطبيب المعالج",
+    "en": "Attending physician"
+  },
+  "Votre médecin traitant": {
+    "ar": "طبيبك المعالج",
+    "en": "Your attending physician"
+  },
+  "Indiquez le nom du produit concerné avant de continuer.": {
+    "ar": "أدخل اسم المنتج المعني قبل المتابعة.",
+    "en": "Enter the name of the product concerned before continuing."
+  },
+  "Indiquez la date d'apparition des symptômes.": {
+    "ar": "أدخل تاريخ ظهور الأعراض.",
+    "en": "Enter the date the symptoms began."
+  },
+  "La date d'apparition ne peut pas être dans le futur.": {
+    "ar": "لا يمكن أن يكون تاريخ الظهور في المستقبل.",
+    "en": "The onset date cannot be in the future."
+  },
+  "Symptômes requis": {
+    "ar": "الأعراض مطلوبة",
+    "en": "Symptoms required"
+  },
+  "Sélectionnez au moins un symptôme ou décrivez ce que vous avez ressenti.": {
+    "ar": "اختر عرضاً واحداً على الأقل أو صف ما شعرت به.",
+    "en": "Select at least one symptom or describe what you felt."
+  },
+  "Gravité requise": {
+    "ar": "الخطورة مطلوبة",
+    "en": "Severity required"
+  },
+  "Sélectionnez la gravité de ce que vous avez ressenti.": {
+    "ar": "اختر خطورة ما شعرت به.",
+    "en": "Select the severity of what you felt."
+  },
+  "à votre médecin traitant": {
+    "ar": "إلى طبيبك المعالج",
+    "en": "to your attending physician"
+  },
+  "Arrêt du médicament": {
+    "ar": "إيقاف الدواء",
+    "en": "Medication stopped"
+  },
+  "Disparition après arrêt": {
+    "ar": "الاختفاء بعد الإيقاف",
+    "en": "Disappearance after stopping"
+  },
+  "Médecin traitant informé": {
+    "ar": "تم إبلاغ الطبيب المعالج",
+    "en": "Attending physician informed"
+  },
+  "Qu'est-ce que le CNPM ?": {
+    "ar": "ما هو المركز الوطني لليقظة الدوائية (CNPM)؟",
+    "en": "What is the CNPM?"
+  },
+  "Qu'est-ce que l'ANPP ?": {
+    "ar": "ما هي الوكالة الوطنية للمنتجات الصيدلانية (ANPP)؟",
+    "en": "What is the ANPP?"
+  },
+  "Dans quel délai dois-je déclarer un effet indésirable grave ?": {
+    "ar": "ما هي المدة المسموحة للتصريح بأثر جانبي خطير؟",
+    "en": "Within what time must I report a serious adverse effect?"
+  },
+  "Que faire si je reçois un rappel de produit ?": {
+    "ar": "ماذا أفعل إذا تلقيت إشعار سحب منتج؟",
+    "en": "What should I do if I receive a product recall?"
+  },
+  "Notices médicaments": {
+    "ar": "نشرات الأدوية",
+    "en": "Medicine leaflets"
+  },
+  "Reçue par la vigilance": {
+    "ar": "استلمتها اليقظة",
+    "en": "Received by vigilance"
+  },
+  "Enregistrée, envoi en cours": {
+    "ar": "مسجّلة، الإرسال جارٍ",
+    "en": "Saved, sending in progress"
+  },
+  "Non reçue — à renvoyer": {
+    "ar": "لم تُستلم — يجب إعادة الإرسال",
+    "en": "Not received — to be resent"
+  },
+  "Aucun destinataire pour le moment": {
+    "ar": "لا يوجد مستلم حالياً",
+    "en": "No recipient for the moment"
+  },
+  "Déclarer un effet": {
+    "ar": "التصريح بأثر",
+    "en": "Report an effect"
+  },
+  "Notifications immédiates en cas de rappel ANPP sur vos produits": {
+    "ar": "إشعارات فورية عند سحب منتجاتك من طرف ANPP",
+    "en": "Immediate notifications for ANPP recalls on your products"
+  },
+  "Notification à l'heure prévue de chaque traitement": {
+    "ar": "إشعار في الوقت المحدد لكل علاج",
+    "en": "Notification at the scheduled time of each treatment"
+  },
+  "Rappels de rendez-vous": {
+    "ar": "تذكيرات المواعيد",
+    "en": "Appointment reminders"
+  },
+  "Notification quand un professionnel de santé vous écrit": {
+    "ar": "إشعار عندما يراسلك أحد مهنيي الصحة",
+    "en": "Notification when a healthcare professional writes to you"
+  },
+  "Actualités VigiCore": {
+    "ar": "أخبار VigiCore",
+    "en": "VigiCore news"
+  },
+  "Newsletter mensuelle sur la pharmacovigilance": {
+    "ar": "نشرة شهرية عن اليقظة الدوائية",
+    "en": "Monthly newsletter on pharmacovigilance"
+  },
+  "Partage à des fins de recherche": {
+    "ar": "المشاركة لأغراض البحث",
+    "en": "Sharing for research purposes"
+  },
+  "Autoriser l'usage anonymisé de vos données pour la recherche en santé publique": {
+    "ar": "السماح باستخدام بياناتك بشكل مجهول الهوية لأبحاث الصحة العامة",
+    "en": "Allow the anonymized use of your data for public health research"
+  },
+  "Basculer le thème sombre": {
+    "ar": "تبديل السمة الداكنة",
+    "en": "Toggle dark theme"
+  },
+  "Effet indésirable à discuter": {
+    "ar": "أثر جانبي للنقاش",
+    "en": "Adverse effect to discuss"
+  },
+  "Aucune activité": {
+    "ar": "لا يوجد نشاط",
+    "en": "No activity"
+  },
+  "Aucune activité enregistrée pour cet établissement.": {
+    "ar": "لا يوجد نشاط مسجّل لهذه المؤسسة.",
+    "en": "No activity recorded for this facility."
+  },
+  "Effet indésirable": {
+    "ar": "أثر جانبي",
+    "en": "Adverse effect"
+  },
+  "Sans conséquence clinique ni prise en charge particulière.": {
+    "ar": "دون عواقب سريرية ولا تكفّل خاص.",
+    "en": "No clinical consequence or particular care needed."
+  },
+  "Prise en charge ou surveillance supplémentaire nécessaire.": {
+    "ar": "يلزم تكفّل أو مراقبة إضافية.",
+    "en": "Additional care or monitoring needed."
+  },
+  "Hospitalisation, invalidité, mise en jeu du pronostic vital ou décès.": {
+    "ar": "دخول المستشفى، عجز، تعرّض الحياة للخطر أو وفاة.",
+    "en": "Hospitalization, disability, life-threatening or death."
+  },
+  "En cours de rétablissement": {
+    "ar": "قيد التعافي",
+    "en": "Recovering"
+  },
+  "Sans objet": {
+    "ar": "غير مطبّق",
+    "en": "Not applicable"
+  },
+  "Transmettre directement au fabricant concerné": {
+    "ar": "الإرسال مباشرة إلى المصنّع المعني",
+    "en": "Send directly to the manufacturer concerned"
+  },
+  "À la mise en marche": {
+    "ar": "عند التشغيل",
+    "en": "At start-up"
+  },
+  "Nettoyage / désinfection": {
+    "ar": "التنظيف / التعقيم",
+    "en": "Cleaning / disinfection"
+  },
+  "Pendant la maintenance": {
+    "ar": "أثناء الصيانة",
+    "en": "During maintenance"
+  },
+  "Arrêt complet": {
+    "ar": "توقف تام",
+    "en": "Complete stop"
+  },
+  "Mesure erronée": {
+    "ar": "قياس خاطئ",
+    "en": "Wrong reading"
+  },
+  "Bruit ou vibration anormale": {
+    "ar": "ضجيج أو اهتزاز غير طبيعي",
+    "en": "Abnormal noise or vibration"
+  },
+  "Remplacé par un autre appareil": {
+    "ar": "استُبدل بجهاز آخر",
+    "en": "Replaced by another device"
+  },
+  "Maintenance contactée": {
+    "ar": "تم الاتصال بالصيانة",
+    "en": "Maintenance contacted"
+  },
+  "Aucune action": {
+    "ar": "لا إجراء",
+    "en": "No action"
+  },
+  "Sans impact": {
+    "ar": "دون تأثير",
+    "en": "No impact"
+  },
+  "Aucun patient ni utilisateur concerné. Panne technique.": {
+    "ar": "لا مريض ولا مستخدم معني. عطل تقني.",
+    "en": "No patient or user concerned. Technical breakdown."
+  },
+  "Acte reporté ou perturbé, sans exposition à un risque.": {
+    "ar": "إجراء مؤجَّل أو معطَّل دون التعرض لخطر.",
+    "en": "Procedure postponed or disrupted, with no exposure to a risk."
+  },
+  "Patient / utilisateur exposé": {
+    "ar": "مريض / مستخدم تعرّض للخطر",
+    "en": "Patient / user exposed"
+  },
+  "Exposition à un risque, sans dommage constaté (quasi-accident).": {
+    "ar": "تعرّض لخطر دون ضرر ملحوظ (حادث وشيك).",
+    "en": "Exposure to a risk, with no observed harm (near miss)."
+  },
+  "Dommage subi par un patient ou un utilisateur.": {
+    "ar": "ضرر لحق بمريض أو مستخدم.",
+    "en": "Harm suffered by a patient or a user."
+  },
+  "Pour analyse et intervention technique": {
+    "ar": "للتحليل والتدخل التقني",
+    "en": "For technical analysis and intervention"
+  },
+  "Responsable qualité de l'établissement": {
+    "ar": "مسؤول الجودة في المؤسسة",
+    "en": "Facility quality manager"
+  },
+  "Suivi interne et maintenance": {
+    "ar": "المتابعة الداخلية والصيانة",
+    "en": "Internal follow-up and maintenance"
+  },
+  "Obligatoire si un patient ou un utilisateur est exposé": {
+    "ar": "إجباري إذا تعرّض مريض أو مستخدم للخطر",
+    "en": "Mandatory if a patient or user is exposed"
+  },
+  "Indiquez si un patient est concerné par cet incident.": {
+    "ar": "حدّد ما إذا كان مريض معنياً بهذا الحادث.",
+    "en": "Indicate whether a patient is concerned by this incident."
+  },
+  "Saisissez le nom ou les initiales du patient.": {
+    "ar": "أدخل اسم المريض أو الأحرف الأولى منه.",
+    "en": "Enter the patient's name or initials."
+  },
+  "Sélectionnez un type de produit avant de continuer.": {
+    "ar": "اختر نوع المنتج قبل المتابعة.",
+    "en": "Select a product type before continuing."
+  },
+  "Indiquez le produit concerné avant de continuer.": {
+    "ar": "حدّد المنتج المعني قبل المتابعة.",
+    "en": "Specify the product concerned before continuing."
+  },
+  "Produit du catalogue requis": {
+    "ar": "المنتج من الفهرس مطلوب",
+    "en": "Catalog product required"
+  },
+  "Choisissez le produit dans la liste proposée : il détermine la vigilance qui recevra la déclaration.": {
+    "ar": "اختر المنتج من القائمة المقترحة: فهو يحدد اليقظة التي ستستلم التصريح.",
+    "en": "Choose the product from the proposed list: it determines which vigilance office will receive the report."
+  },
+  "Sélectionnez la nature du problème.": {
+    "ar": "اختر طبيعة المشكلة.",
+    "en": "Select the nature of the problem."
+  },
+  "Sélectionnez la gravité de l'incident.": {
+    "ar": "اختر خطورة الحادث.",
+    "en": "Select the severity of the incident."
+  },
+  "Indiquez la date de survenue.": {
+    "ar": "أدخل تاريخ الحدوث.",
+    "en": "Enter the date of occurrence."
+  },
+  "La date de survenue ne peut pas être dans le futur.": {
+    "ar": "لا يمكن أن يكون تاريخ الحدوث في المستقبل.",
+    "en": "The date of occurrence cannot be in the future."
+  },
+  "Décrivez l'incident avant de continuer.": {
+    "ar": "صف الحادث قبل المتابعة.",
+    "en": "Describe the incident before continuing."
+  },
+  "Indiquez la dénomination de l'appareil.": {
+    "ar": "أدخل تسمية الجهاز.",
+    "en": "Enter the device name."
+  },
+  "Indiquez au moins le N° de série, le N° d'inventaire ou l'UDI pour pouvoir retrouver l'appareil.": {
+    "ar": "أدخل على الأقل الرقم التسلسلي أو رقم الجرد أو UDI حتى يمكن تحديد الجهاز.",
+    "en": "Enter at least the serial no., the inventory no. or the UDI so the device can be found."
+  },
+  "Indiquez la date de la panne.": {
+    "ar": "أدخل تاريخ العطل.",
+    "en": "Enter the date of the breakdown."
+  },
+  "La date de la panne ne peut pas être dans le futur.": {
+    "ar": "لا يمكن أن يكون تاريخ العطل في المستقبل.",
+    "en": "The date of the breakdown cannot be in the future."
+  },
+  "Précisez dans quelles circonstances la panne est survenue.": {
+    "ar": "حدّد ظروف حدوث العطل.",
+    "en": "Specify the circumstances in which the breakdown occurred."
+  },
+  "Décrivez la panne avant de continuer.": {
+    "ar": "صف العطل قبل المتابعة.",
+    "en": "Describe the breakdown before continuing."
+  },
+  "État requis": {
+    "ar": "الحالة مطلوبة",
+    "en": "State required"
+  },
+  "Indiquez l'état actuel de l'appareil.": {
+    "ar": "حدّد الحالة الحالية للجهاز.",
+    "en": "Indicate the current state of the device."
+  },
+  "Indiquez si un patient ou un utilisateur a été exposé à un risque ou à un dommage.": {
+    "ar": "حدّد ما إذا كان مريض أو مستخدم قد تعرّض لخطر أو ضرر.",
+    "en": "Indicate whether a patient or user was exposed to a risk or harm."
+  },
+  "Non précisé": {
+    "ar": "غير محدد",
+    "en": "Not specified"
+  },
+  "Aucun patient concerné": {
+    "ar": "لا مريض معني",
+    "en": "No patient concerned"
+  },
+  "Reçue par la vigilance via VigiCore.": {
+    "ar": "استلمتها اليقظة عبر VigiCore.",
+    "en": "Received by vigilance via VigiCore."
+  },
+  "Enregistrée sur le Site, pas encore reçue par la vigilance. L'envoi sera répété automatiquement.": {
+    "ar": "سُجّلت على الموقع ولم تستلمها اليقظة بعد. ستتكرر محاولة الإرسال تلقائياً.",
+    "en": "Saved on the Site, not yet received by vigilance. Sending will be retried automatically."
+  },
+  "Déclaration enregistrée": {
+    "ar": "تم تسجيل التصريح",
+    "en": "Report saved"
+  },
+  "N° série": {
+    "ar": "الرقم التسلسلي",
+    "en": "Serial no."
+  },
+  "Envoyer la panne": {
+    "ar": "إرسال العطل",
+    "en": "Send the breakdown"
+  },
+  "État actuel": {
+    "ar": "الحالة الحالية",
+    "en": "Current state"
+  },
+  "Incident de matériovigilance (CNPM)": {
+    "ar": "حادث يقظة الأجهزة الطبية (CNPM)",
+    "en": "Medical device vigilance incident (CNPM)"
+  },
+  "Produit arrêté / retiré": {
+    "ar": "منتج متوقف / مسحوب",
+    "en": "Product stopped / withdrawn"
+  },
+  "Produits & traçabilité": {
+    "ar": "المنتجات والتتبّع",
+    "en": "Products & traceability"
+  },
+  "Réinitialiser les données…": {
+    "ar": "إعادة تعيين البيانات…",
+    "en": "Reset data…"
+  },
+  "Confirmer la commande": {
+    "ar": "تأكيد الطلب",
+    "en": "Confirm the order"
+  },
+  "Confirmer réception": {
+    "ar": "تأكيد الاستلام",
+    "en": "Confirm receipt"
+  },
+  " : affichage des alertes de stock filtrées.": {
+    "ar": " : عرض تنبيهات المخزون المصفّاة.",
+    "en": " : display of filtered stock alerts."
+  },
+  "Graphique en ligne montrant le nombre de vérifications de lots par jour sur les 14 derniers jours": {
+    "ar": "مخطط خطي يبيّن عدد عمليات التحقق من الدفعات يومياً خلال آخر 14 يوماً",
+    "en": "Line chart showing the number of lot checks per day over the last 14 days"
+  },
+  "📎 Pièce jointe": {
+    "ar": "📎 مرفق",
+    "en": "📎 Attachment"
+  },
+  "Pièce jointe": {
+    "ar": "مرفق",
+    "en": "Attachment"
+  },
+  "Supprimer ce message ? Cette action est définitive.": {
+    "ar": "حذف هذه الرسالة؟ هذا الإجراء نهائي.",
+    "en": "Delete this message? This action is permanent."
+  },
+  "Nouvelle conversation": {
+    "ar": "محادثة جديدة",
+    "en": "New conversation"
+  },
+  "… manqué": {
+    "ar": "… فائت",
+    "en": "… missed"
+  },
+  "… refusé": {
+    "ar": "… مرفوض",
+    "en": "… declined"
+  },
+  "Autorisez l’accès au micro (et à la caméra) dans le navigateur pour passer un appel.": {
+    "ar": "اسمح بالوصول إلى الميكروفون (والكاميرا) في المتصفح لإجراء مكالمة.",
+    "en": "Allow microphone (and camera) access in the browser to place a call."
+  },
+  "Aucun micro détecté sur cet appareil.": {
+    "ar": "لم يتم اكتشاف أي ميكروفون على هذا الجهاز.",
+    "en": "No microphone detected on this device."
+  },
+  "Le micro ou la caméra est déjà utilisé par une autre application.": {
+    "ar": "الميكروفون أو الكاميرا مستخدم من تطبيق آخر.",
+    "en": "The microphone or camera is already in use by another application."
+  },
+  "Connexion impossible — le réseau bloque l’appel direct (un serveur TURN est nécessaire).": {
+    "ar": "تعذّر الاتصال — الشبكة تحجب المكالمة المباشرة (يلزم خادم TURN).",
+    "en": "Unable to connect — the network blocks the direct call (a TURN server is required)."
+  },
+  "Échec de la négociation de l’appel.": {
+    "ar": "فشل التفاوض على المكالمة.",
+    "en": "Call negotiation failed."
+  },
+  "Appel manqué": {
+    "ar": "مكالمة فائتة",
+    "en": "Missed call"
+  },
+  "Appel refusé": {
+    "ar": "مكالمة مرفوضة",
+    "en": "Declined call"
+  },
+  "Ce navigateur ne permet pas les appels (HTTPS ou localhost requis).": {
+    "ar": "هذا المتصفح لا يتيح المكالمات (يلزم HTTPS أو localhost).",
+    "en": "This browser does not allow calls (HTTPS or localhost required)."
+  },
+  "Pas de réponse.": {
+    "ar": "لا يوجد رد.",
+    "en": "No answer."
+  },
+  "Impossible de répondre": {
+    "ar": "تعذّر الرد",
+    "en": "Unable to answer"
+  },
+  "Appel annulé": {
+    "ar": "تم إلغاء المكالمة",
+    "en": "Call cancelled"
+  },
+  "⚠ 3/4 doses — 1 manquée": {
+    "ar": "⚠ 3/4 جرعات — واحدة فائتة",
+    "en": "⚠ 3/4 doses — 1 missed"
+  },
+  "✗ Doses manquées": {
+    "ar": "✗ جرعات فائتة",
+    "en": "✗ Missed doses"
+  },
+  "Les deux mots de passe ne correspondent pas.": {
+    "ar": "كلمتا المرور غير متطابقتين.",
+    "en": "The two passwords do not match."
+  },
+  "pour vous": {
+    "ar": "لك",
+    "en": "for you"
+  },
+  "Votre signalement est enregistré pour transmission au CNPM.": {
+    "ar": "تم تسجيل إشعارك لإرساله إلى CNPM.",
+    "en": "Your report is saved for transmission to the CNPM."
+  },
+  "Hôpital": {
+    "ar": "المستشفى",
+    "en": "Hospital"
+  },
+  "Équipe": {
+    "ar": "الفريق",
+    "en": "Team"
+  },
+  "Médecin / Pharmacien": {
+    "ar": "طبيب / صيدلي",
+    "en": "Physician / Pharmacist"
+  },
+  "Hôpital / Clinique": {
+    "ar": "مستشفى / عيادة",
+    "en": "Hospital / Clinic"
+  },
+  "Déclar.": {
+    "ar": "تصريحات",
+    "en": "Reports"
+  },
+  "Réglages": {
+    "ar": "الإعدادات",
+    "en": "Settings"
+  },
+  "Cosmétique": {
+    "ar": "تجميلي",
+    "en": "Cosmetic"
+  },
+  "Déclarant": {
+    "ar": "المصرِّح",
+    "en": "Reporter"
+  },
+  "Envoyées": {
+    "ar": "المرسلة",
+    "en": "Sent"
+  },
+  "Clôturées": {
+    "ar": "المغلقة",
+    "en": "Closed"
+  },
+  "Clôturés": {
+    "ar": "المغلقة",
+    "en": "Closed"
+  },
+  "Presque expiré": {
+    "ar": "قارب الانتهاء",
+    "en": "Almost expired"
+  },
+  "Rappelé — en stock": {
+    "ar": "مسحوب — في المخزون",
+    "en": "Recalled — in stock"
+  },
+  "Rappels de lots actifs": {
+    "ar": "عمليات سحب الدفعات النشطة",
+    "en": "Active lot recalls"
+  },
+  "{0} clôturée(s)": {
+    "ar": "{0} مغلق(ة)",
+    "en": "{0} closed"
+  },
+  "Nouvelle déclaration": {
+    "ar": "تصريح جديد",
+    "en": "New report"
+  },
+  "incident": {
+    "ar": "حادث",
+    "en": "incident"
+  },
+  "effet indésirable": {
+    "ar": "أثر جانبي",
+    "en": "adverse effect"
+  },
+  "panne": {
+    "ar": "عطل",
+    "en": "breakdown"
+  },
+  "Je suis VigiCore AI. Je réponds à partir des données de votre compte : vos contacts, vos messages non lus, vos déclarations (par statut, domaine ou période) et, selon votre rôle, les dossiers, les annonces ou les demandes d’adhésion de votre établissement. Posez-moi une question chiffrée, par exemple « Combien de contacts ai-je ? ».": {
+    "ar": "أنا VigiCore AI. أجيب انطلاقاً من بيانات حسابك: جهات اتصالك ورسائلك غير المقروءة وتصريحاتك (حسب الحالة أو المجال أو الفترة) وبحسب دورك، الملفات أو الإعلانات أو طلبات الانضمام إلى مؤسستك. اطرح عليّ سؤالاً رقمياً، مثلاً «كم عدد جهات الاتصال لدي؟».",
+    "en": "I am VigiCore AI. I answer from your account data: your contacts, your unread messages, your reports (by status, domain or period) and, depending on your role, the records, announcements or join requests of your facility. Ask me a numerical question, for example “How many contacts do I have?”."
+  },
+  "VigiCore AI — Praticien": {
+    "ar": "VigiCore AI — الطبيب",
+    "en": "VigiCore AI — Practitioner"
+  },
+  "VigiCore AI — Pharmacien": {
+    "ar": "VigiCore AI — الصيدلي",
+    "en": "VigiCore AI — Pharmacist"
+  },
+  "VigiCore AI — Laboratoire": {
+    "ar": "VigiCore AI — المخبر",
+    "en": "VigiCore AI — Laboratory"
+  },
+  "VigiCore AI — Audit": {
+    "ar": "VigiCore AI — التدقيق",
+    "en": "VigiCore AI — Audit"
+  },
+  "VigiCore AI — Clinique · Administration": {
+    "ar": "VigiCore AI — العيادة · الإدارة",
+    "en": "VigiCore AI — Clinic · Administration"
+  },
+  "STAKEHOLDERS": {
+    "fr": "PARTIES PRENANTES",
+    "ar": "الأطراف المعنية"
+  },
+  "Who Uses VigiCore Nexus": {
+    "fr": "Qui utilise VigiCore Nexus",
+    "ar": "من يستخدم VigiCore Nexus"
+  },
+  "Seven roles across two environments, all collaborating through one connected platform toward one shared goal: patient safety.": {
+    "fr": "Sept rôles dans deux environnements, qui collaborent sur une même plateforme connectée avec un objectif commun : la sécurité des patients.",
+    "ar": "سبعة أدوار في بيئتين، تتعاون كلها عبر منصة واحدة متصلة نحو هدف مشترك: سلامة المرضى."
+  },
+  "Following INC-0412 · Lot C-88": {
+    "fr": "Suivi de INC-0412 · Lot C-88",
+    "ar": "متابعة INC-0412 · الدفعة C-88"
+  },
+  "Since the first report": {
+    "fr": "Depuis le premier signalement",
+    "ar": "منذ أول بلاغ"
+  },
+  "Availability": {
+    "fr": "Disponibilité",
+    "ar": "التوفر"
+  },
+  "At this moment": {
+    "fr": "À ce moment",
+    "ar": "في هذه اللحظة"
+  },
+  "Hands over to": {
+    "fr": "Transmet à",
+    "ar": "يسلّم إلى"
+  },
+  "Illustrative": {
+    "fr": "Illustratif",
+    "ar": "توضيحي"
+  },
+  "Play": {
+    "fr": "Lecture",
+    "ar": "تشغيل"
+  },
+  "Pause": {
+    "fr": "Pause",
+    "ar": "إيقاف مؤقت"
+  },
+  "Back to the start": {
+    "fr": "Retour au début",
+    "ar": "العودة إلى البداية"
+  },
+  "Receives from": {
+    "fr": "Reçoit de",
+    "ar": "يستلم من"
+  },
+  "Step": {
+    "fr": "Étape",
+    "ar": "الخطوة"
+  },
+  "Origin of the case": {
+    "fr": "Origine du cas",
+    "ar": "أصل الحالة"
+  },
+  "Patient": {
+    "fr": "Patient",
+    "ar": "المريض"
+  },
+  "Declares incidents": {
+    "fr": "Déclare les incidents",
+    "ar": "يصرّح بالحوادث"
+  },
+  "Portal · Care": {
+    "fr": "Portail · Soins",
+    "ar": "البوابة · الرعاية"
+  },
+  "Reports a problem with a product in a few taps, from any phone. The report becomes a case straight away.": {
+    "fr": "Signale un problème avec un produit en quelques touches, depuis n’importe quel téléphone. Le signalement devient aussitôt un dossier.",
+    "ar": "يبلّغ عن مشكلة في منتج بلمسات قليلة من أي هاتف. يتحول البلاغ فوراً إلى حالة."
+  },
+  "Declares the incident and the lot number.": {
+    "fr": "Déclare l’incident et le numéro de lot.",
+    "ar": "يصرّح بالحادث ورقم الدفعة."
+  },
+  "Patient app": {
+    "fr": "Application patient",
+    "ar": "تطبيق المريض"
+  },
+  "Report an incident": {
+    "fr": "Signaler un incident",
+    "ar": "الإبلاغ عن حادث"
+  },
+  "Product lot": {
+    "fr": "Lot du produit",
+    "ar": "دفعة المنتج"
+  },
+  "Symptom": {
+    "fr": "Symptôme",
+    "ar": "العَرَض"
+  },
+  "Rash, itching": {
+    "fr": "Éruption, démangeaisons",
+    "ar": "طفح، حكة"
+  },
+  "Status": {
+    "fr": "Statut",
+    "ar": "الحالة"
+  },
+  "Declared": {
+    "fr": "Déclaré",
+    "ar": "تم التصريح"
+  },
+  "Case INC-0412 created": {
+    "fr": "Dossier INC-0412 créé",
+    "ar": "أُنشئت الحالة INC-0412"
+  },
+  "Physician": {
+    "ar": "الطبيب",
+    "fr": "Médecin"
+  },
+  "Submits incident reports": {
+    "fr": "Transmet les rapports d’incident",
+    "ar": "يرسل تقارير الحوادث"
+  },
+  "Confirms the clinical picture and files a structured incident report on the same case.": {
+    "fr": "Confirme le tableau clinique et dépose un rapport d’incident structuré sur le même dossier.",
+    "ar": "يؤكد الصورة السريرية ويودع تقرير حادث منظّماً على الحالة نفسها."
+  },
+  "Submits the medical report against INC-0412.": {
+    "fr": "Transmet le rapport médical sur INC-0412.",
+    "ar": "يرسل التقرير الطبي بشأن INC-0412."
+  },
+  "Physician portal": {
+    "fr": "Portail médecin",
+    "ar": "بوابة الطبيب"
+  },
+  "Incident report": {
+    "fr": "Rapport d’incident",
+    "ar": "تقرير الحادث"
+  },
+  "Severity": {
+    "ar": "الخطورة",
+    "fr": "Gravité"
+  },
+  "Moderate": {
+    "fr": "Modérée",
+    "ar": "متوسطة"
+  },
+  "Lot": {
+    "fr": "Lot",
+    "ar": "الدفعة"
+  },
+  "Report": {
+    "fr": "Rapport",
+    "ar": "التقرير"
+  },
+  "Submitted": {
+    "fr": "Transmis",
+    "ar": "مُرسَل"
+  },
+  "Linked to INC-0412": {
+    "fr": "Lié à INC-0412",
+    "ar": "مرتبط بـ INC-0412"
+  },
+  "Pharmacist": {
+    "fr": "Pharmacien",
+    "ar": "الصيدلي"
+  },
+  "Flags drug reactions": {
+    "fr": "Signale les réactions médicamenteuses",
+    "ar": "يبلّغ عن التفاعلات الدوائية"
+  },
+  "Checks dispensing records and flags reactions seen on the same product across patients.": {
+    "fr": "Vérifie les registres de dispensation et signale les réactions observées avec le même produit chez plusieurs patients.",
+    "ar": "يراجع سجلات الصرف ويبلّغ عن التفاعلات الملاحظة مع المنتج نفسه لدى عدة مرضى."
+  },
+  "Flags the reaction pattern on lot C-88.": {
+    "fr": "Signale le schéma de réactions sur le lot C-88.",
+    "ar": "يبلّغ عن نمط التفاعلات على الدفعة C-88."
+  },
+  "Pharmacist portal": {
+    "fr": "Portail pharmacien",
+    "ar": "بوابة الصيدلي"
+  },
+  "Drug reaction flag": {
+    "fr": "Signalement de réaction médicamenteuse",
+    "ar": "تنبيه تفاعل دوائي"
+  },
+  "Similar reports": {
+    "fr": "Signalements similaires",
+    "ar": "بلاغات مشابهة"
+  },
+  "Signal": {
+    "fr": "Signal",
+    "ar": "الإشارة"
+  },
+  "Possible": {
+    "fr": "Possible",
+    "ar": "محتملة"
+  },
+  "Reaction flagged": {
+    "fr": "Réaction signalée",
+    "ar": "تم الإبلاغ عن التفاعل"
+  },
+  "Laboratory": {
+    "fr": "Laboratoire",
+    "ar": "المخبر"
+  },
+  "Feeds test results": {
+    "fr": "Transmet les résultats d’analyses",
+    "ar": "يغذّي بنتائج التحاليل"
+  },
+  "Portal · Scientific": {
+    "fr": "Portail · Scientifique",
+    "ar": "البوابة · العلمية"
+  },
+  "Analyzes samples and feeds test results directly into the vigilance pipeline in real time.": {
+    "fr": "Analyse les échantillons et transmet les résultats directement au circuit de vigilance, en temps réel.",
+    "ar": "يحلّل العيّنات ويغذّي مسار اليقظة بنتائج التحاليل مباشرة وفي الوقت الفعلي."
+  },
+  "Tests the retained sample and feeds the result back.": {
+    "fr": "Analyse l’échantillon conservé et renvoie le résultat.",
+    "ar": "يحلّل العيّنة المحتفَظ بها ويعيد النتيجة."
+  },
+  "Laboratory portal": {
+    "fr": "Portail laboratoire",
+    "ar": "بوابة المخبر"
+  },
+  "Sample S-114": {
+    "fr": "Échantillon S-114",
+    "ar": "العيّنة S-114"
+  },
+  "Received": {
+    "fr": "Reçu",
+    "ar": "مُستلَم"
+  },
+  "Logged": {
+    "fr": "Enregistré",
+    "ar": "مسجَّل"
+  },
+  "Analysis": {
+    "fr": "Analyse",
+    "ar": "التحليل"
+  },
+  "Result": {
+    "fr": "Résultat",
+    "ar": "النتيجة"
+  },
+  "Out of spec": {
+    "fr": "Hors spécifications",
+    "ar": "خارج المواصفات"
+  },
+  "Result auto-attached": {
+    "fr": "Résultat joint automatiquement",
+    "ar": "أُرفقت النتيجة تلقائياً"
+  },
+  "Clinic": {
+    "fr": "Clinique",
+    "ar": "العيادة"
+  },
+  "Syncs case records": {
+    "fr": "Synchronise les dossiers",
+    "ar": "يزامن سجلات الحالات"
+  },
+  "Receives the lab result on the patient's file and keeps the care record in step with the case.": {
+    "fr": "Reçoit le résultat du laboratoire dans le dossier du patient et maintient le dossier de soins en phase avec le cas.",
+    "ar": "يستلم نتيجة المخبر في ملف المريض ويُبقي سجل الرعاية متوافقاً مع الحالة."
+  },
+  "Syncs the patient record and plans the follow-up.": {
+    "fr": "Synchronise le dossier patient et planifie le suivi.",
+    "ar": "يزامن ملف المريض ويخطط للمتابعة."
+  },
+  "Clinic portal": {
+    "fr": "Portail clinique",
+    "ar": "بوابة العيادة"
+  },
+  "Patient record": {
+    "fr": "Dossier patient",
+    "ar": "ملف المريض"
+  },
+  "Case records": {
+    "fr": "Dossiers du cas",
+    "ar": "سجلات الحالة"
+  },
+  "Synced": {
+    "fr": "Synchronisé",
+    "ar": "تمت المزامنة"
+  },
+  "Follow-up": {
+    "ar": "المتابعة",
+    "fr": "Suivi"
+  },
+  "Scheduled": {
+    "fr": "Planifié",
+    "ar": "مجدولة"
+  },
+  "Outcome": {
+    "ar": "النتيجة",
+    "fr": "Issue"
+  },
+  "Recovering": {
+    "fr": "En rétablissement",
+    "ar": "قيد التعافي"
+  },
+  "Records synced": {
+    "fr": "Dossiers synchronisés",
+    "ar": "تمت مزامنة السجلات"
+  },
+  "Hospital": {
+    "fr": "Hôpital",
+    "ar": "المستشفى"
+  },
+  "Monitors dashboards": {
+    "fr": "Suit les tableaux de bord",
+    "ar": "يتابع لوحات القيادة"
+  },
+  "Sees the whole case and its history on one dashboard, and decides on the safety response.": {
+    "fr": "Voit tout le cas et son historique sur un seul tableau de bord et décide de la réponse de sécurité.",
+    "ar": "يرى الحالة كاملة وتاريخها في لوحة واحدة ويقرّر الاستجابة الأمنية."
+  },
+  "Reviews the case and proposes quarantine of the lot.": {
+    "fr": "Examine le cas et propose la mise en quarantaine du lot.",
+    "ar": "يراجع الحالة ويقترح عزل الدفعة."
+  },
+  "Hospital dashboard": {
+    "fr": "Tableau de bord hôpital",
+    "ar": "لوحة قيادة المستشفى"
+  },
+  "INC-0412 overview": {
+    "fr": "Vue d’ensemble INC-0412",
+    "ar": "نظرة عامة على INC-0412"
+  },
+  "Under review": {
+    "fr": "En cours d’analyse",
+    "ar": "قيد المراجعة"
+  },
+  "Lot C-88": {
+    "fr": "Lot C-88",
+    "ar": "الدفعة C-88"
+  },
+  "Quarantine proposed": {
+    "fr": "Quarantaine proposée",
+    "ar": "عزل مقترح"
+  },
+  "Reports linked": {
+    "fr": "Signalements liés",
+    "ar": "بلاغات مرتبطة"
+  },
+  "Dashboard updated": {
+    "fr": "Tableau de bord mis à jour",
+    "ar": "تم تحديث لوحة القيادة"
+  },
+  "Vendor": {
+    "fr": "Fournisseur",
+    "ar": "المورّد"
+  },
+  "Connects every environment": {
+    "fr": "Relie tous les environnements",
+    "ar": "يربط كل البيئات"
+  },
+  "Always on": {
+    "fr": "Toujours actif",
+    "ar": "يعمل دائماً"
+  },
+  "Keeps every system talking to the platform, so a signal raised anywhere reaches everyone who needs it.": {
+    "fr": "Maintient chaque système en lien avec la plateforme, pour qu’un signal émis où que ce soit atteigne tous ceux qui en ont besoin.",
+    "ar": "يُبقي كل نظام على اتصال بالمنصة ليصل أي إنذار صادر من أي مكان إلى كل من يحتاجه."
+  },
+  "Keeps the connectors running between all environments.": {
+    "fr": "Maintient les connecteurs actifs entre tous les environnements.",
+    "ar": "يُبقي الموصّلات تعمل بين كل البيئات."
+  },
+  "Vendor console": {
+    "fr": "Console fournisseur",
+    "ar": "لوحة المورّد"
+  },
+  "Connected systems": {
+    "fr": "Systèmes connectés",
+    "ar": "الأنظمة المتصلة"
+  },
+  "Connectors": {
+    "fr": "Connecteurs",
+    "ar": "الموصّلات"
+  },
+  "Active": {
+    "fr": "Active",
+    "ar": "نشطة"
+  },
+  "Sync": {
+    "fr": "Synchro",
+    "ar": "المزامنة"
+  },
+  "Live": {
+    "fr": "En direct",
+    "ar": "مباشرة"
+  },
+  "Alerts": {
+    "ar": "التنبيهات",
+    "fr": "Alertes"
+  },
+  "Enabled": {
+    "fr": "Activées",
+    "ar": "مفعّلة"
+  },
+  "Always connected": {
+    "fr": "Toujours connecté",
+    "ar": "متصل دائماً"
+  },
+  "Flagged": {
+    "fr": "Signalé",
+    "ar": "مُبلَّغ عنه"
+  },
+  "Sent": {
+    "fr": "Envoyé",
+    "ar": "مُرسَل"
+  },
+  "Roles following the case": {
+    "fr": "Rôles qui suivent le cas",
+    "ar": "الأدوار التي تتابع الحالة"
+  },
+  "Case history so far": {
+    "fr": "Historique du cas jusqu’ici",
+    "ar": "تاريخ الحالة حتى الآن"
+  },
+  "Healthcare Intelligence Platform": {
+    "ar": "منصة ذكاء الرعاية الصحية",
+    "fr": "Plateforme d’intelligence santé"
+  },
+  "Réactovigilance": {
+    "ar": "اليقظة المخبرية (الكواشف)",
+    "en": "Reactovigilance"
+  },
+  "Matériovigilance": {
+    "ar": "اليقظة المتعلقة بالأجهزة الطبية",
+    "en": "Medical device vigilance"
+  },
+  "Pharmacovigilance": {
+    "ar": "اليقظة الدوائية",
+    "en": "Pharmacovigilance"
+  },
+  "Chémovigilance": {
+    "ar": "اليقظة الكيميائية",
+    "en": "Chemovigilance"
+  },
+  "Cosmétovigilance": {
+    "ar": "اليقظة التجميلية",
+    "en": "Cosmetovigilance"
+  },
+  "signals today": {
+    "ar": "إشارات اليوم",
+    "fr": "signaux aujourd’hui"
+  },
+  "In vitro diagnostic reagent and lab equipment surveillance — flags defective reagents and result drift before they reach patients.": {
+    "ar": "مراقبة كواشف التشخيص المخبري ومعدات المخابر — تكشف الكواشف المعيبة وانحراف النتائج قبل وصولها إلى المرضى.",
+    "fr": "Surveillance des réactifs de diagnostic in vitro et des équipements de laboratoire — repère les réactifs défectueux et les dérives de résultats avant qu’ils n’atteignent les patients."
+  },
+  "Explore": {
+    "ar": "استكشاف",
+    "fr": "Explorer"
+  },
+  "Reagents & IVD": {
+    "ar": "الكواشف والتشخيص المخبري",
+    "fr": "Réactifs et DIV"
+  },
+  "Medical devices": {
+    "ar": "الأجهزة الطبية",
+    "fr": "Dispositifs médicaux"
+  },
+  "Medicines": {
+    "ar": "الأدوية",
+    "fr": "Médicaments"
+  },
+  "Chemicals": {
+    "ar": "المواد الكيميائية",
+    "fr": "Produits chimiques"
+  },
+  "Cosmetics": {
+    "ar": "مستحضرات التجميل",
+    "fr": "Cosmétiques"
+  },
+  "System Restored": {
+    "ar": "تمت استعادة النظام",
+    "fr": "Système rétabli"
+  },
+  "46 days*": {
+    "ar": "46 يوماً*",
+    "fr": "46 jours*"
+  },
+  "Platform Preview": {
+    "ar": "معاينة المنصة",
+    "fr": "Aperçu de la plateforme"
+  },
+  "Search Metformin, lot ATO-B…": {
+    "ar": "ابحث عن ميتفورمين، الدفعة ATO-B…",
+    "fr": "Rechercher Metformine, lot ATO-B…"
+  },
+  "Health summary": {
+    "ar": "الملخص الصحي",
+    "fr": "Résumé santé"
+  },
+  "Treatments": {
+    "ar": "العلاجات",
+    "fr": "Traitements"
+  },
+  "My products": {
+    "ar": "منتجاتي",
+    "fr": "Mes produits"
+  },
+  "Appointments": {
+    "ar": "المواعيد",
+    "fr": "Rendez-vous"
+  },
+  "Reports": {
+    "ar": "البلاغات",
+    "fr": "Signalements"
+  },
+  "Hello,": {
+    "ar": "مرحباً،",
+    "fr": "Bonjour,"
+  },
+  "Report a Side Effect": {
+    "ar": "الإبلاغ عن أثر جانبي",
+    "fr": "Signaler un effet indésirable"
+  },
+  "VigiHealth AI Summary · Monday, June 29 2026": {
+    "ar": "ملخص VigiHealth AI · الاثنين 29 جوان 2026",
+    "fr": "Résumé VigiHealth AI · lundi 29 juin 2026"
+  },
+  "Action": {
+    "ar": "إجراء",
+    "fr": "Action"
+  },
+  "2 draft reports not yet submitted to ANPP.": {
+    "ar": "مسودتا بلاغ لم تُرسلا بعد إلى ANPP.",
+    "fr": "2 brouillons de signalement pas encore transmis à l’ANPP."
+  },
+  "Next dose: Metformin 850mg at 1:00 PM.": {
+    "ar": "الجرعة التالية: ميتفورمين 850 ملغ عند 13:00.",
+    "fr": "Prochaine prise : Metformine 850 mg à 13 h 00."
+  },
+  "vs June · 174/200 doses": {
+    "ar": "مقابل جوان · 174/200 جرعة",
+    "fr": "vs juin · 174/200 prises"
+  },
+  "Target <7% met": {
+    "ar": "تم بلوغ الهدف <7%",
+    "fr": "Objectif <7 % atteint"
+  },
+  "Not submitted": {
+    "ar": "غير مُرسَل",
+    "fr": "Non transmis"
+  },
+  "Nothing to act on": {
+    "ar": "لا شيء للقيام به",
+    "fr": "Rien à faire"
+  },
+  "Product Recall ANPP/RECALL/2026-089 · Immediate Action Required": {
+    "ar": "سحب منتج ANPP/RECALL/2026-089 · إجراء فوري مطلوب",
+    "fr": "Rappel de produit ANPP/RECALL/2026-089 · Action immédiate requise"
+  },
+  "Lot DXP-20250612-B · Dexamethasone 4mg/2ml · particulate contamination.": {
+    "ar": "الدفعة DXP-20250612-B · ديكساميثازون 4 ملغ/2 مل · تلوّث بجسيمات.",
+    "fr": "Lot DXP-20250612-B · Dexaméthasone 4 mg/2 ml · contamination particulaire."
+  },
+  "View recall": {
+    "ar": "عرض السحب",
+    "fr": "Voir le rappel"
+  },
+  "Live Scenario": {
+    "ar": "سيناريو مباشر",
+    "fr": "Scénario en direct"
+  },
+  "Risk, case after case": {
+    "ar": "الخطر، حالة بعد حالة",
+    "fr": "Le risque, cas après cas"
+  },
+  "If needed": {
+    "ar": "عند الحاجة",
+    "fr": "Si nécessaire"
+  },
+  "· Algiers": {
+    "ar": "· الجزائر",
+    "fr": "· Alger"
+  },
+  "Reported by": {
+    "ar": "المبلِّغ",
+    "fr": "Signalé par"
+  },
+  "Physician, ward 4B": {
+    "ar": "طبيب، جناح 4B",
+    "fr": "Médecin, service 4B"
+  },
+  "Channel": {
+    "ar": "القناة",
+    "fr": "Canal"
+  },
+  "Portal": {
+    "ar": "البوابة",
+    "fr": "Portail"
+  },
+  "Product": {
+    "ar": "المنتج",
+    "fr": "Produit"
+  },
+  "Infusion pump, lot 2291": {
+    "ar": "مضخة تسريب، الدفعة 2291",
+    "fr": "Pompe à perfusion, lot 2291"
+  },
+  "Serious": {
+    "ar": "خطير",
+    "fr": "Grave"
+  },
+  "Category": {
+    "ar": "الفئة",
+    "fr": "Catégorie"
+  },
+  "Device malfunction": {
+    "ar": "عطل في الجهاز",
+    "fr": "Dysfonctionnement du dispositif"
+  },
+  "Risk score": {
+    "ar": "درجة الخطر",
+    "fr": "Score de risque"
+  },
+  "Owner": {
+    "ar": "المسؤول",
+    "fr": "Responsable"
+  },
+  "Quality + Vigilance": {
+    "ar": "الجودة + اليقظة",
+    "fr": "Qualité + Vigilance"
+  },
+  "Root cause": {
+    "ar": "السبب الجذري",
+    "fr": "Cause racine"
+  },
+  "Seal defect on lot 2291": {
+    "ar": "عيب في الإحكام على الدفعة 2291",
+    "fr": "Défaut d’étanchéité sur le lot 2291"
+  },
+  "CAPA-118 opened": {
+    "ar": "فُتحت CAPA-118",
+    "fr": "CAPA-118 ouverte"
+  },
+  "Authority report": {
+    "ar": "التقرير للسلطة",
+    "fr": "Rapport à l’autorité"
+  },
+  "Submitted, 15-day deadline": {
+    "ar": "مُرسَل، المهلة 15 يوماً",
+    "fr": "Transmis, délai de 15 jours"
+  },
+  "Lot withdrawn, reporter informed": {
+    "ar": "سُحبت الدفعة وأُبلغ المصرّح",
+    "fr": "Lot retiré, déclarant informé"
+  },
+  "Why it matters": {
+    "ar": "لماذا هذا مهم",
+    "fr": "Pourquoi c’est important"
+  },
+  "How it works": {
+    "ar": "كيف يعمل",
+    "fr": "Comment ça marche"
+  },
+  "Who uses it": {
+    "ar": "من يستخدمه",
+    "fr": "Qui l’utilise"
+  },
+  "Zero Blind Spots": {
+    "ar": "لا نقاط عمياء",
+    "fr": "Zéro angle mort"
+  },
+  "VigiCore NEXUS hero — five vigilance modules": {
+    "ar": "VigiCore NEXUS — خمس وحدات يقظة",
+    "fr": "VigiCore NEXUS — cinq modules de vigilance"
+  },
+  "Vigilance modules": {
+    "ar": "وحدات اليقظة",
+    "fr": "Modules de vigilance"
+  },
+  "Réactovigilance — In vitro diagnostic reagent and lab equipment surveillance": {
+    "ar": "اليقظة المخبرية — مراقبة كواشف التشخيص المخبري ومعدات المخابر",
+    "en": "Reactovigilance — In vitro diagnostic reagent and lab equipment surveillance"
+  },
+  "Matériovigilance — Medical device incident tracking": {
+    "ar": "يقظة الأجهزة الطبية — تتبّع حوادث الأجهزة الطبية",
+    "en": "Medical device vigilance — Medical device incident tracking"
+  },
+  "Pharmacovigilance — AI-powered adverse drug reaction monitoring": {
+    "ar": "اليقظة الدوائية — رصد التفاعلات الدوائية الضارة بالذكاء الاصطناعي",
+    "en": "Pharmacovigilance — AI-powered adverse drug reaction monitoring"
+  },
+  "Chémovigilance — Chemical and hazardous substance surveillance": {
+    "ar": "اليقظة الكيميائية — مراقبة المواد الكيميائية والخطرة",
+    "en": "Chemovigilance — Chemical and hazardous substance surveillance"
+  },
+  "Cosmétovigilance — Post-market cosmetic surveillance": {
+    "ar": "اليقظة التجميلية — مراقبة مستحضرات التجميل بعد التسويق",
+    "en": "Cosmetovigilance — Post-market cosmetic surveillance"
+  },
+  "Scroll to next section": {
+    "ar": "الانتقال إلى القسم التالي",
+    "fr": "Aller à la section suivante"
+  },
+  "Why a fragmented vigilance process matters": {
+    "ar": "لماذا تُعدّ عملية اليقظة المجزّأة مشكلة",
+    "fr": "Pourquoi un circuit de vigilance fragmenté pose problème"
+  },
+  "Why VigiCore Nexus exists": {
+    "ar": "لماذا وُجد VigiCore Nexus",
+    "fr": "Pourquoi VigiCore Nexus existe"
+  },
+  "Five vigilance domains converging into the VigiCore Nexus AI core, which produces one traceable incident record": {
+    "ar": "خمسة مجالات يقظة تلتقي في نواة الذكاء الاصطناعي لـ VigiCore Nexus التي تنتج سجل حادث واحداً قابلاً للتتبّع",
+    "fr": "Cinq domaines de vigilance convergent vers le cœur IA de VigiCore Nexus, qui produit un dossier d’incident unique et traçable"
+  },
+  "Vigilance domains": {
+    "ar": "مجالات اليقظة",
+    "fr": "Domaines de vigilance"
+  },
+  "VigiCore Nexus AI processing core": {
+    "ar": "نواة المعالجة بالذكاء الاصطناعي لـ VigiCore Nexus",
+    "fr": "Cœur de traitement IA de VigiCore Nexus"
+  },
+  "Platform dashboard preview": {
+    "ar": "معاينة لوحة قيادة المنصة",
+    "fr": "Aperçu du tableau de bord de la plateforme"
+  },
+  "VigiCore patient dashboard demo": {
+    "ar": "عرض توضيحي للوحة قيادة المريض في VigiCore",
+    "fr": "Démo du tableau de bord patient VigiCore"
+  },
+  "Medical": {
+    "ar": "طبي",
+    "fr": "Médical"
+  },
+  "Pharmaceuticals": {
+    "ar": "صيدلاني",
+    "fr": "Pharmaceutique"
+  },
+  "Chemical": {
+    "ar": "كيميائي",
+    "fr": "Chimique"
+  },
+  "Cosmetic": {
+    "ar": "تجميلي",
+    "fr": "Cosmétique"
+  },
+  "Products & services": {
+    "ar": "المنتجات والخدمات",
+    "fr": "Produits et services"
+  },
+  "Categories covered": {
+    "ar": "الفئات المغطاة",
+    "fr": "Catégories couvertes"
+  },
+  "Catalog updated in real time": {
+    "ar": "فهرس يُحدَّث في الوقت الفعلي",
+    "fr": "Catalogue mis à jour en temps réel"
+  },
+  "IVD Products": {
+    "ar": "منتجات التشخيص المخبري",
+    "fr": "Produits DIV"
+  },
+  "IVD products": {
+    "ar": "منتجات التشخيص المخبري",
+    "fr": "Produits DIV"
+  },
+  "Cut signal-detection time from weeks to hours": {
+    "ar": "تقليص زمن كشف الإشارات من أسابيع إلى ساعات",
+    "fr": "Réduire la détection de signaux de plusieurs semaines à quelques heures"
+  },
+  "PharmaSignal AI flags adverse-event patterns across dispensing records the moment they emerge.": {
+    "ar": "يرصد PharmaSignal AI أنماط الأحداث الضارة في سجلات الصرف لحظة ظهورها.",
+    "fr": "PharmaSignal AI repère les schémas d’effets indésirables dans les registres de dispensation dès leur apparition."
+  },
+  "reports screened / mo": {
+    "ar": "بلاغات محللة / شهر",
+    "fr": "signalements analysés / mois"
+  },
+  "Every device, traceable from shipment to patient": {
+    "ar": "كل جهاز قابل للتتبّع من الشحن إلى المريض",
+    "fr": "Chaque dispositif, traçable de l’expédition au patient"
+  },
+  "SafeTrack gives manufacturers and hospitals one shared registry — recalls go out in hours.": {
+    "ar": "يوفّر SafeTrack للمصنّعين والمستشفيات سجلاً مشتركاً — وتصدر إشعارات السحب خلال ساعات.",
+    "fr": "SafeTrack donne aux fabricants et aux hôpitaux un registre commun — les rappels partent en quelques heures."
+  },
+  "avg. recall notice": {
+    "ar": "متوسط مدة إشعار السحب",
+    "fr": "délai moyen d’avis de rappel"
+  },
+  "Consumer adverse events, routed automatically": {
+    "ar": "الأحداث الضارة للمستهلكين، تُوجَّه تلقائياً",
+    "fr": "Effets indésirables des consommateurs, acheminés automatiquement"
+  },
+  "DermaCheck turns scattered complaints into a structured, regulator-ready pipeline.": {
+    "ar": "يحوّل DermaCheck الشكاوى المتفرقة إلى مسار منظّم جاهز لتقديمه للجهة المنظِّمة.",
+    "fr": "DermaCheck transforme des plaintes dispersées en un circuit structuré, prêt pour le régulateur."
+  },
+  "countries covered": {
+    "ar": "بلداً مغطى",
+    "fr": "pays couverts"
+  },
+  "Exposure incidents, caught at the bench": {
+    "ar": "حوادث التعرض تُكتشف عند طاولة المخبر",
+    "fr": "Incidents d’exposition, détectés à la paillasse"
+  },
+  "Sensor-based monitoring and automated alerting for clinical and industrial labs.": {
+    "ar": "مراقبة بالمستشعرات وتنبيه آلي للمخابر السريرية والصناعية.",
+    "fr": "Surveillance par capteurs et alertes automatiques pour les laboratoires cliniques et industriels."
+  },
+  "live alerting": {
+    "ar": "تنبيه مباشر",
+    "fr": "alertes en direct"
+  },
+  "Featured this month": {
+    "ar": "مميّز هذا الشهر",
+    "fr": "À la une ce mois-ci"
+  },
+  "Chemical exposure surveillance, built for real labs": {
+    "ar": "مراقبة التعرض الكيميائي، مصمّمة للمخابر الحقيقية",
+    "fr": "Surveillance de l’exposition chimique, conçue pour les vrais laboratoires"
+  },
+  "ISO 17025 accredited": {
+    "ar": "معتمد وفق ISO 17025",
+    "fr": "Accrédité ISO 17025"
+  },
+  "24/7 alerting": {
+    "ar": "تنبيه على مدار الساعة",
+    "fr": "Alertes 24h/24, 7j/7"
+  },
+  "Ministry of Commerce compliant": {
+    "ar": "مطابق لمتطلبات وزارة التجارة",
+    "fr": "Conforme au ministère du Commerce"
+  },
+  "uptime": {
+    "ar": "وقت التشغيل",
+    "fr": "disponibilité"
+  },
+  "views / month": {
+    "ar": "مشاهدة / شهر",
+    "fr": "vues / mois"
+  },
+  "Cloud-based serial-number tracking for medical devices, from shipment to patient outcome.": {
+    "ar": "تتبّع الأرقام التسلسلية للأجهزة الطبية سحابياً، من الشحن إلى مآل المريض.",
+    "fr": "Suivi des numéros de série des dispositifs médicaux dans le cloud, de l’expédition au devenir du patient."
+  },
+  "Automated adverse-event pattern detection across pharmacy dispensing records.": {
+    "ar": "كشف آلي لأنماط الأحداث الضارة في سجلات صرف الصيدليات.",
+    "fr": "Détection automatique de schémas d’effets indésirables dans les registres de dispensation des pharmacies."
+  },
+  "Real-time sensors and alerts for hazardous chemical exposure in clinical labs.": {
+    "ar": "مستشعرات وتنبيهات فورية للتعرض لمواد كيميائية خطرة في المخابر السريرية.",
+    "fr": "Capteurs et alertes en temps réel pour l’exposition à des produits chimiques dangereux dans les laboratoires cliniques."
+  },
+  "Consumer-facing adverse-event reporting for cosmetic and skincare products.": {
+    "ar": "إبلاغ المستهلكين عن الأحداث الضارة لمستحضرات التجميل والعناية بالبشرة.",
+    "fr": "Déclaration des effets indésirables par les consommateurs pour les cosmétiques et soins de la peau."
+  },
+  "End-to-end temperature and integrity tracking for biologics in transit.": {
+    "ar": "تتبّع شامل لحرارة وسلامة المنتجات البيولوجية أثناء النقل.",
+    "fr": "Suivi de bout en bout de la température et de l’intégrité des produits biologiques en transit."
+  },
+  "Prioritizes incoming adverse-event reports so reviewers see the urgent ones first.": {
+    "ar": "يرتّب البلاغات الواردة حسب الأولوية ليرى المراجعون العاجلة منها أولاً.",
+    "fr": "Priorise les signalements entrants pour que les évaluateurs voient d’abord les plus urgents."
+  },
+  "List Your Products": {
+    "ar": "أدرِج منتجاتك",
+    "fr": "Référencez vos produits"
+  },
+  "For manufacturers, importers & suppliers: create your company account to list your products in Services": {
+    "ar": "للمصنّعين والمستوردين والموردين: أنشئ حساب شركتك لإدراج منتجاتك في الخدمات",
+    "fr": "Pour les fabricants, importateurs et fournisseurs : créez votre compte entreprise pour référencer vos produits dans Services"
+  },
+  "Company Name": {
+    "ar": "اسم الشركة",
+    "fr": "Nom de l’entreprise"
+  },
+  "Create Company Account": {
+    "ar": "إنشاء حساب الشركة",
+    "fr": "Créer le compte entreprise"
+  },
+  "Register a hospital, clinic or medical centre instead": {
+    "ar": "تسجيل مستشفى أو عيادة أو مركز طبي بدلاً من ذلك",
+    "fr": "Inscrire plutôt un hôpital, une clinique ou un centre médical"
+  },
+  "e.g. MedSupply Algérie": {
+    "ar": "مثال: MedSupply Algérie",
+    "fr": "ex. MedSupply Algérie"
+  },
+  "Medical device incident tracking with full serial-to-patient traceability.": {
+    "fr": "Suivi des incidents de dispositifs médicaux avec traçabilité complète du numéro de série au patient.",
+    "ar": "تتبّع حوادث الأجهزة الطبية مع تتبّع كامل من الرقم التسلسلي إلى المريض."
+  },
+  "AI-powered adverse drug reaction monitoring across the supply chain.": {
+    "fr": "Surveillance des effets indésirables des médicaments par IA, sur toute la chaîne d’approvisionnement.",
+    "ar": "رصد التفاعلات الدوائية الضارة بالذكاء الاصطناعي عبر سلسلة التوريد بأكملها."
+  },
+  "Chemical & hazardous substance surveillance protecting staff and patients.": {
+    "fr": "Surveillance des substances chimiques et dangereuses pour protéger le personnel et les patients.",
+    "ar": "مراقبة المواد الكيميائية والخطرة لحماية العاملين والمرضى."
+  },
+  "Post-market cosmetic surveillance — adverse events and compliance flagging.": {
+    "fr": "Surveillance post-commercialisation des cosmétiques — événements indésirables et signalement de non-conformités.",
+    "ar": "مراقبة مستحضرات التجميل بعد التسويق — الأحداث الضارة والتنبيه إلى عدم المطابقة."
+  },
+  "Select a vigilance module to explore it": {
+    "fr": "Sélectionnez un module de vigilance pour l’explorer",
+    "ar": "اختر وحدة يقظة لاستكشافها"
+  },
+  "Reagent Defects": {
+    "fr": "Défauts de réactifs",
+    "ar": "عيوب الكواشف"
+  },
+  "DMDIV Compliance": {
+    "fr": "Conformité DMDIV",
+    "ar": "المطابقة لـ DMDIV"
+  },
+  "Device Tracking": {
+    "fr": "Suivi des dispositifs",
+    "ar": "تتبّع الأجهزة"
+  },
+  "ANPP Homologation": {
+    "fr": "Homologation ANPP",
+    "ar": "اعتماد ANPP"
+  },
+  "ADR Reporting": {
+    "fr": "Déclaration des EIM",
+    "ar": "الإبلاغ عن التفاعلات الدوائية الضارة"
+  },
+  "Signal Detection": {
+    "fr": "Détection de signaux",
+    "ar": "كشف الإشارات"
+  },
+  "Exposure Tracking": {
+    "fr": "Suivi de l’exposition",
+    "ar": "تتبّع التعرض"
+  },
+  "Ministry of Commerce Compliance": {
+    "fr": "Conformité ministère du Commerce",
+    "ar": "المطابقة لمتطلبات وزارة التجارة"
+  },
+  "Adverse Events": {
+    "fr": "Événements indésirables",
+    "ar": "الأحداث الضارة"
+  },
+  "Ministry of Commerce Authorization": {
+    "fr": "Autorisation du ministère du Commerce",
+    "ar": "ترخيص وزارة التجارة"
+  },
+  "nécessitent": {
+    "ar": "تتطلب",
+    "en": "need"
+  },
+  "sous surveillance critique nécessitent": {
+    "ar": "تحت مراقبة حرجة تتطلب",
+    "en": "under critical monitoring need"
+  },
+  "Pharmacie": {
+    "ar": "صيدلية",
+    "en": "Pharmacy"
+  },
+  "Laboratoire": {
+    "ar": "مخبر",
+    "en": "Laboratory"
+  },
+  "Médecin": {
+    "ar": "طبيب",
+    "en": "Physician"
+  },
+  "Pharmacien": {
+    "ar": "صيدلي",
+    "en": "Pharmacist"
+  },
+  "En attente d’approbation": {
+    "ar": "بانتظار الموافقة",
+    "en": "Pending approval"
+  },
+  "Refusée": {
+    "ar": "مرفوضة",
+    "en": "Declined"
+  },
+  "Aide-soignant(e)": {
+    "ar": "مساعد(ة) تمريض",
+    "en": "Nursing assistant"
+  },
+  "Indiquez l'adresse e-mail du patient.": {
+    "ar": "أدخل البريد الإلكتروني للمريض.",
+    "en": "Enter the patient's e-mail address."
+  },
+  "Un e-mail lui a été envoyé.": {
+    "ar": "تم إرسال بريد إلكتروني إليه.",
+    "en": "An e-mail has been sent to them."
+  },
+  "E-mail non envoyé : le serveur d'e-mail n'est pas configuré.": {
+    "ar": "لم يُرسل البريد: خادم البريد الإلكتروني غير مهيّأ.",
+    "en": "E-mail not sent: the e-mail server is not configured."
+  },
+  "L'e-mail n'a pas pu être envoyé.": {
+    "ar": "تعذّر إرسال البريد الإلكتروني.",
+    "en": "The e-mail could not be sent."
+  },
+  "Sa demande de contact attend son acceptation dans la messagerie.": {
+    "ar": "طلب التواصل ينتظر قبوله في المراسلة.",
+    "en": "Their contact request is waiting to be accepted in the messenger."
+  },
+  "Il n'a pas encore de compte VigiCore : il pourra en créer un avec cette adresse.": {
+    "ar": "ليس لديه حساب VigiCore بعد: يمكنه إنشاء حساب بهذا العنوان.",
+    "en": "They do not have a VigiCore account yet: they can create one with this address."
+  },
+  "Message vide": {
+    "ar": "رسالة فارغة",
+    "en": "Empty message"
+  },
+  "Écrivez un message.": {
+    "ar": "اكتب رسالة.",
+    "en": "Write a message."
+  },
+  "Message envoyé": {
+    "ar": "تم إرسال الرسالة",
+    "en": "Message sent"
+  },
+  "Votre message a été envoyé à {0} dans la messagerie.": {
+    "ar": "تم إرسال رسالتك إلى {0} في المراسلة.",
+    "en": "Your message has been sent to {0} in the messenger."
+  },
+  "E-mail envoyé": {
+    "ar": "تم إرسال البريد",
+    "en": "E-mail sent"
+  },
+  "Votre message a été envoyé par e-mail à {0}.": {
+    "ar": "تم إرسال رسالتك إلى {0} بالبريد الإلكتروني.",
+    "en": "Your message has been sent to {0} by e-mail."
+  },
+  "Message non envoyé": {
+    "ar": "لم تُرسل الرسالة",
+    "en": "Message not sent"
+  },
+  "Patient retiré": {
+    "ar": "تم حذف المريض",
+    "en": "Patient removed"
+  },
+  "{0} a été retiré de votre liste de suivi.": {
+    "ar": "تمت إزالة {0} من قائمة متابعتك.",
+    "en": "{0} has been removed from your follow list."
+  },
+  "Suppression impossible": {
+    "ar": "تعذّر الحذف",
+    "en": "Unable to remove"
+  },
+  "Aucune adresse e-mail enregistrée pour ce patient : impossible de le contacter.": {
+    "ar": "لا يوجد بريد إلكتروني مسجّل لهذا المريض: يتعذّر التواصل معه.",
+    "en": "No e-mail address is recorded for this patient: they cannot be contacted."
+  },
+  "Ce patient est dans votre messagerie : le message lui est envoyé directement et la conversation s'ouvre.": {
+    "ar": "هذا المريض في مراسلتك: تُرسل إليه الرسالة مباشرة وتُفتح المحادثة.",
+    "en": "This patient is in your messenger: the message is sent to them directly and the conversation opens."
+  },
+  "Ce patient n'a pas encore accepté votre demande de messagerie : le message part par e-mail.": {
+    "ar": "لم يقبل هذا المريض طلب المراسلة بعد: تُرسل الرسالة بالبريد الإلكتروني.",
+    "en": "This patient has not yet accepted your messenger request: the message is sent by e-mail."
+  },
+  "Ce patient n'a pas de compte VigiCore : le message part par e-mail.": {
+    "ar": "ليس لهذا المريض حساب VigiCore: تُرسل الرسالة بالبريد الإلكتروني.",
+    "en": "This patient has no VigiCore account: the message is sent by e-mail."
+  },
+  "Contacter le patient": {
+    "ar": "التواصل مع المريض",
+    "en": "Contact the patient"
+  },
+  "Retirer de la liste": {
+    "ar": "إزالة من القائمة",
+    "en": "Remove from the list"
+  },
+  "Retirer {0} de votre liste de patients suivis ? Son dossier de suivi disparaît de votre liste ; ses déclarations de vigilance existantes sont conservées.": {
+    "ar": "إزالة {0} من قائمة مرضاك المتابَعين؟ يختفي ملف متابعته من قائمتك؛ أما تصريحات اليقظة الموجودة فتبقى محفوظة.",
+    "en": "Remove {0} from your list of followed patients? Their follow-up record disappears from your list; existing vigilance reports are kept."
+  },
+  "E-mail du patient": {
+    "ar": "البريد الإلكتروني للمريض",
+    "en": "Patient's e-mail"
+  },
+  "Ex : patient@exemple.dz": {
+    "ar": "مثال: patient@exemple.dz",
+    "en": "E.g.: patient@exemple.dz"
+  },
+  "Le patient reçoit un e-mail ; s'il a un compte VigiCore, une demande de messagerie lui est envoyée.": {
+    "ar": "يتلقى المريض بريداً إلكترونياً؛ وإن كان لديه حساب VigiCore تُرسل إليه طلب مراسلة.",
+    "en": "The patient receives an e-mail; if they have a VigiCore account, a messenger request is sent to them."
+  },
+  "Ex : 42": {
+    "ar": "مثال: 42",
+    "en": "E.g.: 42"
+  },
+  "Retirer le patient": {
+    "ar": "إزالة المريض",
+    "en": "Remove the patient"
+  },
+  "Adresse e-mail du patient requise (format valide).": {
+    "ar": "البريد الإلكتروني للمريض مطلوب (بصيغة صحيحة).",
+    "en": "The patient's e-mail address is required (valid format)."
+  },
+  "Patient introuvable.": {
+    "ar": "المريض غير موجود.",
+    "en": "Patient not found."
+  },
+  "Seuls les médecins peuvent gérer une liste de patients.": {
+    "ar": "الأطباء فقط يمكنهم إدارة قائمة المرضى.",
+    "en": "Only physicians can manage a patient list."
+  },
+  "Ce patient n’a pas d’adresse e-mail enregistrée.": {
+    "ar": "ليس لهذا المريض بريد إلكتروني مسجّل.",
+    "en": "This patient has no e-mail address on file."
+  },
+  "L’envoi d’e-mails n’est pas configuré sur ce serveur (SMTP_HOST et MAIL_FROM).": {
+    "ar": "إرسال البريد الإلكتروني غير مهيّأ على هذا الخادم (SMTP_HOST وMAIL_FROM).",
+    "en": "Sending e-mails is not configured on this server (SMTP_HOST and MAIL_FROM)."
+  },
+  "L’e-mail n’a pas pu être envoyé. Réessayez plus tard.": {
+    "ar": "تعذّر إرسال البريد الإلكتروني. أعد المحاولة لاحقاً.",
+    "en": "The e-mail could not be sent. Try again later."
+  },
+  "Session requise pour retirer un patient.": {
+    "ar": "يلزم جلسة لإزالة مريض.",
+    "en": "A session is required to remove a patient."
+  },
+  "Session requise pour envoyer un message.": {
+    "ar": "يلزم جلسة لإرسال رسالة.",
+    "en": "A session is required to send a message."
+  },
+  "Session requise pour enregistrer un patient.": {
+    "ar": "يلزم جلسة لتسجيل مريض.",
+    "en": "A session is required to save a patient."
+  },
+  "Historique": {
+    "ar": "السجل",
+    "en": "History"
+  },
+  "Aucune discussion enregistrée.": {
+    "ar": "لا توجد محادثات محفوظة.",
+    "en": "No saved discussions."
+  },
+  "Supprimer cette discussion": {
+    "ar": "حذف هذه المحادثة",
+    "en": "Delete this discussion"
+  },
+  "Si l’assistant VigiCore AI est configuré avec un modèle de langage (Anthropic), votre question, la discussion en cours et un résumé limité de votre compte (références, statuts et destinataires de vos déclarations, compteurs de messagerie — sans identité de patient ni texte libre de déclaration) lui sont envoyés pour rédiger la réponse. Sans cette configuration, l’assistant répond uniquement à partir de règles internes.": {
+    "ar": "إذا هيّئ المساعد VigiCore AI بنموذج لغوي (Anthropic)، فإن سؤالك والمحادثة الجارية وملخصاً محدوداً لحسابك (مراجع تصريحاتك وحالاتها وجهات إرسالها وعدّادات المراسلة — دون هوية المرضى ولا النص الحر للتصريحات) تُرسل إليه لصياغة الجواب. وبدون هذا الإعداد يجيب المساعد انطلاقاً من قواعد داخلية فقط.",
+    "en": "If the VigiCore AI assistant is configured with a language model (Anthropic), your question, the current discussion and a limited summary of your account (references, statuses and recipients of your reports, messenger counters — without patient identity or free-text of reports) are sent to it to write the answer. Without this configuration, the assistant answers only from internal rules."
+  },
+  "Légère": {
+    "ar": "خفيفة",
+    "en": "Mild"
+  },
+  "Modérée": {
+    "ar": "متوسطة",
+    "en": "Moderate"
+  },
+  "Grave": {
+    "ar": "خطيرة",
+    "en": "Serious"
+  },
+  "Incident": {
+    "ar": "حادث",
+    "en": "Incident"
+  },
+  "Panne de dispositif": {
+    "ar": "عطل في جهاز",
+    "en": "Device malfunction"
+  },
+  "Sans impact (panne technique)": {
+    "ar": "دون تأثير (عطل تقني)",
+    "en": "No impact (technical fault)"
+  },
+  "Retard de prise en charge": {
+    "ar": "تأخّر في التكفّل بالمريض",
+    "en": "Delay in care"
+  },
+  "Patient / utilisateur exposé à un risque": {
+    "ar": "مريض / مستخدم تعرّض لخطر",
+    "en": "Patient / user exposed to a risk"
+  },
+  "Blessure d’un patient / utilisateur": {
+    "ar": "إصابة مريض / مستخدم",
+    "en": "Injury to a patient / user"
+  },
+  "Pendant l’utilisation": {
+    "ar": "أثناء الاستعمال",
+    "en": "During use"
+  },
+  "Transport / stockage": {
+    "ar": "النقل / التخزين",
+    "en": "Transport / storage"
+  },
+  "En service": {
+    "ar": "قيد الخدمة",
+    "en": "In service"
+  },
+  "Hors service": {
+    "ar": "خارج الخدمة",
+    "en": "Out of service"
+  },
+  "Mis en quarantaine": {
+    "ar": "وُضع في الحجر",
+    "en": "Quarantined"
+  },
+  "Alarme / code erreur": {
+    "ar": "إنذار / رمز خطأ",
+    "en": "Alarm / error code"
+  },
+  "Fuite / surchauffe": {
+    "ar": "تسرّب / سخونة زائدة",
+    "en": "Leak / overheating"
+  },
+  "Dommage physique": {
+    "ar": "ضرر مادي",
+    "en": "Physical damage"
+  },
+  "Mis hors service": {
+    "ar": "أُخرج من الخدمة",
+    "en": "Taken out of service"
+  },
+  "Description des symptômes": {
+    "ar": "وصف الأعراض",
+    "en": "Description of symptoms"
+  },
+  "Dispositif": {
+    "ar": "الجهاز",
+    "en": "Device"
+  },
+  "Marque": {
+    "ar": "العلامة التجارية",
+    "en": "Brand"
+  },
+  "N° d’inventaire": {
+    "ar": "رقم الجرد",
+    "en": "Inventory no."
+  },
+  "UDI": {
+    "ar": "UDI",
+    "en": "UDI"
+  },
+  "Survenue le": {
+    "ar": "وقع في",
+    "en": "Occurred on"
+  },
+  "Code erreur": {
+    "ar": "رمز الخطأ",
+    "en": "Error code"
+  },
+  "Action immédiate": {
+    "ar": "الإجراء الفوري",
+    "en": "Immediate action"
+  },
+  "Ticket de maintenance": {
+    "ar": "تذكرة الصيانة",
+    "en": "Maintenance ticket"
+  },
+  "État de l’appareil": {
+    "ar": "حالة الجهاز",
+    "en": "Device state"
+  },
+  "Pièces jointes mentionnées (NON transmises)": {
+    "ar": "المرفقات المذكورة (غير مُرسلة)",
+    "en": "Attachments mentioned (NOT sent)"
+  },
+  "Message": {
+    "ar": "رسالة",
+    "en": "Message"
+  },
+  "La vigilance n’accepte plus de messages sur cette déclaration.": {
+    "ar": "لم تعد اليقظة تقبل رسائل على هذا التصريح.",
+    "en": "Vigilance no longer accepts messages on this declaration."
+  },
+  "Message non envoyé : le service de vigilance est indisponible. Réessayez.": {
+    "ar": "لم تُرسل الرسالة: خدمة اليقظة غير متاحة. أعد المحاولة.",
+    "en": "Message not sent: the vigilance service is unavailable. Please try again."
+  },
+  "Chargement des messages…": {
+    "ar": "جارٍ تحميل الرسائل…",
+    "en": "Loading messages…"
+  },
+  "Aucun message pour le moment.": {
+    "ar": "لا توجد رسائل حاليًا.",
+    "en": "No messages yet."
+  },
+  "Vigilance": {
+    "ar": "اليقظة",
+    "en": "Vigilance"
+  },
+  "Votre message à la vigilance…": {
+    "ar": "رسالتك إلى اليقظة…",
+    "en": "Your message to vigilance…"
+  },
+  "Message à la vigilance": {
+    "ar": "رسالة إلى اليقظة",
+    "en": "Message to vigilance"
+  },
+  "Envoi…": {
+    "ar": "جارٍ الإرسال…",
+    "en": "Sending…"
+  },
+  "Retrait": {
+    "ar": "السحب",
+    "en": "Withdrawal"
+  },
+  "La déclaration a été retirée.": {
+    "ar": "تم سحب التصريح.",
+    "en": "The declaration has been withdrawn."
+  },
+  "Elle n'est plus retirable (déjà prise en charge).": {
+    "ar": "لم يعد بالإمكان سحبه (تم التكفّل به بالفعل).",
+    "en": "It can no longer be withdrawn (already being handled)."
+  },
+  "Retrait impossible pour le moment.": {
+    "ar": "السحب غير ممكن حاليًا.",
+    "en": "Withdrawal is not possible right now."
+  },
+  "Chargement du détail…": {
+    "ar": "جارٍ تحميل التفاصيل…",
+    "en": "Loading details…"
+  },
+  "Cette déclaration est conservée dans votre espace. Elle n'a été transmise ni à une vigilance, ni au CNPM, ni à votre médecin.": {
+    "ar": "هذا التصريح محفوظ في فضائك. لم يُرسل إلى أي جهة يقظة ولا إلى المركز الوطني لليقظة الدوائية ولا إلى طبيبك.",
+    "en": "This declaration is kept in your space. It has not been sent to any vigilance body, to the CNPM or to your doctor."
+  },
+  "Enregistrement durable pour le suivi interne de votre établissement. Aucune vigilance externe n'a été notifiée.": {
+    "ar": "تسجيل دائم للمتابعة الداخلية لمؤسستك. لم يتم إخطار أي جهة يقظة خارجية.",
+    "en": "Durable record for your facility's internal follow-up. No external vigilance body has been notified."
+  },
+  "Nature": {
+    "ar": "الطبيعة",
+    "en": "Nature"
+  },
+  "Enregistrée le": {
+    "ar": "سُجّل في",
+    "en": "Recorded on"
+  },
+  "Dernière mise à jour": {
+    "ar": "آخر تحديث",
+    "en": "Last updated"
+  },
+  "Retrait…": {
+    "ar": "جارٍ السحب…",
+    "en": "Withdrawing…"
+  },
+  "Retirer cette déclaration": {
+    "ar": "سحب هذا التصريح",
+    "en": "Withdraw this declaration"
+  },
+  "Renvoi": {
+    "ar": "إعادة الإرسال",
+    "en": "Resend"
+  },
+  "Cette déclaration est introuvable (ou ne vous appartient pas).": {
+    "ar": "هذا التصريح غير موجود (أو لا يخصّك).",
+    "en": "This declaration cannot be found (or does not belong to you)."
+  },
+  "Détail momentanément indisponible.": {
+    "ar": "التفاصيل غير متاحة مؤقتًا.",
+    "en": "Details temporarily unavailable."
+  },
+  "enregistrée sur le Site mais pas encore confirmée par la vigilance": {
+    "ar": "مسجّل على الموقع لكن لم تؤكّده اليقظة بعد",
+    "en": "recorded on the Site but not yet confirmed by vigilance"
+  },
+  "Un renvoi automatique est planifié.": {
+    "ar": "تمت جدولة إعادة إرسال تلقائية.",
+    "en": "An automatic resend is scheduled."
+  },
+  "Le renvoi automatique est épuisé : utilisez « Renvoyer maintenant ».": {
+    "ar": "استُنفدت محاولات الإرسال التلقائي: استخدم «إعادة الإرسال الآن».",
+    "en": "Automatic resending is exhausted: use “Resend now”."
+  },
+  "conservée sur le Site": {
+    "ar": "محفوظ على الموقع",
+    "en": "kept on the Site"
+  },
+  "Aucune vigilance ne peut recevoir cette déclaration pour le moment (produit ou organisation non éligible). Elle n’a été transmise à personne.": {
+    "ar": "لا يمكن لأي جهة يقظة استلام هذا التصريح حاليًا (المنتج أو المؤسسة غير مؤهّلين). لم يُرسل إلى أحد.",
+    "en": "No vigilance body can receive this declaration right now (product or organization not eligible). It has not been sent to anyone."
+  },
+  "Reçue par": {
+    "ar": "استلمته",
+    "en": "Received by"
+  },
+  "Le suivi détaillé est momentanément indisponible ; la réception, elle, est confirmée.": {
+    "ar": "المتابعة التفصيلية غير متاحة مؤقتًا؛ أما الاستلام فمؤكَّد.",
+    "en": "Detailed tracking is temporarily unavailable; receipt itself is confirmed."
+  },
+  "Produit du catalogue": {
+    "ar": "منتج من الفهرس",
+    "en": "Catalogue product"
+  },
+  "Gravité déclarée": {
+    "ar": "الخطورة المصرّح بها",
+    "en": "Declared severity"
+  },
+  "Description transmise": {
+    "ar": "الوصف المُرسل",
+    "en": "Description sent"
+  },
+  "Renvoi…": {
+    "ar": "جارٍ إعادة الإرسال…",
+    "en": "Resending…"
+  },
+  "Renvoyer maintenant": {
+    "ar": "إعادة الإرسال الآن",
+    "en": "Resend now"
+  },
+  "La messagerie avec la vigilance est disponible une fois la déclaration reçue.": {
+    "ar": "المراسلة مع اليقظة متاحة بعد استلام التصريح.",
+    "en": "Messaging with vigilance is available once the declaration has been received."
+  },
+  "Mes envois à la vigilance": {
+    "ar": "إرسالاتي إلى اليقظة",
+    "en": "My submissions to vigilance"
+  },
+  "Vos déclarations (envois à la vigilance et enregistrements internes), lues depuis le serveur. Vue personnelle : ce n’est pas la file de votre établissement.": {
+    "ar": "تصريحاتك (الإرسالات إلى اليقظة والتسجيلات الداخلية) مقروءة من الخادم. عرض شخصي: ليس قائمة مؤسستك.",
+    "en": "Your declarations (submissions to vigilance and internal records), read from the server. Personal view: this is not your facility's queue."
+  },
+  "Actualiser": {
+    "ar": "تحديث",
+    "en": "Refresh"
+  },
+  "Session expirée : reconnectez-vous pour voir vos envois.": {
+    "ar": "انتهت الجلسة: أعد تسجيل الدخول لعرض إرسالاتك.",
+    "en": "Session expired: sign in again to see your submissions."
+  },
+  "Vos envois sont momentanément indisponibles (serveur injoignable). Rien n’est perdu.": {
+    "ar": "إرسالاتك غير متاحة مؤقتًا (تعذّر الوصول إلى الخادم). لم يضِع شيء.",
+    "en": "Your submissions are temporarily unavailable (server unreachable). Nothing is lost."
+  },
+  "Une partie de vos envois est momentanément indisponible : la liste peut être incomplète.": {
+    "ar": "جزء من إرسالاتك غير متاح مؤقتًا: قد تكون القائمة ناقصة.",
+    "en": "Some of your submissions are temporarily unavailable: the list may be incomplete."
+  },
+  "Vous n’avez encore enregistré aucune déclaration.": {
+    "ar": "لم تسجّل أي تصريح بعد.",
+    "en": "You have not recorded any declaration yet."
+  },
+  "NATURE / PRODUIT": {
+    "ar": "الطبيعة / المنتج",
+    "en": "NATURE / PRODUCT"
+  },
+  "Voir le détail": {
+    "ar": "عرض التفاصيل",
+    "en": "View details"
+  },
+  "Renvoyer": {
+    "ar": "إعادة الإرسال",
+    "en": "Resend"
+  },
+  "Données de démonstration.": {
+    "ar": "بيانات تجريبية.",
+    "en": "Demonstration data."
+  },
+  "Prise en charge": {
+    "ar": "التكفّل",
+    "en": "Taken in charge"
+  },
+  "Clôture": {
+    "ar": "الإغلاق",
+    "en": "Closure"
+  },
+  "Dossier pris en charge.": {
+    "ar": "تم التكفّل بالملف.",
+    "en": "File taken in charge."
+  },
+  "Dossier clôturé.": {
+    "ar": "تم إغلاق الملف.",
+    "en": "File closed."
+  },
+  "Action refusée": {
+    "ar": "إجراء مرفوض",
+    "en": "Action refused"
+  },
+  "Le dossier a changé entre-temps (déjà traité) : actualisé.": {
+    "ar": "تغيّر الملف في الأثناء (عولج بالفعل): تم التحديث.",
+    "en": "The file changed in the meantime (already handled): refreshed."
+  },
+  "Vous n'avez pas le droit d'effectuer cette action.": {
+    "ar": "ليس لديك صلاحية تنفيذ هذا الإجراء.",
+    "en": "You are not allowed to perform this action."
+  },
+  "Service momentanément indisponible.": {
+    "ar": "الخدمة غير متاحة مؤقتًا.",
+    "en": "Service temporarily unavailable."
+  },
+  "File de votre établissement": {
+    "ar": "قائمة مؤسستك",
+    "en": "Your facility's queue"
+  },
+  "Dossiers réels enregistrés pour votre établissement, selon vos droits. Les champs identifiants d’un patient ne sont jamais affichés ici.": {
+    "ar": "ملفات فعلية مسجّلة لمؤسستك وفق صلاحياتك. لا تُعرض هنا أبدًا الحقول المعرِّفة للمريض.",
+    "en": "Real files recorded for your facility, according to your permissions. A patient's identifying fields are never shown here."
+  },
+  "Actualiser la file": {
+    "ar": "تحديث القائمة",
+    "en": "Refresh the queue"
+  },
+  "Session expirée : reconnectez-vous.": {
+    "ar": "انتهت الجلسة: أعد تسجيل الدخول.",
+    "en": "Session expired: please sign in again."
+  },
+  "La file est momentanément indisponible. Aucune donnée n’est perdue.": {
+    "ar": "القائمة غير متاحة مؤقتًا. لم تضِع أي بيانات.",
+    "en": "The queue is temporarily unavailable. No data is lost."
+  },
+  "Aucun dossier dans la file de votre établissement.": {
+    "ar": "لا توجد ملفات في قائمة مؤسستك.",
+    "en": "No file in your facility's queue."
+  },
+  "DOSSIER": {
+    "ar": "الملف",
+    "en": "FILE"
+  },
+  "NATURE": {
+    "ar": "الطبيعة",
+    "en": "NATURE"
+  },
+  "Prendre en charge": {
+    "ar": "تكفّل",
+    "en": "Take in charge"
+  },
+  "Clôturer": {
+    "ar": "إغلاق",
+    "en": "Close"
+  },
+  "Dossier introuvable ou hors de votre périmètre.": {
+    "ar": "الملف غير موجود أو خارج نطاقك.",
+    "en": "File not found or outside your scope."
+  },
+  "Incident de sécurité ?": {
+    "ar": "حادث أمني؟",
+    "en": "Security incident?"
+  },
+  "déclaration de vigilance": {
+    "ar": "تصريح يقظة",
+    "en": "vigilance declaration"
+  },
+  "Services": {
+    "ar": "الخدمات",
+    "en": "Services"
+  },
+  "Ce laboratoire n’a pas de support joignable pour le moment.": {
+    "ar": "ليس لدى هذا المخبر دعم متاح حاليًا.",
+    "en": "This laboratory has no reachable support at the moment."
+  },
+  "Retour": {
+    "ar": "رجوع",
+    "en": "Back"
+  },
+  "Contacter le support d’un laboratoire": {
+    "ar": "التواصل مع دعم مخبر",
+    "en": "Contact a laboratory's support"
+  },
+  "Seuls les laboratoires vérifiés et joignables apparaissent.": {
+    "ar": "تظهر فقط المخابر الموثَّقة والمتاحة.",
+    "en": "Only verified, reachable laboratories appear."
+  },
+  "Changer": {
+    "ar": "تغيير",
+    "en": "Change"
+  },
+  "Nom du laboratoire (2 lettres minimum)…": {
+    "ar": "اسم المخبر (حرفان على الأقل)…",
+    "en": "Laboratory name (2 letters minimum)…"
+  },
+  "Sujet": {
+    "ar": "الموضوع",
+    "en": "Subject"
+  },
+  "Décrivez la situation (modèle, numéro de série…). N’indiquez aucune donnée de patient.": {
+    "ar": "صِف الوضع (الطراز، الرقم التسلسلي…). لا تذكر أي بيانات عن المريض.",
+    "en": "Describe the situation (model, serial number…). Do not include any patient data."
+  },
+  "Le support de ce laboratoire n’est pas joignable pour le moment.": {
+    "ar": "دعم هذا المخبر غير متاح حاليًا.",
+    "en": "This laboratory's support is not reachable right now."
+  },
+  "Support du laboratoire": {
+    "ar": "دعم المخبر",
+    "en": "Laboratory support"
+  },
+  "Support ·": {
+    "ar": "الدعم ·",
+    "en": "Support ·"
+  },
+  "Écrire au support…": {
+    "ar": "اكتب إلى الدعم…",
+    "en": "Write to support…"
+  },
+  "Votre message au support": {
+    "ar": "رسالتك إلى الدعم",
+    "en": "Your message to support"
+  },
+  "Support laboratoires": {
+    "ar": "دعم المخابر",
+    "en": "Laboratory support"
+  },
+  "Contacter un laboratoire": {
+    "ar": "التواصل مع مخبر",
+    "en": "Contact a laboratory"
+  },
+  "Aucune conversation avec un support de laboratoire.": {
+    "ar": "لا توجد محادثة مع دعم أي مخبر.",
+    "en": "No conversation with a laboratory support."
+  },
+  "Support": {
+    "ar": "الدعم",
+    "en": "Support"
+  },
+  "Support des laboratoires": {
+    "ar": "دعم المخابر",
+    "en": "Laboratory support"
+  },
+  "Posez une question sur un dispositif ou signalez un problème technique.": {
+    "ar": "اطرح سؤالاً عن جهاز أو أبلغ عن مشكلة تقنية.",
+    "en": "Ask a question about a device or report a technical problem."
+  },
+  "Enregistrée sur le Site — en attente de confirmation": {
+    "ar": "مسجّل على الموقع — في انتظار التأكيد",
+    "en": "Recorded on the Site — awaiting confirmation"
+  },
+  "Enregistrée — produit en cours de rattachement par VigiCore": {
+    "ar": "مسجّل — يجري ربط المنتج من طرف VigiCore",
+    "en": "Recorded — product being matched by VigiCore"
+  },
+  "En cours de traitement": {
+    "ar": "قيد المعالجة",
+    "en": "Being processed"
+  },
+  "La vigilance attend votre réponse": {
+    "ar": "اليقظة تنتظر ردّك",
+    "en": "Vigilance is waiting for your reply"
+  },
+  "Clôturée": {
+    "ar": "مغلق",
+    "en": "Closed"
+  },
+  "Non transmise — aucune vigilance ne peut la recevoir pour le moment": {
+    "ar": "غير مُرسل — لا يمكن لأي جهة يقظة استلامه حاليًا",
+    "en": "Not sent — no vigilance body can receive it right now"
+  },
+  "Statut inconnu": {
+    "ar": "حالة غير معروفة",
+    "en": "Unknown status"
+  },
+  "La vigilance a confirmé la réception de cette déclaration.": {
+    "ar": "أكّدت اليقظة استلام هذا التصريح.",
+    "en": "Vigilance has confirmed receipt of this declaration."
+  },
+  "Toujours pas confirmée par la vigilance. L'envoi sera retenté automatiquement.": {
+    "ar": "لم تؤكّد اليقظة بعد. ستتم إعادة محاولة الإرسال تلقائيًا.",
+    "en": "Still not confirmed by vigilance. Sending will be retried automatically."
+  },
+  "Cette déclaration n'a plus besoin d'être renvoyée.": {
+    "ar": "لا يحتاج هذا التصريح إلى إعادة إرسال.",
+    "en": "This declaration no longer needs to be resent."
+  },
+  "Aucune vigilance ne peut recevoir cette déclaration pour le moment.": {
+    "ar": "لا يمكن لأي جهة يقظة استلام هذا التصريح حاليًا.",
+    "en": "No vigilance body can receive this declaration right now."
+  },
+  "Le serveur n'a pas pu être joint. Réessayez dans un instant.": {
+    "ar": "تعذّر الوصول إلى الخادم. أعد المحاولة بعد قليل.",
+    "en": "The server could not be reached. Please try again shortly."
+  },
+  "Enregistrée dans votre espace — non transmise à une vigilance": {
+    "ar": "مسجّل في فضائك — غير مُرسل إلى جهة يقظة",
+    "en": "Recorded in your space — not sent to a vigilance body"
+  },
+  "Enregistrée pour le suivi interne — en attente de prise en charge": {
+    "ar": "مسجّل للمتابعة الداخلية — في انتظار التكفّل",
+    "en": "Recorded for internal follow-up — awaiting handling"
+  },
+  "En cours d'examen par la vigilance de l'établissement": {
+    "ar": "قيد الفحص من طرف يقظة المؤسسة",
+    "en": "Under review by the facility's vigilance"
+  },
+  "Retirée par son auteur": {
+    "ar": "سحبها صاحبها",
+    "en": "Withdrawn by its author"
+  },
+  "Déclaration patient": {
+    "ar": "تصريح مريض",
+    "en": "Patient declaration"
+  },
+  "Panne — suivi interne": {
+    "ar": "عطل — متابعة داخلية",
+    "en": "Malfunction — internal follow-up"
+  },
+  "Déclaration": {
+    "ar": "تصريح",
+    "en": "Declaration"
+  },
+  "Utilisation d’un dispositif": {
+    "ar": "استعمال جهاز",
+    "en": "Use of a device"
+  },
+  "Problème technique": {
+    "ar": "مشكلة تقنية",
+    "en": "Technical problem"
+  },
+  "Panne urgente": {
+    "ar": "عطل عاجل",
+    "en": "Urgent failure"
+  },
+  "Autre question": {
+    "ar": "سؤال آخر",
+    "en": "Other question"
+  },
+  "Connexion au serveur impossible. Réessayez : votre message ne sera pas envoyé deux fois.": {
+    "ar": "تعذّر الاتصال بالخادم. أعد المحاولة: لن تُرسل رسالتك مرتين.",
+    "en": "Cannot connect to the server. Try again: your message will not be sent twice."
+  },
+  "Type de conversation": {
+    "ar": "نوع المحادثة",
+    "en": "Conversation type"
+  },
+  "Collègues": {
+    "ar": "الزملاء",
+    "en": "Colleagues"
+  },
+  "Dispositif du catalogue (pour transmettre au fabricant)": {
+    "ar": "جهاز من الفهرس (لإرساله إلى المصنّع)",
+    "en": "Catalogue device (to send to the manufacturer)"
+  },
+  "Dispositif du catalogue requis": {
+    "ar": "جهاز من الفهرس مطلوب",
+    "en": "Catalogue device required"
+  },
+  "Un incident de matériovigilance doit être rattaché à un dispositif du catalogue pour être transmis à la bonne vigilance. Il n'a pas été envoyé.": {
+    "ar": "يجب ربط حادث اليقظة الأجهزة الطبية بجهاز من الفهرس ليُرسل إلى جهة اليقظة الصحيحة. لم يتم إرساله.",
+    "en": "A medical-device vigilance incident must be linked to a catalogue device to reach the right vigilance body. It has not been sent."
+  },
+  "Reçue par la vigilance du fabricant via VigiCore.": {
+    "ar": "استلمته يقظة المصنّع عبر VigiCore.",
+    "en": "Received by the manufacturer's vigilance via VigiCore."
+  },
+  "Enregistrée sur le Site, pas encore reçue par la vigilance : l'envoi sera répété automatiquement (suivi dans « Mes envois »).": {
+    "ar": "مسجّل على الموقع ولم تستلمه اليقظة بعد: ستتكرر محاولة الإرسال تلقائيًا (المتابعة في «إرسالاتي»).",
+    "en": "Recorded on the Site, not yet received by vigilance: sending will be retried automatically (track it in “My submissions”)."
+  },
+  "Enregistrée pour le suivi interne. Le fabricant n'a PAS été notifié : choisissez le dispositif dans le catalogue pour le lui transmettre.": {
+    "ar": "مسجّل للمتابعة الداخلية. لم يتم إخطار المصنّع: اختر الجهاز من الفهرس لإرساله إليه.",
+    "en": "Recorded for internal follow-up. The manufacturer was NOT notified: choose the device from the catalogue to send it to them."
+  },
+  "Enregistrée pour le suivi interne de votre établissement.": {
+    "ar": "مسجّل للمتابعة الداخلية لمؤسستك.",
+    "en": "Recorded for your facility's internal follow-up."
+  },
+  "Échec de l'enregistrement": {
+    "ar": "فشل التسجيل",
+    "en": "Recording failed"
+  },
+  "{0} enregistrée (destinataire choisi : {1}) — suivez son état dans « Mes déclarations ». Elle n'a PAS encore été transmise : ces envois ne sont pas encore en service.": {
+    "ar": "تم تسجيل {0} (الجهة المختارة: {1}) — تابع حالته في «تصريحاتي». لم يُرسل بعد: هذه الإرسالات ليست قيد الخدمة حاليًا.",
+    "en": "{0} recorded (chosen recipient: {1}) — follow its status in “My declarations”. It has NOT been sent yet: these transmissions are not yet in service."
+  },
+  "Patients actifs ou archivés": {
+    "ar": "المرضى النشطون أو المؤرشفون",
+    "en": "Active or archived patients"
+  },
+  "Actifs": {
+    "ar": "النشطون",
+    "en": "Active"
+  },
+  "Archivés": {
+    "ar": "المؤرشفون",
+    "en": "Archived"
+  },
+  "Dossiers conservés en base, en lecture seule : ils ne peuvent plus être modifiés. Vous pouvez les restaurer ou les retirer de l'affichage (ils restent conservés).": {
+    "ar": "ملفات محفوظة في قاعدة البيانات للقراءة فقط: لا يمكن تعديلها. يمكنك استعادتها أو إزالتها من العرض (تبقى محفوظة).",
+    "en": "Records kept in the database, read-only: they can no longer be modified. You can restore them or remove them from view (they remain stored)."
+  },
+  "Afficher aussi les dossiers retirés": {
+    "ar": "إظهار الملفات المُزالة من العرض أيضًا",
+    "en": "Also show records removed from view"
+  },
+  "Archives momentanément indisponibles.": {
+    "ar": "الأرشيف غير متاح مؤقتًا.",
+    "en": "Archives temporarily unavailable."
+  },
+  "Aucun dossier archivé": {
+    "ar": "لا توجد ملفات مؤرشفة",
+    "en": "No archived record"
+  },
+  "Les patients que vous archivez apparaissent ici, en lecture seule.": {
+    "ar": "يظهر هنا المرضى الذين تؤرشفهم، للقراءة فقط.",
+    "en": "Patients you archive appear here, read-only."
+  },
+  "ARCHIVÉ LE": {
+    "ar": "أُرشف في",
+    "en": "ARCHIVED ON"
+  },
+  "MOTIF": {
+    "ar": "السبب",
+    "en": "REASON"
+  },
+  "retiré de l'affichage": {
+    "ar": "أُزيل من العرض",
+    "en": "removed from view"
+  },
+  "Restaurer": {
+    "ar": "استعادة",
+    "en": "Restore"
+  },
+  "Réafficher": {
+    "ar": "إعادة الإظهار",
+    "en": "Show again"
+  },
+  "Retirer de l'affichage": {
+    "ar": "إزالة من العرض",
+    "en": "Remove from view"
+  },
+  "Dossier réaffiché": {
+    "ar": "أُعيد إظهار الملف",
+    "en": "Record shown again"
+  },
+  "{0} est de nouveau visible dans les archives.": {
+    "ar": "{0} ظاهر من جديد في الأرشيف.",
+    "en": "{0} is visible again in the archives."
+  },
+  "Archiver le dossier": {
+    "ar": "أرشفة الملف",
+    "en": "Archive the record"
+  },
+  "Restaurer le dossier": {
+    "ar": "استعادة الملف",
+    "en": "Restore the record"
+  },
+  "Dossier archivé — lecture seule": {
+    "ar": "ملف مؤرشف — للقراءة فقط",
+    "en": "Archived record — read-only"
+  },
+  "Archivé le {0}. Ce dossier est conservé et ne peut plus être modifié.": {
+    "ar": "أُرشف في {0}. هذا الملف محفوظ ولا يمكن تعديله بعد الآن.",
+    "en": "Archived on {0}. This record is kept and can no longer be modified."
+  },
+  "Archiver {0} ? Le dossier n'est pas effacé : il est conservé en base, dans votre compte, en lecture seule (aucune modification possible). Vous pourrez le consulter, le restaurer ou le retirer de l'affichage depuis l'onglet Archivés. Ses déclarations de vigilance existantes sont conservées.": {
+    "ar": "هل تريد أرشفة {0}؟ لا يُمحى الملف: يُحفظ في قاعدة البيانات داخل حسابك للقراءة فقط (لا تعديل ممكن). يمكنك الاطّلاع عليه أو استعادته أو إزالته من العرض من تبويب «المؤرشفون». تصريحات اليقظة الحالية محفوظة.",
+    "en": "Archive {0}? The record is not erased: it is kept in the database, in your account, read-only (no changes possible). You can view it, restore it or remove it from view from the Archived tab. Its existing vigilance declarations are kept."
+  },
+  "Motif (facultatif)": {
+    "ar": "السبب (اختياري)",
+    "en": "Reason (optional)"
+  },
+  "Ex : fin de suivi": {
+    "ar": "مثال: نهاية المتابعة",
+    "en": "E.g. end of follow-up"
+  },
+  "Restaurer {0} dans votre liste de patients suivis ? Le dossier redevient modifiable.": {
+    "ar": "هل تريد استعادة {0} إلى قائمة المرضى المتابَعين؟ يصبح الملف قابلاً للتعديل من جديد.",
+    "en": "Restore {0} to your followed patients list? The record becomes editable again."
+  },
+  "Retirer {0} de l'affichage ? Le dossier reste archivé et conservé en base ; vous pourrez le réafficher avec « Afficher aussi les dossiers retirés ».": {
+    "ar": "هل تريد إزالة {0} من العرض؟ يبقى الملف مؤرشفًا ومحفوظًا في قاعدة البيانات؛ يمكنك إظهاره من جديد عبر «إظهار الملفات المُزالة من العرض أيضًا».",
+    "en": "Remove {0} from view? The record stays archived and stored in the database; you can show it again with “Also show records removed from view”."
+  },
+  "Dossier retiré de l'affichage": {
+    "ar": "أُزيل الملف من العرض",
+    "en": "Record removed from view"
+  },
+  "{0} reste archivé et conservé en base.": {
+    "ar": "{0} يبقى مؤرشفًا ومحفوظًا في قاعدة البيانات.",
+    "en": "{0} remains archived and stored in the database."
+  },
+  "Dossier archivé": {
+    "ar": "تمت أرشفة الملف",
+    "en": "Record archived"
+  },
+  "{0} a été archivé : le dossier est conservé en lecture seule dans l'onglet Archivés.": {
+    "ar": "تمت أرشفة {0}: الملف محفوظ للقراءة فقط في تبويب «المؤرشفون».",
+    "en": "{0} has been archived: the record is kept read-only in the Archived tab."
+  },
+  "Archivage impossible": {
+    "ar": "الأرشفة غير ممكنة",
+    "en": "Archiving impossible"
+  },
+  "Dossier restauré": {
+    "ar": "تمت استعادة الملف",
+    "en": "Record restored"
+  },
+  "{0} est de nouveau dans votre liste de suivi.": {
+    "ar": "{0} من جديد في قائمة المتابعة الخاصة بك.",
+    "en": "{0} is back in your follow-up list."
+  },
+  "Mes envois": {
+    "ar": "إرسالاتي",
+    "en": "My submissions"
+  },
+  "File de l'établissement": {
+    "ar": "قائمة المؤسسة",
+    "en": "Facility queue"
+  },
+  "Exemples de démonstration": {
+    "ar": "أمثلة تجريبية",
+    "en": "Demonstration examples"
+  },
+  "Vues des déclarations": {
+    "ar": "عروض التصريحات",
+    "en": "Declaration views"
+  },
+  "Données de démonstration : le tableau ci-dessous contient des exemples fictifs conservés pour illustrer l’interface, pas des dossiers réels. Vos dossiers réels sont dans « Mes envois » et « File de l’établissement ».": {
+    "ar": "بيانات تجريبية: الجدول أدناه يحتوي على أمثلة وهمية محفوظة لتوضيح الواجهة، وليست ملفات حقيقية. ملفاتك الحقيقية في «إرسالاتي» و«قائمة المؤسسة».",
+    "en": "Demonstration data: the table below contains fictitious examples kept to illustrate the interface, not real records. Your real records are in “My submissions” and “Facility queue”."
+  },
+  "Non reçue — l'envoi automatique a échoué, renvoyez-la": {
+    "ar": "غير مستلم — فشل الإرسال التلقائي، أعد إرساله",
+    "en": "Not received — automatic sending failed, resend it"
+  },
+  "Cette déclaration est enregistrée sur le Site mais n’a PAS été reçue par la vigilance : les envois automatiques ont échoué. Utilisez « Renvoyer maintenant » quand le service est de nouveau disponible.": {
+    "ar": "هذا التصريح مسجّل على الموقع لكنه لم تستلمه اليقظة: فشلت محاولات الإرسال التلقائي. استخدم «إعادة الإرسال الآن» عندما تعود الخدمة.",
+    "en": "This declaration is recorded on the Site but has NOT been received by vigilance: automatic sending failed. Use “Resend now” once the service is available again."
+  },
+  "Rétabli / guéri": {
+    "ar": "تعافى / شُفي",
+    "en": "Recovered / resolved"
+  },
+  "Non rétabli / persistant": {
+    "ar": "لم يتعافَ / مستمر",
+    "en": "Not recovered / ongoing"
+  },
+  "Rétabli avec séquelles": {
+    "ar": "تعافى مع عواقب",
+    "en": "Recovered with sequelae"
+  },
+  "Hospitalisation": {
+    "ar": "دخول المستشفى",
+    "en": "Hospitalisation"
+  },
+  "Brouillon enregistré sur cet appareil": {
+    "ar": "حُفظت المسودة على هذا الجهاز",
+    "en": "Draft saved on this device"
+  },
+  "Votre brouillon est sauvegardé dans votre compte : retrouvez-le sur cet appareil ou un autre.": {
+    "ar": "مسودتك محفوظة في حسابك: ستجدها على هذا الجهاز أو على جهاز آخر.",
+    "en": "Your draft is saved in your account: find it on this device or another one."
+  },
+  "Le serveur n'a pas pu être joint : il n'est pas encore dans votre compte. Il sera renvoyé à la prochaine modification.": {
+    "ar": "تعذّر الوصول إلى الخادم: المسودة ليست بعد في حسابك. ستُعاد محاولة الإرسال عند التعديل التالي.",
+    "en": "The server could not be reached: it is not in your account yet. It will be sent again on the next change."
+  },
+  "Ni le stockage de cet appareil ni le serveur ne sont disponibles.": {
+    "ar": "لا تخزين الجهاز ولا الخادم متاحان.",
+    "en": "Neither this device's storage nor the server is available."
+  },
+  "Produit reconnu dans la base": {
+    "ar": "تم التعرّف على المنتج في القاعدة",
+    "en": "Product recognised in the database"
+  },
+  "{0} ({1}) correspond à ce code. Vérifiez qu'il s'agit bien du produit concerné ; le lot lui-même n'est pas vérifié par le catalogue.": {
+    "ar": "{0} ({1}) يطابق هذا الرمز. تحقّق من أنه المنتج المعني؛ أما الدفعة نفسها فلا يتحقق منها الفهرس.",
+    "en": "{0} ({1}) matches this code. Check it is the product concerned; the lot itself is not verified by the catalogue."
+  },
+  "Produit non trouvé dans la base": {
+    "ar": "المنتج غير موجود في القاعدة",
+    "en": "Product not found in the database"
+  },
+  "Aucun produit du catalogue ne correspond à ce code. Le numéro est conservé : choisissez le produit manuellement ou revérifiez l'emballage.": {
+    "ar": "لا يطابق أي منتج في الفهرس هذا الرمز. تم الاحتفاظ بالرقم: اختر المنتج يدويًا أو أعد فحص العبوة.",
+    "en": "No catalogue product matches this code. The number is kept: choose the product manually or re-check the packaging."
+  },
+  "Vérification impossible": {
+    "ar": "التحقق غير ممكن",
+    "en": "Verification impossible"
+  },
+  "Le catalogue est momentanément injoignable : le code est conservé, rien n'a été vérifié.": {
+    "ar": "الفهرس غير متاح مؤقتًا: تم الاحتفاظ بالرمز ولم يُتحقَّق من شيء.",
+    "en": "The catalogue is temporarily unreachable: the code is kept, nothing was verified."
+  },
+  "Reprendre": {
+    "ar": "استئناف",
+    "en": "Resume"
+  },
+  "Brouillon": {
+    "ar": "مسودة",
+    "en": "Draft"
+  },
+  "Aucun résultat": {
+    "ar": "لا توجد نتائج",
+    "en": "No results"
+  },
+  "Pages": {
+    "ar": "الصفحات",
+    "en": "Pages"
+  },
+  "Patients": {
+    "ar": "المرضى",
+    "en": "Patients"
+  },
+  "Déclarations": {
+    "ar": "التصريحات",
+    "en": "Reports"
+  },
+  "Brouillons": {
+    "ar": "المسودات",
+    "en": "Drafts"
+  },
+  "Les fichiers sont envoyés par e-mail au CNPM après l'envoi de la déclaration. La vigilance de l'organisation (Audit) ne reçoit pas les fichiers.": {
+    "ar": "تُرسل الملفات بالبريد الإلكتروني إلى CNPM بعد إرسال التصريح. أما يقظة المؤسسة (Audit) فلا تستلم الملفات.",
+    "en": "Files are emailed to the CNPM after the declaration is sent. The organisation's vigilance (Audit) does not receive the files."
+  },
+  "Pièces jointes envoyées": {
+    "ar": "تم إرسال المرفقات",
+    "en": "Attachments sent"
+  },
+  "{0} fichier(s) transmis au CNPM par e-mail. La vigilance de l'organisation (Audit) ne les reçoit pas.": {
+    "ar": "تم إرسال {0} ملف(ات) إلى CNPM بالبريد الإلكتروني. يقظة المؤسسة (Audit) لا تستلمها.",
+    "en": "{0} file(s) emailed to the CNPM. The organisation's vigilance (Audit) does not receive them."
+  },
+  "Pièces jointes non transmises": {
+    "ar": "المرفقات لم تُرسل",
+    "en": "Attachments not sent"
+  },
+  "{0} fichier(s) n'ont PAS été envoyés au CNPM : {1}": {
+    "ar": "لم يتم إرسال {0} ملف(ات) إلى CNPM: {1}",
+    "en": "{0} file(s) were NOT sent to the CNPM: {1}"
+  },
+  "La déclaration n'a pas d'identifiant : les fichiers n'ont pas été envoyés.": {
+    "ar": "ليس للتصريح معرّف: لم تُرسل الملفات.",
+    "en": "The declaration has no identifier: the files were not sent."
+  },
+  "Le CNPM n'est pas destinataire de cette panne : les fichiers n'ont pas été envoyés.": {
+    "ar": "المركز الوطني ليس مستلمًا لهذا العطل: لم تُرسل الملفات.",
+    "en": "The CNPM is not a recipient of this breakdown report: the files were not sent."
+  },
+  "Au CNPM seulement": {
+    "ar": "إلى المركز الوطني لليقظة الدوائية فقط",
+    "en": "To the CNPM only"
+  },
+  "Destinations indisponibles": {
+    "ar": "الوجهات غير متاحة",
+    "en": "Destinations unavailable"
+  },
+  "Impossible de vérifier les destinations disponibles : réessayez dans un instant.": {
+    "ar": "تعذّر التحقق من الوجهات المتاحة: أعد المحاولة بعد قليل.",
+    "en": "Unable to check the available destinations: try again in a moment."
+  },
+  "Destination requise": {
+    "ar": "الوجهة مطلوبة",
+    "en": "Destination required"
+  },
+  "Choisissez où envoyer cette déclaration.": {
+    "ar": "اختر وجهة إرسال هذا التصريح.",
+    "en": "Choose where to send this declaration."
+  },
+  "Aucune destination disponible": {
+    "ar": "لا توجد وجهة متاحة",
+    "en": "No destination available"
+  },
+  "Ni le CNPM ni votre organisation ne peuvent recevoir cette déclaration pour le moment. Elle reste dans votre brouillon.": {
+    "ar": "لا يمكن للمركز الوطني ولا لمؤسستك استلام هذا التصريح حاليًا. يبقى في مسودتك.",
+    "en": "Neither the CNPM nor your organisation can receive this declaration for now. It stays in your draft."
+  },
+  "La déclaration n'a pas été enregistrée. Vos informations n'ont pas été perdues — réessayez.": {
+    "ar": "لم يتم تسجيل التصريح. لم تضِع معلوماتك — أعد المحاولة.",
+    "en": "The declaration was not saved. Your information has not been lost — try again."
+  },
+  "La déclaration n'a pas pu être envoyée. Vos informations n'ont pas été perdues — réessayez.": {
+    "ar": "تعذّر إرسال التصريح. لم تضِع معلوماتك — أعد المحاولة.",
+    "en": "The declaration could not be sent. Your information has not been lost — try again."
+  },
+  "N° inventaire": {
+    "ar": "رقم الجرد",
+    "en": "Inventory no."
+  },
+  "Personne concernée": {
+    "ar": "الشخص المعني",
+    "en": "Person concerned"
+  },
+  "Conséquence": {
+    "ar": "العاقبة",
+    "en": "Consequence"
+  },
+  "Inconnu": {
+    "ar": "غير معروف",
+    "en": "Unknown"
+  },
+  "Une panne n'est pas forcément un incident de vigilance : tout dépend de l'exposition d'une personne à un risque.": {
+    "ar": "العطل ليس بالضرورة حادثًا يستوجب اليقظة: كل شيء يتوقف على تعرّض شخص لخطر.",
+    "en": "A breakdown is not necessarily a vigilance incident: it all depends on whether a person was exposed to a risk."
+  },
+  "Panne": {
+    "ar": "عطل",
+    "en": "Breakdown"
+  },
+  "Produit et identification": {
+    "ar": "المنتج والتعريف",
+    "en": "Product and identification"
+  },
+  "Identifiez le produit à l'origine de l'événement. Ce que vous ignorez peut rester « inconnu ».": {
+    "ar": "حدّد المنتج المسبّب للحدث. ما تجهله يمكن أن يبقى «غير معروف».",
+    "en": "Identify the product behind the event. What you do not know can stay “unknown”."
+  },
+  "Catégorie de produit": {
+    "ar": "فئة المنتج",
+    "en": "Product category"
+  },
+  "Mon produit n'est pas dans la liste": {
+    "ar": "منتجي غير موجود في القائمة",
+    "en": "My product is not in the list"
+  },
+  "Produit non rattaché à une organisation : il ne peut pas être transmis à la vigilance d'un fabricant. La déclaration reste adressée au CNPM et/ou à votre organisation.": {
+    "ar": "منتج غير مرتبط بمؤسسة: لا يمكن إحالته إلى يقظة مصنّع. يبقى التصريح موجّهًا إلى المركز الوطني و/أو إلى مؤسستك.",
+    "en": "Product not linked to an organisation: it cannot be passed on to a manufacturer's vigilance. The declaration stays addressed to the CNPM and/or your organisation."
+  },
+  "Nom du fabricant": {
+    "ar": "اسم المصنّع",
+    "en": "Manufacturer name"
+  },
+  "Référence du produit chez le fabricant": {
+    "ar": "مرجع المنتج لدى المصنّع",
+    "en": "Product reference at the manufacturer"
+  },
+  "Je ne le connais pas": {
+    "ar": "لا أعرفه",
+    "en": "I don't know it"
+  },
+  "Le lot est le numéro de fabrication commun à plusieurs unités.": {
+    "ar": "الدفعة هي رقم التصنيع المشترك بين عدة وحدات.",
+    "en": "The lot is the manufacturing number shared by several units."
+  },
+  "Identifiant de l'unité (dispositif)": {
+    "ar": "معرّف الوحدة (الجهاز)",
+    "en": "Unit identifier (device)"
+  },
+  "Le n° de série identifie une unité précise ; l'UDI est l'identifiant unique du dispositif.": {
+    "ar": "الرقم التسلسلي يحدّد وحدة بعينها؛ أما UDI فهو المعرّف الفريد للجهاز.",
+    "en": "The serial number identifies a specific unit; the UDI is the device's unique identifier."
+  },
+  "Date de péremption (si indiquée sur le produit)": {
+    "ar": "تاريخ انتهاء الصلاحية (إن كان مذكورًا على المنتج)",
+    "en": "Expiry date (if shown on the product)"
+  },
+  "Description des faits": {
+    "ar": "وصف الوقائع",
+    "en": "Description of the facts"
+  },
+  "Nature de l'événement": {
+    "ar": "طبيعة الحدث",
+    "en": "Nature of the event"
+  },
+  "Date de survenue ou de découverte": {
+    "ar": "تاريخ الحدوث أو الاكتشاف",
+    "en": "Date of occurrence or discovery"
+  },
+  "Gravité, conséquences et mesures": {
+    "ar": "الخطورة والعواقب والإجراءات",
+    "en": "Severity, consequences and measures"
+  },
+  "Cette étape détermine si des informations sur une personne vous seront demandées.": {
+    "ar": "تحدّد هذه الخطوة ما إذا كانت ستُطلب منك معلومات عن شخص.",
+    "en": "This step determines whether information about a person will be asked of you."
+  },
+  "Une personne est-elle concernée par cet événement ?": {
+    "ar": "هل هناك شخص معني بهذا الحدث؟",
+    "en": "Is a person concerned by this event?"
+  },
+  "Conséquences constatées": {
+    "ar": "العواقب الملاحَظة",
+    "en": "Observed consequences"
+  },
+  "Mesures prises": {
+    "ar": "الإجراءات المتخذة",
+    "en": "Measures taken"
+  },
+  "la déclaration sera enregistrée avec la gravité « Grave ».": {
+    "ar": "سيُسجَّل التصريح بدرجة خطورة «خطير».",
+    "en": "the declaration will be recorded with the severity “Serious”."
+  },
+  "Seulement ce qui est utile. Pas de nom complet : des initiales ou un identifiant pseudonymisé suffisent.": {
+    "ar": "فقط ما هو مفيد. لا حاجة إلى الاسم الكامل: تكفي الأحرف الأولى أو معرّف مستعار.",
+    "en": "Only what is useful. No full name: initials or a pseudonymised identifier are enough."
+  },
+  "Initiales ou identifiant pseudonymisé": {
+    "ar": "الأحرف الأولى أو معرّف مستعار",
+    "en": "Initials or pseudonymised identifier"
+  },
+  "Si le produit a été arrêté, les symptômes ont-ils disparu ?": {
+    "ar": "إذا أُوقف المنتج، هل زالت الأعراض؟",
+    "en": "If the product was stopped, did the symptoms disappear?"
+  },
+  "Autres produits pris en même temps": {
+    "ar": "منتجات أخرى أُخذت في الوقت نفسه",
+    "en": "Other products taken at the same time"
+  },
+  "Zone d'application": {
+    "ar": "منطقة التطبيق",
+    "en": "Application area"
+  },
+  "Voie d'exposition": {
+    "ar": "طريق التعرّض",
+    "en": "Route of exposure"
+  },
+  "Résultat concerné": {
+    "ar": "النتيجة المعنية",
+    "en": "Result concerned"
+  },
+  "Instrument utilisé": {
+    "ar": "الجهاز المستعمل",
+    "en": "Instrument used"
+  },
+  "Dispositif ou équipement": {
+    "ar": "الجهاز أو المعدّات",
+    "en": "Device or equipment"
+  },
+  "Identification de l'unité": {
+    "ar": "تعريف الوحدة",
+    "en": "Unit identification"
+  },
+  "N° d'inventaire (interne)": {
+    "ar": "رقم الجرد (داخلي)",
+    "en": "Inventory no. (internal)"
+  },
+  "Aucun identifiant disponible (plaque illisible ou absente)": {
+    "ar": "لا يوجد معرّف متاح (اللوحة غير مقروءة أو مفقودة)",
+    "en": "No identifier available (plate unreadable or missing)"
+  },
+  "Circonstances d'utilisation et symptômes techniques.": {
+    "ar": "ظروف الاستعمال والأعراض التقنية.",
+    "en": "Circumstances of use and technical symptoms."
+  },
+  "Circonstances d'utilisation": {
+    "ar": "ظروف الاستعمال",
+    "en": "Circumstances of use"
+  },
+  "Conséquences, état et mesures": {
+    "ar": "العواقب والحالة والإجراءات",
+    "en": "Consequences, status and measures"
+  },
+  "Effet de la panne sur le fonctionnement et la prise en charge, état actuel de l'appareil, mesures prises.": {
+    "ar": "أثر العطل على التشغيل والتكفّل بالمريض، الحالة الراهنة للجهاز، الإجراءات المتخذة.",
+    "en": "Effect of the breakdown on operation and care, current state of the device, measures taken."
+  },
+  "Conséquence sur le fonctionnement et la prise en charge": {
+    "ar": "الأثر على التشغيل والتكفّل بالمريض",
+    "en": "Consequence on operation and care"
+  },
+  "Mesure prise": {
+    "ar": "الإجراء المتخذ",
+    "en": "Measure taken"
+  },
+  "Une intervention de maintenance a eu lieu ou a été demandée": {
+    "ar": "تم إجراء تدخّل صيانة أو طُلب",
+    "en": "A maintenance intervention took place or was requested"
+  },
+  "Dispositif du catalogue (facultatif — permet d'informer le fabricant)": {
+    "ar": "جهاز من الكتالوج (اختياري — يتيح إعلام المصنّع)",
+    "en": "Device from the catalogue (optional — allows informing the manufacturer)"
+  },
+  "Sans dispositif du catalogue, la panne ne peut pas être transmise à un fabricant ; elle reste adressée au CNPM et/ou à votre organisation.": {
+    "ar": "بدون جهاز من الكتالوج لا يمكن إحالة العطل إلى مصنّع؛ يبقى موجّهًا إلى المركز الوطني و/أو إلى مؤسستك.",
+    "en": "Without a catalogue device, the breakdown cannot be passed on to a manufacturer; it stays addressed to the CNPM and/or your organisation."
+  },
+  "Personne exposée ou blessée": {
+    "ar": "شخص تعرّض لخطر أو أُصيب",
+    "en": "Person exposed or injured"
+  },
+  "Une personne a-t-elle été exposée à un risque ou blessée à cause de cette panne ?": {
+    "ar": "هل تعرّض شخص لخطر أو أُصيب بسبب هذا العطل؟",
+    "en": "Was a person exposed to a risk or injured because of this breakdown?"
+  },
+  "Précisez": {
+    "ar": "وضّح",
+    "en": "Specify"
+  },
+  "Cet événement relève aussi d'un incident impliquant une personne.": {
+    "ar": "هذا الحدث يندرج أيضًا ضمن حادث يخصّ شخصًا.",
+    "en": "This event also qualifies as an incident involving a person."
+  },
+  "Vous pouvez déclarer cette panne seule, ou poursuivre vers une déclaration d'incident préremplie. Rien n'est créé tant que vous n'avez pas envoyé.": {
+    "ar": "يمكنك التصريح بهذا العطل وحده، أو المتابعة إلى تصريح حادث معبّأ مسبقًا. لا يُنشأ شيء قبل الإرسال.",
+    "en": "You can declare this breakdown on its own, or continue to a pre-filled incident declaration. Nothing is created until you send."
+  },
+  "Poursuivre vers une déclaration d'incident": {
+    "ar": "المتابعة إلى تصريح حادث",
+    "en": "Continue to an incident declaration"
+  },
+  "Pièces justificatives": {
+    "ar": "المستندات الداعمة",
+    "en": "Supporting documents"
+  },
+  "Plaque signalétique, écran d'erreur, rapport d'intervention… (facultatif).": {
+    "ar": "اللوحة التعريفية، شاشة الخطأ، تقرير التدخّل… (اختياري).",
+    "en": "Nameplate, error screen, intervention report… (optional)."
+  },
+  "Photos, rapports ou résultats utiles (facultatif).": {
+    "ar": "صور أو تقارير أو نتائج مفيدة (اختياري).",
+    "en": "Useful photos, reports or results (optional)."
+  },
+  "Les fichiers sont associés à votre déclaration dans Nexus lorsque la conservation est activée, et joints à l'e-mail du CNPM si vous choisissez le CNPM à la dernière étape. Ils ne sont jamais envoyés à VigiCore Audit ni au fabricant.": {
+    "ar": "تُربط الملفات بتصريحك في Nexus عند تفعيل الحفظ، وتُرفق بالبريد الموجّه إلى المركز الوطني إذا اخترته في الخطوة الأخيرة. لا تُرسل أبدًا إلى VigiCore Audit ولا إلى المصنّع.",
+    "en": "Files are attached to your declaration in Nexus when retention is enabled, and attached to the CNPM e-mail if you choose the CNPM at the last step. They are never sent to VigiCore Audit or to the manufacturer."
+  },
+  "Vérifiez vos réponses. « Modifier » rouvre l'étape concernée ; rien n'est envoyé depuis cet écran.": {
+    "ar": "راجع إجاباتك. «تعديل» يعيد فتح الخطوة المعنية؛ لا يُرسل شيء من هذه الشاشة.",
+    "en": "Check your answers. “Edit” reopens the relevant step; nothing is sent from this screen."
+  },
+  "Modifier": {
+    "ar": "تعديل",
+    "en": "Edit"
+  },
+  "Informations non renseignées :": {
+    "ar": "معلومات غير مُدخلة:",
+    "en": "Information not filled in:"
+  },
+  "Ce n'est pas bloquant : vous pouvez les compléter ou les laisser ainsi.": {
+    "ar": "هذا لا يمنع المتابعة: يمكنك استكمالها أو تركها كما هي.",
+    "en": "This is not blocking: you can complete them or leave them as they are."
+  },
+  "Destination de la déclaration": {
+    "ar": "وجهة التصريح",
+    "en": "Declaration destination"
+  },
+  "Choisissez qui reçoit cette déclaration. Seules les destinations réellement disponibles pour votre compte sont proposées.": {
+    "ar": "اختر من يستلم هذا التصريح. لا تُعرض إلا الوجهات المتاحة فعليًا لحسابك.",
+    "en": "Choose who receives this declaration. Only destinations actually available for your account are offered."
+  },
+  "Vérification des destinations disponibles…": {
+    "ar": "جارٍ التحقق من الوجهات المتاحة…",
+    "en": "Checking available destinations…"
+  },
+  "Impossible de vérifier les destinations disponibles (serveur injoignable).": {
+    "ar": "تعذّر التحقق من الوجهات المتاحة (الخادم غير متاح).",
+    "en": "Unable to check the available destinations (server unreachable)."
+  },
+  "Destination": {
+    "ar": "الوجهة",
+    "en": "Destination"
+  },
+  "CNPM : notification par e-mail. L'envoi est enregistré, mais la réception par le CNPM n'est pas confirmée.": {
+    "ar": "المركز الوطني: إشعار عبر البريد الإلكتروني. يُسجَّل الإرسال، لكن استلام المركز له غير مؤكَّد.",
+    "en": "CNPM: e-mail notification. The sending is recorded, but reception by the CNPM is not confirmed."
+  },
+  "CNPM : indisponible pour le moment (envoi d'e-mail non configuré).": {
+    "ar": "المركز الوطني: غير متاح حاليًا (إرسال البريد غير مهيّأ).",
+    "en": "CNPM: unavailable for now (e-mail sending not configured)."
+  },
+  "Mon organisation : la déclaration est disponible dans l'espace de votre établissement dans Nexus pour les personnes habilitées. Ce n'est pas une transmission au logiciel VigiCore Audit de l'organisation.": {
+    "ar": "مؤسستي: يتوفر التصريح في فضاء مؤسستك داخل Nexus للأشخاص المخوَّلين. وهذا ليس إحالة إلى برنامج VigiCore Audit الخاص بالمؤسسة.",
+    "en": "My organisation: the declaration is available in your establishment's space in Nexus for authorised people. It is not a transmission to the organisation's VigiCore Audit software."
+  },
+  "Mon organisation : indisponible (aucun rattachement actif à un établissement).": {
+    "ar": "مؤسستي: غير متاحة (لا انتساب نشط إلى مؤسسة).",
+    "en": "My organisation: unavailable (no active affiliation to an establishment)."
+  },
+  "Fabricant du produit": {
+    "ar": "مصنّع المنتج",
+    "en": "Product manufacturer"
+  },
+  "Informer aussi la vigilance du fabricant ({0}) via VigiCore Audit": {
+    "ar": "إعلام يقظة المصنّع ({0}) أيضًا عبر VigiCore Audit",
+    "en": "Also inform the manufacturer's vigilance ({0}) via VigiCore Audit"
+  },
+  "organisation du produit": {
+    "ar": "مؤسسة المنتج",
+    "en": "product organisation"
+  },
+  "Sans identité de la personne et sans fichiers. Ce choix est indépendant de la destination ci-dessus.": {
+    "ar": "بدون هوية الشخص وبدون ملفات. هذا الاختيار مستقل عن الوجهة أعلاه.",
+    "en": "Without the person's identity and without files. This choice is independent of the destination above."
+  },
+  "Le fabricant ne peut pas être informé : produit non rattaché au catalogue.": {
+    "ar": "لا يمكن إعلام المصنّع: المنتج غير مرتبط بالكتالوج.",
+    "en": "The manufacturer cannot be informed: product not linked to the catalogue."
+  },
+  "Le fabricant ne peut pas être informé : la liaison avec VigiCore Audit n'est pas configurée.": {
+    "ar": "لا يمكن إعلام المصنّع: الربط مع VigiCore Audit غير مهيّأ.",
+    "en": "The manufacturer cannot be informed: the link with VigiCore Audit is not configured."
+  },
+  "Pièces jointes ({0}) : CNPM {1} · Organisation {2} · Fabricant non.": {
+    "ar": "المرفقات ({0}): المركز الوطني {1} · المؤسسة {2} · المصنّع لا.",
+    "en": "Attachments ({0}): CNPM {1} · Organisation {2} · Manufacturer no."
+  },
+  "oui": {
+    "ar": "نعم",
+    "en": "yes"
+  },
+  "non": {
+    "ar": "لا",
+    "en": "no"
+  },
+  "La conservation des pièces dans Nexus n'est pas activée : elles ne seront pas retrouvables après l'envoi.": {
+    "ar": "حفظ المرفقات في Nexus غير مفعّل: لن يمكن استرجاعها بعد الإرسال.",
+    "en": "Attachment retention in Nexus is not enabled: they will not be retrievable after sending."
+  },
+  "Aucune destination n'est disponible pour le moment. Enregistrez un brouillon et réessayez plus tard.": {
+    "ar": "لا توجد وجهة متاحة حاليًا. احفظ مسودة وأعد المحاولة لاحقًا.",
+    "en": "No destination is available for now. Save a draft and try again later."
+  },
+  "Notification e-mail envoyée — réception par le CNPM non confirmée.": {
+    "ar": "أُرسل الإشعار بالبريد — استلام المركز الوطني له غير مؤكَّد.",
+    "en": "E-mail notification sent — reception by the CNPM not confirmed."
+  },
+  "Notification en cours d'envoi.": {
+    "ar": "الإشعار قيد الإرسال.",
+    "en": "Notification being sent."
+  },
+  "L'envoi d'e-mail n'est pas configuré : le CNPM n'a rien reçu.": {
+    "ar": "إرسال البريد غير مهيّأ: لم يستلم المركز الوطني شيئًا.",
+    "en": "E-mail sending is not configured: the CNPM received nothing."
+  },
+  "Notification renvoyée": {
+    "ar": "أُعيد إرسال الإشعار",
+    "en": "Notification resent"
+  },
+  "Renvoi impossible": {
+    "ar": "تعذّر إعادة الإرسال",
+    "en": "Resend impossible"
+  },
+  "Voici l'état réel de chaque destination.": {
+    "ar": "هذه هي الحالة الفعلية لكل وجهة.",
+    "en": "Here is the actual status of each destination."
+  },
+  "Enregistrée dans Nexus.": {
+    "ar": "سُجّل في Nexus.",
+    "en": "Saved in Nexus."
+  },
+  "Disponible dans l'espace de votre établissement dans Nexus (pas une transmission à VigiCore Audit).": {
+    "ar": "متاح في فضاء مؤسستك داخل Nexus (وليس إحالة إلى VigiCore Audit).",
+    "en": "Available in your establishment's space in Nexus (not a transmission to VigiCore Audit)."
+  },
+  "Reçue par la vigilance du fabricant via VigiCore Audit.": {
+    "ar": "استلمتها يقظة المصنّع عبر VigiCore Audit.",
+    "en": "Received by the manufacturer's vigilance via VigiCore Audit."
+  },
+  "Enregistrée, pas encore reçue par la vigilance : nouvel envoi automatique en cours.": {
+    "ar": "سُجّلت ولم تستلمها اليقظة بعد: إعادة إرسال تلقائية جارية.",
+    "en": "Saved, not yet received by vigilance: automatic resend in progress."
+  },
+  "Aucune organisation ne peut recevoir cette déclaration pour le moment. Le fabricant n'a rien reçu.": {
+    "ar": "لا يمكن لأي مؤسسة استلام هذا التصريح حاليًا. لم يستلم المصنّع شيئًا.",
+    "en": "No organisation can receive this declaration for now. The manufacturer received nothing."
+  },
+  "Le fabricant n'a pas reçu cette déclaration.": {
+    "ar": "لم يستلم المصنّع هذا التصريح.",
+    "en": "The manufacturer did not receive this declaration."
+  },
+  "{0} sur {1} acceptées par le serveur · conservées dans Nexus : {2} sur {1}.": {
+    "ar": "{0} من {1} قبلها الخادم · محفوظة في Nexus: {2} من {1}.",
+    "en": "{0} of {1} accepted by the server · retained in Nexus: {2} of {1}."
+  },
+  "Non transmises :": {
+    "ar": "لم تُرسل:",
+    "en": "Not transmitted:"
+  },
+  "Aucun enregistrement Nexus n'a été créé : les pièces n'ont pas été envoyées (elles ne vont jamais au fabricant).": {
+    "ar": "لم يُنشأ أي سجل في Nexus: لم تُرسل المرفقات (ولا تُرسل أبدًا إلى المصنّع).",
+    "en": "No Nexus record was created: the attachments were not sent (they never go to the manufacturer)."
+  },
+  "Terminer": {
+    "ar": "إنهاء",
+    "en": "Finish"
+  },
+  "Produit chimique": {
+    "ar": "منتج كيميائي",
+    "en": "Chemical product"
+  },
+  "Nausées": {
+    "ar": "غثيان",
+    "en": "Nausea"
+  },
+  "Vomissements": {
+    "ar": "قيء",
+    "en": "Vomiting"
+  },
+  "Douleurs abdominales": {
+    "ar": "آلام في البطن",
+    "en": "Abdominal pain"
+  },
+  "Vertiges": {
+    "ar": "دوار",
+    "en": "Dizziness"
+  },
+  "Fatigue": {
+    "ar": "إرهاق",
+    "en": "Fatigue"
+  },
+  "Dyspnée": {
+    "ar": "ضيق في التنفس",
+    "en": "Shortness of breath"
+  },
+  "Autres": {
+    "ar": "أخرى",
+    "en": "Other"
+  },
+  "Moins de 24 heures": {
+    "ar": "أقل من 24 ساعة",
+    "en": "Less than 24 hours"
+  },
+  "Sévère": {
+    "ar": "شديدة",
+    "en": "Severe"
+  },
+  "Urgence vitale": {
+    "ar": "طوارئ حيوية",
+    "en": "Life-threatening emergency"
+  },
+  "Je ne sais pas": {
+    "ar": "لا أعرف",
+    "en": "I don't know"
+  },
+  "Produit requis": {
+    "ar": "المنتج مطلوب",
+    "en": "Product required"
+  },
+  "Date requise": {
+    "ar": "التاريخ مطلوب",
+    "en": "Date required"
+  },
+  "Date invalide": {
+    "ar": "تاريخ غير صالح",
+    "en": "Invalid date"
+  },
+  "Pièces non conservées :": {
+    "ar": "مرفقات غير محفوظة:",
+    "en": "Attachments not retained:"
+  },
+  "{0} pièce(s) conservée(s) chiffrée(s), visible(s) de vous seul.": {
+    "ar": "{0} مرفق(ات) محفوظة مشفّرة، تراها أنت وحدك.",
+    "en": "{0} attachment(s) retained encrypted, visible to you only."
+  },
+  "Incident signalé par le patient": {
+    "ar": "حادث أبلغ عنه المريض",
+    "en": "Incident reported by the patient"
+  },
+  "{0} enregistrée dans votre espace. Elle n'a PAS été transmise au CNPM, à un fabricant ni à votre médecin.": {
+    "ar": "{0} سُجّل في فضائك. لم يُحَل إلى المركز الوطني ولا إلى مصنّع ولا إلى طبيبك.",
+    "en": "{0} saved in your space. It was NOT transmitted to the CNPM, a manufacturer or your doctor."
+  },
+  "Apparition": {
+    "ar": "الظهور",
+    "en": "Onset"
+  },
+  "Vos fichiers sont conservés chiffrés dans Nexus et visibles de vous seul. Ils ne sont envoyés à personne.": {
+    "ar": "تُحفظ ملفاتك مشفّرة في Nexus ولا يراها غيرك. لا تُرسل إلى أحد.",
+    "en": "Your files are stored encrypted in Nexus and visible to you only. They are sent to no one."
+  },
+  "La conservation des pièces n'est pas activée sur ce serveur : vos fichiers ne seraient PAS conservés. Vous pouvez continuer sans pièce jointe.": {
+    "ar": "حفظ المرفقات غير مفعّل على هذا الخادم: لن تُحفظ ملفاتك. يمكنك المتابعة دون مرفق.",
+    "en": "Attachment retention is not enabled on this server: your files would NOT be retained. You can continue without an attachment."
+  },
+  "Fichiers": {
+    "ar": "الملفات",
+    "en": "Files"
+  },
+  "Aucune": {
+    "ar": "لا شيء",
+    "en": "None"
+  },
+  "Où va cette déclaration ?": {
+    "ar": "إلى أين يذهب هذا التصريح؟",
+    "en": "Where does this declaration go?"
+  },
+  "Elle est enregistrée dans votre espace VigiCore (visible de vous seul). Elle n'est pas transmise automatiquement au CNPM, à un fabricant ni à votre médecin : ces transmissions n'existent pas encore pour les patients. Son état s'affiche dans « Mes déclarations ».": {
+    "ar": "يُسجَّل في فضائك على VigiCore (تراه أنت وحدك). ولا يُحال تلقائيًا إلى المركز الوطني ولا إلى مصنّع ولا إلى طبيبك: هذه الإحالات غير متوفرة بعد للمرضى. تظهر حالته في «تصريحاتي».",
+    "en": "It is saved in your VigiCore space (visible to you only). It is not automatically passed on to the CNPM, a manufacturer or your doctor: these transmissions do not exist yet for patients. Its status appears in “My declarations”."
+  },
+  "En envoyant cette déclaration, vous confirmez l'exactitude des informations fournies. Les données sont traitées de manière confidentielle.": {
+    "ar": "بإرسال هذا التصريح فإنك تؤكد صحة المعلومات المقدَّمة. تُعالَج البيانات بسرية.",
+    "en": "By sending this declaration you confirm the accuracy of the information provided. Data is processed confidentially."
+  },
+  "Réactif / test diagnostique": {
+    "ar": "كاشف / اختبار تشخيصي",
+    "en": "Reagent / diagnostic test"
+  },
+  "Anomalie observée": {
+    "ar": "شذوذ ملاحَظ",
+    "en": "Observed anomaly"
+  },
+  "Défaut qualité": {
+    "ar": "عيب في الجودة",
+    "en": "Quality defect"
+  },
+  "Emballage endommagé": {
+    "ar": "تغليف متضرر",
+    "en": "Damaged packaging"
+  },
+  "Contamination suspectée": {
+    "ar": "تلوّث مشتبه به",
+    "en": "Suspected contamination"
+  },
+  "Défaut sans conséquence pour une personne.": {
+    "ar": "عيب دون عواقب على أي شخص.",
+    "en": "Defect with no consequence for a person."
+  },
+  "Défaut pouvant causer un risque s'il n'est pas corrigé.": {
+    "ar": "عيب قد يسبب خطرًا إن لم يُصحَّح.",
+    "en": "Defect that could cause a risk if not corrected."
+  },
+  "Défaut présentant un risque grave et immédiat.": {
+    "ar": "عيب يشكّل خطرًا جسيمًا وفوريًا.",
+    "en": "Defect presenting a serious and immediate risk."
+  },
+  "Oui": {
+    "ar": "نعم",
+    "en": "Yes"
+  },
+  "Non": {
+    "ar": "لا",
+    "en": "No"
+  },
+  "Décès": {
+    "ar": "وفاة",
+    "en": "Death"
+  },
+  "Inconnue": {
+    "ar": "غير معروفة",
+    "en": "Unknown"
+  },
+  "Produit retiré / mis en quarantaine": {
+    "ar": "منتج سُحب / وُضع في الحجر",
+    "en": "Product withdrawn / quarantined"
+  },
+  "Utilisation arrêtée": {
+    "ar": "أُوقف الاستعمال",
+    "en": "Use stopped"
+  },
+  "Soins ou prise en charge": {
+    "ar": "علاج أو تكفّل",
+    "en": "Care or treatment"
+  },
+  "Autre mesure": {
+    "ar": "إجراء آخر",
+    "en": "Other measure"
+  },
+  "Aucune mesure": {
+    "ar": "لا إجراء",
+    "en": "No measure"
+  },
+  "Oui, les symptômes ont disparu": {
+    "ar": "نعم، زالت الأعراض",
+    "en": "Yes, the symptoms disappeared"
+  },
+  "Non, ils persistent": {
+    "ar": "لا، ما زالت مستمرة",
+    "en": "No, they persist"
+  },
+  "Le produit n'a pas été arrêté": {
+    "ar": "لم يُوقف المنتج",
+    "en": "The product was not stopped"
+  },
+  "Contact avec la peau": {
+    "ar": "ملامسة الجلد",
+    "en": "Skin contact"
+  },
+  "Contact avec les yeux": {
+    "ar": "ملامسة العينين",
+    "en": "Eye contact"
+  },
+  "Inhalation": {
+    "ar": "استنشاق",
+    "en": "Inhalation"
+  },
+  "Ingestion": {
+    "ar": "ابتلاع",
+    "en": "Ingestion"
+  },
+  "Autre voie": {
+    "ar": "طريق آخر",
+    "en": "Other route"
+  },
+  "Pendant l'utilisation": {
+    "ar": "أثناء الاستعمال",
+    "en": "During use"
+  },
+  "Sans conséquence": {
+    "ar": "دون عواقب",
+    "en": "No consequence"
+  },
+  "Panne technique : aucune activité perturbée.": {
+    "ar": "عطل تقني: لم يتعطّل أي نشاط.",
+    "en": "Technical breakdown: no activity disrupted."
+  },
+  "Retard ou report de prise en charge": {
+    "ar": "تأخير أو تأجيل التكفّل",
+    "en": "Delay or postponement of care"
+  },
+  "Un acte a été retardé ou reporté, sans exposition d'une personne à un risque.": {
+    "ar": "تأخّر إجراء أو أُجّل دون تعريض أحد لخطر.",
+    "en": "A procedure was delayed or postponed, without exposing a person to a risk."
+  },
+  "Exposée à un risque": {
+    "ar": "معرّضة لخطر",
+    "en": "Exposed to a risk"
+  },
+  "Sans dommage constaté (quasi-accident).": {
+    "ar": "دون ضرر ملحوظ (شبه حادث).",
+    "en": "No harm observed (near miss)."
+  },
+  "Blessée": {
+    "ar": "مصابة",
+    "en": "Injured"
+  },
+  "Personne exposée à un risque": {
+    "ar": "شخص معرّض لخطر",
+    "en": "Person exposed to a risk"
+  },
+  "Personne blessée": {
+    "ar": "شخص مصاب",
+    "en": "Person injured"
+  },
+  "Faits": {
+    "ar": "الوقائع",
+    "en": "Facts"
+  },
+  "Conséquences": {
+    "ar": "العواقب",
+    "en": "Consequences"
+  },
+  "Personne exposée": {
+    "ar": "شخص معرّض",
+    "en": "Person exposed"
+  },
+  "Pièces": {
+    "ar": "المرفقات",
+    "en": "Attachments"
+  },
+  "Catégorie requise": {
+    "ar": "الفئة مطلوبة",
+    "en": "Category required"
+  },
+  "Sélectionnez la catégorie du produit avant de continuer.": {
+    "ar": "اختر فئة المنتج قبل المتابعة.",
+    "en": "Select the product category before continuing."
+  },
+  "Choisissez le produit dans la liste, ou cochez « Mon produit n'est pas dans la liste » pour le saisir vous-même.": {
+    "ar": "اختر المنتج من القائمة، أو حدّد «منتجي غير موجود في القائمة» لإدخاله بنفسك.",
+    "en": "Choose the product from the list, or tick “My product is not in the list” to enter it yourself."
+  },
+  "Lot à préciser": {
+    "ar": "الدفعة مطلوب تحديدها",
+    "en": "Lot to specify"
+  },
+  "Saisissez le numéro de lot, ou cochez « Je ne le connais pas ».": {
+    "ar": "أدخل رقم الدفعة أو حدّد «لا أعرفه».",
+    "en": "Enter the lot number, or tick “I don't know it”."
+  },
+  "Identification à préciser": {
+    "ar": "التعريف مطلوب تحديده",
+    "en": "Identification to specify"
+  },
+  "Saisissez le n° de série ou l'UDI, ou cochez « Je ne le connais pas ».": {
+    "ar": "أدخل الرقم التسلسلي أو UDI، أو حدّد «لا أعرفه».",
+    "en": "Enter the serial number or UDI, or tick “I don't know it”."
+  },
+  "Vérifiez la date de péremption.": {
+    "ar": "تحقّق من تاريخ انتهاء الصلاحية.",
+    "en": "Check the expiry date."
+  },
+  "Nature requise": {
+    "ar": "الطبيعة مطلوبة",
+    "en": "Nature required"
+  },
+  "Sélectionnez la nature de l'événement.": {
+    "ar": "اختر طبيعة الحدث.",
+    "en": "Select the nature of the event."
+  },
+  "Indiquez la date de survenue ou de découverte.": {
+    "ar": "أدخل تاريخ الحدوث أو الاكتشاف.",
+    "en": "Enter the date of occurrence or discovery."
+  },
+  "La date ne peut pas être dans le futur.": {
+    "ar": "لا يمكن أن يكون التاريخ في المستقبل.",
+    "en": "The date cannot be in the future."
+  },
+  "Description requise": {
+    "ar": "الوصف مطلوب",
+    "en": "Description required"
+  },
+  "Décrivez l'événement avant de continuer.": {
+    "ar": "صف الحدث قبل المتابعة.",
+    "en": "Describe the event before continuing."
+  },
+  "Description trop longue": {
+    "ar": "الوصف طويل جدًا",
+    "en": "Description too long"
+  },
+  "Question requise": {
+    "ar": "السؤال مطلوب",
+    "en": "Question required"
+  },
+  "Indiquez si une personne est concernée par cet événement.": {
+    "ar": "وضّح ما إذا كان هناك شخص معني بهذا الحدث.",
+    "en": "Indicate whether a person is concerned by this event."
+  },
+  "Sélectionnez la gravité.": {
+    "ar": "اختر درجة الخطورة.",
+    "en": "Select the severity."
+  },
+  "Incohérence": {
+    "ar": "عدم اتساق",
+    "en": "Inconsistency"
+  },
+  "Un effet indésirable concerne une personne : corrigez la nature de l'événement ou la réponse « personne concernée ».": {
+    "ar": "الأثر غير المرغوب يخصّ شخصًا: صحّح طبيعة الحدث أو الإجابة عن «الشخص المعني».",
+    "en": "An adverse effect concerns a person: correct the nature of the event or the “person concerned” answer."
+  },
+  "Âge invalide": {
+    "ar": "عمر غير صالح",
+    "en": "Invalid age"
+  },
+  "L'âge doit être compris entre 0 et 120.": {
+    "ar": "يجب أن يكون العمر بين 0 و120.",
+    "en": "Age must be between 0 and 120."
+  },
+  "Dispositif requis": {
+    "ar": "الجهاز مطلوب",
+    "en": "Device required"
+  },
+  "Identification requise": {
+    "ar": "التعريف مطلوب",
+    "en": "Identification required"
+  },
+  "Indiquez le n° de série, le n° d'inventaire ou l'UDI, ou cochez « Aucun identifiant disponible ».": {
+    "ar": "أدخل الرقم التسلسلي أو رقم الجرد أو UDI، أو حدّد «لا يوجد معرّف متاح».",
+    "en": "Enter the serial number, inventory number or UDI, or tick “No identifier available”."
+  },
+  "Circonstances requises": {
+    "ar": "الظروف مطلوبة",
+    "en": "Circumstances required"
+  },
+  "Conséquence requise": {
+    "ar": "العاقبة مطلوبة",
+    "en": "Consequence required"
+  },
+  "Indiquez la conséquence de la panne sur le fonctionnement et la prise en charge.": {
+    "ar": "حدّد أثر العطل على التشغيل والتكفّل بالمريض.",
+    "en": "Indicate the consequence of the breakdown on operation and care."
+  },
+  "La date de maintenance ne peut pas être dans le futur.": {
+    "ar": "لا يمكن أن يكون تاريخ الصيانة في المستقبل.",
+    "en": "The maintenance date cannot be in the future."
+  },
+  "Indiquez si une personne a été exposée ou blessée.": {
+    "ar": "وضّح ما إذا كان شخص قد تعرّض لخطر أو أُصيب.",
+    "en": "Indicate whether a person was exposed or injured."
+  },
+  "Précision requise": {
+    "ar": "التوضيح مطلوب",
+    "en": "Specification required"
+  },
+  "Indiquez si la personne a été exposée à un risque ou blessée.": {
+    "ar": "وضّح ما إذا كان الشخص قد تعرّض لخطر أو أُصيب.",
+    "en": "Indicate whether the person was exposed to a risk or injured."
+  },
+  "Lot : inconnu.": {
+    "ar": "الدفعة: غير معروفة.",
+    "en": "Lot: unknown."
+  },
+  "Personne concernée : oui.": {
+    "ar": "الشخص المعني: نعم.",
+    "en": "Person concerned: yes."
+  },
+  "Personne concernée : non.": {
+    "ar": "الشخص المعني: لا.",
+    "en": "Person concerned: no."
+  },
+  "Personne concernée : inconnue.": {
+    "ar": "الشخص المعني: غير معروف.",
+    "en": "Person concerned: unknown."
+  },
+  "féminin": {
+    "ar": "أنثى",
+    "en": "female"
+  },
+  "Produit saisi manuellement (non rattaché au catalogue).": {
+    "ar": "منتج أُدخل يدويًا (غير مرتبط بالكتالوج).",
+    "en": "Product entered manually (not linked to the catalogue)."
+  },
+  "Inconnu (déclaré)": {
+    "ar": "غير معروف (مصرَّح به)",
+    "en": "Unknown (declared)"
+  },
+  "Aucune pièce jointe": {
+    "ar": "لا مرفقات",
+    "en": "No attachments"
+  },
+  "Dénomination": {
+    "ar": "التسمية",
+    "en": "Name"
+  },
+  "Référence fabricant": {
+    "ar": "مرجع المصنّع",
+    "en": "Manufacturer reference"
+  },
+  "Identification": {
+    "ar": "التعريف",
+    "en": "Identification"
+  },
+  "Aucun identifiant disponible (déclaré)": {
+    "ar": "لا يوجد معرّف متاح (مصرَّح به)",
+    "en": "No identifier available (declared)"
+  },
+  "Code d'erreur": {
+    "ar": "رمز الخطأ",
+    "en": "Error code"
+  },
+  "Conséquences et mesures": {
+    "ar": "العواقب والإجراءات",
+    "en": "Consequences and measures"
+  },
+  "Maintenance": {
+    "ar": "الصيانة",
+    "en": "Maintenance"
+  },
+  "Dispositif du catalogue": {
+    "ar": "جهاز من الكتالوج",
+    "en": "Catalogue device"
+  },
+  "Non rattaché au catalogue": {
+    "ar": "غير مرتبط بالكتالوج",
+    "en": "Not linked to the catalogue"
+  },
+  "Traitement": {
+    "ar": "المعالجة",
+    "en": "Handling"
+  },
+  "Incident de matériovigilance": {
+    "ar": "حادث يقظة الأجهزة الطبية",
+    "en": "Materiovigilance incident"
+  },
+  "Panne technique": {
+    "ar": "عطل تقني",
+    "en": "Technical breakdown"
+  },
+  "Rattachement": {
+    "ar": "الارتباط",
+    "en": "Link"
+  },
+  "Produit saisi manuellement — non rattaché à une organisation": {
+    "ar": "منتج أُدخل يدويًا — غير مرتبط بمؤسسة",
+    "en": "Product entered manually — not linked to an organisation"
+  },
+  "Initiales / identifiant": {
+    "ar": "الأحرف الأولى / المعرّف",
+    "en": "Initials / identifier"
+  },
+  "Arrêt du produit": {
+    "ar": "إيقاف المنتج",
+    "en": "Product stopped"
+  },
+  "Autres produits pris": {
+    "ar": "منتجات أخرى مأخوذة",
+    "en": "Other products taken"
+  },
+  "Instrument": {
+    "ar": "الجهاز المستعمل",
+    "en": "Instrument"
+  },
+  "Wholesale supplier or distributor? Register here": {
+    "ar": "مورّد بالجملة أو موزّع؟ سجّل هنا",
+    "fr": "Grossiste ou distributeur ? Inscrivez-vous ici"
+  },
+  "Create Your Distributor Account": {
+    "ar": "أنشئ حساب الموزّع",
+    "fr": "Créez votre compte distributeur"
+  },
+  "For wholesale suppliers and distributors: register your company. VigiCore verifies it before you can order from manufacturers": {
+    "ar": "للمورّدين بالجملة والموزّعين: سجّل شركتك. تتحقق VigiCore منها قبل أن تتمكن من الطلب من المصنّعين",
+    "fr": "Pour les grossistes et distributeurs : enregistrez votre société. VigiCore la vérifie avant que vous puissiez commander auprès des fabricants"
+  },
+  "Create Distributor Account": {
+    "ar": "إنشاء حساب الموزّع",
+    "fr": "Créer le compte distributeur"
+  },
+  "Manufacturer listing products? Register here": {
+    "ar": "مصنّع يعرض منتجاته؟ سجّل هنا",
+    "fr": "Fabricant qui référence ses produits ? Inscrivez-vous ici"
+  },
+  "Selling products? Choose your seller account type": {
+    "ar": "تبيع منتجات؟ اختر نوع حساب البائع",
+    "fr": "Vous vendez des produits ? Choisissez votre type de compte vendeur"
+  },
+  "Commercial Register (RC)": {
+    "ar": "السجل التجاري (RC)",
+    "fr": "Registre du commerce (RC)"
+  },
+  "Tax ID (NIF)": {
+    "ar": "رقم التعريف الجبائي (NIF)",
+    "fr": "Numéro d'identification fiscale (NIF)"
+  },
+  "Approval Number (optional)": {
+    "ar": "رقم الاعتماد (اختياري)",
+    "fr": "Numéro d'agrément (facultatif)"
+  },
+  "Company Address": {
+    "ar": "عنوان الشركة",
+    "fr": "Adresse de la société"
+  },
+  "Street, city": {
+    "ar": "الشارع، المدينة",
+    "fr": "Rue, ville"
+  },
+  "Enter your commercial register (RC) number": {
+    "ar": "أدخل رقم السجل التجاري (RC)",
+    "fr": "Saisissez votre numéro de registre du commerce (RC)"
+  },
+  "Enter your tax identification number (NIF)": {
+    "ar": "أدخل رقم التعريف الجبائي (NIF)",
+    "fr": "Saisissez votre numéro d'identification fiscale (NIF)"
+  },
+  "Enter a valid phone number": {
+    "ar": "أدخل رقم هاتف صالحا",
+    "fr": "Saisissez un numéro de téléphone valide"
+  },
+  "Enter your company address": {
+    "ar": "أدخل عنوان شركتك",
+    "fr": "Saisissez l'adresse de votre société"
+  },
+  "Approval number is invalid": {
+    "ar": "رقم الاعتماد غير صالح",
+    "fr": "Le numéro d'agrément n'est pas valide"
+  },
+  "Create your account": {
+    "ar": "أنشئ حسابك",
+    "fr": "Créez votre compte"
+  },
+  "Are you a client or a seller?": {
+    "ar": "هل أنت عميل أم بائع؟",
+    "fr": "Êtes-vous client ou vendeur ?"
+  },
+  "Client": {
+    "ar": "عميل",
+    "fr": "Client"
+  },
+  "Seller": {
+    "ar": "بائع",
+    "fr": "Vendeur"
+  },
+  "Patient, doctor, pharmacist, laboratory or medical staff: report incidents and follow your files": {
+    "ar": "مريض، طبيب، صيدلي، مخبر أو طاقم طبي: صرّح بالحوادث وتابع ملفاتك",
+    "fr": "Patient, médecin, pharmacien, laboratoire ou personnel médical : déclarez des incidents et suivez vos dossiers"
+  },
+  "You make or distribute health products and sell them to healthcare establishments": {
+    "ar": "تصنّع أو توزّع منتجات صحية وتبيعها للمؤسسات الصحية",
+    "fr": "Vous fabriquez ou distribuez des produits de santé et les vendez aux établissements de santé"
+  },
+  "What kind of seller are you?": {
+    "ar": "أي نوع من البائعين أنت؟",
+    "fr": "Quel type de vendeur êtes-vous ?"
+  },
+  "Manufacturers publish their products; distributors buy from manufacturers": {
+    "ar": "المصنّعون ينشرون منتجاتهم؛ الموزّعون يشترون من المصنّعين",
+    "fr": "Les fabricants publient leurs produits ; les distributeurs achètent auprès des fabricants"
+  },
+  "Manufacturer": {
+    "ar": "مصنّع",
+    "fr": "Fabricant"
+  },
+  "You make products and list them in Services so establishments can order from you": {
+    "ar": "تصنّع المنتجات وتعرضها في الخدمات ليطلب منك المؤسسات",
+    "fr": "Vous fabriquez des produits et les référencez dans Services pour que les établissements commandent chez vous"
+  },
+  "Distributor / wholesale supplier": {
+    "ar": "موزّع / مورّد بالجملة",
+    "fr": "Distributeur / grossiste"
+  },
+  "You buy from manufacturers to supply establishments. Your company is verified by VigiCore before you can order": {
+    "ar": "تشتري من المصنّعين لتزوّد المؤسسات. تتحقق VigiCore من شركتك قبل أن تتمكن من الطلب",
+    "fr": "Vous achetez auprès des fabricants pour approvisionner les établissements. Votre société est vérifiée par VigiCore avant que vous puissiez commander"
+  },
+  "Distributor": {
+    "ar": "موزّع",
+    "fr": "Distributeur"
+  },
+  "Espace fournisseur / distributeur": {
+    "ar": "فضاء المورّد / الموزّع",
+    "en": "Distributor / supplier area"
+  },
+  "Vérification de la société": {
+    "ar": "التحقق من الشركة",
+    "en": "Company verification"
+  },
+  "En attente de vérification": {
+    "ar": "في انتظار التحقق",
+    "en": "Pending verification"
+  },
+  "Société vérifiée": {
+    "ar": "شركة موثّقة",
+    "en": "Verified company"
+  },
+  "Vérification refusée": {
+    "ar": "تم رفض التحقق",
+    "en": "Verification refused"
+  },
+  "Votre société a bien été enregistrée. L'équipe VigiCore vérifie vos informations (RC, NIF, agrément). Vous pourrez passer commande auprès des fabricants dès que la vérification sera validée.": {
+    "ar": "تم تسجيل شركتك. يتحقق فريق VigiCore من معلوماتك (RC وNIF والاعتماد). يمكنك الطلب من المصنّعين فور اعتماد التحقق.",
+    "en": "Your company has been registered. The VigiCore team is checking your details (RC, NIF, approval). You will be able to order from manufacturers once verification is approved."
+  },
+  "Votre société est vérifiée : vous pouvez passer commande auprès des fabricants.": {
+    "ar": "شركتك موثّقة: يمكنك الطلب من المصنّعين.",
+    "en": "Your company is verified: you can order from manufacturers."
+  },
+  "La vérification de votre société a été refusée. Contactez l'équipe VigiCore pour corriger votre dossier.": {
+    "ar": "تم رفض التحقق من شركتك. تواصل مع فريق VigiCore لتصحيح ملفك.",
+    "en": "Your company verification was refused. Contact the VigiCore team to correct your file."
+  },
+  "Motif :": {
+    "ar": "السبب:",
+    "en": "Reason:"
+  },
+  "Votre tableau de bord": {
+    "ar": "لوحة قيادتك",
+    "en": "Your dashboard"
+  },
+  "Les notifications, la déclaration d'incident, les commandes, la messagerie et vos fabricants seront disponibles ici très bientôt.": {
+    "ar": "ستتوفر هنا قريبا الإشعارات والتصريح بالحوادث والطلبات والمراسلة ومصنّعوك.",
+    "en": "Notifications, incident reporting, orders, messaging and your manufacturers will be available here very soon."
+  },
+  "Alertes de lot des fabricants et suivi de vos commandes.": {
+    "ar": "تنبيهات دفعات المصنّعين ومتابعة طلباتك.",
+    "en": "Manufacturers’ lot alerts and your order tracking."
+  },
+  "Alertes de lot": {
+    "ar": "تنبيهات الدفعات",
+    "en": "Lot alerts"
+  },
+  "Filtrer les alertes": {
+    "ar": "تصفية التنبيهات",
+    "en": "Filter alerts"
+  },
+  "Non lues": {
+    "ar": "غير المقروءة",
+    "en": "Unread"
+  },
+  "Impossible de charger les alertes pour le moment.": {
+    "ar": "تعذّر تحميل التنبيهات حاليا.",
+    "en": "Unable to load alerts right now."
+  },
+  "Aucune alerte non lue.": {
+    "ar": "لا توجد تنبيهات غير مقروءة.",
+    "en": "No unread alerts."
+  },
+  "Aucune alerte de lot pour le moment.": {
+    "ar": "لا توجد تنبيهات دفعات حاليا.",
+    "en": "No lot alerts at the moment."
+  },
+  "Non lue": {
+    "ar": "غير مقروءة",
+    "en": "Unread"
+  },
+  "Lot retiré": {
+    "ar": "دفعة مسحوبة",
+    "en": "Lot withdrawn"
+  },
+  "Lot rétabli": {
+    "ar": "دفعة مُعادة",
+    "en": "Lot reinstated"
+  },
+  "Consigne :": {
+    "ar": "التعليمات:",
+    "en": "Instruction:"
+  },
+  "Suivi des commandes": {
+    "ar": "متابعة الطلبات",
+    "en": "Order tracking"
+  },
+  "Toutes les commandes": {
+    "ar": "كل الطلبات",
+    "en": "All orders"
+  },
+  "Impossible de charger les commandes pour le moment.": {
+    "ar": "تعذّر تحميل الطلبات حاليا.",
+    "en": "Unable to load orders right now."
+  },
+  "Aucune commande pour le moment.": {
+    "ar": "لا توجد طلبات حاليا.",
+    "en": "No orders yet."
+  },
+  "Les organisations auprès desquelles vous achetez.": {
+    "ar": "المؤسسات التي تشتري منها.",
+    "en": "The organisations you buy from."
+  },
+  "Parcourir les produits": {
+    "ar": "تصفّح المنتجات",
+    "en": "Browse products"
+  },
+  "Ma société": {
+    "ar": "شركتي",
+    "en": "My company"
+  },
+  "Distributeur / fournisseur en gros": {
+    "ar": "موزّع / مورّد بالجملة",
+    "en": "Distributor / wholesale supplier"
+  },
+  "Fabricants contactés": {
+    "ar": "المصنّعون المتصل بهم",
+    "en": "Manufacturers contacted"
+  },
+  "Impossible de charger vos fabricants pour le moment.": {
+    "ar": "تعذّر تحميل المصنّعين حاليا.",
+    "en": "Unable to load your manufacturers right now."
+  },
+  "Aucun fabricant pour le moment : ils apparaissent ici dès votre première commande ou demande.": {
+    "ar": "لا يوجد مصنّع حاليا: يظهرون هنا منذ أول طلب أو استفسار.",
+    "en": "No manufacturer yet: they appear here after your first order or request."
+  },
+  "Passer une commande": {
+    "ar": "تقديم طلب",
+    "en": "Place an order"
+  },
+  "COMMANDES": {
+    "ar": "الطلبات",
+    "en": "ORDERS"
+  },
+  "DEMANDES": {
+    "ar": "الاستفسارات",
+    "en": "REQUESTS"
+  },
+  "Fabricant non précisé": {
+    "ar": "مصنّع غير محدد",
+    "en": "Manufacturer not specified"
+  },
+  "Fabricants": {
+    "ar": "المصنّعون",
+    "en": "Manufacturers"
+  },
+  "en attente ou confirmées par le fabricant": {
+    "ar": "في الانتظار أو مؤكدة من المصنّع",
+    "en": "pending or confirmed by the manufacturer"
+  },
+  "non lues": {
+    "ar": "غير مقروءة",
+    "en": "unread"
+  },
+  "contactés ou commandés": {
+    "ar": "تم الاتصال بهم أو الطلب منهم",
+    "en": "contacted or ordered from"
+  },
+  "Accès rapide": {
+    "ar": "وصول سريع",
+    "en": "Quick access"
+  },
+  "Tout marquer comme lu": {
+    "ar": "تعليم الكل كمقروء",
+    "en": "Mark all as read"
+  },
+  "Toutes": {
+    "ar": "الكل",
+    "en": "All"
+  },
+  "Gérez vos commandes, suivez les alertes de lot et déclarez un incident.": {
+    "ar": "أدر طلباتك وتابع تنبيهات الدفعات وصرّح بحادث.",
+    "en": "Manage your orders, follow lot alerts and report an incident."
+  },
+  "Votre société est enregistrée. L'équipe VigiCore vérifie vos informations (RC, NIF, agrément) : vous pourrez passer commande auprès des fabricants dès que la vérification sera validée.": {
+    "ar": "تم تسجيل شركتك. يتحقق فريق VigiCore من معلوماتك (RC وNIF والاعتماد): يمكنك الطلب من المصنّعين فور اعتماد التحقق.",
+    "en": "Your company is registered. The VigiCore team is checking your details (RC, NIF, approval): you will be able to order from manufacturers once verification is approved."
+  },
+  "Votre société est vérifiée : suivez vos commandes, recevez les alertes de lot des fabricants et déclarez un incident en quelques clics.": {
+    "ar": "شركتك موثّقة: تابع طلباتك واستقبل تنبيهات دفعات المصنّعين وصرّح بحادث ببضع نقرات.",
+    "en": "Your company is verified: track your orders, receive manufacturers’ lot alerts and report an incident in a few clicks."
+  },
+  "Pour bien démarrer": {
+    "ar": "للبدء بشكل جيد",
+    "en": "Getting started"
+  },
+  "VigiCore contrôle vos pièces avant votre première commande.": {
+    "ar": "تراجع VigiCore وثائقك قبل أول طلب لك.",
+    "en": "VigiCore checks your documents before your first order."
+  },
+  "Choisir un produit": {
+    "ar": "اختر منتجا",
+    "en": "Choose a product"
+  },
+  "Parcourez le catalogue des fabricants.": {
+    "ar": "تصفّح كتالوج المصنّعين.",
+    "en": "Browse the manufacturers’ catalogue."
+  },
+  "Envoyer la commande": {
+    "ar": "أرسل الطلب",
+    "en": "Send the order"
+  },
+  "Le fabricant confirme et attribue les lots.": {
+    "ar": "يؤكد المصنّع ويخصّص الدفعات.",
+    "en": "The manufacturer confirms and assigns the lots."
+  },
+  "Suivre et être alerté": {
+    "ar": "تابع وتلقَّ التنبيهات",
+    "en": "Track and get alerted"
+  },
+  "Livraison, lots retirés, incidents.": {
+    "ar": "التسليم، الدفعات المسحوبة، الحوادث.",
+    "en": "Delivery, withdrawn lots, incidents."
+  },
+  "Alertes de lot récentes": {
+    "ar": "أحدث تنبيهات الدفعات",
+    "en": "Recent lot alerts"
+  },
+  "Vous serez prévenu ici si un fabricant retire un lot que vous avez commandé.": {
+    "ar": "سيتم إعلامك هنا إذا سحب مصنّع دفعة طلبتها.",
+    "en": "You will be notified here if a manufacturer withdraws a lot you ordered."
+  },
+  "Dernières commandes": {
+    "ar": "آخر الطلبات",
+    "en": "Latest orders"
+  },
+  "Vos commandes et leur état chez le fabricant apparaîtront ici.": {
+    "ar": "ستظهر هنا طلباتك وحالتها عند المصنّع.",
+    "en": "Your orders and their status at the manufacturer will appear here."
+  },
+  "Aucun fabricant pour le moment": {
+    "ar": "لا يوجد مصنّع حاليا",
+    "en": "No manufacturer yet"
+  },
+  "Ils apparaissent ici dès votre première commande ou demande.": {
+    "ar": "يظهرون هنا منذ أول طلب أو استفسار.",
+    "en": "They appear here after your first order or request."
+  },
+  "Dernière activité": {
+    "ar": "آخر نشاط",
+    "en": "Last activity"
+  },
+  "Demandes": {
+    "ar": "الاستفسارات",
+    "en": "Requests"
+  },
+  "produit(s)": {
+    "ar": "منتج",
+    "en": "product(s)"
+  },
+  "Où en sont vos commandes chez les fabricants.": {
+    "ar": "أين وصلت طلباتك لدى المصنّعين.",
+    "en": "Where your orders stand with the manufacturers."
+  },
+  "Nouvelle commande": {
+    "ar": "طلب جديد",
+    "en": "New order"
+  },
+  "Vos commandes ouvertes apparaissent ici avec leur avancement. Les achats terminés sont dans l'historique.": {
+    "ar": "تظهر هنا طلباتك المفتوحة مع تقدّمها. المشتريات المنتهية في السجل.",
+    "en": "Your open orders appear here with their progress. Completed purchases are in the history."
+  },
+  "Aucune demande d'intérêt": {
+    "ar": "لا توجد استفسارات",
+    "en": "No requests of interest"
+  },
+  "envoyée": {
+    "ar": "أُرسل",
+    "en": "sent"
+  },
+  "Vos commandes terminées : livrées, annulées ou refusées.": {
+    "ar": "طلباتك المنتهية: المسلّمة أو الملغاة أو المرفوضة.",
+    "en": "Your completed orders: delivered, cancelled or refused."
+  },
+  "Exporter en CSV": {
+    "ar": "تصدير CSV",
+    "en": "Export as CSV"
+  },
+  "Achats livrés": {
+    "ar": "المشتريات المسلّمة",
+    "en": "Delivered purchases"
+  },
+  "commandes reçues": {
+    "ar": "طلبات مستلمة",
+    "en": "orders received"
+  },
+  "Montant livré": {
+    "ar": "المبلغ المسلّم",
+    "en": "Amount delivered"
+  },
+  "indicatif, hors facturation": {
+    "ar": "إرشادي، دون الفوترة",
+    "en": "indicative, excluding invoicing"
+  },
+  "livraisons reçues": {
+    "ar": "تسليمات مستلمة",
+    "en": "deliveries received"
+  },
+  "Annulées ou refusées": {
+    "ar": "ملغاة أو مرفوضة",
+    "en": "Cancelled or refused"
+  },
+  "non abouties": {
+    "ar": "لم تكتمل",
+    "en": "unsuccessful"
+  },
+  "Filtrer par statut": {
+    "ar": "تصفية حسب الحالة",
+    "en": "Filter by status"
+  },
+  "Annulées": {
+    "ar": "الملغاة",
+    "en": "Cancelled"
+  },
+  "Refusées": {
+    "ar": "المرفوضة",
+    "en": "Refused"
+  },
+  "Rechercher un produit ou un fabricant…": {
+    "ar": "ابحث عن منتج أو مصنّع…",
+    "en": "Search for a product or manufacturer…"
+  },
+  "Rechercher dans l'historique": {
+    "ar": "بحث في السجل",
+    "en": "Search the history"
+  },
+  "Aucun résultat pour ce filtre": {
+    "ar": "لا نتائج لهذا الفلتر",
+    "en": "No results for this filter"
+  },
+  "Changez de filtre ou de recherche.": {
+    "ar": "غيّر الفلتر أو البحث.",
+    "en": "Change the filter or the search."
+  },
+  "Dès qu'une commande est livrée, annulée ou refusée, elle apparaît ici.": {
+    "ar": "بمجرد تسليم الطلب أو إلغائه أو رفضه يظهر هنا.",
+    "en": "As soon as an order is delivered, cancelled or refused, it appears here."
+  },
+  "MONTANT": {
+    "ar": "المبلغ",
+    "en": "AMOUNT"
+  },
+  "Commande": {
+    "ar": "الطلب",
+    "en": "Order"
+  },
+  "Montant indicatif (DA)": {
+    "ar": "المبلغ الإرشادي (دج)",
+    "en": "Indicative amount (DZD)"
+  },
+  "Annulée": {
+    "ar": "ملغاة",
+    "en": "Cancelled"
+  },
+  "Avancement de la commande": {
+    "ar": "تقدّم الطلب",
+    "en": "Order progress"
+  },
+  "Envoyée": {
+    "ar": "مُرسَلة",
+    "en": "Sent"
+  },
+  "Confirmée par le fabricant": {
+    "ar": "مؤكدة من المصنّع",
+    "en": "Confirmed by the manufacturer"
+  },
+  "Suivi de la commande": {
+    "ar": "متابعة الطلب",
+    "en": "Order tracking"
+  },
+  "Suivi de la demande": {
+    "ar": "متابعة الاستفسار",
+    "en": "Request tracking"
+  },
+  "Lot retiré :": {
+    "ar": "دفعة مسحوبة:",
+    "en": "Lot withdrawn:"
+  },
+  "un lot de cette commande a été retiré par le fabricant. Consultez vos notifications.": {
+    "ar": "تم سحب دفعة من هذا الطلب من طرف المصنّع. راجع تنبيهاتك.",
+    "en": "a lot from this order has been withdrawn by the manufacturer. Check your alerts."
+  },
+  "Envoyée le": {
+    "ar": "أُرسل في",
+    "en": "Sent on"
+  },
+  "Produits et lots": {
+    "ar": "المنتجات والدفعات",
+    "en": "Products and lots"
+  },
+  "QTÉ": {
+    "ar": "الكمية",
+    "en": "QTY"
+  },
+  "EXPIRATION": {
+    "ar": "الانتهاء",
+    "en": "EXPIRY"
+  },
+  "À attribuer": {
+    "ar": "قيد التخصيص",
+    "en": "To be assigned"
+  },
+  "Chronologie": {
+    "ar": "التسلسل الزمني",
+    "en": "Timeline"
+  },
+  "Aucun événement enregistré pour le moment.": {
+    "ar": "لا توجد أحداث مسجّلة حاليا.",
+    "en": "No events recorded yet."
+  },
+  "En attente du fabricant": {
+    "ar": "في انتظار المصنّع",
+    "en": "Waiting for the manufacturer"
+  },
+  "Confirmée": {
+    "ar": "مؤكدة",
+    "en": "Confirmed"
+  },
+  "Le fabricant vous a contacté": {
+    "ar": "اتصل بك المصنّع",
+    "en": "The manufacturer contacted you"
+  },
+  "Les retraits et rétablissements de lots signalés par les fabricants pour vos commandes.": {
+    "ar": "سحب الدفعات وإعادتها كما يبلّغ بها المصنّعون عن طلباتك.",
+    "en": "Lot withdrawals and reinstatements reported by manufacturers for your orders."
+  },
+  "Alertes": {
+    "ar": "التنبيهات",
+    "en": "Alerts"
+  },
+  "Suivi": {
+    "ar": "المتابعة",
+    "en": "Tracking"
+  },
+  "Linked product in VigiCore Audit": {
+    "fr": "Produit lié dans VigiCore Audit",
+    "ar": "المنتج المرتبط في VigiCore Audit"
+  },
+  "Current link kept: {0}": {
+    "fr": "Lien actuel conservé : {0}",
+    "ar": "الربط الحالي محفوظ: {0}"
+  },
+  "Loading your Audit products…": {
+    "fr": "Chargement de vos produits Audit…",
+    "ar": "جارٍ تحميل منتجاتك في Audit…"
+  },
+  "Your Audit products could not be loaded. You can still save: the link is not changed.": {
+    "fr": "Impossible de charger vos produits Audit. Vous pouvez enregistrer quand même : le lien n'est pas modifié.",
+    "ar": "تعذّر تحميل منتجاتك في Audit. يمكنك الحفظ رغم ذلك: الربط لن يتغيّر."
+  },
+  "Your organization is not linked to a manufacturer in VigiCore Audit yet. Ask VigiCore to link it; you can save this listing without a link meanwhile.": {
+    "fr": "Votre organisation n'est pas encore liée à un fabricant dans VigiCore Audit. Demandez à VigiCore de la lier ; en attendant, vous pouvez enregistrer cette fiche sans lien.",
+    "ar": "مؤسستك غير مرتبطة بعد بمصنّع في VigiCore Audit. اطلب من VigiCore ربطها؛ وفي الأثناء يمكنك حفظ هذه البطاقة بدون ربط."
+  },
+  "VigiCore Audit is unavailable right now. You can still save: the link is not changed.": {
+    "fr": "VigiCore Audit est indisponible pour le moment. Vous pouvez enregistrer quand même : le lien n'est pas modifié.",
+    "ar": "VigiCore Audit غير متاح حاليًا. يمكنك الحفظ رغم ذلك: الربط لن يتغيّر."
+  },
+  "— Not linked —": {
+    "fr": "— Non liée —",
+    "ar": "— غير مرتبطة —"
+  },
+  "Product no longer found in Audit ({0})": {
+    "fr": "Produit introuvable dans Audit ({0})",
+    "ar": "منتج لم يعد موجودًا في Audit ({0})"
+  },
+  "{0} — already linked to « {1} »": {
+    "fr": "{0} — déjà lié à « {1} »",
+    "ar": "{0} — مرتبط مسبقًا بـ « {1} »"
+  },
+  "No product of your organization was found in VigiCore Audit.": {
+    "fr": "Aucun produit de votre organisation n'a été trouvé dans VigiCore Audit.",
+    "ar": "لم يُعثر على أي منتج لمؤسستك في VigiCore Audit."
+  },
+  "This product is no longer in your Audit catalogue. Choose another one or remove the link.": {
+    "fr": "Ce produit n'est plus dans votre catalogue Audit. Choisissez-en un autre ou retirez le lien.",
+    "ar": "هذا المنتج لم يعد في كتالوجك على Audit. اختر منتجًا آخر أو أزل الربط."
+  },
+  "With a link, buyers see this listing only if they can order this exact product. Without one, visibility follows your manufacturer’s general rule.": {
+    "fr": "Avec un lien, les acheteurs ne voient cette fiche que s'ils peuvent commander ce produit précis. Sans lien, la visibilité suit la règle générale de votre fabricant.",
+    "ar": "مع الربط، لا يرى المشترون هذه البطاقة إلا إذا كان بإمكانهم طلب هذا المنتج بالتحديد. بدون ربط، تتبع الظهور القاعدة العامة لمصنّعك."
+  },
+  "Changing the link sends the listing back to VigiCore for review.": {
+    "fr": "Modifier le lien renvoie la fiche en validation chez VigiCore.",
+    "ar": "تغيير الربط يعيد البطاقة إلى مراجعة VigiCore."
+  },
+  "Audit: {0}": {
+    "fr": "Audit : {0}",
+    "ar": "Audit: {0}"
+  },
+  "Link it to its Audit product in the studio so buyers see it only if they can order it.": {
+    "fr": "Liez-la à son produit Audit dans le studio pour que les acheteurs ne la voient que s'ils peuvent la commander.",
+    "ar": "اربطها بمنتجها في Audit من الاستوديو حتى لا يراها المشترون إلا إذا كان بإمكانهم طلبها."
+  },
+  "Not linked to Audit": {
+    "fr": "Non liée à Audit",
+    "ar": "غير مرتبطة بـ Audit"
+  },
+  "Produit Audit : non liée (visibilité selon la règle du fabricant).": {
+    "ar": "منتج Audit: غير مرتبطة (الظهور حسب قاعدة المصنّع).",
+    "en": "Audit product: not linked (visibility follows the manufacturer rule)."
+  },
+  "Produit Audit lié : {0}": {
+    "ar": "منتج Audit المرتبط: {0}",
+    "en": "Linked Audit product: {0}"
+  },
+  "Produit Audit lié introuvable (réf. {0}) : retiré d'Audit ou d'un autre fabricant. À vérifier avant de valider.": {
+    "ar": "منتج Audit المرتبط غير موجود (المرجع {0}): حُذف من Audit أو تابع لمصنّع آخر. يجب التحقق قبل القبول.",
+    "en": "Linked Audit product not found (ref. {0}): removed from Audit or owned by another manufacturer. Check before approving."
+  },
+  "Produit Audit lié : réf. {0} (Audit injoignable, non vérifié).": {
+    "ar": "منتج Audit المرتبط: المرجع {0} (Audit غير متاح، لم يتم التحقق).",
+    "en": "Linked Audit product: ref. {0} (Audit unreachable, not checked)."
+  },
+  "Orderable on the site: this product is published in the online offer of VigiCore Audit.": {
+    "fr": "Commandable sur le site : ce produit est publié dans l'offre en ligne de VigiCore Audit.",
+    "ar": "قابل للطلب على الموقع: هذا المنتج منشور في العرض الإلكتروني لـ VigiCore Audit."
+  },
+  "Not orderable online: link this listing to a product published in VigiCore Audit (Commercial › Online offer). Buyers only see « Contact ».": {
+    "fr": "Non commandable en ligne : liez cette fiche à un produit publié dans VigiCore Audit (Commercial › Offre en ligne). Les acheteurs ne voient que « Contacter ».",
+    "ar": "غير قابل للطلب عبر الإنترنت: اربط هذه البطاقة بمنتج منشور في VigiCore Audit (تجاري › العرض الإلكتروني). لا يرى المشترون سوى « اتصل »."
+  },
+  "Not orderable online: this product is no longer in the online offer of VigiCore Audit (unpublished, no price, unavailable or not validated). Publish it again in VigiCore Audit, or choose another product.": {
+    "fr": "Non commandable en ligne : ce produit n'est plus dans l'offre en ligne de VigiCore Audit (dépublié, sans prix, indisponible ou non validé). Republiez-le dans VigiCore Audit ou choisissez un autre produit.",
+    "ar": "غير قابل للطلب عبر الإنترنت: لم يعد هذا المنتج ضمن العرض الإلكتروني لـ VigiCore Audit (غير منشور أو بلا سعر أو غير متوفر أو غير مُعتمد). أعد نشره في VigiCore Audit أو اختر منتجًا آخر."
+  },
+  "Warning: this listing (« {0} ») does not seem to match the product « {1} ». Buyers who click « Order » would order « {1} ».": {
+    "fr": "Attention : cette fiche (« {0} ») ne semble pas correspondre au produit « {1} ». Les acheteurs qui cliquent sur « Commander » commanderaient « {1} ».",
+    "ar": "تنبيه: يبدو أن هذه البطاقة (« {0} ») لا تطابق المنتج « {1} ». المشترون الذين ينقرون على « اطلب » سيطلبون « {1} »."
+  },
+  "I confirm this listing is really this product.": {
+    "fr": "Je confirme que cette fiche correspond bien à ce produit.",
+    "ar": "أؤكد أن هذه البطاقة تخص هذا المنتج فعلًا."
+  },
+  "Only products published in the online offer of VigiCore Audit (validated, priced, available) appear in this list.": {
+    "fr": "Seuls les produits publiés dans l'offre en ligne de VigiCore Audit (validés, avec prix, disponibles) figurent dans cette liste.",
+    "ar": "لا تظهر في هذه القائمة إلا المنتجات المنشورة في العرض الإلكتروني لـ VigiCore Audit (مُعتمدة، مُسعّرة، متوفرة)."
+  },
+  "Not cleared for paid promotion": {
+    "fr": "Non autorisé pour la promotion payante",
+    "ar": "غير مسموح بالترويج المدفوع"
+  },
+  "Promotion not available": {
+    "fr": "Promotion non disponible",
+    "ar": "الترويج غير متاح"
+  },
+  "Edit & resubmit": {
+    "fr": "Modifier et soumettre à nouveau",
+    "ar": "تعديل وإعادة الإرسال"
+  },
+  "Publish for free first": {
+    "fr": "Publiez d'abord gratuitement",
+    "ar": "انشر مجانًا أولًا"
+  },
+  "Resubmit for validation": {
+    "fr": "Soumettre à nouveau pour validation",
+    "ar": "إعادة الإرسال للمصادقة"
+  },
+  "Publish for free": {
+    "fr": "Publier gratuitement",
+    "ar": "نشر مجاني"
+  },
+  "Awaiting validation": {
+    "fr": "En attente de validation",
+    "ar": "في انتظار المصادقة"
+  },
+  "Live in the free catalog": {
+    "fr": "En ligne dans le catalogue gratuit",
+    "ar": "منشور في الكتالوج المجاني"
+  },
+  "Pure white across the whole image area — ideal for photos shot on a white background": {
+    "fr": "Blanc pur sur toute l'image — idéal pour les photos prises sur fond blanc",
+    "ar": "أبيض خالص على كامل الصورة — مثالي للصور الملتقطة على خلفية بيضاء"
+  },
+  "⬜ White": {
+    "fr": "⬜ Blanc",
+    "ar": "⬜ أبيض"
+  },
+  "Selling terms (wholesale)": {
+    "fr": "Conditions de vente (gros)",
+    "ar": "شروط البيع (بالجملة)"
+  },
+  "Unit price (DA)": {
+    "fr": "Prix unitaire (DA)",
+    "ar": "سعر الوحدة (دج)"
+  },
+  "Sold per": {
+    "fr": "Vendu par",
+    "ar": "يُباع بـ"
+  },
+  "box, carton, unit…": {
+    "fr": "boîte, carton, unité…",
+    "ar": "علبة، كرتونة، وحدة…"
+  },
+  "Minimum order quantity": {
+    "fr": "Quantité minimale de commande",
+    "ar": "الحد الأدنى لكمية الطلب"
+  },
+  "Quantity available (optional)": {
+    "fr": "Quantité disponible (facultatif)",
+    "ar": "الكمية المتوفرة (اختياري)"
+  },
+  "leave empty = not tracked": {
+    "fr": "vide = non suivie",
+    "ar": "فارغ = غير متتبَّعة"
+  },
+  "If you enter a quantity, it is reserved when a customer orders, and given back if the order is refused or cancelled. When it falls below the minimum order quantity, the product is no longer offered. Leave it empty to manage availability with the checkbox only.": {
+    "fr": "Si vous indiquez une quantité, elle est réservée à chaque commande d'un client et restituée si la commande est refusée ou annulée. Sous la quantité minimale de commande, le produit n'est plus proposé. Laissez vide pour gérer la disponibilité avec la case à cocher seulement.",
+    "ar": "إذا أدخلت كمية، فإنها تُحجز عند كل طلب من العميل وتُعاد إذا رُفض الطلب أو أُلغي. عندما تنزل تحت الحد الأدنى لكمية الطلب، لا يعود المنتج معروضًا. اتركها فارغة لإدارة التوفر بخانة الاختيار فقط."
+  },
+  "In stock (buyers can order)": {
+    "fr": "En stock (les acheteurs peuvent commander)",
+    "ar": "متوفر (يمكن للمشترين الطلب)"
+  },
+  "Prices are shown only to logged-in professionals. Buyers can order only once your company is verified by VigiCore and this product is approved.": {
+    "fr": "Les prix ne sont affichés qu'aux professionnels connectés. Les acheteurs ne peuvent commander qu'une fois votre entreprise vérifiée par VigiCore et ce produit approuvé.",
+    "ar": "لا تُعرض الأسعار إلا للمهنيين المسجّلين. لا يمكن للمشترين الطلب إلا بعد أن تتحقق VigiCore من شركتك وتتم الموافقة على هذا المنتج."
+  },
+  "Free": {
+    "fr": "Gratuit",
+    "ar": "مجاني"
+  },
+  "Not approved: {0}": {
+    "fr": "Non approuvé : {0}",
+    "ar": "غير مقبول: {0}"
+  },
+  "This product has not been cleared for paid promotion. Contact VigiCore if you think it should be.": {
+    "fr": "Ce produit n'est pas autorisé pour la promotion payante. Contactez VigiCore si vous pensez qu'il devrait l'être.",
+    "ar": "هذا المنتج غير مسموح له بالترويج المدفوع. اتصل بـ VigiCore إذا كنت ترى أنه يجب السماح به."
+  },
+  "Ready to get started?": {
+    "fr": "Prêt à commencer ?",
+    "ar": "هل أنت مستعد للبدء؟"
+  },
+  "Log in to your account to access your vigilance workflow.": {
+    "fr": "Connectez-vous à votre compte pour accéder à votre espace de vigilance.",
+    "ar": "سجّل الدخول إلى حسابك للوصول إلى فضاء اليقظة الخاص بك."
+  },
+  "Check the transfer, then confirm to start the promotion or reject with a reason.": {
+    "fr": "Vérifiez le virement, puis confirmez pour lancer la promotion ou refusez en indiquant un motif.",
+    "ar": "تحقق من التحويل، ثم أكّد لبدء الترويج أو ارفض مع ذكر السبب."
+  },
+  "Confirm payment": {
+    "fr": "Confirmer le paiement",
+    "ar": "تأكيد الدفع"
+  },
+  "“{0}” was not approved:": {
+    "fr": "« {0} » n'a pas été approuvé :",
+    "ar": "لم تتم الموافقة على « {0} »:"
+  },
+  "please review the content.": {
+    "fr": "veuillez revoir le contenu.",
+    "ar": "يرجى مراجعة المحتوى."
+  },
+  "“{0}” promotion ends {1}. Afterwards it stays in the free catalog.": {
+    "fr": "La promotion de « {0} » se termine le {1}. Ensuite, le produit reste dans le catalogue gratuit.",
+    "ar": "ينتهي ترويج « {0} » في {1}. بعد ذلك يبقى في الكتالوج المجاني."
+  },
+  "“{0}” promotion ended on {1}. It is back in the free catalog.": {
+    "fr": "La promotion de « {0} » s'est terminée le {1}. Le produit est de retour dans le catalogue gratuit.",
+    "ar": "انتهى ترويج « {0} » في {1}. عاد المنتج إلى الكتالوج المجاني."
+  },
+  "← Back to dashboard": {
+    "fr": "← Retour au tableau de bord",
+    "ar": "→ العودة إلى لوحة التحكم"
+  },
+  "{0} of {1} free slots used": {
+    "fr": "{0} emplacement(s) gratuit(s) utilisé(s) sur {1}",
+    "ar": "{0} من أصل {1} مواقع مجانية مستخدمة"
+  },
+  "drafts & in review": {
+    "fr": "brouillons et en validation",
+    "ar": "مسودات وقيد المراجعة"
+  },
+  "Free catalog": {
+    "fr": "Catalogue gratuit",
+    "ar": "الكتالوج المجاني"
+  },
+  "Not published": {
+    "fr": "Non publié",
+    "ar": "غير منشور"
+  },
+  "save": {
+    "fr": "économisez",
+    "ar": "وفّر"
+  },
+  "No commitment": {
+    "fr": "Sans engagement",
+    "ar": "دون التزام"
+  },
+  "Invoice provided once payment is confirmed": {
+    "fr": "Facture fournie dès la confirmation du paiement",
+    "ar": "تُقدَّم الفاتورة بمجرد تأكيد الدفع"
+  },
+  "Your promotion starts once we confirm the payment": {
+    "fr": "Votre promotion démarre dès que nous confirmons le paiement",
+    "ar": "يبدأ ترويجك بمجرد تأكيدنا للدفع"
+  },
+  "“{0}” is now promoted in {1}. No real payment was made.": {
+    "fr": "« {0} » est maintenant mis en avant dans {1}. Aucun paiement réel n'a été effectué.",
+    "ar": "« {0} » مُروَّج الآن في {1}. لم يتم أي دفع حقيقي."
+  },
+  "Send {0} via {1}, quoting the reference below. “{2}” is promoted in {3} for {4} month{5} once we confirm the payment. Meanwhile it stays in the free catalog.": {
+    "fr": "Envoyez {0} par {1} en indiquant la référence ci-dessous. « {2} » sera mis en avant dans {3} pendant {4} mois dès que nous aurons confirmé le paiement. En attendant, il reste dans le catalogue gratuit.",
+    "ar": "أرسل {0} عبر {1} مع ذكر المرجع أدناه. سيتم ترويج « {2} » في {3} لمدة {4} شهر بمجرد تأكيدنا للدفع. في الأثناء يبقى في الكتالوج المجاني."
+  },
+  "Place your product here": {
+    "fr": "Placez votre produit ici",
+    "ar": "ضع منتجك هنا"
+  },
+  "This sponsored slot is available.": {
+    "fr": "Cet emplacement sponsorisé est disponible.",
+    "ar": "هذا الموقع المموَّل متاح."
+  },
+  "The featured partner slot is available.": {
+    "fr": "L'emplacement « partenaire à la une » est disponible.",
+    "ar": "موقع « الشريك المميّز » متاح."
+  },
+  "Recommended": {
+    "fr": "Recommandé",
+    "ar": "موصى به"
+  },
+  "The recommended row is available.": {
+    "fr": "La rangée « Recommandé » est disponible.",
+    "ar": "صف « موصى به » متاح."
+  },
+  "in": {
+    "fr": "dans",
+    "ar": "في"
+  },
+  "Sold by": {
+    "fr": "Vendu par",
+    "ar": "يبيعه"
+  },
+  "Filter by seller type": {
+    "fr": "Filtrer par type de vendeur",
+    "ar": "التصفية حسب نوع البائع"
+  },
+  "Manufacturers & distributors": {
+    "fr": "Fabricants et distributeurs",
+    "ar": "المصنّعون والموزّعون"
+  },
+  "Manufacturers": {
+    "fr": "Fabricants",
+    "ar": "المصنّعون"
+  },
+  "Distributors": {
+    "fr": "Distributeurs",
+    "ar": "الموزّعون"
+  },
+  "Free — publish a product here": {
+    "fr": "Gratuit — publiez un produit ici",
+    "ar": "مجاني — انشر منتجًا هنا"
+  },
+  "{0} of {1}": {
+    "fr": "{0} sur {1}",
+    "ar": "{0} من {1}"
+  }
+}

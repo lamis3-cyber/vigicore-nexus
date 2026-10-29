@@ -1,0 +1,34 @@
+# --- Dépendances / builds ---
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Secrets (seuls les .env.example sont versionnés) ---
+.env
+.env.*
+!.env.example
+!.env.production.example
+.env.production
+
+# --- Données locales / générées ---
+*.log
+logs/
+*.db
+*.db-journal
+*.db.bak
+*.sqlite
+*.sqlite3
+*.dump
+backend/nexus-api/storage/
+database/backups/*.sql
+csp-script-hashes.txt
+
+# --- Divers ---
+.DS_Store
+.idea/
+.vscode/
+*.zip
+*.tar.gz

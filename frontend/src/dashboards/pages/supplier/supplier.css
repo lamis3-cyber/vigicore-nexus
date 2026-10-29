@@ -1,0 +1,178 @@
+/* Espace fournisseur / distributeur — styles partagés (accueil, notifications, fabricants).
+   Uniquement les variables du thème : clair et sombre suivent automatiquement. */
+
+/* ── Bandeau d'accueil ── */
+.sup-hero { position: relative; overflow: hidden; padding: 28px 30px; border-radius: var(--radius-lg, 14px); margin-bottom: 18px;
+  border: 1px solid var(--border-default);
+  background:
+    radial-gradient(520px 220px at 100% 0%, var(--color-green-dim), transparent 70%),
+    radial-gradient(480px 240px at 0% 100%, var(--color-brand-dim), transparent 70%),
+    var(--surface-1); }
+.sup-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px); background-size: 18px 18px;
+  mask-image: linear-gradient(90deg, transparent 40%, #000); -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000); }
+.sup-hero > * { position: relative; z-index: 1; }
+.sup-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  background: var(--surface-2); border: 1px solid var(--border-default); color: var(--text-secondary); }
+.sup-hero h1 { margin: 14px 0 6px; font-size: 30px; line-height: 1.15; color: var(--text-primary); }
+.sup-hero h1 em { font-style: normal; color: var(--color-cyan); }
+.sup-hero p { margin: 0; max-width: 62ch; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+.sup-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+/* ── Pastille de statut ── */
+.sup-pill { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+.sup-pill::before { content: ''; width: 7px; height: 7px; border-radius: 99px; background: currentColor; }
+.sup-pill.is-ok { background: var(--color-green-dim); color: var(--color-green); border-color: var(--color-green-dim); }
+.sup-pill.is-wait { background: var(--color-amber-dim); color: var(--color-amber); border-color: var(--color-amber-dim); }
+.sup-pill.is-off { background: var(--color-red-dim); color: var(--color-red); border-color: var(--color-red-dim); }
+
+/* ── Tuiles chiffrées ── */
+.sup-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.sup-stat { position: relative; overflow: hidden; display: flex; align-items: center; gap: 14px; padding: 18px; text-align: start; width: 100%;
+  background: var(--surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg, 14px); box-shadow: var(--shadow-sm);
+  cursor: pointer; font: inherit; color: inherit; transition: var(--ease-default); }
+.sup-stat:hover, .sup-stat:focus-visible { border-color: var(--border-strong); box-shadow: var(--shadow-md); transform: translateY(-1px); outline: none; }
+.sup-stat::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--tone); }
+.sup-stat-ico { flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; font-size: 22px; color: var(--tone); background: var(--tone-dim); }
+.sup-stat-num { font-size: 28px; font-weight: 800; line-height: 1; color: var(--text-primary); }
+.sup-stat-lab { margin-top: 5px; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+.sup-stat-sub { margin-top: 2px; font-size: 11.5px; color: var(--text-tertiary); }
+.sup-stat.t-green { --tone: var(--color-green); --tone-dim: var(--color-green-dim); }
+.sup-stat.t-amber { --tone: var(--color-amber); --tone-dim: var(--color-amber-dim); }
+.sup-stat.t-red { --tone: var(--color-red); --tone-dim: var(--color-red-dim); }
+.sup-stat.t-blue { --tone: var(--color-cyan); --tone-dim: var(--color-cyan-dim); }
+
+/* ── Parcours (étapes) ── */
+.sup-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sup-step { display: flex; gap: 12px; padding: 14px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border-subtle); }
+.sup-step-n { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 99px; font-size: 13px; font-weight: 800;
+  background: var(--surface-3); color: var(--text-secondary); }
+.sup-step.is-done { background: var(--color-green-dim); border-color: transparent; }
+.sup-step.is-done .sup-step-n { background: var(--color-green); color: #fff; }
+.sup-step.is-now { border-color: var(--color-cyan); background: var(--color-cyan-dim); }
+.sup-step.is-now .sup-step-n { background: var(--color-cyan); color: #fff; }
+.sup-step-t { font-size: 13.5px; font-weight: 700; color: var(--text-primary); }
+.sup-step-d { margin-top: 2px; font-size: 12px; line-height: 1.45; color: var(--text-secondary); }
+
+/* ── Mise en page deux colonnes + cartes ── */
+.sup-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 18px; }
+.sup-card-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.sup-card-h h2 { display: flex; align-items: center; gap: 9px; margin: 0; font-size: 15px; color: var(--text-primary); }
+.sup-card-h h2 i { font-size: 18px; }
+.sup-link { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--color-cyan); }
+.sup-link:hover { text-decoration: underline; }
+
+/* ── Lignes de liste ── */
+.sup-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.sup-row { display: flex; align-items: center; gap: 12px; padding: 11px 8px; border-radius: 10px; }
+.sup-row + .sup-row { border-top: 1px solid var(--border-subtle); border-radius: 0; }
+.sup-row-ico { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; font-size: 17px; background: var(--surface-2); color: var(--text-secondary); }
+.sup-row-main { flex: 1; min-width: 0; }
+.sup-row-t { font-size: 13.5px; font-weight: 600; color: var(--text-primary); overflow-wrap: anywhere; }
+.sup-row-s { margin-top: 2px; font-size: 12px; color: var(--text-tertiary); }
+
+/* ── État vide ── */
+.sup-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 30px 16px; }
+.sup-empty-ico { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; font-size: 30px; margin-bottom: 8px;
+  color: var(--color-cyan); background: var(--color-cyan-dim); }
+.sup-empty-t { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+.sup-empty-d { max-width: 46ch; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+.sup-empty .btn { margin-top: 10px; }
+
+/* ── Onglets segmentés ── */
+.sup-seg { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-subtle); }
+.sup-seg button { border: 0; background: none; cursor: pointer; padding: 6px 14px; border-radius: 999px; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+.sup-seg button.is-active { background: var(--surface-1); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+
+/* ── Alertes de lot ── */
+.sup-alerts { display: flex; flex-direction: column; gap: 12px; }
+.sup-alert { position: relative; display: flex; gap: 14px; width: 100%; text-align: start; padding: 16px 18px 16px 20px; font: inherit; color: inherit;
+  background: var(--surface-1); border: 1px solid var(--border-subtle); border-radius: 14px; box-shadow: var(--shadow-sm); transition: var(--ease-default); }
+.sup-alert::before { content: ''; position: absolute; inset: 10px auto 10px 0; width: 4px; border-radius: 0 4px 4px 0; background: var(--tone); }
+.sup-alert.t-red { --tone: var(--color-red); --tone-dim: var(--color-red-dim); }
+.sup-alert.t-green { --tone: var(--color-green); --tone-dim: var(--color-green-dim); }
+.sup-alert.is-unread { cursor: pointer; border-color: var(--border-default); }
+.sup-alert.is-unread:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.sup-alert.is-read { opacity: .72; }
+.sup-alert-ico { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; font-size: 20px; color: var(--tone); background: var(--tone-dim); }
+.sup-alert-body { flex: 1; min-width: 0; }
+.sup-alert-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.sup-alert-name { font-size: 14.5px; font-weight: 700; color: var(--text-primary); }
+.sup-chip { padding: 2px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 700; font-family: var(--font-mono); background: var(--surface-3); color: var(--text-secondary); }
+.sup-tag { margin-inline-start: auto; padding: 3px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 700; color: var(--tone); background: var(--tone-dim); white-space: nowrap; }
+.sup-alert-meta { margin-top: 4px; font-size: 12.5px; color: var(--text-tertiary); }
+.sup-alert-note { margin-top: 10px; padding: 9px 12px; border-radius: 9px; font-size: 12.5px; line-height: 1.5; color: var(--text-primary); background: var(--tone-dim); }
+.sup-dot { display: inline-block; width: 8px; height: 8px; border-radius: 99px; background: var(--color-cyan); margin-inline-end: 8px; }
+
+/* ── Fabricants ── */
+.sup-mfr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.sup-mfr { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); transition: var(--ease-default); }
+.sup-mfr:hover { box-shadow: var(--shadow-md); border-color: var(--border-default); transform: translateY(-1px); }
+.sup-mfr-top { display: flex; align-items: center; gap: 12px; }
+.sup-avatar { flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; font-size: 16px; font-weight: 800; }
+.sup-mfr-name { font-size: 14.5px; font-weight: 700; color: var(--text-primary); overflow-wrap: anywhere; }
+.sup-mfr-last { margin-top: 2px; font-size: 12px; color: var(--text-tertiary); }
+.sup-mfr-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sup-mfr-num { padding: 10px 12px; border-radius: 10px; background: var(--surface-2); }
+.sup-mfr-num b { display: block; font-size: 20px; line-height: 1.1; color: var(--text-primary); }
+.sup-mfr-num span { font-size: 11.5px; color: var(--text-secondary); }
+
+/* ── Ma société ── */
+.sup-company { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 20px 22px; margin-bottom: 18px; border-radius: 14px;
+  background: var(--surface-1); border: 1px solid var(--border-default); box-shadow: var(--shadow-sm); }
+.sup-company-ico { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 16px; font-size: 26px; color: var(--color-green); background: var(--color-green-dim); }
+.sup-company-main { flex: 1; min-width: 200px; }
+.sup-company-name { font-size: 17px; font-weight: 800; color: var(--text-primary); }
+.sup-company-sub { margin-top: 2px; font-size: 12.5px; color: var(--text-secondary); }
+
+@media (max-width: 700px) { .sup-hero { padding: 22px 18px; } .sup-hero h1 { font-size: 24px; } .sup-tag { margin-inline-start: 0; } }
+
+/* ── Barre de progression d'une commande ── */
+.sup-prog { display: flex; align-items: flex-start; margin: 10px 0 4px; padding: 0; list-style: none; }
+.sup-prog-step { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; min-width: 0; }
+.sup-prog-step + .sup-prog-step::before { content: ''; position: absolute; top: 14px; inset-inline-end: 50%; width: 100%; height: 3px; background: var(--surface-3); z-index: 0; }
+.sup-prog-step.is-done + .sup-prog-step::before, .sup-prog-step.is-done + .sup-prog-step.is-now::before { background: var(--color-green); }
+.sup-prog-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 29px; height: 29px; border-radius: 99px; font-size: 12px; font-weight: 800;
+  background: var(--surface-3); color: var(--text-secondary); border: 2px solid var(--surface-1); }
+.sup-prog-step.is-done .sup-prog-dot { background: var(--color-green); color: #fff; }
+.sup-prog-step.is-now .sup-prog-dot { background: var(--color-cyan); color: #fff; box-shadow: 0 0 0 4px var(--color-cyan-dim); }
+.sup-prog-lab { font-size: 11.5px; font-weight: 600; line-height: 1.3; color: var(--text-secondary); padding: 0 4px; }
+.sup-prog-step.is-done .sup-prog-lab, .sup-prog-step.is-now .sup-prog-lab { color: var(--text-primary); }
+.sup-prog.is-stopped .sup-prog-step:not(.is-done) .sup-prog-dot { background: var(--color-red-dim); color: var(--color-red); }
+
+/* ── Chronologie ── */
+.sup-timeline { margin: 0; padding: 0 0 0 4px; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.sup-timeline li { position: relative; display: flex; flex-direction: column; gap: 2px; padding-inline-start: 22px; font-size: 13px; color: var(--text-primary); }
+.sup-timeline li::before { content: ''; position: absolute; inset-inline-start: 0; top: 5px; width: 10px; height: 10px; border-radius: 99px; background: var(--color-cyan); box-shadow: 0 0 0 3px var(--color-cyan-dim); }
+.sup-timeline li:not(:last-child)::after { content: ''; position: absolute; inset-inline-start: 4px; top: 17px; bottom: -14px; width: 2px; background: var(--border-default); }
+.sup-timeline li span { font-size: 11.5px; color: var(--text-tertiary); }
+
+/* ── Cartes de commande (suivi) ── */
+.sup-orders { display: flex; flex-direction: column; gap: 12px; }
+.sup-order { width: 100%; text-align: start; font: inherit; color: inherit; cursor: pointer; padding: 16px 18px; border-radius: 14px;
+  background: var(--surface-1); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); transition: var(--ease-default); }
+.sup-order:hover, .sup-order:focus-visible { border-color: var(--border-strong); box-shadow: var(--shadow-md); transform: translateY(-1px); outline: none; }
+.sup-order-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.sup-order-t { font-size: 14.5px; font-weight: 700; color: var(--text-primary); overflow-wrap: anywhere; }
+.sup-order-s { margin-top: 3px; font-size: 12.5px; color: var(--text-tertiary); }
+.sup-order-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle); font-size: 12.5px; color: var(--text-secondary); }
+.sup-order-foot .sup-link { margin-inline-start: auto; }
+
+/* ── Filtres / recherche ── */
+.sup-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
+.sup-search { flex: 1; min-width: 220px; display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-subtle); color: var(--text-tertiary); }
+.sup-search:focus-within { border-color: var(--color-cyan); }
+.sup-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: inherit; font-size: 13px; color: var(--text-primary); }
+
+/* ── Catalogue : cartes produit ── */
+.sup-prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+.sup-prod { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); transition: var(--ease-default); }
+.sup-prod:hover { box-shadow: var(--shadow-md); border-color: var(--border-default); transform: translateY(-1px); }
+.sup-prod-top { display: flex; gap: 12px; align-items: flex-start; }
+.sup-prod-ico { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; font-size: 20px; color: var(--color-green); background: var(--color-green-dim); }
+.sup-prod-name { font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--text-primary); overflow-wrap: anywhere; }
+.sup-prod-mfr { margin-top: 2px; font-size: 12.5px; color: var(--text-secondary); }
+.sup-prod-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sup-prod-foot { margin-top: auto; flex-wrap: wrap; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sup-price { font-size: 17px; font-weight: 800; color: var(--text-primary); }
+.sup-price small { font-size: 11.5px; font-weight: 500; color: var(--text-tertiary); }

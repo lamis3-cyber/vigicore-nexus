@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Audio / video call overlay (components/CallOverlay.jsx)
+   Always dark (like every call app) whatever the dashboard theme; the accent follows --color-brand.
+   ========================================================================== */
+.call-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: radial-gradient(120% 90% at 50% 0%, #10294a 0%, #07101f 55%, #040a14 100%);
+  color: #fff;
+  animation: call-in .22s ease-out;
+}
+@keyframes call-in { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: none; } }
+
+.call-top {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  padding: 28px 20px 40px; text-align: center;
+  background: linear-gradient(180deg, rgba(0,0,0,.45), transparent);
+  pointer-events: none;
+}
+.call-peer-name { font-size: 22px; font-weight: 700; letter-spacing: .2px; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+.call-status { margin-top: 6px; font-size: 14px; color: rgba(255,255,255,.78); font-variant-numeric: tabular-nums; }
+.call-status.is-warn { color: #ffcf6b; }
+.call-status.is-ended { color: #ffb4bd; }
+
+.call-center { display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 2; }
+.call-avatar {
+  position: relative; width: 132px; height: 132px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 46px; font-weight: 700;
+  border: 2px solid rgba(255,255,255,.18);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+.call-avatar.is-ringing::before,
+.call-avatar.is-ringing::after {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%;
+  border: 2px solid var(--color-brand, #00d4e8); opacity: 0;
+  animation: call-pulse 2s ease-out infinite;
+}
+.call-avatar.is-ringing::after { animation-delay: 1s; }
+@keyframes call-pulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(1.7); opacity: 0; } }
+.call-peer-role { font-size: 13px; color: rgba(255,255,255,.6); }
+.call-hint {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.1); font-size: 12.5px; color: rgba(255,255,255,.85);
+}
+.call-hint-float { position: absolute; top: 96px; left: 50%; transform: translateX(-50%); z-index: 3; backdrop-filter: blur(6px); }
+
+.call-remote-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; z-index: 1; }
+.call-local-video {
+  position: absolute; right: 20px; bottom: 132px; z-index: 3;
+  width: 190px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; background: #000;
+  border: 2px solid rgba(255,255,255,.28); box-shadow: 0 8px 28px rgba(0,0,0,.5);
+  transform: scaleX(-1); /* mirror preview, like every call app */
+}
+
+.call-controls {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  display: flex; justify-content: center; align-items: center; gap: 22px;
+  padding: 26px 20px calc(30px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(0deg, rgba(0,0,0,.5), transparent);
+}
+.call-btn {
+  width: 60px; height: 60px; border-radius: 50%; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(8px);
+  transition: transform .12s ease, background .15s ease;
+}
+.call-btn:hover { background: rgba(255,255,255,.26); transform: scale(1.06); }
+.call-btn:focus-visible { outline: 3px solid var(--color-brand, #00d4e8); outline-offset: 3px; }
+.call-btn.is-off { background: #fff; color: #10294a; }
+.call-btn--decline { background: #e5334b; width: 68px; height: 68px; }
+.call-btn--decline:hover { background: #f0475e; }
+.call-btn--accept { background: #19b87a; width: 68px; height: 68px; animation: call-wiggle 1.4s ease-in-out infinite; }
+.call-btn--accept:hover { background: #22cb8a; }
+@keyframes call-wiggle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+@media (max-width: 640px) {
+  .call-avatar { width: 108px; height: 108px; font-size: 38px; }
+  .call-local-video { width: 108px; right: 12px; bottom: 120px; }
+  .call-controls { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .call-overlay, .call-btn--accept, .call-avatar.is-ringing::before, .call-avatar.is-ringing::after { animation: none; }
+}
+
+/* Call buttons in the conversation header (ChatThread.jsx) when a call cannot be started */
+.msgr-icon-btn:disabled { opacity: .45; cursor: not-allowed; }

@@ -1,0 +1,17 @@
+node_modules
+.env
+.env.*
+!.env.example
+# local databases anywhere in the tree (prisma/dev.db holds real accounts: never ship it in the image)
+**/*.db
+**/*.db-journal
+**/*.db.bak
+**/*.sqlite
+**/*.sqlite3
+# SQL dumps at the root only: prisma/**/migration.sql MUST stay in the image
+/*.sql
+**/*.log
+storage
+backups
+test
+coverage

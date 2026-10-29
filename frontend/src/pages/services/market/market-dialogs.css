@@ -1,0 +1,242 @@
+/* Fenêtres des demandes aux fabricants (fiche /services/:id) — sans paiement en ligne. */
+.mfc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
+  font: inherit; font-size: .86rem; font-weight: 700; cursor: pointer; border: 1px solid transparent; text-decoration: none; white-space: nowrap;
+}
+.mfc-btn:disabled { opacity: .5; cursor: not-allowed; }
+.mfc-btn--primary { background: var(--accent-grad); color: #021022; }
+.mfc-btn--ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+.mfc-btn--ghost:hover:not(:disabled) { border-color: var(--line-accent); }
+.mfc-count { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--cyan); color: #021022; font-size: 0.75rem; display: inline-flex; align-items: center; justify-content: center; }
+.mfc-link { background: none; border: 0; padding: 0; color: var(--cyan); font: inherit; font-weight: 700; cursor: pointer; }
+.mfc-strip {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 10px 14px; margin-bottom: var(--sp-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); font-size: .86rem;
+}
+.mfc-strip-cat { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.mfc-strip-text { color: var(--muted); }
+.mfc-strip .mfc-link { margin-left: auto; }
+.mfc-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--muted-2); }
+.mfc-dot.is-ok { background: #22c55e; }
+.mfc-dot.is-wait { background: #f59e0b; }
+.mfc-note { padding: 18px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: .9rem; }
+.mfc-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 16px; background: rgba(2, 8, 20, .62); backdrop-filter: blur(4px); }
+.mfc-modal {
+  width: min(560px, 100%); max-height: calc(100vh - 32px); display: flex; flex-direction: column; border-radius: var(--r-lg);
+  border: 1px solid var(--glass-border); background: var(--bg); box-shadow: 0 24px 64px rgba(0, 0, 0, .45); color: var(--ink); text-align: left;
+}
+.mfc-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.mfc-modal-head h3 { margin: 0; font-size: 1.05rem; }
+.mfc-x { background: none; border: 0; color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 4px; }
+.mfc-modal-body { padding: 16px 20px 20px; overflow: auto; }
+.mfc-form { display: flex; flex-direction: column; gap: 12px; }
+.mfc-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: var(--r-sm); background: var(--surface-hi); border: 1px solid var(--line); }
+.mfc-summary div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mfc-summary span { font-size: .8rem; color: var(--muted); }
+.mfc-summary b { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mfc-summary small { font-weight: 400; color: var(--muted-2); }
+.mfc-row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.mfc-field { display: flex; flex-direction: column; gap: 5px; font-size: .8rem; color: var(--muted); }
+.mfc-field input, .mfc-field textarea {
+  padding: 9px 11px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .9rem; resize: vertical;
+}
+.mfc-field input:focus, .mfc-field textarea:focus { outline: none; border-color: var(--line-accent); }
+.mfc-total b { font-size: 1.05rem; color: var(--ink); padding: 8px 0; font-variant-numeric: tabular-nums; }
+.mfc-fine { margin: 0; font-size: .78rem; line-height: 1.5; color: var(--muted-2); }
+.mfc-fine--top { color: var(--muted); font-size: .84rem; }
+.mfc-error { margin: 0; padding: 8px 12px; border-radius: var(--r-sm); background: rgba(239, 68, 68, .12); color: #f87171; font-size: .84rem; }
+.mfc-actions { display: flex; justify-content: flex-end; }
+.mfc-cats { display: grid; gap: 8px; }
+.mfc-cat { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); cursor: pointer; }
+.mfc-cat.is-on { border-color: var(--line-accent); background: var(--cyan-dim); }
+.mfc-cat input { margin-top: 3px; accent-color: var(--cyan); }
+.mfc-cat span { display: flex; flex-direction: column; gap: 2px; }
+.mfc-cat small { color: var(--muted); font-size: .78rem; }
+.mfc-reqs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.mfc-req { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
+.mfc-req-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.mfc-req-kind { font-size: 0.75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); }
+.mfc-req-meta, .mfc-req-lots { font-size: .8rem; color: var(--muted); }
+.mfc-req-refusal { font-size: .8rem; color: #f87171; }
+.mfc-state { flex: none; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.mfc-state.is-wait { color: #f59e0b; border-color: rgba(245, 158, 11, .4); }
+.mfc-state.is-ok { color: #22c55e; border-color: rgba(34, 197, 94, .4); }
+.mfc-state.is-done { color: var(--cyan); border-color: var(--line-accent); }
+.mfc-state.is-off { color: #f87171; border-color: rgba(248, 113, 113, .4); }
+.mfc-toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 1001; max-width: min(520px, calc(100vw - 32px));
+  padding: 12px 18px; border-radius: var(--r-md); background: var(--bg); border: 1px solid var(--glass-border); color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .4); font-size: .88rem;
+}
+html[data-theme="light"] .mfc-btn--primary, html[data-theme="light"] .mfc-count { color: #fff; }
+html[data-theme="light"] .mfc-modal, html[data-theme="light"] .mfc-toast { background: #fff; box-shadow: 0 24px 64px rgba(15, 31, 61, .18); }
+html[data-theme="light"] .mfc-overlay { background: rgba(15, 31, 61, .35); }
+.mfc-fieldset { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.mfc-fieldset legend { padding: 0 6px; font-size: 0.75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); }
+.mfc-buyer { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 8px 12px; border-radius: var(--r-sm); border: 1px dashed var(--line); font-size: .86rem; }
+.mfc-buyer span { font-size: 0.75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); }
+.mfc-buyer em { font-style: normal; color: #22c55e; font-size: .8rem; }
+.mfc-hint-err { margin: 0; color: #f87171; font-size: .8rem; }
+.mfc-field input[aria-invalid="true"] { border-color: rgba(248, 113, 113, .6); }
+.mfc-done { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 6px 0 0; }
+.mfc-done-mark { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; font-weight: 700; color: #021022; background: var(--accent-grad); }
+.mfc-done h4 { margin: 0; font-size: 1.08rem; }
+.mfc-done > p { margin: 0; color: var(--muted); font-size: .88rem; max-width: 42ch; }
+.mfc-recap { width: 100%; margin: 4px 0 0; display: grid; gap: 6px; text-align: start; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
+.mfc-recap div { display: flex; justify-content: space-between; gap: 12px; font-size: .86rem; }
+.mfc-recap dt { color: var(--muted); }
+.mfc-recap dd { margin: 0; font-weight: 600; text-align: end; }
+.mfc-steps { width: 100%; margin: 0; padding-inline-start: 22px; text-align: start; display: grid; gap: 4px; font-size: .86rem; color: var(--muted); }
+.mfc-done .mfc-actions { width: 100%; gap: 8px; }
+[dir="rtl"] .mfc-strip .mfc-link { margin-left: 0; margin-right: auto; }
+
+@media (max-width: 640px) {
+  .mfc-req { flex-direction: column; }
+  .mfc-modal { max-height: calc(100vh - 16px); }
+}
+.mfc-field select {
+  padding: 9px 11px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .9rem;
+}
+.mfc-field select:focus { outline: none; border-color: var(--line-accent); }
+.mfc-field input, .mfc-field textarea, .mfc-field select { color-scheme: dark; }
+html[data-theme="light"] .mfc-field input, html[data-theme="light"] .mfc-field textarea, html[data-theme="light"] .mfc-field select { color-scheme: light; }
+
+/* Carte « Se connecter pour commander » (visiteur) : compacte, tient dans l'écran sans défilement */
+.mfc-overlay { z-index: 100000; } /* au-dessus de la barre de navigation du site */
+.mfc-gate { display: flex; flex-direction: column; gap: 14px; }
+.mfc-gate-product { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface-hi); }
+.mfc-gate-product img, .mfc-gate-thumb { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex: none; background: var(--surface); }
+.mfc-gate-product div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mfc-gate-product strong { font-size: .88rem; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.mfc-gate-product span { font-size: .76rem; color: var(--muted); }
+.mfc-gate-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.mfc-gate-steps li { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 6px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+.mfc-gate-steps b { width: 20px; height: 20px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: .72rem; border: 1px solid currentColor; }
+.mfc-gate-steps li.is-now { color: var(--ink); border-color: var(--line-accent); background: var(--cyan-dim); }
+.mfc-gate-steps li.is-now b { background: var(--accent-grad); color: #021022; border-color: transparent; }
+.mfc-gate-lead { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--muted); }
+.mfc-gate-actions { display: grid; gap: 8px; }
+.mfc-gate-actions .mfc-btn { width: 100%; padding: 10px 16px; }
+.mfc-gate .mfc-fine a { color: var(--cyan); }
+
+/* ───────── Refonte : fenêtre de demande, plus sobre et mieux structurée ───────── */
+.mfc-overlay { z-index: 2147483000; padding: 24px 16px; align-items: center; }
+.mfc-modal { width: min(620px, 100%); max-height: min(92vh, 860px); border-radius: 16px; overflow: hidden; }
+.mfc-modal-head { padding: 18px 24px; background: var(--surface); flex: none; }
+.mfc-modal-head h3 { font-size: 1.12rem; font-weight: 700; letter-spacing: -.01em; }
+.mfc-x { width: 32px; height: 32px; display: grid; place-items: center; padding: 0; border-radius: 8px; transition: background .15s, color .15s; }
+.mfc-x:hover { background: var(--surface-hi); color: var(--ink); }
+.mfc-modal-body { padding: 20px 24px 0; scrollbar-width: thin; }
+.mfc-form { gap: 16px; }
+
+/* Bandeau acheteur */
+.mfc-strip { flex-wrap: nowrap; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 16px; border-radius: 10px; }
+.mfc-strip-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.mfc-strip-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.mfc-strip-top strong { font-size: .92rem; }
+.mfc-strip-text { font-size: .82rem; line-height: 1.4; }
+.mfc-strip .mfc-dot { width: 10px; height: 10px; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 14%, transparent); color: var(--muted-2); }
+.mfc-dot.is-ok { color: #22c55e; } .mfc-dot.is-wait { color: #f59e0b; } .mfc-dot.is-off { color: #f87171; background: #f87171; }
+.mfc-btn--sm { padding: 7px 14px; font-size: .8rem; flex: none; }
+.mfc-btn--outline { background: transparent; border-color: var(--line-accent); color: var(--cyan); }
+.mfc-btn--outline:hover { background: var(--cyan-dim); }
+
+/* Sections du formulaire */
+.mfc-fieldset { padding: 14px 16px 16px; gap: 12px; border-radius: 12px; background: color-mix(in srgb, var(--surface) 60%, transparent); }
+.mfc-fieldset legend { padding: 0 8px; margin-left: -4px; font-size: .82rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
+
+/* Fiche produit */
+.mfc-summary { align-items: flex-start; padding: 14px 16px; border-radius: 10px; }
+.mfc-summary-info { flex: 1; gap: 4px; }
+.mfc-summary-info strong { font-size: .95rem; line-height: 1.35; }
+.mfc-summary-info span { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: .8rem; }
+.mfc-summary-info em { font-style: normal; padding: 1px 8px; border-radius: 6px; border: 1px solid var(--line); font-size: .74rem; color: var(--muted-2); }
+.mfc-summary-price { text-align: end; font-size: 1.05rem; }
+.mfc-summary-price small { display: block; font-size: .72rem; margin-top: 2px; }
+
+/* Champs */
+.mfc-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.mfc-field { gap: 6px; font-size: .82rem; font-weight: 500; }
+.mfc-field input, .mfc-field textarea, .mfc-field select { height: 42px; padding: 0 12px; border-radius: 8px; width: 100%; box-sizing: border-box; transition: border-color .15s, box-shadow .15s; }
+.mfc-field textarea { height: auto; padding: 10px 12px; min-height: 76px; }
+.mfc-field input:focus, .mfc-field textarea:focus, .mfc-field select:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px var(--cyan-dim); }
+.mfc-field input::placeholder, .mfc-field textarea::placeholder { color: var(--muted-2); }
+.mfc-field select {
+  appearance: none; -webkit-appearance: none; padding-inline-end: 38px; text-overflow: ellipsis; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%2394a3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+[dir="rtl"] .mfc-field select { background-position: left 14px center; }
+.mfc-total { justify-content: flex-start; }
+.mfc-total b { height: 42px; display: flex; align-items: center; padding: 0 12px; border-radius: 8px; border: 1px dashed var(--line); background: transparent; font-size: 1.05rem; }
+
+/* Pied d'action collant : le bouton reste visible pendant le défilement */
+.mfc-modal-body > .mfc-form > .mfc-actions, .mfc-modal-body > .mfc-actions {
+  position: sticky; bottom: 0; margin: 0 -24px; padding: 14px 24px; justify-content: flex-end; gap: 10px;
+  background: var(--bg); border-top: 1px solid var(--line); z-index: 1;
+}
+.mfc-modal-body > .mfc-form { padding-bottom: 0; }
+.mfc-actions .mfc-btn--primary { padding: 11px 24px; font-size: .9rem; min-width: 180px; }
+.mfc-btn--primary:hover:not(:disabled) { filter: brightness(1.08); }
+.mfc-btn:focus-visible, .mfc-x:focus-visible, .mfc-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.mfc-fine { font-size: .78rem; }
+
+html[data-theme="light"] .mfc-modal-head { background: #f6f8fc; }
+html[data-theme="light"] .mfc-modal-body > .mfc-form > .mfc-actions { background: #fff; }
+
+@media (max-width: 640px) {
+  .mfc-overlay { padding: 0; align-items: end; }
+  .mfc-modal { width: 100%; max-height: 94vh; border-radius: 16px 16px 0 0; }
+  .mfc-modal-head, .mfc-modal-body { padding-inline: 16px; }
+  .mfc-modal-body > .mfc-form > .mfc-actions { margin: 0 -16px; padding: 12px 16px; }
+  .mfc-actions .mfc-btn--primary { width: 100%; }
+  .mfc-strip { flex-wrap: wrap; }
+}
+
+/* Barre de défilement assortie au thème (fin, discrète, sans fond blanc) */
+.mfc-modal { color-scheme: dark; }
+html[data-theme="light"] .mfc-modal { color-scheme: light; }
+.mfc-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, .35) transparent;
+}
+.mfc-modal-body::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
+.mfc-modal-body::-webkit-scrollbar-track { background: transparent; margin: 6px 0; }
+.mfc-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, .32); border-radius: 999px; border: 3px solid transparent; background-clip: content-box;
+}
+.mfc-modal-body::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, .55); background-clip: content-box; }
+.mfc-modal-body::-webkit-scrollbar-corner, .mfc-modal-body::-webkit-scrollbar-button { display: none; background: transparent; }
+html[data-theme="light"] .mfc-modal-body { scrollbar-color: rgba(15, 31, 61, .28) transparent; }
+html[data-theme="light"] .mfc-modal-body::-webkit-scrollbar-thumb { background: rgba(15, 31, 61, .25); background-clip: content-box; }
+
+/* Écran de confirmation (commande / contact) : aéré, bouton jamais collé au bord */
+.mfc-done { gap: 12px; padding: 8px 0 24px; }
+.mfc-done-mark { width: 56px; height: 56px; font-size: 1.6rem; box-shadow: 0 0 0 8px var(--cyan-dim); }
+.mfc-done h4 { font-size: 1.15rem; margin-top: 4px; }
+.mfc-done > p { max-width: 46ch; line-height: 1.55; }
+.mfc-recap { padding: 12px 16px; gap: 10px; border-radius: 10px; }
+.mfc-recap div { align-items: baseline; }
+.mfc-recap dd { overflow-wrap: anywhere; }
+.mfc-steps { padding: 4px 0 0 22px; line-height: 1.5; }
+.mfc-done .mfc-actions { margin-top: 6px; justify-content: center; }
+.mfc-done .mfc-actions .mfc-btn { min-width: 160px; }
+
+
+/* ───────── Fenêtre flottante : jamais collée à la barre de navigation ───────── */
+.mfc-overlay { z-index: 2147483647; isolation: isolate; padding: clamp(24px, 7vh, 72px) 16px; align-items: center; justify-items: center; background: rgba(2, 8, 20, .72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.mfc-modal { max-height: min(86vh, 820px); border-radius: 20px; box-shadow: 0 32px 90px rgba(0, 0, 0, .6), 0 0 0 1px color-mix(in srgb, var(--cyan, #00e8ff) 14%, transparent); animation: mfc-pop .22s cubic-bezier(.2, .8, .2, 1) both; }
+.mfc-modal-head { position: relative; z-index: 1; }
+html.mfc-modal-open .navbar, html.mfc-modal-open .nav-peek, html.mfc-modal-open .dash-nav { z-index: 0 !important; }
+@keyframes mfc-pop { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+html[data-theme="light"] .mfc-overlay { background: rgba(15, 31, 61, .45); }
+@media (max-width: 640px) {
+  .mfc-overlay { padding: 0; align-items: end; }
+  .mfc-modal { width: 100%; max-height: 92vh; border-radius: 20px 20px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { .mfc-modal { animation: none; } }
+
+/* Cartes d'accès (connexion / fiche d'exemple) : le dernier élément ne colle plus au bord de la fenêtre */
+.mfc-gate { padding-bottom: 26px; }
+.mfc-gate-actions .mfc-btn { padding: 12px 18px; }
+.mfc-gate .mfc-fine { margin: 2px 0 0; text-align: center; }

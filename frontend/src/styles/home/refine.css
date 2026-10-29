@@ -1,0 +1,116 @@
+/* ==========================================================================
+   DESIGN REFINEMENT PASS (loaded last, dark-theme overrides are scoped with
+   html:not([data-theme="light"]) so light mode is untouched).
+   1) hero: detail card lines up with the pitch column and breathes
+   2) readable small text: footnotes, labels, footer (was 2.0-3.9:1, now >= 4.5:1)
+   ========================================================================== */
+
+/* ---- 1. Hero: detail card is part of the pitch column ---- */
+@media (min-width: 961px) {
+  .hero .hero-intro .vigi-detail-slot {
+    max-width: 540px;                       /* same width as title + description */
+    margin-top: clamp(22px, 4vh, 40px);
+    position: relative;
+  }
+  /* thin rule that separates "pitch" from "live module" */
+  .hero .hero-intro .vigi-detail-slot::before {
+    content: ""; position: absolute; left: 0; right: 0; top: calc(-1 * clamp(11px, 2vh, 20px));
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 232, 255, .35), rgba(0, 232, 255, 0));
+  }
+}
+/* small text on the orbit cards: no smaller than 12px */
+.hero .vigi-orbit .vigi-tab-sub { font-size: clamp(12px, 2cqw, 12.5px); }
+.hero .vigi-orbit .vigi-tab-num { font-size: 12px; }
+
+/* ---- 2. Readable small text (dark theme) ---- */
+html:not([data-theme="light"]) .footer-bottom > span:not(.footer-bottom-badge) { color: rgba(170, 205, 225, .72); }
+html:not([data-theme="light"]) .footer-tagline { color: rgba(0, 232, 255, .75); }
+html:not([data-theme="light"]) .footer-bottom-badge { color: rgba(0, 232, 255, .8); font-size: 12px; }
+html:not([data-theme="light"]) .footer-bottom-legal { color: rgba(0, 232, 255, .8); }
+html:not([data-theme="light"]) .footer-newsletter-desc { color: rgba(170, 215, 240, .75); }
+html:not([data-theme="light"]) .footer-col a { color: rgba(170, 215, 240, .78); }
+html:not([data-theme="light"]) .footer-col a:hover { color: var(--cyan); }
+
+html:not([data-theme="light"]) .nx-step-detail { color: rgba(190, 225, 240, .75); }
+html:not([data-theme="light"]) .nx-step-row em { color: rgba(190, 225, 240, .78); }
+html:not([data-theme="light"]) .conv-metric-label,
+html:not([data-theme="light"]) .conv-disclaimer { color: rgba(175, 220, 240, .75); }
+html:not([data-theme="light"]) .nx-lane-count small { color: rgba(175, 205, 225, .78); }
+
+html:not([data-theme="light"]) .vp-coming-tag { color: rgba(0, 232, 255, .82); }
+html:not([data-theme="light"]) #video-section .vd { color: rgba(170, 215, 240, .78); }
+html:not([data-theme="light"]) #video-section .video-topics span { color: rgba(0, 232, 255, .85); }
+html:not([data-theme="light"]) .mkt-fine { color: rgba(176, 208, 226, .78); }
+html:not([data-theme="light"]) .dp-note,
+html:not([data-theme="light"]) .md-hint { opacity: .85; }
+html:not([data-theme="light"]) .st-win-tag { opacity: .9; }
+html:not([data-theme="light"]) .wim-anchor-text { color: rgba(0, 232, 255, .8); }
+html:not([data-theme="light"]) .threshold-index { color: rgb(90, 170, 255); }
+/* the violet/blue module pills were 4.0:1 — lighten slightly */
+html:not([data-theme="light"]) .vigi-detail-pill { color: color-mix(in srgb, rgb(var(--tab-rgb)) 75%, #fff); }
+
+
+/* ---- 3. Light theme: accent text and small labels were too pale on the pale page ----
+   (bright cyan #00e8ff / #00C8E0 on white is ~1.5:1; these are ≥ 4.5:1) */
+html[data-theme="light"] .section-title-accent {
+  background-image: linear-gradient(90deg, #00758c 0%, #0a8a78 55%, #0b6f9e 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html[data-theme="light"] .section-eyebrow { color: #0a748c; }
+html[data-theme="light"] .section-desc { color: rgba(15, 31, 61, .72); }
+
+/* hero accent line: large text needs 3:1, #0EA5A0 on the pale page was 2.6:1 */
+html[data-theme="light"] .hero-title-xl em { color: #0a8a86; }
+
+/* "Platform preview": copy column was grey-on-pale (~2:1) */
+html[data-theme="light"] .dp-eyebrow { color: #0a748c; }
+html[data-theme="light"] .dp-h em { background-image: linear-gradient(90deg, #00758c 0%, #0a8a78 55%, #0b6f9e 100%); }
+html[data-theme="light"] .dp-lead,
+html[data-theme="light"] .dp-feats span,
+html[data-theme="light"] .dp-note { color: #3f5670; opacity: 1; }
+html[data-theme="light"] .dp-feats b { color: #0f1f3d; }
+html[data-theme="light"] .dp-ctl { background: rgba(255, 255, 255, .7); border-color: rgba(15, 31, 61, .2); }
+html[data-theme="light"] .dp-ctl button:not(.on) { color: #3f5670; }
+
+/* "Who uses VigiCore Nexus": this section had no light-theme rules, so the title,
+   sub-line and role names were near-white on the pale page */
+html[data-theme="light"] .st-root { --st-text: #0f1f3d; --st-muted: #3f5670; }
+html[data-theme="light"] .st-title { background-image: linear-gradient(100deg, #0f1f3d 30%, color-mix(in srgb, var(--acc) 40%, #0f1f3d) 70%, #0f1f3d); }
+html[data-theme="light"] .st-eyebrow { color: color-mix(in srgb, var(--acc) 45%, #05303a); }
+html[data-theme="light"] .st-node:not(.is-on) .st-name { color: #0f1f3d; }
+html[data-theme="light"] .st-node.is-done .st-name { color: #0f1f3d; }
+html[data-theme="light"] .st-node .st-short,
+html[data-theme="light"] .st-node.is-done .st-short,
+html[data-theme="light"] .st-node.is-on .st-short { color: #3f5670; }
+html[data-theme="light"] .st-node .st-time { color: #51677f; }
+html[data-theme="light"] .st-node.is-done .st-time,
+html[data-theme="light"] .st-node.is-on .st-time { color: color-mix(in srgb, var(--nc, var(--acc)) 55%, #0a2a3a); }
+html[data-theme="light"] .st-node.is-on .st-name { color: #05121f; }
+
+/* anchor sentences under the Why / workflow sections */
+html[data-theme="light"] .wim-anchor-text,
+html[data-theme="light"] .wl-anchor { color: #0a6b82; }
+
+/* ---- Video section: no video yet → the card is a plain "coming soon" panel, not a fake player ---- */
+.video-placeholder:has(.play-btn[aria-hidden="true"]) { cursor: default; }
+.video-placeholder:has(.play-btn[aria-hidden="true"]):hover .play-btn { transform: none; }
+@media (max-width: 600px) {
+  .video-frame { aspect-ratio: auto; }
+  .video-frame .video-placeholder { position: relative; inset: auto; padding: 56px 14px 24px; gap: 12px; }
+  .video-frame .vp-coming-tag { top: 14px; right: 50%; transform: translateX(50%); white-space: nowrap; }
+}
+
+/* ---- Light theme: closing CTA (cyan gradient + pale trust line were ~1.5:1) ---- */
+html[data-theme="light"] .cta-title em { background-image: linear-gradient(90deg, #00758c 0%, #0a8a78 100%); }
+html[data-theme="light"] .cta-trust-item { color: #3f5670; }
+html[data-theme="light"] .cta-trust-item svg polyline { stroke: #0a8a6a; }
+html[data-theme="light"] .cta-btn-sec { color: #0a6b82; border-color: rgba(10, 107, 130, .45); background: rgba(255, 255, 255, .6); }
+
+/* Phones: the "secure · encrypted" tag no longer squeezes the letter heading */
+@media (max-width: 600px) {
+  .lt-letterhead { flex-wrap: wrap; row-gap: 6px; }
+  .lt-letterhead span { width: 100%; }
+}
+html[data-theme="light"] .cta-trust-item span { color: #3f5670; }

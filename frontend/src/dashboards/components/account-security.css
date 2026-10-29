@@ -1,0 +1,21 @@
+/* Account security card (change password + deactivate), shared by every role.
+   Theme tokens only, so it follows light and dark. */
+.acs { margin-top: 14px; }
+.acs-block + .acs-block { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-subtle); }
+.acs-title { font-size: 13.5px; font-weight: 700; color: var(--text-primary); margin: 0 0 3px; }
+.acs-sub { font-size: 12px; color: var(--text-secondary); margin: 0 0 12px; line-height: 1.45; }
+.acs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.acs-grid .form-group { margin: 0; }
+.acs-hint { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+.acs-hint.is-ok { color: var(--color-green); }
+.acs-hint.is-bad { color: var(--color-red); }
+.acs-error { font-size: 12px; color: var(--color-red); margin: 0 0 10px; }
+.acs-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.acs-danger { border: 1px solid color-mix(in srgb, var(--color-red) 35%, transparent); background: var(--color-red-dim);
+  border-radius: var(--radius-md); padding: 14px 16px; }
+.acs-danger .acs-title { color: var(--color-red); }
+.acs-confirm { margin-top: 12px; padding-top: 12px; border-top: 1px dashed color-mix(in srgb, var(--color-red) 35%, transparent); }
+.acs-check { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: var(--text-primary); margin: 10px 0 12px; cursor: pointer; line-height: 1.4; }
+.acs-check input { margin-top: 2px; accent-color: var(--color-red); }
+.acs-note { font-size: 11.5px; color: var(--text-tertiary); margin: 10px 0 0; line-height: 1.45; }
