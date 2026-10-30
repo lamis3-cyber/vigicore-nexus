@@ -185,14 +185,24 @@ export function parseRecord(body: any, role: string): Parsed {
     if (!type) return { ok: false, message: 'productType is invalid.' };
     const productName = txt(body.productName, 200);
     if (!productName) return { ok: false, message: 'productName is required.' };
+
+    const manufacturerName = txt(body.manufacturerName, 200);
+    if (!manufacturerName) {
+      return { ok: false, message: 'manufacturerName is required.' };
+    }
     if (!realDate(body.onsetDate) || !notFuture(body.onsetDate)) return { ok: false, message: 'onsetDate must be a valid, non-future YYYY-MM-DD date.' };
     if (!['legere', 'moderee', 'grave', 'urgence'].includes(body.severity)) return { ok: false, message: 'severity is invalid.' };
     const symptomDesc = txt(body.symptomDesc, 5000);
     const symptoms = Array.isArray(body.symptoms) ? body.symptoms.slice(0, 20).map((x: unknown) => txt(x, 100)).filter(Boolean) : [];
     if (!symptomDesc && symptoms.length === 0) return { ok: false, message: 'Describe the symptoms (symptomDesc or symptoms).' };
     const fields: Field[] = [
-      f('recordKind', 'PATIENT'), f('productType', type), f('productName', productName),
-      f('onsetDate', body.onsetDate), f('severity', body.severity), f('symptoms', symptoms),
+      f('recordKind', 'PATIENT'),
+      f('productType', type),
+      f('productName', productName),
+      f('manufacturerName', manufacturerName),
+      f('onsetDate', body.onsetDate),
+      f('severity', body.severity),
+      f('symptoms', symptoms),
     ];
     // Free text may contain identifying details: protected by default (hidden from every non-author reader).
     if (symptomDesc) fields.push(f('symptomDesc', symptomDesc, 'patient-identifying'));

@@ -7,8 +7,7 @@ import useDeclarationDraft from '../../lib/useDeclarationDraft';
 import { validateScannedLot } from '../../lib/lotVerification';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
-import { addDrDeclaration } from '../../data/doctorVigilance';
-import { listMine, createRecord, uploadAttachments, getDestinations } from '../../../lib/declarationsApi';
+import { listMyRecords, createRecord, uploadAttachments, getDestinations } from '../../../lib/declarationsApi';
 import { listMyDoctors } from '../../../lib/careApi';
 import { tr, localeTag } from '../../../i18n/translate.js';
 
@@ -96,6 +95,7 @@ function initialState() {
     stepIdx: 0,
     productType: 'medicament',
     productName: '',
+    manufacturerName: '',
     lotNumber: '',
     expiryDate: '',
     onsetDate: '',
@@ -138,22 +138,50 @@ export default function PatientDeclarer({ onNavigate }) {
   const [mine, setMine] = useState([]);
   useEffect(() => {
     let off = false;
-    listMine().then((r) => { if (!off && Array.isArray(r)) setMine(r); }).catch(() => {});
-    return () => { off = true; };
+    listMyRecords().then((r) => {
+      if (!off && r.ok) setMine(r.records);
+    }).catch(() => {});    return () => { off = true; };
   }, []);
   const duplicate = useMemo(() => {
-    const first = s.productName.trim().split(' ')[0].toLowerCase();
-    if (first.length < 3) return null;
-    const hit = mine.find((d) => d.status !== 'REJECTED' && String(d.description || '').toLowerCase().includes(first));
-    return hit ? { ref: String(hit.id).slice(0, 8), effect: String(hit.description).slice(0, 60), date: new Date(hit.createdAt).toLocaleDateString(localeTag()), status: hit.status } : null;
+  const first = s.productName.trim().split(' ')[0].toLowerCase();
+  if (first.length < 3) return null;
+
+  const hit = mine.find((record) => {
+    const product = String(
+      record.fields?.find((f) => f.key === 'productName')?.value || ''
+    ).toLowerCase();
+
+    return record.status !== 'WITHDRAWN' && product.includes(first);
+  });
+
+  if (!hit) return null;
+
+  const description = String(
+    hit.fields?.find((f) => f.key === 'symptomDesc')?.value ||
+    hit.fields?.find((f) => f.key === 'symptoms')?.value ||
+    ''
+  );
+
+  return {
+    ref: String(hit.id).slice(0, 8),
+    effect: description.slice(0, 60),
+    date: new Date(hit.createdAt).toLocaleDateString(localeTag()),
+    status: hit.status,
+  };
   }, [s.productName, mine]);
 
   const toggleSymptom = (label) => set((p) => ({ ...p, symptoms: p.symptoms.includes(label) ? p.symptoms.filter((x) => x !== label) : [...p.symptoms, label] }));
   function fail(title, msg) { toast('error', tr(title), tr(msg), 'ti ti-alert-triangle'); return false; }
 
   function validate(key) {
-    if (key === 'produit' && !s.productName.trim()) return fail('Produit requis', 'Indiquez le nom du produit concerné avant de continuer.');
-    if (key === 'symptomes') {
+     if (key === 'produit') {
+       if (!s.productName.trim()) {
+         return fail('Produit requis', 'Indiquez le nom du produit concerné avant de continuer.');
+       }
+       if (!s.manufacturerName.trim()) {
+         return fail('Fabricant requis', 'Indiquez le nom du fabricant du produit concerné.');
+       }
+}    if (key === 'symptomes') {
       if (!s.onsetDate) return fail('Date requise', "Indiquez la date d'apparition des symptômes.");
       if (s.onsetDate > todayIso()) return fail('Date invalide', "La date d'apparition ne peut pas être dans le futur.");
       if (!s.symptoms.length && !s.symptomDesc.trim()) return fail('Symptômes requis', 'Sélectionnez au moins un symptôme ou décrivez ce que vous avez ressenti.');
@@ -166,12 +194,10 @@ export default function PatientDeclarer({ onNavigate }) {
   const goTo = (key) => set({ stepIdx: Math.max(0, STEPS.findIndex((x) => x.key === key)) });
   const prev = () => set({ stepIdx: Math.max(0, s.stepIdx - 1) });
 
-  // Same canonical creation path as every other role (addDrDeclaration), which
-  // stamps organization/author from the real session. The 'urgence' level does
-  // not exist in the shared severity vocabulary (legere/moderee/grave) that the
-  // professional pages render, so it is stored as 'grave'.
-  // Identifiant d'idempotence conservé tant que le contenu ne change pas : un double-clic ou un renvoi
-  // ne crée jamais deux enregistrements.
+    // Save the patient declaration through the native records API.
+  // Patient severity "urgence" is normalized to "grave" for compatibility
+  // with the shared professional severity vocabulary.
+  // Keep the idempotency key while the payload remains unchanged to prevent duplicates.
   const sendingRef = useRef(false);
   const requestRef = useRef(null);
   function requestIdFor(payload) {
@@ -195,6 +221,7 @@ export default function PatientDeclarer({ onNavigate }) {
         kind: 'PATIENT',
         productType: s.productType,
         productName: s.productName.trim(),
+        manufacturerName: s.manufacturerName.trim(),
         lotNumber: opt(s.lotNumber),
         expiryDate: opt(s.expiryDate),
         onsetDate: s.onsetDate,
@@ -212,44 +239,59 @@ export default function PatientDeclarer({ onNavigate }) {
         toast('error', tr("Échec de l'enregistrement"), res.message ? tr(res.message) : tr("La déclaration n'a pas été enregistrée. Vos informations n'ont pas été perdues — réessayez."), 'ti ti-alert-triangle');
         return;
       }
+      
       requestRef.current = null;
       let attNote = '';
+
       if (files.length) {
-        const up = await uploadAttachments(res.record.id, files, 'records', notes).catch(() => ({ failed: files.map((f) => ({ name: f.name, message: 'Erreur inattendue.' })) }));
+        const up = await uploadAttachments(
+          res.record.id, files, 'records', notes
+        ).catch(() => ({
+          failed: files.map((f) => ({
+            name: f.name,
+            message: 'Erreur inattendue.'
+          }))
+        }));
+
         attNote = up.failed.length
           ? ` ${tr("Pièces non conservées :")} ${up.failed.map((x) => x.name).join(', ')} (${up.failed[0].message}).`
           : ` ${tr("{0} pièce(s) conservée(s) chiffrée(s), visible(s) de vous seul.", [files.length])}`;
       }
-      const description = s.symptomDesc.trim() || s.symptoms.join(', ') || 'Incident signalé par le patient';
-      const created = addDrDeclaration({
-        type: s.productType,
-        patientId: null,
-        manualPatientName: user?.name || null,
-        manualPatientIdNum: null,
-        product: s.productName.trim(),
-        lot: s.lotNumber.trim() || 'N/C',
-        manufacturer: '',
-        problemType: null,
-        description,
-        severity: s.severity === 'urgence' ? 'grave' : s.severity,
-        onsetDate: s.onsetDate,
-        attachmentNames: files.map((f) => f.name),
-        kind: 'incident',
-        dept: 'Patient',
-      });
+
+      const recordRef = String(res.record.id).slice(0, 8);
+      const sharedNames = doctors
+        .filter((d) => shared.includes(d.doctorId))
+        .map((d) => d.displayName)
+        .join(', ');
+
       reset();
       setFiles([]);
-      onNavigate('declarations');
-      const sharedNames = doctors.filter((d) => shared.includes(d.doctorId)).map((d) => d.displayName).join(', ');
       setShareWith([]);
-      setTimeout(() => toast('success', tr("Déclaration enregistrée"), (sharedNames
-        ? tr("{0} enregistrée dans votre espace et partagée avec {1}. Elle n'a pas été transmise au CNPM ni à un fabricant.", [created.ref, sharedNames])
-        : tr("{0} enregistrée dans votre espace. Elle n'a PAS été transmise au CNPM, à un fabricant ni à votre médecin.", [created.ref])) + attNote, 'circle-check'), 300);
+      onNavigate('declarations');
+
+      setTimeout(() => toast(
+        'success',
+        tr("Déclaration enregistrée"),
+        (sharedNames
+          ? tr("Réf. {0} enregistrée dans votre espace et partagée avec {1}. Elle n'a pas été transmise au fabricant ni au CNPM.", [recordRef, sharedNames])
+          : tr("Réf. {0} enregistrée dans votre espace. Elle n'a pas été transmise au fabricant ni au CNPM.", [recordRef])
+        ) + attNote,
+        'circle-check'
+      ), 300);
+
     } catch (err) {
       console.error('submitDeclaration failed:', err);
-      toast('error', tr("Échec de l'envoi"), tr("La déclaration n'a pas pu être enregistrée. Vos informations n'ont pas été perdues — réessayez."), 'ti ti-alert-triangle');
-    } finally { sendingRef.current = false; }
+      toast(
+        'error',
+        tr("Échec de l'envoi"),
+        tr("La déclaration n'a pas pu être enregistrée. Vos informations n'ont pas été perdues — réessayez."),
+        'ti ti-alert-triangle'
+      );
+    } finally {
+      sendingRef.current = false;
+    }
   }
+
 
   const summary = [
     { label: 'Déclarant', value: user?.name || '' },

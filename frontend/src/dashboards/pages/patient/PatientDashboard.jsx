@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Icon from '../../components/Icon';
 import { useAuth } from '../../context/AuthContext';
-import { listMine } from '../../../lib/declarationsApi';
-import { usePersonalList, todayIso } from '../../lib/usePersonal';
+import { listMyRecords } from '../../../lib/declarationsApi';
+import { presentRecordStatus, recordTitle } from '../../lib/myDeclarations.js';import { usePersonalList, todayIso } from '../../lib/usePersonal';
 import { productsNeedingAction } from '../../lib/patientProducts';
 import { isActiveTreatment } from '../../lib/treatments';
 import { tr, localeTag } from '../../../i18n/translate.js';
@@ -14,22 +14,25 @@ function EmptyState({ children }) {
   return <div className="u-fs-12 u-t102" style={{ padding: '8px 0' }}>{children}</div>;
 }
 
-const STATUS_LABEL = {
-  RECEIVED: 'Reçue par la vigilance',
-  PENDING: 'Enregistrée, envoi en cours',
-  FAILED: 'Non reçue — à renvoyer',
-  NOT_ROUTABLE: 'Aucun destinataire pour le moment',
-  REJECTED: 'Refusée',
-};
 
 export default function PatientDashboard({ onNavigate }) {
   const { user } = useAuth();
   const [subs, setSubs] = useState(null); // null = loading
   useEffect(() => {
     let off = false;
-    listMine().then((r) => { if (!off) setSubs(Array.isArray(r) ? r : []); }).catch(() => { if (!off) setSubs([]); });
-    return () => { off = true; };
-  }, []);
+  
+    listMyRecords()
+      .then((r) => {
+        if (!off) setSubs(r.ok ? r.records : []);
+      })
+      .catch(() => {
+        if (!off) setSubs([]);
+      });
+  
+    return () => {
+      off = true;
+    };
+}, []);
 
   const treatments = usePersonalList('treatment');
   const appointments = usePersonalList('appointment');
@@ -42,9 +45,7 @@ export default function PatientDashboard({ onNavigate }) {
   const alerts = productsNeedingAction(products.items || []);
 
   const total = subs?.length ?? 0;
-  const received = subs?.filter((s) => s.status === 'RECEIVED').length ?? 0;
-  const toFix = subs?.filter((s) => s.status === 'PENDING' || s.status === 'FAILED' || s.status === 'NOT_ROUTABLE').length ?? 0;
-
+  const toFix = subs?.filter((s) => s.status === 'DRAFT').length ?? 0;
   return (
     <div className="view is-active">
       <div className="page-header">
@@ -63,7 +64,13 @@ export default function PatientDashboard({ onNavigate }) {
             <div className="kpi-icon u-t15"><Icon name="clipboard" /></div>
           </div>
           <div className="kpi-value">{subs === null ? '…' : total}</div>
-          <div className="kpi-sub">{subs === null ? tr("Chargement") : total ? tr("{0} reçue(s) par la vigilance", [received]) : tr("Aucune déclaration")}</div>
+          <div className="kpi-sub">
+  {subs === null
+    ? tr("Chargement")
+    : total
+      ? tr("{0} enregistrée(s) dans votre espace", [total])
+      : tr("Aucune déclaration")}
+</div>
         </div>
         <div className="kpi-card">
           <div className="kpi-header">
@@ -109,12 +116,29 @@ export default function PatientDashboard({ onNavigate }) {
         </div>
         {subs === null ? <EmptyState>{tr("Chargement…")}</EmptyState>
           : total === 0 ? <EmptyState>{tr("Aucune activité récente.")}</EmptyState>
-          : subs.slice(0, 5).map((s) => (
-            <div key={s.id} className="u-fs-12" style={{ padding: '8px 0', display: 'flex', justifyContent: 'space-between', gap: 12 }}>
-              <span>{new Date(s.createdAt).toLocaleDateString(localeTag())} — {String(s.description).slice(0, 80)}</span>
-              <b>{STATUS_LABEL[s.status] || tr(s.status)}</b>
-            </div>
-          ))}
+          : subs.slice(0, 5).map((record) => {
+    const status = presentRecordStatus(record);
+
+    return (
+      <div
+        key={record.id}
+        className="u-fs-12"
+        style={{
+          padding: '8px 0',
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: 12
+        }}
+      >
+        <span>
+          {new Date(record.createdAt).toLocaleDateString(localeTag())}
+          {' — '}
+          {recordTitle(record)}
+        </span>
+        <b>{tr(status.label)}</b>
+      </div>
+    );
+  })}
       </div>
     </div>
   );
