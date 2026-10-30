@@ -338,6 +338,20 @@ export default function PatientDeclarer({ onNavigate }) {
               <label className="dw-label" htmlFor="dwpProduct">{tr("Nom du produit")} <i>*</i></label>
               <input id="dwpProduct" className="form-input" value={s.productName} onChange={(e) => set({ productName: e.target.value })} />
             </div>
+            <div className="dw-field">
+              <label className="dw-label" htmlFor="dwpManufacturer">{tr("Fabricant")} <i>*</i></label>
+              <input
+                id="dwpManufacturer"
+                className="form-input"
+                value={s.manufacturerName}
+                onChange={(e) => set({ manufacturerName: e.target.value })}
+                placeholder={tr("Nom du fabricant")}
+                required
+              />
+              <small className="dw-card-sub">
+                {tr("Indiquez le nom du fabricant du produit concerné.")}
+              </small>
+            </div>
             {duplicate && (
               <div className="dw-alert is-amber" role="alert" style={{ marginBottom: 20 }}>
                 <Icon name="alert-circle" />
