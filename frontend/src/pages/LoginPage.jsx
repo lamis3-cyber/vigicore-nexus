@@ -61,6 +61,10 @@ export default function LoginPage() {
   // Driven entirely by React state.
   const VIEW_ORDER = ['login', 'signup', 'reset', 'mfa', 'pending']
   const [view, setView] = useState('login')
+  const [signupResult, setSignupResult] = useState({
+    type: 'success',
+    email: '',
+  })
 
   const goToView = (v) => {
     setView(v)
@@ -298,10 +302,14 @@ export default function LoginPage() {
 
     doSignup(payload, {
       onSuccess: (res) => {
-        document.getElementById('pending-email').textContent = email
-        // Compte créé, mais aucun établissement de ce type / ce nom : on le dit au lieu de laisser croire qu'une demande est partie.
-        const notice = document.getElementById('pending-org-notice')
-        if (notice) notice.style.display = res?.joinRequestError === 'ORG_NOT_FOUND' ? 'block' : 'none'
+        setSignupResult({
+          type: res?.joinRequested === true
+            ? 'join-pending'
+            : res?.joinRequestError === 'ORG_NOT_FOUND'
+              ? 'org-not-found'
+              : 'success',
+          email,
+        })
         goToView('pending')
       },
     })
@@ -685,15 +693,29 @@ export default function LoginPage() {
           <div className="pending-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,200,120,.85)" strokeWidth="2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
-          <div className="pending-title">{t('login.pendingTitle')}</div>
-          <div className="pending-sub">
-            {t('login.pendingSub').split('\n').map((line, i) => (
-              <React.Fragment key={i}>{i > 0 && <br/>}{line}</React.Fragment>
-            ))}
+          <div className="pending-title">
+            {signupResult.type === 'join-pending'
+              ? t('login.joinPendingTitle')
+              : signupResult.type === 'org-not-found'
+                ? t('login.successTitle')
+                : t('login.successTitle')}
           </div>
-          <div className="pending-email" id="pending-email"></div>
-          <div className="pending-sub" id="pending-org-notice" style={{'display':'none','marginTop':'8px','color':'#f5b942'}}>{tr("Aucun établissement de ce type avec ce nom n'a été trouvé : aucune demande d'adhésion n'a été envoyée. Vous pourrez le chercher depuis « Mon organisation ».")}</div>
-          <div className="pending-sub" style={{'marginTop':'4px'}}>{t('login.pendingAvg')} <strong style={{'color':'rgba(0,232,255,.6)'}}>{t('login.pendingTime')}</strong></div>
+
+          <div className="pending-sub">
+            {signupResult.type === 'join-pending'
+              ? t('login.joinPendingSub')
+              : signupResult.type === 'org-not-found'
+                ? t('login.orgNotFoundSub')
+                : t('login.successSub')}
+          </div>
+
+          <div className="pending-email">{signupResult.email}</div>
+
+          {signupResult.type === 'join-pending' && (
+            <div className="pending-sub" style={{'marginTop':'4px'}}>
+              {t('login.pendingAvg')} <strong style={{'color':'rgba(0,232,255,.6)'}}>{t('login.pendingTime')}</strong>
+            </div>
+          )}
           <button className="lc-back" onClick={() => goToView('login')} style={{'margin':'12px auto 0','justifyContent':'center'}}>{t('login.back')}</button>
         </div>
       </div>
