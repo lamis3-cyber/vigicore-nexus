@@ -130,6 +130,7 @@ export function trackAudit(entry) {
     const r = await request('POST', '/audit', { refType: entry.refType, refId: String(entry.refId), action: entry.action }, 'records');
     if (r.ok) { Object.assign(entry, r.json.entry); delete entry.pending; return; }
     delete entry.pending;
+    if (r.status === 403) return; // rôle sans journal d'audit : pas une erreur de synchronisation
     emitError(`Le journal d'audit n'a pas pu enregistrer cette action : ${reason(r)}`);
   })();
   return entry;

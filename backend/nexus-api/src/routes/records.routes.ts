@@ -27,7 +27,7 @@ recordsRouter.use(requireAuth);
 const fail = (res: Response, status: number, message: string) => res.status(status).json({ success: false, message });
 const REVIEW = new Set(['VIGILANCE_REVIEWER', 'ORG_ADMIN']); // le personnel médical (HOSPITAL) ne relit pas l'établissement
 const PATIENT_WRITERS = new Set(['DOCTOR']);
-const AUDIT_WRITERS = new Set(['DOCTOR', 'PHARMACIEN', 'LABO', 'HOSPITAL', 'VIGILANCE_REVIEWER', 'ORG_ADMIN']);
+const AUDIT_WRITERS = new Set(['DOCTOR', 'PHARMACIEN', 'LABO', 'HOSPITAL', 'VIGILANCE_REVIEWER', 'ORG_ADMIN', 'FOURNISSEUR']);
 const REF_TYPES = new Set(['declaration', 'alert', 'recall', 'lot', 'lab', 'capa']);
 const COLORS = ['#38bdf8', '#34d399', '#f59e0b', '#a78bfa', '#f472b6', '#fb7185'];
 

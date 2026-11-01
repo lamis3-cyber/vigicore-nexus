@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 import { tr } from '../../i18n/translate.js';
 import { searchEverything } from '../lib/globalSearch';
+import { listMyRecords, listMine } from '../../lib/declarationsApi';
 
 // Barre de recherche du haut : suggestions groupées (pages, déclarations, brouillons, patients), clavier complet.
 export default function GlobalSearch({ portalKey, user, onNavigate }) {
@@ -9,7 +10,18 @@ export default function GlobalSearch({ portalKey, user, onNavigate }) {
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
   const box = useRef(null);
-  const results = open ? searchEverything(q, { portalKey, user }) : [];
+  const [remote, setRemote] = useState(null); // { records, submissions, at } : cache court des données du serveur
+  const results = open ? searchEverything(q, { portalKey, user, remote }) : [];
+
+  // À l'ouverture de la barre : charge (au plus une fois par minute) les déclarations et envois de l'utilisateur.
+  useEffect(() => {
+    if (!open || (remote && Date.now() - remote.at < 60000)) return undefined;
+    let alive = true;
+    Promise.all([listMyRecords().catch(() => ({ records: [] })), listMine().catch(() => [])]).then(([r, subs]) => {
+      if (alive) setRemote({ records: r?.records ?? [], submissions: Array.isArray(subs) ? subs : [], at: Date.now() });
+    });
+    return () => { alive = false; };
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const off = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };

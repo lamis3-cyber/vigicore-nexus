@@ -58,7 +58,9 @@ export default function DoctorPatients({ onNavigate }) {
   // useAuth() hook) so this page doesn't gain a React-context
   // dependency it didn't have before — DoctorPatients.test.jsx renders
   // it without <AuthProvider>.
-  const scopedPatients = DR_PATIENTS.filter((p) => isOrgScopedRecordVisible(p, getCurrentAuthUser()));
+  // Patients venus du serveur (ownerUserId) : déjà limités au médecin propriétaire, ne pas les masquer par organisation
+  // (l'établissement actif d'un dossier peut différer de l'organisation de la session). Données de démo : filtre inchangé.
+  const scopedPatients = DR_PATIENTS.filter((p) => p.ownerUserId || isOrgScopedRecordVisible(p, getCurrentAuthUser()));
 
   const [drawer, setDrawer] = useState(null); // null | { type: 'detail', patient } | { type: 'add' }
 
