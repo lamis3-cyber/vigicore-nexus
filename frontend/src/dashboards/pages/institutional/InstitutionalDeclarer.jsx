@@ -490,8 +490,8 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
         id={idForInput}
         value={wiz.productName}
         selected={wiz.productRef ? { productRef: wiz.productRef, organizationName: wiz.productOrg } : null}
-        onChange={(text) => set({ productName: text, productRef: null, productOrg: '', ...(isPanne ? {} : { manual: false }) })}
-        onSelect={(p) => set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manual: false })}
+        onChange={(text) => set({ productName: text, productRef: null, productOrg: '', ...(isPanne ? {} : { manual: false }), ...(!isPanne && wiz.productRef && wiz.manufacturer === wiz.productOrg ? { manufacturer: '' } : {}) })}
+        onSelect={(p) => set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manual: false, ...(isPanne ? (wiz.brand.trim() ? {} : { brand: p.organizationName }) : { manufacturer: p.organizationName }) })}
         onStatus={(st) => setCatalogue((cur) => (cur.state === st.state && cur.total === st.total && cur.selectable === st.selectable ? cur : st))}
       />
     </div>
@@ -510,7 +510,7 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
           const v = await verifyScannedCode(parsed);
           if (v.status === 'found') {
             const p = v.product;
-            if (!wiz.productRef && p.intakeAvailable) set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manual: false });
+            if (!wiz.productRef && p.intakeAvailable) set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manual: false, ...(isPanne ? {} : { manufacturer: p.organizationName }) });
             toast('success', tr("Produit reconnu dans la base"), tr("{0} ({1}) correspond à ce code. Vérifiez qu'il s'agit bien du produit concerné ; le lot lui-même n'est pas vérifié par le catalogue.", [p.name, p.organizationName]), 'ti ti-circle-check');
           } else if (v.status === 'notFound') {
             toast('warn', tr("Produit non trouvé dans la base"), tr("Aucun produit du catalogue ne correspond à ce code. Le numéro est conservé : saisissez le nom du produit ou revérifiez l'emballage."), 'ti ti-alert-triangle');
@@ -639,7 +639,8 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
             <div className="dw-row dw-row--2">
               <div className="dw-field">
                 <label className="dw-label" htmlFor="dwManuf">{tr("Nom du fabricant")}</label>
-                <input id="dwManuf" className="form-input" value={wiz.manufacturer} onChange={(e) => set({ manufacturer: e.target.value })} />
+                <input id="dwManuf" className="form-input" value={wiz.manufacturer} onChange={(e) => set({ manufacturer: e.target.value })} readOnly={!!wiz.productRef && !wiz.manual} />
+                {!!wiz.productRef && !wiz.manual && <small className="dw-card-sub">{tr("Rempli automatiquement d'après le produit du catalogue VigiCore Audit.")}</small>}
               </div>
               <div className="dw-field">
                 <label className="dw-label" htmlFor="dwManufRef">{tr("Référence du produit chez le fabricant")}</label>
