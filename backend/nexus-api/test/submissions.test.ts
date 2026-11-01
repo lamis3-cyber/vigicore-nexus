@@ -109,6 +109,11 @@ describe('contenu envoyé à Audit', () => {
     expect(JSON.stringify(body)).not.toMatch(/org-evil|patientName|a@b\.c/);
     expect(body.reporter).toEqual({ role: 'doctor', displayName: 'Dr Test' });
   });
+  it('PATIENT : le nom du déclarant ne part jamais vers Audit', () => {
+    const body = buildAuditBody({ productRef: 'p1', description: 'Nausées' } as any, { id: 'u2', role: 'PATIENT', displayName: 'Nom Patient' });
+    expect(body.reporter).toEqual({ role: 'PATIENT' });
+    expect(JSON.stringify(body)).not.toMatch(/Nom Patient/);
+  });
   it('valide les entrées', () => {
     expect(parseSubmissionPayload({ description: 'd' }).ok).toBe(false);
     expect(parseSubmissionPayload({ productRef: 'p', description: '  ' }).ok).toBe(false);

@@ -303,11 +303,12 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
   const onlyOne = [cnpmAvail, orgAvail, manufacturerOffered].filter(Boolean).length === 1;
   const pickedCnpm = cnpmAvail && (['cnpm', 'both'].includes(wiz.destination) || (wiz.destination == null && onlyOne));
   const pickedOrg = orgAvail && (['org', 'both'].includes(wiz.destination) || (wiz.destination == null && onlyOne));
-  const pickedMfr = manufacturerOffered && !!wiz.informManufacturer;
+  // Transmission au fabricant (VigiCore Audit) SYSTÉMATIQUE dès qu'elle est possible : plus de case à décocher.
+  const pickedMfr = manufacturerOffered;
   const effectiveDest = pickedCnpm && pickedOrg ? 'both' : pickedCnpm ? 'cnpm' : pickedOrg ? 'org' : null;
   const noDestination = !dest.loading && dest.ok && !cnpmAvail && !orgAvail && !manufacturerOffered;
   const toggleRecipient = (id) => {
-    if (id === 'mfr') { set({ informManufacturer: !pickedMfr }); return; }
+    if (id === 'mfr') return; // toujours transmis quand c'est possible
     const c = id === 'cnpm' ? !pickedCnpm : pickedCnpm;
     const o = id === 'org' ? !pickedOrg : pickedOrg;
     set({ destination: c && o ? 'both' : c ? 'cnpm' : o ? 'org' : 'none' });

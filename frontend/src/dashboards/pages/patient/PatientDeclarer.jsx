@@ -7,7 +7,8 @@ import useDeclarationDraft from '../../lib/useDeclarationDraft';
 import { validateScannedLot } from '../../lib/lotVerification';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
-import { listMyRecords, createRecord, uploadAttachments, getDestinations } from '../../../lib/declarationsApi';
+import { listMyRecords, createRecord, uploadAttachments, getDestinations, submitDeclaration as sendToAudit } from '../../../lib/declarationsApi';
+import ProductCatalogueField from '../../components/ProductCatalogueField';
 import { listMyDoctors } from '../../../lib/careApi';
 import { tr, localeTag } from '../../../i18n/translate.js';
 
@@ -95,6 +96,8 @@ function initialState() {
     stepIdx: 0,
     productType: 'medicament',
     productName: '',
+    productRef: null,
+    productOrg: '',
     manufacturerName: '',
     lotNumber: '',
     expiryDate: '',
@@ -214,8 +217,8 @@ export default function PatientDeclarer({ onNavigate }) {
     if (sendingRef.current) return;
     sendingRef.current = true;
     try {
-      // 1) Enregistrement serveur (POST /api/records, kind PATIENT) : conservé pour le patient seul, jamais
-      //    transmis à Audit, au CNPM, au fabricant ni au médecin (aucune intégration autorisée n'existe).
+      // 1) Enregistrement serveur (POST /api/records, kind PATIENT) : conservé pour le patient ; jamais
+      //    transmis au CNPM ni au médecin (sauf partage choisi). La transmission au fabricant (Audit) suit à l'étape 2.
       const opt = (v) => { const t = String(v || '').trim(); return t || undefined; };
       const payload = {
         kind: 'PATIENT',
@@ -258,6 +261,41 @@ export default function PatientDeclarer({ onNavigate }) {
           : ` ${tr("{0} pièce(s) conservée(s) chiffrée(s), visible(s) de vous seul.", [files.length])}`;
       }
 
+      // 2) Transmission à la vigilance du fabricant (VigiCore Audit) : systématique dès que le produit est
+      //    rattaché au catalogue. Sans identité du patient (le serveur retire le nom pour le rôle PATIENT) ni pièces jointes.
+      let audit = null;
+      if (s.productRef) {
+        const sevForAudit = s.severity === 'urgence' ? 'grave' : s.severity;
+        const auditDescription = [
+          `Déclaration d'un patient — ${TYPE_LABEL[s.productType] || 'produit de santé'}.`,
+          `Apparition : ${frDate(s.onsetDate)}${s.duration ? ` · durée : ${s.duration}` : ''}.`,
+          s.symptoms.length ? `Symptômes : ${s.symptoms.join(', ')}.` : null,
+          opt(s.symptomDesc) ? `Description : ${s.symptomDesc.trim()}` : null,
+          isMed && s.productStopped ? `Arrêt du produit : ${labelOf(STOPPED, s.productStopped)}.` : null,
+          askAfterStop && s.dechallenge ? `Après l'arrêt : ${labelOf(AFTER_STOP, s.dechallenge)}.` : null,
+          s.severity === 'urgence' ? 'Niveau indiqué par le patient : urgence vitale.' : null,
+        ].filter(Boolean).join('\n');
+        const auditPayload = {
+          productRef: s.productRef,
+          productLabel: s.productName.trim(),
+          description: auditDescription,
+          lotNumber: opt(s.lotNumber),
+          declaredSeverity: sevForAudit,
+        };
+        try {
+          audit = await sendToAudit({ ...auditPayload, notifyCnpm: false, nexusRecordId: res.record.id, clientRequestId: `pat-${res.record.id}`.slice(0, 100) });
+        } catch (e) {
+          console.error('sendToAudit failed:', e);
+          audit = { outcome: 'ERROR', message: 'Erreur inattendue pendant la transmission au fabricant.' };
+        }
+      }
+      const auditNote = !s.productRef
+        ? ` ${tr("Produit hors catalogue VigiCore : elle n'a pas pu être transmise au fabricant.")}`
+        : audit?.outcome === 'RECEIVED' ? ` ${tr("Elle a été reçue par la vigilance du fabricant.")}`
+        : audit?.outcome === 'PENDING' ? ` ${tr("Elle est enregistrée ; l'envoi à la vigilance du fabricant sera retenté automatiquement.")}`
+        : audit?.outcome === 'NOT_ROUTABLE' ? ` ${tr("Aucune vigilance ne peut la recevoir pour le moment.")}`
+        : ` ${tr("Elle n'a pas encore été transmise à la vigilance du fabricant.")}`;
+
       const recordRef = String(res.record.id).slice(0, 8);
       const sharedNames = doctors
         .filter((d) => shared.includes(d.doctorId))
@@ -273,9 +311,9 @@ export default function PatientDeclarer({ onNavigate }) {
         'success',
         tr("Déclaration enregistrée"),
         (sharedNames
-          ? tr("Réf. {0} enregistrée dans votre espace et partagée avec {1}. Elle n'a pas été transmise au fabricant ni au CNPM.", [recordRef, sharedNames])
-          : tr("Réf. {0} enregistrée dans votre espace. Elle n'a pas été transmise au fabricant ni au CNPM.", [recordRef])
-        ) + attNote,
+          ? tr("Réf. {0} enregistrée dans votre espace et partagée avec {1}.", [recordRef, sharedNames])
+          : tr("Réf. {0} enregistrée dans votre espace.", [recordRef])
+        ) + auditNote + attNote,
         'circle-check'
       ), 300);
 
@@ -336,7 +374,13 @@ export default function PatientDeclarer({ onNavigate }) {
             </div>
             <div className="dw-field">
               <label className="dw-label" htmlFor="dwpProduct">{tr("Nom du produit")} <i>*</i></label>
-              <input id="dwpProduct" className="form-input" value={s.productName} onChange={(e) => set({ productName: e.target.value })} />
+              <ProductCatalogueField
+                id="dwpProduct"
+                value={s.productName}
+                selected={s.productRef ? { productRef: s.productRef, organizationName: s.productOrg } : null}
+                onChange={(text) => set({ productName: text, productRef: null, productOrg: '' })}
+                onSelect={(p) => set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manufacturerName: s.manufacturerName.trim() || p.organizationName })}
+              />
             </div>
             <div className="dw-field">
               <label className="dw-label" htmlFor="dwpManufacturer">{tr("Fabricant")} <i>*</i></label>
@@ -531,9 +575,10 @@ export default function PatientDeclarer({ onNavigate }) {
             <div className="dw-alert is-amber" role="note">
               <Icon name="info-circle" />
               <div>
-                <strong>{tr("Où va cette déclaration ?")}</strong> {shareWith.length
-                  ? tr("Elle est enregistrée dans votre espace et partagée avec les médecins cochés. Elle n'est transmise ni au CNPM ni à un fabricant.")
-                  : tr("Elle est enregistrée dans votre espace VigiCore (visible de vous seul). Elle n'est transmise ni au CNPM, ni à un fabricant, ni à votre médecin.")}
+                <strong>{tr("Où va cette déclaration ?")}</strong> {s.productRef
+                  ? tr("Elle est enregistrée dans votre espace et transmise à la vigilance du fabricant via VigiCore Audit, sans votre nom ni vos pièces jointes. N'écrivez pas votre nom ni vos coordonnées dans la description.")
+                  : tr("Produit hors catalogue VigiCore : elle est enregistrée dans votre espace seulement, le fabricant n'est pas relié à VigiCore Audit.")}
+                {shareWith.length > 0 && ` ${tr("Elle est aussi partagée avec les médecins cochés.")}`}
               </div>
             </div>
             <p className="dw-hint" style={{ marginTop: 8 }}>{tr("En envoyant cette déclaration, vous confirmez l'exactitude des informations fournies. Les données sont traitées de manière confidentielle.")}</p>

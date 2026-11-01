@@ -104,7 +104,10 @@ export function buildAuditBody(payload: SubmissionPayload, reporter: Reporter) {
     ...(payload.manufacturerReference ? { manufacturerReference: payload.manufacturerReference } : {}),
     ...(payload.declaredSeverity ? { declaredSeverity: payload.declaredSeverity } : {}),
     ...(isMalfunction ? { device: payload.device, malfunction: payload.malfunction } : {}),
-    reporter: { role: reporter.role, displayName: reporter.displayName },
+    // PATIENT : jamais de nom envoyé à Audit (donnée personnelle) ; seul le rôle part.
+    reporter: String(reporter.role).toUpperCase() === 'PATIENT'
+      ? { role: reporter.role }
+      : { role: reporter.role, displayName: reporter.displayName },
   };
 }
 
