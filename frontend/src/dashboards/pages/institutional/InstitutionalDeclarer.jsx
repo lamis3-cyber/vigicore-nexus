@@ -9,6 +9,7 @@ import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
 import { addDrDeclaration } from '../../data/doctorVigilance';
 import ProductCatalogueField from '../../components/ProductCatalogueField';
+import ManufacturerField from '../../components/ManufacturerField';
 import { submitDeclaration as sendToAudit, createRecord, uploadAttachments, getDestinations, getRecord, resendCnpm } from '../../../lib/declarationsApi';
 import { SUBMISSIONS_CHANGED_EVENT } from '../../components/MySubmissions';
 import { verifyScannedCode } from '../../lib/scanCatalogue';
@@ -639,8 +640,13 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
             <div className="dw-row dw-row--2">
               <div className="dw-field">
                 <label className="dw-label" htmlFor="dwManuf">{tr("Nom du fabricant")}</label>
-                <input id="dwManuf" className="form-input" value={wiz.manufacturer} onChange={(e) => set({ manufacturer: e.target.value })} readOnly={!!wiz.productRef && !wiz.manual} />
-                {!!wiz.productRef && !wiz.manual && <small className="dw-card-sub">{tr("Rempli automatiquement d'après le produit du catalogue VigiCore Audit.")}</small>}
+                <ManufacturerField
+                  id="dwManuf"
+                  value={wiz.manufacturer}
+                  onChange={(v) => set({ manufacturer: v })}
+                  locked={!!wiz.productRef && !wiz.manual}
+                  hint={tr("Rempli automatiquement d'après le produit du catalogue VigiCore Audit.")}
+                />
               </div>
               <div className="dw-field">
                 <label className="dw-label" htmlFor="dwManufRef">{tr("Référence du produit chez le fabricant")}</label>

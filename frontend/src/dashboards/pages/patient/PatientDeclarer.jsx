@@ -9,6 +9,7 @@ import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
 import { listMyRecords, createRecord, uploadAttachments, getDestinations, submitDeclaration as sendToAudit } from '../../../lib/declarationsApi';
 import ProductCatalogueField from '../../components/ProductCatalogueField';
+import ManufacturerField from '../../components/ManufacturerField';
 import { listMyDoctors } from '../../../lib/careApi';
 import { tr, localeTag } from '../../../i18n/translate.js';
 
@@ -378,18 +379,19 @@ export default function PatientDeclarer({ onNavigate }) {
                 id="dwpProduct"
                 value={s.productName}
                 selected={s.productRef ? { productRef: s.productRef, organizationName: s.productOrg } : null}
-                onChange={(text) => set({ productName: text, productRef: null, productOrg: '' })}
-                onSelect={(p) => set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manufacturerName: s.manufacturerName.trim() || p.organizationName })}
+                onChange={(text) => set({ productName: text, productRef: null, productOrg: '', ...(s.productRef ? { manufacturerName: '' } : {}) })}
+                onSelect={(p) => set({ productName: p.name, productRef: p.productRef, productOrg: p.organizationName, manufacturerName: p.organizationName })}
               />
             </div>
             <div className="dw-field">
               <label className="dw-label" htmlFor="dwpManufacturer">{tr("Fabricant")} <i>*</i></label>
-              <input
+              <ManufacturerField
                 id="dwpManufacturer"
-                className="form-input"
                 value={s.manufacturerName}
-                onChange={(e) => set({ manufacturerName: e.target.value })}
+                onChange={(v) => set({ manufacturerName: v })}
                 placeholder={tr("Nom du fabricant")}
+                locked={!!s.productRef}
+                hint={tr("Rempli automatiquement d'après le produit choisi dans le catalogue : cette déclaration sera transmise à ce fabricant.")}
                 required
               />
               <small className="dw-card-sub">

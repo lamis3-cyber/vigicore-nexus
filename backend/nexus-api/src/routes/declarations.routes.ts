@@ -25,6 +25,7 @@ import { isStorageEnabled } from '../services/attachmentStore';
  *   GET  /api/declarations/:id/messages       ?since=ISO
  *   POST /api/declarations/:id/messages       en-tête Idempotency-Key obligatoire
  *   GET  /api/catalogue/products?q=           produits déclarables (approuvés)
+ *   GET  /api/catalogue/manufacturers?q=      fabricants du catalogue (noms seulement)
  *
  * Portée : l'auteur (req.user.id) ne voit QUE ses déclarations. L'organisation
  * destinataire n'est JAMAIS lue dans la requête : Audit la détermine.
@@ -283,5 +284,18 @@ catalogueRouter.get('/products', asyncHandler(async (req, res) => {
     reporterRef: req.user!.id,
   });
   if (r.kind === 'http' && r.status === 200) return res.json({ success: true, products: r.data?.products ?? [] });
+  return relayFailure(res, r);
+}));
+
+catalogueRouter.get('/manufacturers', asyncHandler(async (req, res) => {
+  const q = typeof req.query.q === 'string' ? req.query.q : '';
+  if (q.trim().length < 2) return fail(res, 400, 'q must contain at least 2 characters.', 'VALIDATION_ERROR');
+  const r = await callAudit({
+    method: 'GET',
+    path: `/nexus/v1/catalogue/manufacturers?q=${encodeURIComponent(q.trim())}`,
+    scope: 'catalogue:read',
+    reporterRef: req.user!.id,
+  });
+  if (r.kind === 'http' && r.status === 200) return res.json({ success: true, manufacturers: r.data?.manufacturers ?? [] });
   return relayFailure(res, r);
 }));

@@ -61,6 +61,12 @@ export async function searchCatalogue(q) {
   return { ok: true, products: r.json?.products ?? [] };
 }
 
+export async function searchManufacturers(q) {
+  const r = await call('GET', `/catalogue/manufacturers?q=${encodeURIComponent(q)}`);
+  if (r.network || r.httpStatus !== 200) return { ok: false, manufacturers: [] };
+  return { ok: true, manufacturers: r.json?.manufacturers ?? [] };
+}
+
 export async function listMine() {
   const r = await call('GET', '/declarations');
   return r.httpStatus === 200 ? (r.json?.submissions ?? []) : [];
