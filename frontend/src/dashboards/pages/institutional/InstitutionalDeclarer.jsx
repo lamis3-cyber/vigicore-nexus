@@ -644,8 +644,7 @@ export default function InstitutionalDeclarer({ dept, targetNavId, onNavigate, p
                   id="dwManuf"
                   value={wiz.manufacturer}
                   onChange={(v) => set({ manufacturer: v })}
-                  locked={!!wiz.productRef && !wiz.manual}
-                  hint={tr("Rempli automatiquement d'après le produit du catalogue VigiCore Audit.")}
+                  hint={wiz.productRef && !wiz.manual ? tr("Rempli d'après le produit du catalogue VigiCore Audit ; vous pouvez le modifier.") : undefined}
                 />
               </div>
               <div className="dw-field">

@@ -390,8 +390,7 @@ export default function PatientDeclarer({ onNavigate }) {
                 value={s.manufacturerName}
                 onChange={(v) => set({ manufacturerName: v })}
                 placeholder={tr("Nom du fabricant")}
-                locked={!!s.productRef}
-                hint={tr("Rempli automatiquement d'après le produit choisi dans le catalogue : cette déclaration sera transmise à ce fabricant.")}
+                hint={s.productRef ? tr("Rempli d'après le produit choisi dans le catalogue ; vous pouvez le modifier. La déclaration est transmise au fabricant de ce produit.") : undefined}
                 required
               />
               <small className="dw-card-sub">

@@ -267,6 +267,26 @@ export function AuthProvider({ children, source = 'demo' }) {
     return () => { cancelled = true; };
   }, [source]);
 
+  // Le cookie de session est partagé par TOUS les onglets du navigateur : si un autre onglet se connecte avec un autre
+  // compte, les requêtes de celui-ci partiraient sous ce nouveau compte alors que l'écran affiche l'ancien.
+  // Au retour sur l'onglet, on revérifie la session et on recharge si le compte n'est plus le même.
+  useEffect(() => {
+    if (source !== 'session' || !user) return undefined;
+    let busy = false;
+    const check = async () => {
+      if (busy || document.visibilityState === 'hidden') return;
+      busy = true;
+      try {
+        const res = await fetch('/api/auth/session', { credentials: 'include' });
+        const json = await res.json();
+        if (!json?.success || !json.user || json.user.id !== user.id) window.location.reload();
+      } catch { /* réseau indisponible : rien n'est conclu */ } finally { busy = false; }
+    };
+    window.addEventListener('focus', check);
+    document.addEventListener('visibilitychange', check);
+    return () => { window.removeEventListener('focus', check); document.removeEventListener('visibilitychange', check); };
+  }, [source, user]);
+
   // theme.css's login-gate rules (`body:not(.is-authenticated) .app-shell`,
   // `body.is-authenticated #loginScreen`) still key off this class on <body> —
   // that's how the original app hid/showed the shell vs. the login screen.
