@@ -92,7 +92,20 @@ export function presentRecordStatus(record) {
   const kind = record && record.kind;
   const st = record && record.status;
   if (st === 'SUBMITTED') {
-    if (kind === 'PATIENT') return { key: 'SUBMITTED', tone: 'amber', label: 'Enregistrée dans votre espace — non transmise à une vigilance' };
+    if (kind === 'PATIENT') {
+      // Transmise au fabricant (VigiCore Audit) : l'état réel est celui de la ligne MANUFACTURER liée à l'envoi.
+      const m = ((record && record.deliveries) || []).find((d) => d.destination === 'MANUFACTURER');
+      if (m) {
+        const T = {
+          PENDING: ['amber', "envoi au fabricant en cours"], RECEIVED: ['blue', 'reçue par la vigilance du fabricant'],
+          UNDER_REVIEW: ['blue', 'enquête en cours chez le fabricant'], WAITING_INFO: ['amber', 'information demandée par le fabricant'],
+          CLOSED: ['green', 'enquête clôturée par le fabricant'],
+        };
+        const [tone, txt] = T[m.status] || ['red', 'non reçue par le fabricant'];
+        return { key: 'SUBMITTED', tone, label: `Enregistrée dans votre espace — ${txt}` };
+      }
+      return { key: 'SUBMITTED', tone: 'amber', label: 'Enregistrée dans votre espace — non transmise à une vigilance' };
+    }
     const del = (record && record.deliveries) || [];
     if (del.length) {
       const cnpm = del.find((d) => d.destination === 'CNPM');

@@ -110,3 +110,17 @@ describe('describeRetry / shorten', () => {
     expect(L.shorten(null)).toBe('');
   });
 });
+
+describe('presentRecordStatus : déclaration patient transmise au fabricant', () => {
+  it('sans envoi lié : toujours « non transmise à une vigilance »', () => {
+    expect(L.presentRecordStatus({ kind: 'PATIENT', status: 'SUBMITTED', deliveries: [] }).label).toMatch(/non transmise à une vigilance/);
+  });
+  it('envoi lié en attente : jamais présentée comme reçue', () => {
+    const r = L.presentRecordStatus({ kind: 'PATIENT', status: 'SUBMITTED', deliveries: [{ destination: 'MANUFACTURER', status: 'PENDING' }] });
+    expect(r.label).toMatch(/en cours/); expect(r.label).not.toMatch(/reçue|non transmise/);
+  });
+  it('envoi lié reçu par la vigilance du fabricant', () => {
+    const r = L.presentRecordStatus({ kind: 'PATIENT', status: 'SUBMITTED', deliveries: [{ destination: 'MANUFACTURER', status: 'RECEIVED' }] });
+    expect(r.label).toMatch(/reçue par la vigilance du fabricant/); expect(r.tone).toBe('blue');
+  });
+});
