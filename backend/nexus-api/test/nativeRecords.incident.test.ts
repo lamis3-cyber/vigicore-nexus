@@ -507,7 +507,7 @@ describe('GET /api/declarations/destinations', () => {
 });
 
 describe('déclaration PATIENT', () => {
-  const PAT = { kind: 'PATIENT', productType: 'medicament', productName: 'Doliprane', onsetDate: '2026-10-01', severity: 'legere', symptoms: ['Nausées'], productStopped: 'stopped', dechallenge: 'resolved' };
+  const PAT = { kind: 'PATIENT', productType: 'medicament', productName: 'Doliprane', manufacturerName: 'Sanofi', onsetDate: '2026-10-01', severity: 'legere', symptoms: ['Nausées'], productStopped: 'stopped', dechallenge: 'resolved' };
   beforeEach(() => { db.users.push({ id: 'pat', email: 'p@x.dz', displayName: 'Pat', role: 'PATIENT', deactivatedAt: null, affiliations: [] }); });
   it('arrêt et disparition sont des champs distincts (productStopped / dechallenge)', async () => {
     const r = await call('POST', '/records', 'pat', PAT);
@@ -534,7 +534,7 @@ describe('déclaration PATIENT', () => {
 });
 
 describe('lien médecin ↔ patient et partage des déclarations patient', () => {
-  const PAT_DECL = { kind: 'PATIENT', productType: 'medicament', productName: 'Doliprane 1g', onsetDate: '2026-10-01', severity: 'legere', symptomDesc: 'Nausées depuis 2 jours (Karim B.)' };
+  const PAT_DECL = { kind: 'PATIENT', productType: 'medicament', productName: 'Doliprane 1g', manufacturerName: 'Sanofi', onsetDate: '2026-10-01', severity: 'legere', symptomDesc: 'Nausées depuis 2 jours (Karim B.)' };
   beforeEach(() => {
     db.users.push(
       { id: 'pat', email: 'karim@x.dz', displayName: 'Karim', role: 'PATIENT', deactivatedAt: null, affiliations: [] },

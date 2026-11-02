@@ -11,6 +11,11 @@ export interface ConfigReport {
 }
 
 const isHttps = (u: string) => /^https:\/\//i.test(u);
+// Hôte privé (service docker-compose sans point, ou plage RFC1918) : http toléré SEULEMENT pour la liaison Audit.
+const isPrivateHost = (u: string) => {
+  const h = (u.match(/^https?:\/\/([^/:?#]+)/i)?.[1] ?? '').toLowerCase();
+  return !!h && (!h.includes('.') || /^10\./.test(h) || /^192\.168\./.test(h) || /^172\.(1[6-9]|2\d|3[01])\./.test(h));
+};
 const isLocal = (u: string) => /(localhost|127\.0\.0\.1|\[::1\])/i.test(u);
 
 export function isProduction(env: NodeJS.ProcessEnv = process.env) {
@@ -53,7 +58,7 @@ export function checkConfig(env: NodeJS.ProcessEnv = process.env): ConfigReport 
   if (audit !== !!nexus) problem('AUDIT_BASE_URL and NEXUS_SERVICE_JWT_SECRET must be set together (external declarations stay disabled otherwise).', false);
   if (nexus && (nexus.length < 32 || looksLikePlaceholder(nexus))) problem('NEXUS_SERVICE_JWT_SECRET is a placeholder or shorter than 32 characters.');
   if (env.MARKET_DEMO_OFFERS === 'true') problem('MARKET_DEMO_OFFERS=true: orders on demo offers are SIMULATED and never reach Audit (the commercial sees nothing). Set it to false outside local tests.');
-  if (prod && audit && !isHttps(env.AUDIT_BASE_URL!) && !isLocal(env.AUDIT_BASE_URL!)) problem('AUDIT_BASE_URL should be https in production.');
+  if (prod && audit && !isHttps(env.AUDIT_BASE_URL!) && !isLocal(env.AUDIT_BASE_URL!) && !isPrivateHost(env.AUDIT_BASE_URL!)) problem('AUDIT_BASE_URL should be https in production.');
 
   if (prod) {
     if (!env.SMTP_HOST || !env.MAIL_FROM) warnings.push('SMTP_HOST / MAIL_FROM not set: password-reset and contact emails are DISABLED (endpoints answer 503).');

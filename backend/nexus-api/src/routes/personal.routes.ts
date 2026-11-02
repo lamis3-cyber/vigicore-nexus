@@ -3,6 +3,7 @@ import type { Response } from 'express';
 import { prisma } from '../lib/prisma';
 import { requireAuth } from '../middleware/requireAuth';
 import { asyncHandler } from '../lib/asyncHandler';
+import { acceptedDoctorIds } from '../services/careLinks';
 
 /**
  * Données personnelles saisies par l'utilisateur dans son tableau de bord.
@@ -81,6 +82,7 @@ export const KINDS: Record<string, KindSpec> = {
     maxItems: 300,
     fields: {
       practitioner: t(160, true),
+      doctorUserId: t(64), // médecin choisi parmi « Mes médecins » (accepté) : il verra ce rendez-vous
       reason: t(160, true),
       date: { type: 'date', required: true },
       time: { type: 'time' },
@@ -212,6 +214,10 @@ async function clean(kind: string, spec: KindSpec, input: unknown, userId: strin
       }
     }
   }
+  if (kind === 'appointment' && typeof out.doctorUserId === 'string' && out.doctorUserId) {
+    // Seul un médecin ACCEPTÉ par ce patient peut voir le rendez-vous (même consentement que le partage de déclarations).
+    if (!(await acceptedDoctorIds(userId)).has(out.doctorUserId)) throw new InvalidField('doctorUserId : ce médecin ne fait pas partie de vos médecins acceptés.');
+  }
   if (kind === 'treatment' || kind === 'appointment') {
     const s = (out.startDate ?? src.startDate) as string | undefined;
     const e = (out.endDate ?? src.endDate) as string | undefined;
@@ -243,6 +249,30 @@ async function guard(res: Response, fn: () => Promise<unknown>) {
     throw e;
   }
 }
+
+// ---- Médecin : rendez-vous que ses patients ont choisi de lui communiquer ----
+// ⚠ déclaré AVANT '/:kind'. Un RDV n'est visible que si le patient l'a lié à ce médecin ET que le patient a toujours accepté ce médecin.
+personalRouter.get('/appointments-for-doctor', asyncHandler(async (req, res) => {
+  const user = req.user!;
+  if (user.role !== 'DOCTOR') return res.json({ success: true, appointments: [] });
+  const rows: any[] = await prisma.personalRecord.findMany({
+    where: { kind: 'appointment', data: { path: ['doctorUserId'], equals: user.id } },
+    orderBy: { createdAt: 'desc' }, take: 500,
+  });
+  const accepted = new Map<string, boolean>();
+  const out: any[] = [];
+  for (const r of rows) {
+    const d = (r.data ?? {}) as Record<string, any>;
+    if (d.status === 'cancelled') continue;
+    if (!accepted.has(r.userId)) accepted.set(r.userId, (await acceptedDoctorIds(r.userId)).has(user.id));
+    if (!accepted.get(r.userId)) continue;
+    out.push({ id: r.id, patientUserId: r.userId, date: d.date, time: d.time ?? '', reason: d.reason ?? '', notes: d.notes ?? '', status: d.status ?? 'planned' });
+  }
+  const names = new Map<string, string>(
+    (await prisma.user.findMany({ where: { id: { in: [...new Set(out.map((a) => a.patientUserId))] } }, select: { id: true, displayName: true } })).map((u: any) => [u.id, u.displayName]),
+  );
+  res.json({ success: true, appointments: out.map((a) => ({ ...a, patientName: names.get(a.patientUserId) ?? '' })) });
+}));
 
 // ---- Fiches uniques (profil) ----
 personalRouter.get('/singleton/:kind', asyncHandler(async (req, res) => {
