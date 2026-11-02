@@ -15,6 +15,7 @@ import { isOrgScopedRecordVisible } from '../../config/organizations';
 
 import { todayLongFr } from '../../lib/today';
 import { tr } from '../../../i18n/translate.js';
+import DoctorPatientAppointments from './DoctorPatientAppointments';
 // Converted from #view-doc-dashboard (doctor scope), 1:1 with the
 // original's renderDrDashboard() (top declarations + active-alerts
 // panel).
@@ -137,6 +138,8 @@ export default function DoctorDashboard({ onNavigate, onOpenDeclareWizard }) {
       <div className="kpi-sub">{scopedDecl.length === 0 ? tr("Aucune déclaration pour le moment") : tr("{0} transmise(s) · {1} brouillon(s)", [scopedDecl.filter((d) => d.status === 'sent').length, scopedDecl.filter((d) => d.status === 'draft').length])}</div>
     </div>
   </div>
+
+  <DoctorPatientAppointments />
 
   <div className="grid-2-1">
     <div className="card">

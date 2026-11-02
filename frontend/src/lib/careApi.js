@@ -27,3 +27,9 @@ export async function listFromPatients() {
   const r = await call('GET', '/records/from-patients');
   return r.httpStatus === 200 ? { ok: true, records: r.json?.records ?? [] } : { ok: false, records: [], unauthorized: r.httpStatus === 401 };
 }
+
+/** Médecin : rendez-vous que ses patients lui ont communiqués (le patient l'a choisi parmi « Mes médecins »). */
+export async function listPatientAppointments() {
+  const r = await call('GET', '/personal/appointments-for-doctor');
+  return r.httpStatus === 200 ? { ok: true, appointments: r.json?.appointments ?? [] } : { ok: false, appointments: [], unauthorized: r.httpStatus === 401 };
+}

@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { listMyDoctors } from '../../../lib/careApi';
 import Icon from '../../components/Icon';
 import { usePersonalList, todayIso } from '../../lib/usePersonal';
 import { useToast } from '../../context/ToastContext';
 import { tr, localeTag } from '../../../i18n/translate.js';
 
 // Patient appointments — the patient's own agenda, stored in the account (/api/personal/appointment).
-// This is a personal reminder: the practitioner is NOT notified (no booking system is connected),
-// and the page says so.
+// Personal reminder by default. If the patient picks one of their ACCEPTED doctors ("Mes médecins"), that doctor
+// sees the appointment on their dashboard; nobody else does. No booking/confirmation system is connected.
 
 const MOTIFS = ['Consultation de suivi', 'Renouvellement ordonnance', 'Bilan biologique', 'Effet indésirable à discuter', 'Autre'];
-const EMPTY_FORM = { practitioner: '', reason: MOTIFS[0], date: '', time: '', notes: '' };
+const EMPTY_FORM = { practitioner: '', doctorUserId: '', reason: MOTIFS[0], date: '', time: '', notes: '' };
 
 const sortKey = (a) => `${a.date}T${a.time || '00:00'}`;
 
@@ -20,6 +21,12 @@ export default function PatientRdv() {
   const [tab, setTab] = useState('upcoming');
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [doctors, setDoctors] = useState([]); // médecins acceptés
+  useEffect(() => {
+    let alive = true;
+    listMyDoctors().then((r) => { if (alive && r.ok) setDoctors(r.doctors.filter((d) => d.status === 'ACCEPTED')); });
+    return () => { alive = false; };
+  }, []);
 
   const today = todayIso();
   const all = items || [];
@@ -56,13 +63,14 @@ export default function PatientRdv() {
     }
     const data = { ...form, status: 'planned' };
     if (!data.time) delete data.time;
+    if (!data.doctorUserId) delete data.doctorUserId;
     setSaving(true);
     const r = await add(data);
     setSaving(false);
     if (!r.ok) return toast('error', tr("Enregistrement impossible"), r.error, 'alert-triangle');
     setShowForm(false);
     setForm(EMPTY_FORM);
-    toast('success', tr("Rendez-vous noté"), tr("Ce rendez-vous ({0}) est enregistré dans votre agenda. Le praticien n'est pas notifié : contactez-le directement pour confirmer.", [data.reason]), 'calendar');
+    toast('success', tr("Rendez-vous noté"), data.doctorUserId ? tr("Ce rendez-vous ({0}) est enregistré et visible par le médecin choisi. Ce n'est pas une confirmation : contactez-le pour la valider.", [data.reason]) : tr("Ce rendez-vous ({0}) est enregistré dans votre agenda. Le praticien n'est pas notifié : contactez-le directement pour confirmer.", [data.reason]), 'calendar');
   };
 
   const setStatus = async (a, status) => {
@@ -139,9 +147,22 @@ export default function PatientRdv() {
           <div className="section-header">
             <h2 className="section-title"><Icon name="calendar-plus" className="u-c-purple" />{tr("Nouveau rendez-vous")}</h2>
           </div>
-          <div className="u-fs-12 u-t102" style={{ marginBottom: '10px' }}>{tr("Agenda personnel : le praticien n'est pas prévenu automatiquement.")}</div>
+          <div className="u-fs-12 u-t102" style={{ marginBottom: '10px' }}>{form.doctorUserId ? tr("Le médecin choisi verra ce rendez-vous sur son tableau de bord (sans confirmation automatique).") : tr("Agenda personnel : le praticien n'est pas prévenu automatiquement. Choisissez un de vos médecins pour qu'il le voie.")}</div>
           <form onSubmit={submit}>
             <div className="form-row-2" style={{ marginBottom: '12px' }}>
+              {doctors.length > 0 && (
+                <div className="form-group">
+                  <label className="form-label" htmlFor="rdvMedecin">{tr("Mon médecin (il verra ce RDV)")}</label>
+                  <select id="rdvMedecin" className="form-input" value={form.doctorUserId}
+                    onChange={(e) => {
+                      const d = doctors.find((x) => x.doctorId === e.target.value);
+                      setForm((f) => ({ ...f, doctorUserId: e.target.value, practitioner: d ? d.displayName : f.practitioner }));
+                    }}>
+                    <option value="">{tr("Aucun (agenda personnel)")}</option>
+                    {doctors.map((d) => <option key={d.doctorId} value={d.doctorId}>{d.displayName}</option>)}
+                  </select>
+                </div>
+              )}
               <div className="form-group">
                 <label className="form-label" htmlFor="rdvPraticien">{tr("Praticien / établissement")}</label>
                 <input id="rdvPraticien" className="form-input" maxLength={160} placeholder={tr("Nom du praticien ou de l'établissement")} value={form.practitioner} onChange={updateForm('practitioner')} required />
