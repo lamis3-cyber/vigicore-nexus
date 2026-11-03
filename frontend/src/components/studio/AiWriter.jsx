@@ -62,17 +62,17 @@ export default function AiWriter({ f, onClose, onUse, org = false }) {
       const e = new Error(j?.code || String(res.status)); e.status = res.status; throw e
     } catch (err) {
       if (my !== seq.current) return
-      const why = err?.status === 503 ? 'ANTHROPIC_API_KEY is missing in server/.env (then restart the server).'
-        : err?.status === 404 ? 'The server has no /api/ai route yet: copy ai.routes.ts + app.ts and restart the server.'
-        : err?.status === 401 ? 'You are not logged in.'
-        : err?.status === 429 ? 'Too many requests, wait a minute.'
-        : 'The AI service did not answer (check the server console for [writer]).'
+      const why = err?.status === 503 ? tr("The writing assistant is not enabled on this server yet (the administrator must set ANTHROPIC_API_KEY).")
+        : err?.status === 404 ? tr("The writing assistant is not installed on this server.")
+        : err?.status === 401 ? tr("You are not logged in.")
+        : err?.status === 429 ? tr("Too many requests, wait a minute.")
+        : tr("The writing assistant did not answer (the key or the service may be unavailable). Try again later.")
       if (facts.trim()) {
         setOut({ ...localDraft(lang, title, category, facts), ai: false })
-        setNote(`AI unavailable — basic draft from your key points only. ${why}`)
+        setNote(`${tr("AI unavailable — basic draft from your key points only.")} ${why}`)
       } else {
         setOut(null)
-        setNote(`AI unavailable. ${why}`)
+        setNote(`${tr("AI unavailable.")} ${why}`)
       }
     } finally { if (my === seq.current) setBusy(false) }
   }

@@ -102,11 +102,17 @@ function DriftingHaze({ side, color, lightColor, isLight, reducedMotion }) {
 
 export default function CorridorScene({ progressRef, reducedMotion = false, isLight = false }) {
   const { onScreen, onCreated } = useOnScreen()
+  // « THREE.WebGLRenderer: Context Lost » : le navigateur reprend le GPU (onglets multiples, veille, mémoire).
+  // three.js restaure le contexte tout seul ; on relance simplement le rendu une fois restauré.
+  const handleCreated = (state) => {
+    onCreated(state)
+    state.gl.domElement.addEventListener('webglcontextrestored', () => state.invalidate?.(), false)
+  }
   return (
     <Canvas
-      onCreated={onCreated}
+      onCreated={handleCreated}
       dpr={typeof window !== 'undefined' && window.__vgLite ? 1 : [1, 1.6]}
-      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+      gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
       camera={{ position: [0, 0, 7.4], fov: 34 }}
       frameloop={reducedMotion ? 'demand' : onScreen ? 'always' : 'never'}
     >

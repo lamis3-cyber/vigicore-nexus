@@ -28,7 +28,8 @@ function useFrameTilt() {
 // The demo video is not recorded yet. Until a URL is provided (VITE_DEMO_VIDEO_URL in .env,
 // or drop a file at public/demo.mp4 and set the variable to /demo.mp4) the section says so
 // honestly and offers a live walkthrough instead of a play button that does nothing.
-const DEMO_SRC = import.meta.env.VITE_DEMO_VIDEO_URL || ''
+// Par défaut : frontend/public/vigi.mp4 (servi à /vigi.mp4). Fichier absent ou illisible : retour au message « bientôt disponible ».
+const DEMO_SRC = import.meta.env.VITE_DEMO_VIDEO_URL || '/vigi.mp4'
 const DEMO_POSTER = import.meta.env.VITE_DEMO_VIDEO_POSTER || undefined
 const SOON = {
   en: { tag: 'Video coming soon', desc: 'One incident, from the first report to the resolved alert. The video is being recorded: book a live walkthrough in the meantime.', cta: 'Book a live walkthrough', play: 'Play platform demo video' },
@@ -39,8 +40,9 @@ const SOON = {
 export default function VideoSection() {
   const { t, lang } = useI18n()
   const [playing, setPlaying] = useState(false)
+  const [failed, setFailed] = useState(false)
   const soon = SOON[lang] || SOON.en
-  const hasVideo = !!DEMO_SRC
+  const hasVideo = !!DEMO_SRC && !failed
   const { frameRef, onMouseMove, onMouseLeave } = useFrameTilt()
   const sectionRef = useSectionReveal()
   return (
@@ -56,7 +58,7 @@ export default function VideoSection() {
         
         {hasVideo && playing ? (
           <div className="video-placeholder" id="video-placeholder">
-            <video src={DEMO_SRC} poster={DEMO_POSTER} controls autoPlay playsInline preload="metadata"
+            <video src={DEMO_SRC} poster={DEMO_POSTER} controls autoPlay playsInline preload="metadata" onError={() => { setFailed(true); setPlaying(false) }}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: '#000' }} />
           </div>
         ) : (

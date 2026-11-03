@@ -84,7 +84,10 @@ export const ART = [
 ]
 
 /* Optional real photos: drop transparent PNGs in public/marketplace/ with these names (any subset). */
-export const IMG = ['pump', 'capsule', 'cream', 'testkit', 'gel'].map((n) => `/marketplace/${n}.png`)
+const IMG_NAMES = ['pump', 'capsule', 'cream', 'testkit', 'gel']
+export const IMG = IMG_NAMES.map((n) => `/marketplace/${n}.png`)
+/* Noms réellement déposés dans public/marketplace/ (ajoutez-les ici avec le fichier) : les autres ne sont pas demandés au serveur (pas de 404). */
+const REAL_PHOTOS = new Set(['testkit'])
 export const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [a[i], a[j]] = [a[j], a[i]] } return a }
 
 export function sample(src, px = SZ) {
@@ -157,7 +160,9 @@ export const svgSrc = (svg, px = SZ) => {
 }
 
 /* Sample one domain shape: real PNG from /marketplace/ if present, else the SVG art. */
-export const loadShape = (i, svgEl, px = SZ) => sample(IMG[i], px).then((r) => (r.length > 200 ? r : sample(svgSrc(svgEl, px), px)))
+export const loadShape = (i, svgEl, px = SZ) => (REAL_PHOTOS.has(IMG_NAMES[i])
+  ? sample(IMG[i], px).then((r) => (r.length > 200 ? r : sample(svgSrc(svgEl, px), px)))
+  : sample(svgSrc(svgEl, px), px))
 
 /* Cached sampled points for a domain shape, usable anywhere (no hidden <svg> needed in the page). */
 let _host = null
