@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>{t('footer.contact')}</h4>
-          <a href="mailto:contact@vigicore.health">{tr("contact@vigicore.health")}</a>
+          <a href="mailto:lamisabbou3@gmail.com">lamisabbou3@gmail.com</a>
           <a href="#">{t('footer.support')}</a>
           <a href="#">{t('footer.security')}</a>
           <a href="#">{t('footer.careers')}</a>
@@ -58,26 +58,14 @@ export default function Footer() {
           </div>
           
           <div className="footer-social">
-            <a href="#" className="footer-social-link" aria-label={tr("LinkedIn")}>
+            <a href="https://www.linkedin.com/in/lamis-lamis-982288307/" className="footer-social-link" aria-label={tr("LinkedIn")} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2.5" y="9" width="4" height="12"/>
                 <circle cx="4.5" cy="4.5" r="2"/>
                 <path d="M10.5 21v-8M10.5 13a3.5 3.5 0 0 1 7 0v8M10.5 9v.01"/>
               </svg>
             </a>
-            <a href="#" className="footer-social-link" aria-label={tr("Twitter / X")}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <path d="M4 4l16 16M4 20L20 4"/>
-              </svg>
-            </a>
-            <a href="#" className="footer-social-link" aria-label={tr("Instagram")}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="4.2"/>
-                <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-            <a href="#" className="footer-social-link" aria-label={tr("Email")}>
+            <a href="mailto:lamisabbou3@gmail.com" className="footer-social-link" aria-label={tr("Email")}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <polyline points="2,6 12,13 22,6"/>

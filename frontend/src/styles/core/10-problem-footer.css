@@ -113,6 +113,8 @@
   color: rgba(0,232,255,1);
 }
 .footer-social-link svg { width: 18px; height: 18px; stroke-width: 1.8; }
+/* .footer-col a { display:block; margin-bottom } s'appliquait aussi aux icônes : on rétablit centrage et taille */
+.footer-col .footer-social-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; margin-bottom: 0; padding: 0; }
 
 /* Footer bottom badges */
 .footer-bottom-badges {
