@@ -28,8 +28,8 @@ function useFrameTilt() {
 // The demo video is not recorded yet. Until a URL is provided (VITE_DEMO_VIDEO_URL in .env,
 // or drop a file at public/demo.mp4 and set the variable to /demo.mp4) the section says so
 // honestly and offers a live walkthrough instead of a play button that does nothing.
-// Par défaut : frontend/public/vigi.mp4 (servi à /vigi.mp4). Fichier absent ou illisible : retour au message « bientôt disponible ».
-const DEMO_SRC = import.meta.env.VITE_DEMO_VIDEO_URL || '/vigi.mp4'
+// Par défaut : frontend/public/vigicore-nexus-process.mp4 (servi à /vigicore-nexus-process.mp4). Fichier absent ou illisible : retour au message « bientôt disponible ».
+const DEMO_SRC = import.meta.env.VITE_DEMO_VIDEO_URL || '/vigicore-nexus-process.mp4'
 const DEMO_POSTER = import.meta.env.VITE_DEMO_VIDEO_POSTER || undefined
 const SOON = {
   en: { tag: 'Video coming soon', desc: 'One incident, from the first report to the resolved alert. The video is being recorded: book a live walkthrough in the meantime.', cta: 'Book a live walkthrough', play: 'Play platform demo video' },
